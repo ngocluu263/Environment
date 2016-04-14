@@ -1,0 +1,75 @@
+{% load humanize %}
+<div class="modal-dialog" style="width:auto;">
+	<div class="modal-content">
+		<div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h4 class="modal-title">Carbon Stocks by Plot</h4>    
+		</div>
+		<div class="modal-body">
+		<body>
+			<div id="stocksTablePanel">
+				<div class="table-responsive">
+					<table id="stocksTable" class="table table-striped table-condensed">
+						<tr>
+							<th colspan="4" class="danger">Plot Descriptors</th>
+							<th colspan="6" class="success">Carbon Density</th>
+						</tr>
+						<tr>
+							<th>Parcel ID</th>
+							<th>Plot ID</th>
+							<th>Plot Area (m<sup>2</sup>)</th>
+							<th>Trees/ha</th>
+							<th>AGB tC/ha</th>
+							<th>BGB tC/ha</th>
+							<th>SOC tC/ha</th>
+							<th>Litter tC/ha</th>
+							<th>Deadwood tC/ha</th>
+							<th>Total tC/ha</th>
+						</tr>
+						<tbody id="plots_stocks_data_rows">
+
+								<tr>
+								<td>Parcel ID</td>
+								<td>Plot ID</td>
+								<td>Plot Area (m<sup>2</sup>)</td>
+								<td>Trees/ha</td>
+								<td>AGB tC/ha</td>
+								<td>BGB tC/ha</td>
+								<td>SOC tC/ha</td>
+								<td>Litter tC/ha</td>
+								<td>Deadwood tC/ha</td>
+								<td>Total tC/ha</td>
+								</tr>
+	           			</tbody>
+	           			<tr class="totals">
+	           				<td colspan="3">Mean Value</td>
+	           				<td id="stocks_plots_trees">0</td>
+	           				<td id="stocks_plots_agb">0.00</td>
+	           				<td id="stocks_plots_bgb">0.00</td>
+	           				<td id="stocks_plots_soc">0.00</td>
+	           				<td id="stocks_plots_litter">0.00</td>
+	           				<td id="stocks_plots_deadwood">0.00</td>
+	           				<td id="stocks_plots_total">0.00</td>
+	           			</tr>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 								
+									<td>Parcel ID</td>
+									<td>plot.name</td>
+									<td>Plot Area (m<sup>2</sup>)</td>
+									<td>plot.trees_ha</td>
+									<td>plot.agb_tc_ha</td>
+									<td>plot.bgb_tc_ha</td>
+									<td>plot.soc_tc_ha</td>
+									<td>plot.litter_tc_ha</td>
+									<td>plot.deadwood_tc_ha</td>
+									<td>calculateTotal(plot)</td>
+									-->

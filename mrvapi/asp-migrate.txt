@@ -1,0 +1,155 @@
+﻿__MRV API PROJECT__ (100/100)
+
+--INSERT INTO ecalc_dev.dbo.mrvapi_project 
+--	(owner_id, name, region, country, type, abstract, contact, email,  
+--	 telephone, address, address2, city, state, zipcode, country_address,
+--	 duration, climate, moisture, reported_area)
+
+SELECT ecalc_dev.dbo.auth_user.id, projectName, region, country, type, abstract, contact, mrvdev.dbo.projects2.email, telephone,  
+address, address2, city, state, zipcode, country_address, duration, climate, moisture, reported_area
+
+FROM	ecalc_dev.dbo.auth_user 
+		INNER JOIN mrvdev.dbo.projects2
+			ON ecalc_dev.dbo.auth_user.username = mrvdev.dbo.projects2.owner
+
+			
+			
+			
+__MRV API PARCEL__ (230/308)
+
+--INSERT INTO ecalc_dev.dbo.mrvapi_parcel
+--	(project_id, name, vertices_mapped, vertices_reported, area_mapped, area_reported)
+
+SELECT DISTINCT ecalc_dev.dbo.mrvapi_project.id, parcel_name, vertices, vertices_reported, parcel_area, parcel_area_reported
+FROM	ecalc_dev.dbo.auth_user
+		INNER JOIN mrvdev.dbo.parcels
+			ON ecalc_dev.dbo.auth_user.username = mrvdev.dbo.parcels.project_owner
+		INNER JOIN ecalc_dev.dbo.mrvapi_project
+			ON ecalc_dev.dbo.mrvapi_project.owner_id = ecalc_dev.dbo.auth_user.id
+			AND ecalc_dev.dbo.mrvapi_project.name = mrvdev.dbo.parcels.project_name
+
+
+			
+			
+			
+			
+__MRV API PROJECT BOUNDARY__ (59/82)
+
+--INSERT INTO ecalc_dev.dbo.mrvapi_projectboundary 
+--	(project_id, name, vertices_mapped, vertices_reported, area_mapped, area_reported)
+
+SELECT DISTINCT ecalc_dev.dbo.mrvapi_project.id, boundary_name, vertices, vertices_reported, boundary_area, boundary_area_reported
+
+FROM	mrvdev.dbo.boundaries
+		INNER JOIN ecalc_dev.dbo.mrvapi_project
+			ON ecalc_dev.dbo.mrvapi_project.name = mrvdev.dbo.boundaries.project_name
+		INNER JOIN ecalc_dev.dbo.auth_user
+			ON ecalc_dev.dbo.auth_user.username = mrvdev.dbo.boundaries.project_owner
+
+			
+			
+			
+			
+			
+			
+__MRV API UPLOAD__ (54/56)
+(now saves the existing file format as handle so i am free to change it going forward)
+
+INSERT INTO ecalc_dev.dbo.mrvapi_upload (project_id, name, type, handle)
+
+SELECT id as project_id, doc_name, doc_type, 
+REPLACE(
+(RTRIM(project_name)+'___'
++RTRIM(doc_type)+'___'
++RTRIM(doc_name)+'___'
++RTRIM(doc_owner))
+,' ','_goes_') as handle
+FROM mrvdev.dbo.uploads
+INNER JOIN ecalc_dev.dbo.mrvapi_project id ON mrvdev.dbo.uploads.project_name = name 
+	AND mrvdev.dbo.uploads.doc_owner = (SELECT username FROM ecalc_dev.dbo.auth_user WHERE ecalc_dev.dbo.auth_user.id = owner_id)
+ORDER BY handle
+
+	
+	
+	
+	
+MRV API LOCATION
+
+(just copy and paste from ecalc_dev for the first time ...)
+
+
+
+
+__MRV API PLOT (new form)__ ( 63/104)
+--INSERT INTO ecalc_dev.dbo.mrvapi_plot (parcel_id, name, allometry_equation, root_shoot_ratio, shape_mapped,
+	--dimensions_mapped, vertices_mapped, area_mapped, shape_reported, dimensions_reported, vertices_reported,
+	--area_reported, litter_tc_ha, deadwood_tc_ha, soil_tc_ha, utm_vertices_mapped, utm_vertices_reported)
+
+SELECT DISTINCT ecalc_dev.dbo.mrvapi_parcel.id, plot_name, allometric_equation, root_shoot_ratio, shape, dimension, vertices, plot_area, plot_shape_reported,
+	plot_dim_reported, mrvdev.dbo.plots2.vertices_reported, plot_area_reported, litter_tc_ha, deadwood_tc_ha, soil_tc_ha, utm_vertices, utm_vertices_reported
+
+FROM	ecalc_dev.dbo.mrvapi_parcel
+		INNER JOIN ecalc_dev.dbo.mrvapi_project
+			ON ecalc_dev.dbo.mrvapi_parcel.project_id = ecalc_dev.dbo.mrvapi_project.id
+		INNER JOIN ecalc_dev.dbo.auth_user
+			ON ecalc_dev.dbo.mrvapi_project.owner_id = ecalc_dev.dbo.auth_user.id
+		INNER JOIN mrvdev.dbo.plots2
+			ON ecalc_dev.dbo.auth_user.username = mrvdev.dbo.plots2.project_owner
+			AND ecalc_dev.dbo.mrvapi_project.name = mrvdev.dbo.plots2.project_name
+			AND ecalc_dev.dbo.mrvapi_parcel.name = mrvdev.dbo.plots2.parcel_name
+
+			
+			
+			
+			
+			
+__MRV API PLOT (old form)__ (63/104)
+
+-- the master insert clause to populate new table --
+INSERT INTO ecalc_dev.dbo.mrvapi_plot (parcel_id, name, allometry_equation, root_shoot_ratio, shape_mapped,
+	dimensions_mapped, vertices_mapped, area_mapped, shape_reported, dimensions_reported, vertices_reported,
+	area_reported, litter_tc_ha, deadwood_tc_ha, soil_tc_ha, utm_vertices_mapped, utm_vertices_reported)
+
+-- combine plots2 with parcel table so we can reference foreign key # instead of parcel name! --
+SELECT id, plot_name, allometric_equation, root_shoot_ratio, shape, dimension, vertices, plot_area, plot_shape_reported,
+	plot_dim_reported, mrvdev.dbo.plots2.vertices_reported, plot_area_reported, litter_tc_ha, deadwood_tc_ha, soil_tc_ha, utm_vertices, utm_vertices_reported
+
+FROM mrvdev.dbo.plots2
+INNER JOIN ecalc_dev.dbo.mrvapi_parcel id ON mrvdev.dbo.plots2.parcel_name = name 
+	AND mrvdev.dbo.plots2.project_owner = (SELECT username FROM ecalc_dev.dbo.auth_user 
+		WHERE ecalc_dev.dbo.auth_user.id = (SELECT owner_id FROM ecalc_dev.dbo.mrvapi_project 
+			WHERE ecalc_dev.dbo.mrvapi_project.id = project_id))
+	AND mrvdev.dbo.plots2.project_name = (SELECT name FROM ecalc_dev.dbo.mrvapi_project
+		WHERE project_id = ecalc_dev.dbo.mrvapi_project.id)
+ORDER BY project_owner,project_name,id
+
+
+
+
+__MRV API TREE__ (595/3619 -- however I know there are bad trees in there so I'm not concerned. I believe the 3K are orphaned)
+
+--INSERT INTO ecalc_dev.dbo.mrvapi_tree (plot_id,genus,species,dbh,total_height,crown_d_max,crown_d_90,multistem,wood_gravity,comments,excel_row)
+
+SELECT ecalc_dev.dbo.mrvapi_plot.id, genus, species, dbh, total_height, crown_d_max, crown_d_90, multistem, wood_gravity, comments, tree_ID
+
+FROM	ecalc_dev.dbo.mrvapi_plot
+	INNER JOIN ecalc_dev.dbo.mrvapi_parcel
+		ON ecalc_dev.dbo.mrvapi_plot.parcel_id = ecalc_dev.dbo.mrvapi_parcel.id
+	INNER JOIN ecalc_dev.dbo.mrvapi_project
+		ON ecalc_dev.dbo.mrvapi_parcel.project_id = ecalc_dev.dbo.mrvapi_project.id
+	INNER JOIN ecalc_dev.dbo.auth_user
+		ON ecalc_dev.dbo.mrvapi_project.owner_id = ecalc_dev.dbo.auth_user.id
+	INNER JOIN mrvdev.dbo.plot_inventory
+		ON ecalc_dev.dbo.auth_user.username = mrvdev.dbo.plot_inventory.project_owner
+		AND ecalc_dev.dbo.mrvapi_project.name = mrvdev.dbo.plot_inventory.project_name
+		AND ecalc_dev.dbo.mrvapi_parcel.name = mrvdev.dbo.plot_inventory.parcel_name
+		AND	ecalc_dev.dbo.mrvapi_plot.name = mrvdev.dbo.plot_inventory.plot_name
+
+ORDER BY id, tree_ID
+
+
+
+
+__DBO.MRVAPI_ALLOMETRICS__ (This is a View -- not managed by Django)
+
+(copy statement from ecalc_dev)

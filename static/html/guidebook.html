@@ -1,0 +1,276 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Guidebook</title> 
+
+	<!-- jquery mobile -->
+	<link rel="stylesheet" href="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<link rel="stylesheet" href="/static/html/jquery_mobile_css/guidebook_theme/guidebook.css">
+	<link rel="stylesheet" href="/static/html/custom.css">
+	<script src="//code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	<!-- end jquery mobile -->
+
+	<script type="text/javascript">
+		$(document).ready(function () { // allow custom class "disabled" to prevent opening certain collapsible divs
+		    $(".disabled h3 a").click(function (event) {
+		        return false;
+		    });
+		});
+
+		/* bind our initPage function to page load */
+		$('body').live( 'pageinit', initPage);
+		function initPage() {
+			// Override 1) Expand the URL hash tag section
+			if(!location.hash){	return;	}
+			$(location.hash).trigger('expand');  // Expand the URL hash tag
+			$(String(location.hash.split("-", 1))).trigger('expand');  // Expand the URL hash tag parent, if any, by parsing hyphen
+			// Override 2) Highlight the URL hash tag section's div container
+			$(location.hash).addClass('highlighted')  // see the .highlighted div {} style above
+		}
+	</script>
+</head> 
+<body> 
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Carbon2Markets MRV</h1>
+
+		<a href="javascript:parent.$.pageslide.close()" data-icon="arrow-r" data-theme="d" class="ui-btn-right">Hide</a>
+
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn-active ui-state-persist">GEF Guidebook</a></li>
+				<!-- <li><a href="userguide.html">MRV User Guide</a></li> -->
+			</ul>
+		</div><!-- /navbar -->
+
+	</div><!-- /header -->
+
+	<div data-role="content"data-content-theme="a" >
+		<div id="citation">
+			<p>
+				The following text are excerpts from <a href="/static/html/GEF_Guidebook.pdf" target="_blank">Integrating Carbon Benefit Estimates into GEF Projects</a> (October 2005).
+			</p>
+		</div>
+<!--
+		<div id="s0" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>Introduction</h3>
+			<p>
+				The following text are excerpts from <a href="/static/html/GEF_Guidebook.pdf" target="_blank">Integrated Carbon Benefit Estimates into GEF Projects</a> (October 2005).
+			</p>
+		</div>
+-->
+		<div id="s1" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>1. GEF Projects and their Carbon Impact</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s2" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>2. The Scope of these Guidelines</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s3" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>3. The Types of Projects</h3>
+			<p>
+				Integrated ecosystem management projects are unique in that they are multifocal, bringing synergy between the GEF focal areas of biodiversity, climate change, international waters and land degradation within the context of sustainable development.
+			</p>
+			<p>
+				<i>Enter the project type in the Project Description section of the MRV.</i>
+			</p>
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=11" target="_blank">Continued on page 5</a>
+			</p>
+		</div>
+
+		<div id="s4" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>4. The Problem of Leakage</h3>
+			<p>
+				The implementation of GEF projects should not lead to the loss of carbon, either directly or indirectly, outside the project area.  If carbon is lost outside, this is referred to as leakage – that is, an unanticipated loss of net carbon beneﬁts of a project as a consequence of project activities. Activity shifting  occurs when the activities  that cause emissions are not permanently avoided, but are simply displaced to another area.   Market effects occur when emission reductions under the project are countered by the emissions created by a shift in supply and demand of the products and services affected by the project.  Super-acceptance may result from alternative livelihoods programmes created for the project.  
+			</p>
+			<p>
+				<i>See the Leakage Estimation Tool in the MRV to calculate leakage in A/R projects for the CDM.</i>
+			</p>				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=12" target="_blank">Continued on page 6</a>
+			</p>
+		</div>
+
+		<div id="s5" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>5. The Baseline Scenario</h3>
+			<p>
+				For any project, a baseline (or “without-project” reference case) needs to be developed against which project results can be measured. Here, the baseline scenario is a projection of the changes in land use and carbon stocks in the project area in the absence of the project activity – in other words, the changes in carbon stocks between the time the project starts and some point in the future.
+			</p>
+			<p>
+				The carbon stocks on the land when the project starts (often referred to as the base year) can serve as the baseline if it can be demonstrated that changes to business-as-usual activities in the foreseeable future (i.e., 10 to 30 years) are unlikely. Carbon stocks here, and throughout these guidelines, represent the quantity of carbon per unit area – typically tons of carbon per hectare (t C/ha).   Carbon credits are the difference between carbon stocks in the baseline and carbon stocks with project activities.
+			</p>
+			<p>
+				To develop the baseline, we assess two components:   A projection of business-as-usual changes in land use in the project site; and the changes in carbon stocks without project activities in the project site during this time.  The baseline is the product of the area of land-use and the change in carbon stocks for that land use over the projected time frame.
+			</p>
+			<p>
+				<i>A Reference (baseline) Scenario is required for every GHG emissions analysis performed in the Emissions Calculator.</i>
+			</p>				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=13" target="_blank">Continued on page 7</a>
+			</p>
+		</div>
+
+		<div id="s6" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>6. Developing a Measurement and Monitoring Plan</h3>
+			<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-content-theme="d" data-mini="true">
+				<div id="s6-1" data-role="collapsible" data-collapsed="false">
+					<h4>6.1 Define the Project Boundaries</h4>
+					<p>
+						Projects can vary in size from tens of hectares to hundreds of thousands of hectares.  They can be confined to a single geographic area or several.  The project site may be one contiguous block of land with a single owner, or many blocks of land spread over a wide area, with either a large number of small landowners or a few large ones.  The spatial boundaries of the land need to be clearly defined and properly documented from the start to aid accurate measuring and accounting.
+					</p>
+					<p>
+						<i>See tools to define project boundaries under Map Project in the MRV.</i>
+					</p>
+				</div>
+
+				<div id="s6-2" data-role="collapsible">
+					<h4>6.2 Stratify the Project Area</h4>
+					<p>
+						To facilitate ﬁeldwork and increase the accuracy and precision of measuring and estimating carbon, it is useful to divide the project area into sub-populations (or strata) that form relatively homogenous units.  In general, stratiﬁcation also decreases the costs of monitoring because it typically diminishes the sampling effort needed to maintain the same level of conﬁdence (because of smaller variation in the carbon stocks in each stratum as opposed to the whole area).  Useful tools for deﬁning strata include ground-truthed maps from satellite imagery, aerial photographs and maps of vegetation, soils or topography.
+					</p>
+					<p>
+						<i>See tools to define parcels (strata) under Map Parcels in the MRV.</i>
+					</p>
+				</div>
+
+				<div id="s6-3" data-role="collapsible">
+					<h4>6.3 Determine the Type, Number, and Location of Measurement Plots</h4>
+					<p>
+						A number of decisions must be made with regards to the plots to be measured.   The type of vegetation will affect whether plots are temporary or permanent, and their size, shape and location.  The number of plots required is related to the desired precision level and whether the site is stratiﬁed. Finally, it must be decided whether to locate plots across the project site in a random or systematic pattern.  See tools to define measurement plots under Map Plots in the MRV.
+					</p>
+					<p>
+						<i>See additional Sample Design tools available in the Work on Your Project section of the MRV.</i>
+					</p>
+				</div>
+				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=15" target="_blank">Continued on page 9</a>
+			</p>
+
+				<div id="s6-4-2" data-role="collapsible">
+					<h4>6.4.2 Determine Number of Plots</h4>
+					<p>
+						It is important that sampling is carried out with statistical rigour, otherwise it will be difficult to have conﬁdence about the achievements of the project. In employing this rigour, the ﬁrst step is identifying the required number of plots to reach the desired precision in the results.
+					</p>
+					<p>
+						Once the level of precision has been decided, sample sizes can be determined for each stratum in the project area. Each carbon pool will have a different variance (i.e.,  amount of variation around the mean). However experience has shown that focusing on the variance of the dominant carbon pool (e.g., trees for forestry activities,  or soil for cropland or grazing land systems) captures most of the variance.   Even though variation in the other components may be higher, if high precision is attained within the dominant component, a lack of precision in the other components will not harm the overall results. 
+					</p>
+					<p>
+						<i>See the Sampling Design Tool in the MRV to calculate the number of plots required in each stratum.</i>
+					</p>
+				</div>
+			</div>
+				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=20" target="_blank">Continued on page 14</a>
+			</p>
+		</div>
+
+		<div id="s7" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>7. Field Measurements</h3>
+			<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-content-theme="d" data-mini="true">
+				<div id="s7-1" data-role="collapsible" data-collapsed="false">
+					<h4>7.1 Preparation for Fieldwork</h4>
+					<p>
+						Efﬁcient planning is essential to reduce unnecessary labour costs, avoid safety risks and ensure reliable carbon estimates. The equipment used in ﬁeldwork should be accurate and durable enough to withstand the rigours of use under adverse conditions.  The type of equipment required will depend on the type of measurements, but the following list covers most of what is typically used in the ﬁeld.  
+					</p>
+					<p>
+						<i>See Resources #1, 2, and 9 for tools within the MRV that help to prepare for fieldwork and data collection.</i>
+					</p>
+				</div>
+			</div>
+				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=24" target="_blank">Continued on page 18</a>
+			</p>
+		</div>
+
+		<div id="s8" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>8. Data Analyses</h3>
+			<p>
+				Most calculations determine values for the biomass of a particular carbon pool, except soil, which usually measures carbon directly.   To convert biomass to carbon, multiply by 0.47.  However, if local values for the carbon content are available, use these instead.  Extrapolating from per plot values to per hectare values requires expansion factors, which indicate the area each sample represents.  This standardisation is required so that results can be easily interpreted and compared to other studies.  Expansion factor = 10,000 m2 / Area of plot, frame, or soil core (m2).
+			</p>
+			<p>
+				<i>See Resources #10-14 for Data Analysis performed by the MRV.</i>
+			</p>				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=29" target="_blank">Continued on page 23</a>
+			</p>
+		</div>
+
+		<div id="s9" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>9. Guidance for Specific Project Types</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s10" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>10. Mitigation and Adaptation</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="sR" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>References</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="sA" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>Appendix A: Glossary</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="sB" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>Appendix B: Illustration of Carbon Inventory Methods for an "Integrated Ecosystem Management" Project</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="sC" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>Appendix C: Creating Biomass Regression Equations</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="sD" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Appendix D: Published Biomass Regression Equations</h3>
+			<p>
+				Allometric equations available in the MRV can be accessed <a href="/core/utilities/aeq/" target="_top">here</a>.
+			</p>				
+			<p>
+				<a href="/static/html/GEF_Guidebook.pdf#page=51" target="_blank">Continued on page 45</a>
+			</p>
+		</div>
+
+		<div id="sE" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>Appendix E: Indications of Magnitude of Change in Carbon in Different Systems and Typical Stocks in Different Systems</h3>
+			<p>
+				
+			</p>
+		</div>
+
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

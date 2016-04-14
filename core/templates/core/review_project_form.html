@@ -1,0 +1,136 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#project-info-pill").addClass("active");
+        $("#project-info-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="edit-project-tab"><a href= "{% url 'edit-project' request.session.project_id %}"><span class="glyphicon glyphicon-pencil"></span> 
+    	Edit Project Information</a></li>
+    <li id="review-project-tab" class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> 
+    	Review Project Information</a></li>
+
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'edit-project' request.session.project_id %}">Project Information</a></li>
+    <li class="active">Review</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}Review {{ project.name }}{% endblock page_title %}
+
+{% block page_content %}
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Project Related Information
+				</h4>
+			</div>
+				<table class="table table-hover">
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Region:</td>
+				        <td class="col-lg-5">{{ project.region }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Country:         </td>
+				        <td class="col-lg-5">{{ project.country }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Project Type:        </td>
+				        <td class="col-lg-5">{{ project.type }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Abstract:         </td>
+				        <td class="col-lg-5"><a data-toggle="modal" href="#abstractModal"><i><font color="#3E85C3">Show Abstract</font></i></a></td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Climate Zone:         </td>
+				        <td class="col-lg-5">{{ project.climate_zone }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Moisture Zone:         </td>
+				        <td class="col-lg-5">{{ project.moisture_zone }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3" style="font-weight:bold">Soil Type:         </td>
+				        <td class="col-lg-5">{{ project.soil_type }}</td>
+				    </tr>
+				    <tr>
+				        <td class="col-lg-3"  style="font-weight: bold">Project Duration (years):         </td>
+				        <td class="col-lg-5">{{ project.duration }}</td>
+				    </tr>
+				</table>
+		</div>
+
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					Contact Related Information
+				</h4>
+			</div>
+			<table class="table table-hover">
+			<tr>
+			        <td class="col-lg-3"  style="font-weight: bold">Contact Person:         </td>
+			        <td class="col-lg-5">{{ project.contact }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">Email Address:         </td>
+			        <td class="col-lg-5">{{ project.email }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">Phone Number:         </td>
+			        <td class="col-lg-5">{{ project.telephone }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="right; font-weight: bold">Address:         </td>
+			        <td class="col-lg-5">{{ project.address }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">Address 2:         </td>
+			        <td class="col-lg-5">{{ project.address2 }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">City:         </td>
+			        <td class="col-lg-5">{{ project.city }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">State/Province/Region:         </td>
+			        <td class="col-lg-5">{{ project.state }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">ZIP Code:         </td>
+			        <td class="col-lg-5">{{ project.zipcode }}</td>
+			    </tr>
+			    <tr>
+			        <td class="col-lg-3"  style="font-weight: bold">Country:         </td>
+			        <td class="col-lg-5">{{ project.country_address }}</td>
+			    </tr>
+
+			</table>	
+		</div>
+
+		<!--  Brief: This will bring up the text containing our abstract. The abstract text is normally too long to
+					properly render in the regular table. 
+			  Calls: Bootstrap modal   -->
+		<div class = "modal fade" id="abstractModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">{{ project.name }} Abstract</h4>
+					</div>
+					<div class="modal-body">
+						{{ project.abstract }}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock page_content %}

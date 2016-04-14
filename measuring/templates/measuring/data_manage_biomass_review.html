@@ -1,0 +1,274 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+{% load humanize %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#measuring-pill").addClass("active");
+        $("#measuring-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+
+{% block navtabs %}
+    <li id="parcel-management-tab"><a href= "{% url 'parcel-management' request.session.project_id %}"><span class="glyphicon glyphicon-tree-deciduous"></span>
+    	Parcel Management</a></li>
+    <li id="inventory-planning-tab"><a href="{% url 'inventory-planning' request.session.project_id %}"><span class="glyphicon glyphicon-th-list"></span>
+    	Inventory Planning</a></li>
+    <li id="data-management-tab" class="active"><a href="{% url 'data-management' request.session.project_id %}"><span class="glyphicon glyphicon-folder-open"></span>
+    	Data Management</a></li>
+    <li id="carbon-calculations-tab"><a href="{% url 'carbon-calculations' request.session.project_id %}"><span class="glyphicon glyphicon-globe"></span>
+    	Carbon Calculations</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block page_title %}Review {{ plot.name|capfirst }} Biomass {% endblock page_title %}
+
+{% block page_content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Plot MetaData: {{ plot.name }}</h4>
+		</div>
+		<div class="panel-body">
+
+			<table class="table table-hover">
+				<tr><th colspan="8" class="success">General Information</th></tr>
+				<tr>
+					<th>Date:</th>
+					<td>{{ plot.sample_date }}</td>
+					<th>Start:</th>
+					<td>{{ plot.sample_start_time }}</td>
+					<th>End:</th>
+					<td>{{ plot.sample_end_time }}</td>
+                    <th>Region:</th>
+                    <td>{% if plot.region.name %}{{ plot.region.name }}{% else %}None{% endif %}</td>
+				</tr>
+				<tr>
+					<th>Shape:</th>
+					<td>{{ plot.shape_reported }}</td>
+					<th>Dimensions:</th>
+					<td>{{ plot.dimensions_reported }}</td>
+					<th>Area:</th>
+					<td>{{ plot.area_reported }}</td>
+                    <th>By Species:</th>
+                    <td>{{ plot.calculate_by_species }}</td>
+				</tr>
+			</table>
+
+			<table class="table table-hover">
+				<tr><th colspan="4" class="success">Optional Carbon Pools</th></tr>
+				<tr>
+					<th>Litter:</th>
+					<td>{{ plot.litter_tc_ha }}</td>
+					<th>Non-tree AGB:</th>
+					<td>{{ plot.nontree_agb_tc_ha }}</td>
+				</tr>
+				<tr>
+					<th>Deadwood:</th>
+					<td>{{ plot.deadwood_tc_ha }}</td>
+					<th>Non-tree BGB:</th>
+					<td>{{ plot.nontree_bgb_tc_ha }}</td>
+				</tr>
+			</table>
+
+			<table class="table table-hover">
+				<tr><th colspan="8" class="success">Optional Nested Sub-Plots</th></tr>
+				<tr><th colspan="8" class="active"><i>Sub-Plot 1</i></th></tr>
+				<tr>
+					<th>Name:</th>
+					<td>{{ plot.subplot_1_name }}</td>
+					<th>Area:</th>
+					<td>{{ plot.subplot_1_area_m2 }}</td>
+					<th>Upper Bound:</th>
+					<td>{{ plot.subplot_1_upper_bound }}</td>
+					<th>Lower Bound:</th>
+					<td>{{ plot.subplot_1_lower_bound }}</td>
+				</tr>
+				<tr><th colspan="8" class="active"><i>Sub-Plot 2</i></th></tr>
+				<tr>
+					<th>Name:</th>
+					<td>{{ plot.subplot_2_name }}</td>
+					<th>Area:</th>
+					<td>{{ plot.subplot_2_area_m2 }}</td>
+					<th>Upper Bound:</th>
+					<td>{{ plot.subplot_2_upper_bound }}</td>
+					<th>Lower Bound:</th>
+					<td>{{ plot.subplot_2_lower_bound }}</td>
+				</tr>
+				<tr><th colspan="8" class="active"><i>Sub-Plot 3</i></th></tr>
+				<tr>
+					<th>Name:</th>
+					<td>{{ plot.subplot_3_name }}</td>
+					<th>Area:</th>
+					<td>{{ plot.subplot_3_area_m2 }}</td>
+					<th>Upper Bound:</th>
+					<td>{{ plot.subplot_3_upper_bound }}</td>
+					<th>Lower Bound:</th>
+					<td>{{ plot.subplot_3_lower_bound }}</td>
+				</tr>
+			</table>
+
+			<table class="table table-hover">
+				<tr><th colspan="4" class="success">Geographic Information</th></tr>
+				<tr>
+					<th>Latitude:</th>
+					<td>{{ plot.gps_latitude }}</td>
+					<th>Longitude:</th>
+					<td>{{ plot.gps_longitude }}</td>
+				</tr>
+				<tr>
+					<th>Elevation:</th>
+					<td>{{ plot.elevation }}</td>
+					<th>Slope:</th>
+					<td>{{ plot.slope_condition }}</td>
+				</tr>
+
+
+				<tr><th colspan="4" class="success">Hemispherical Photos</th></tr>
+				<tr>
+					<th>North:</th>
+					<td>{{ plot.hemi_photo_north }}</td>
+					<th>South:</th>
+					<td>{{ plot.hemi_photo_south }}</td>
+				</tr>
+				<tr>
+					<th>East:</th>
+					<td>{{ plot.hemi_photo_east }}</td>
+					<th>West:</th>
+					<td>{{ plot.hemi_photo_west }}</td>
+				</tr>
+				<tr>
+					<th>Center:</th>
+					<td colspan="3">{{ plot.hemi_photo_center }}</td>
+				</tr>
+
+
+				<tr><th colspan="4" class="success">Horizontal Photos</th></tr>
+				<tr>
+					<th>North:</th>
+					<td>{{ plot.horiz_photo_north }}</td>
+					<th>South:</th>
+					<td>{{ plot.horiz_photo_south }}</td>
+				</tr>
+				<tr>
+					<th>East:</th>
+					<td>{{ plot.horiz_photo_east }}</td>
+					<th>West:</th>
+					<td>{{ plot.horiz_photo_west }}</td>
+				</tr>
+
+				<tr><th colspan="4" class="success">Other</th></tr>
+				<tr>
+					<th>Weather:</th>
+					<td></td>
+					<th>Comments:</th>
+					<td></td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Tree Inventory: {{ plot.name }}</h4>
+		</div>
+		<div class="panel-body">
+			<table class="table table-hover">
+				<thead>
+					<th class="col-sm-2 warning">
+						<span style="font-size:12px;">Species</span>
+					</th>
+					<th class="col-sm-1">
+						<span style="font-size:12px;">Dbh</span>
+					</th>
+					<th class="col-sm-1 warning">
+						<span style="font-size:12px;">Height</span>
+					</th>
+					<th class="col-sm-2">
+						<span style="font-size:12px;">Wood Gravity</span>
+					</th>
+					<th class="col-sm-2 warning">
+						<span style="font-size:12px;">Crown D Max(m)</span>
+					</th>
+					<th class="col-sm-2">
+						<span style="font-size:12px;">Crown D Right Angle</span>
+					</th>
+					<th class="col-sm-2 warning">
+						<span style="font-size:12px;">Comments</span>
+					</th>
+				</thead>
+				<tbody>
+				{% for tree in trees %}
+                <tr {% if not tree.used_in_calculations %}class="danger"{% endif %}>
+						<td class="col-sm-3 warning">
+							<span style="font-size:12px;"><em>{{ tree.genus }} {{ tree.species }}</em></span>
+						</td>
+						<td class="col-sm-1">{{ tree.dbh | floatformat:2 }}</td>
+                        <td class="col-sm-1 {% if tree.used_in_calculations %}warning{% endif %}">{{ tree.total_height | floatformat:1 }}</td>
+                        <td class="col-sm-1">{% if tree.wood_gravity %}{{ tree.wood_gravity | floatformat:1 }}{% else %}None{% endif %}</td>
+                        <td class="col-sm-1 {% if tree.used_in_calculations %}warning{% endif %}">{{ tree.crown_d_max }}</td>
+						<td class="col-sm-1">{{ tree.crown_d_90 }}</td>
+                        <td class="col-sm-2 {% if tree.used_in_calculations %}warning{% endif %}">
+							{% if tree.comments %}
+								<span style="font-size:12px;">
+									<a class="treeCommentLink" data-tree-id="{{ tree.id }}" data-tree-comment="{{ tree.comments }}">Show</a>
+								</span>
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-12" style="text-align:right;">
+					<a href="{% url "delete-plot" plot.id %}" class="btn btn-danger btn-sm">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="commentsModal" tabIndex="-1" role="dialog" aria-labelledby="comments" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="comments">Comments</h4>
+				</div>
+				<div class="modal-body">
+					<div id="treeComment"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block page_bottomscripts %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var comment = '';
+			$('.treeCommentLink').on('click', function(event){
+				console.log('in here');
+				comment = $(this).attr('data-tree-comment');
+				$('#commentsModal').modal('show');
+			});
+
+			$('#commentsModal').on('show.bs.modal', function(event){
+				$('#treeComment').text(comment);
+			});
+
+			$('#commentsModal').on('hide.bs.modal', function(event){
+				$('#treeComment').empty();
+				comment = '';
+			})
+		})
+	</script>
+{% endblock %}

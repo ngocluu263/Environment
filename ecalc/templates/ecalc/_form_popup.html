@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Add {{model.classname|capfirst}}</title>
+
+<script type="text/javascript" src="{{ ADMIN_MEDIA_PREFIX }}js/admin/RelatedObjectLookups.js"></script> 
+
+</head>
+<body>
+<h1>Add {{model.classname|capfirst}}</h1>
+<form method="POST">  
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+<p><input type="submit" /> | <a href="javascript:window.close()">Cancel</a></p>
+</form>
+</body>
+</html>

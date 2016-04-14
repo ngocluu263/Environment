@@ -1,0 +1,229 @@
+{% load humanize %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Information Report</title>
+    <!-- Bootstrap CSS -->
+    <style type="text/css">
+/*        body {
+            font-size: 12px;
+        }
+        .success {
+            background-color: #dff0d8;
+            text-align: left;
+            font-size: 14px;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 2.5px;
+            margin: 20px;
+            border-bottom: 0px;
+        }
+        .odd {
+            background-color: #efefef;
+        }
+        table {
+            padding: 5px;
+        }
+        table th {
+            text-align: left;
+            padding-left: 5px;
+            vertical-align: top;
+            margin-top: 5px;
+        }
+        table td {
+            vertical-align: top;
+            margin-top: 5px;
+        }
+        table tr {
+            margin-top: 10px;
+            border-bottom: 1px solid #000;
+
+        }*/
+
+        .success {
+            background-color: #dff0d8;
+        }
+
+        .success h4 {
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: center;
+            text-align: left;
+        }
+        table {
+            font-size: 12px;
+            margin-bottom:20px;
+        }
+        tr th {
+            text-align: left;
+            vertical-align: top;
+        }
+        tr td {
+            text-align: left;
+            vertical-align: top;
+        }
+        .odd {
+            background-color: #efefef;
+        }
+        @page {
+            size: legal landscape;
+            margin 1cm;
+        }
+    </style>
+    <!-- jQuery -->
+</head>
+<body>
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="9"><h4>{{ project.name }}: Totals</h4></th></tr>
+            <tr>
+                <th>Parcel Name</th>
+                <th>Area</th>
+                <th>Plot Count</th>
+                <th>AGB (tc)</th>
+                <th>BGB (tc)</th>
+                <th>Deadwood (tc)</th>
+                <th>Litter (tc)</th>
+                <th>SOC (tc)</th>
+                <th>Trees</th>
+            </tr>
+            {% for parcel in parcels %}            
+                <tr>
+                    <td>{{ parcel.name }}</td>
+                    {% if parcel.area %}
+                        <td>{{ parcel.area | floatformat:2 | intcomma }}</td>
+
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if parcel.carbon_stocks.plot_count %}
+                        <td>{{ parcel.carbon_stocks.plot_count | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+                    <td>{{ parcel.carbon_stocks.agb_tc | floatformat:2 | intcomma }}</td>
+                    <td>{{ parcel.carbon_stocks.bgb_tc | floatformat:2 | intcomma }}</td>
+                    <td>{{ parcel.carbon_stocks.deadwood_tc | floatformat:2 | intcomma }}</td>
+                    <td>{{ parcel.carbon_stocks.litter_tc | floatformat:2 | intcomma }}</td>
+                    <td>{{ parcel.carbon_stocks.soc_tc | floatformat:2 | intcomma }}</td>
+                    <td>{{ parcel.carbon_stocks.mean_trees_ha | floatformat:0 | intcomma }}</td>
+                </tr>
+            {% endfor %}
+            <tr class="odd">
+                <td>Project Totals:</td>
+                <td>{{ project.carbon_stocks.total_parcel_area | floatformat:2 | intcomma }}</td>
+                <td>--</td>
+                <td>{{ project.carbon_stocks.agb_tc | floatformat:2 | intcomma }}</td>
+                <td>{{ project.carbon_stocks.bgb_tc | floatformat:2 | intcomma }}</td>
+                <td>{{ project.carbon_stocks.deadwood_tc | floatformat:2 | intcomma }}</td>
+                <td>{{ project.carbon_stocks.litter_tc | floatformat:2 | intcomma }}</td>
+                <td>{{ project.carbon_stocks.soc_tc | floatformat:2 | intcomma }}</td>
+                <td>--</td>
+            </tr>
+        </table>
+
+        <div>
+            <pdf:nextpage/>
+        </div>
+
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="9"><h4>{{ project.name }}: Averages</th></tr>
+            <tr>
+                <th>Parcel Name</th>
+                <th>Area Used</th>
+                <th>AGB (tdm/ha)</th>
+                <th>AGB (tc/ha)</th>
+                <th>BGB (tdm/ha)</th>
+                <th>BGB (tc/ha)</th>
+                <th>Deadwood (tc/ha)</th>
+                <th>Litter (tc/ha)</th>
+                <th>SOC (tc/ha)</th>
+            </tr>
+            {% for parcel in parcels %}
+            <tr>
+                <td>{{ parcel.name }}</td>
+                <td>{{ parce.area_used | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_agb_tdm_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_agb_tc_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_bgb_tdm_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_bgb_tc_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_deadwood_tc_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_litter_tc_ha | floatformat:2 | intcomma }}</td>
+                <td>{{ parcel.carbon_stocks.mean_soc_tc_ha | floatformat:2 | intcomma }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <div>
+            <pdf:nextpage/>
+        </div>
+        
+        {% for parcel in parcels %}
+            <table cellpadding="10" cellspacing="10">
+                <tr class="success"><th colspan="8"><h4>{{ parcel.name }} Plots</h4></th></tr>
+                <tr>
+                    <th>Plot Name</th>
+                    <th>Area</th>
+                    <th>AGB (tc/ha)</th>
+                    <th>BGB (tc/ha)</th>
+                    <th>Deadwood (tc/ha)</th>
+                    <th>Litter (tc/ha)</th>
+                    <th>SOC (tc/ha)</th>
+                    <th>Trees</th>
+                </tr>
+            
+            {% for plot in parcel.plot_set.all %}
+                <tr>
+                    <td>{{ plot.name }}</td>
+                    {% if plot.carbon_stocks.area_used %}
+                        <td>{{ plot.carbon_stocks.area_used | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.agb_tc_ha %}
+                        <td>{{ plot.carbon_stocks.agb_tc_ha | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.bgb_tc_ha %}
+                        <td>{{ plot.carbon_stocks.bgb_tc_ha | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.deadwood_tc_ha %}
+                        <td>{{ plot.carbon_stocks.deadwood_tc_ha | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.litter_tc_ha %}
+                        <td>{{ plot.carbon_stocks.litter_tc_ha | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.soc_tc_ha %}
+                        <td>{{ plot.carbon_stocks.soc_tc_ha | floatformat:2 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+
+                    {% if plot.carbon_stocks.inventory_n_trees %}
+                        <td>{{ plot.carbon_stocks.inventory_n_trees | floatformat:0 | intcomma }}</td>
+                    {% else %}
+                        <td>--</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+            <div>
+                <pdf:nextpage/>
+            </div>
+        {% endfor %}      
+    <!-- Loading Bootstrap JS last to improve speed -->
+</body>
+</html>

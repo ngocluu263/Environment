@@ -1,0 +1,44 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#project-settings-pill").addClass("active");
+        $("#project-settings-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="project-settings-tab" class=""><a href= "{% url "project-settings" request.session.project_id %}"><span class="glyphicon glyphicon-edit"></span> Project Settings</a></li>
+    <li id="add-users-tab"><a href= "{% url "add-user-project" request.session.project_id %}"><span class="glyphicon glyphicon-user"></span> Add User</a></li>
+    <li id="list-users-tab" class="active"><a href="{% url 'list-permissions' request.session.project_id %}"><i class="fa fa-users"></i> List Users</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+    <li>Project Settings</li>
+    <li>User Permissions</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}User Permissions{% endblock page_title %}
+
+{% block page_content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan=2 class="success">User Permissions</th>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <th>Permission</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in object_list %}
+                <tr>
+                    <td>{{ p.user }}</td>
+                    <td>{{ p.permission|convert_permissions }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+{% endblock page_content %}

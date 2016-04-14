@@ -1,0 +1,17 @@
+{% extends "ecalc/base.html" %}
+
+{% block pagetitle %}Delete Project {{ project.name }}?{% endblock %}
+
+{% block sidebaritems %}
+{% endblock %}
+
+{% block content %}
+	<p>Are you sure you would like to delete this project and all associated Land Covers, Parcels, and Scenarios?</p>
+	<form method="POST" action=".">
+		{% csrf_token %}
+        <li><input type="submit" value="Yes" /></li>
+    </form>
+    
+    <li><a href="{% url "ecalc-projects" %}">No</a></li>
+
+{% endblock %}

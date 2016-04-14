@@ -1,0 +1,32 @@
+{% extends "stage_settings.html" %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+{% block navtabs %}
+    <li id="settings-tab"><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+{% endblock navtabs %}
+
+{% block page_content %}
+        Settings go here
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#settings-pill").addClass("active");
+        $("#settings-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#settings-tab").addClass("active");
+        $("#settings-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

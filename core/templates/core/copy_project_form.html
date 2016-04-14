@@ -1,0 +1,35 @@
+{% extends "module_copy_project.html" %}
+
+{% block page_title %}
+Copy Project
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="active">Copy Project</li>
+{% endblock %}
+
+
+{% block page_content %}
+		This form allows you to copy another user's project to your own workspace.
+                <br><br>
+                You must first obtain the <i>secret key</i> for the project you wish to copy.
+                <br><br>
+                The resulting project in your workspace will be a duplicate and changes will not be made to the original project in the other user's workspace.
+                <br><br>
+        {% if error_message %}
+                <strong>{{ error_message }}</strong>
+        {% endif %}
+        <form action="." method="POST">
+        <table id=mrv_utilities_table>
+        {{ form }}
+        {% csrf_token %}
+        </table>
+        <input id=add-user-button type="submit" value="Copy">
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#copy-project-tool-tab").addClass("active");
+        $("#copy-project-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

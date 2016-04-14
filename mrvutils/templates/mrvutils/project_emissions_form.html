@@ -1,0 +1,76 @@
+{% extends "module_project_emissions.html" %}
+
+{% block page_title %}
+Project Emissions Tool
+&mdash; Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
+{% endblock page_title %}
+
+{% block pagescripts %}
+<script src="/static/jquery.formset.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('tr.formset_row').formset({
+                deleteText: "Remove",
+                addText: "Add Stratum",
+                prefix: "strata"
+            });
+    });
+</script>
+{% endblock pagescripts %}
+
+
+{% block breadcrumbs %}
+    <li><a href="{% url "project-emissions-tool" %}">Project Emissions Tool</a></li>
+    <li>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</li>
+{% endblock %}
+
+
+{% block page_content %}
+<form id="wizard" action="" method="post">{% csrf_token %}
+    
+<table id="sampling_design_table">
+{{ wizard.management_form }}
+{{ wizard.form.non_form_errors }} {# display any formset errors #}
+{% if wizard.form.forms %} {# if... we have a FORMSET to style #}
+    {{ wizard.form.management_form }}
+    {% for form in wizard.form.forms %}
+        {% if forloop.first %}
+            <thead><tr>
+            {% for field in form.visible_fields %}
+                <th>{{ field.label|capfirst }}</th>
+            {% endfor %}
+          </tr></thead>
+        {% endif %}
+        <tr class="formset_row">
+        {% for field in form.visible_fields %}
+            <td>
+            {# Include the hidden fields in the form #}
+            {% if forloop.first %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            {% endif %}
+            {{ field.errors.as_ul }}
+            {{ field }}
+            </td>
+          {% endfor %}
+          <td></td> {# the jquery REMOVE link will be placed here #}
+          </tr>
+    {% endfor %}
+{% else %} {# else... we have a FORM to style #}
+    {{ wizard.form }}
+{% endif %}
+</table>
+
+<input type="submit" value="Submit"/>
+</form>
+{% endblock page_content%}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#project-emissions-tool-tab").addClass("active");
+        $("#project-emissions-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

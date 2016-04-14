@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block stage_content %}
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">{% block page_title %}Forest-PLUS: Program Data Management System{% endblock page_title %} - Logged Out</h3>
+</div>
+<div class="panel-body">
+    <p>You have successfully logged out. To ensure that you are logged out of all services, please close your browser.</p>
+    <p><a href="/">Click here to return to the login page</a>.</p>
+</div>
+{% endblock %}
+
+{% block page_bottomscripts %}
+<!--HIDE THE TOP NAVIGATION BAR-->
+ <script>
+$( ".nav" ).hide();
+</script>
+{% endblock page_bottomscripts %}

@@ -1,0 +1,535 @@
+"""
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+For future programmmers, the third file to read to understand the mrv are the models.py files inside the sub project folders within the mrv. Each class in this
+models files represent a table in the database. The most common used classes or tables are Plot, Parcel, Project, Tree, Project Boundary, Equation.  When a user upload 
+excel with plot, parcel, and project informatiom the appropriate model create a row in the parcel, plolt, and project tables. Similarily, when a user create a point or polygon or upload a shape file that represents a parcel, plot, or polygon, the appropriate model create a row in the database for the appropriate table. Each class contains 
+properties. If you want to use the properties of a model in your view or template, use django queries that returns model instead of raw data from the tables.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+
+
+from django.db import models
+from django.contrib.auth.models import User
+from ipcc import Continent, Climate, Climate_Zone, Moisture_Zone, Soil_Type  # , GWP, Simple_Climate
+from ipcc import Agricultural_Practice, Agriculture_Carbon_Stored
+from ipcc import Biome, Aboveground_Biomass, Belowground_Ratio, Necromass, Soil_Carbon_Ref, Soil_Carbon_Factor, Combustion_Factor, Forest_Growth
+from ipcc import Land_Use, Biomass_Land_Use, Combustion_Land_Use
+from agsmixins.models import _ModelURLs
+from django.core.exceptions import ObjectDoesNotExist
+from copy import deepcopy  # for clone()
+from itertools import chain  # for clone()
+from mrvapi.models import Project, Parcel, Plot
+import ecalc
+
+# class Project(models.Model):
+#     name = models.CharField(max_length=80)
+#     user = models.ForeignKey(User, related_name="%(app_label)s_%(class)s_related")
+#     duration = models.IntegerField("Duration (yrs)")
+    # Defaults for loading land cover types
+#    continent = models.ForeignKey(Continent)
+#    climate_zone = models.ForeignKey(Climate_Zone)
+#    moisture_zone = models.ForeignKey(Moisture_Zone)
+#    soil_type = models.ForeignKey(Soil_Type)
+
+
+class ProjectModel(models.Model):
+    name = models.CharField(max_length=80)
+    project = models.ForeignKey(Project)
+    #ecalc.generate_default_land_covers(Project)
+    class Meta:
+        abstract = True
+        #unique_together = ('name','project')
+        ##Maybe _generate_default_land_cover() can be called here so that
+        ##it can be removed from the mrvapi models_save functions
+
+
+class ProjectModel_override_ecalc_parcel_set(models.Model):
+    name = models.CharField(max_length=80)
+    project = models.ForeignKey(Project, related_name='ecalc_parcel_set')
+
+    class Meta:
+        abstract = True
+        #unique_together = ('name','project')
+
+
+class LandCategories(ProjectModel):
+    CATEGORY_CHOICES = (('F', 'Forest'),
+                        ('A', 'Annual Crop'),
+                        ('P', 'Perennial/Tree Crop'),
+                        ('R', 'Paddy Rice'),
+                        ('G', 'Grassland'))
+    category = models.CharField(max_length=1, choices=CATEGORY_CHOICES)
+
+    class Meta:
+        abstract = True
+
+
+class LandCover(LandCategories, _ModelURLs):
+    # nominal values
+    biomassa = models.FloatField("Above-ground Biomass (tDM/ha)", default=0)
+    biomassb = models.FloatField("Below-ground Biomass (tDM/ha)", default=0)
+    litter = models.FloatField("Litter (tC/ha)", default=0)
+    dead_wood = models.FloatField("Dead Wood (tC/ha)", default=0)
+    soil = models.FloatField("Soil (tC/ha)", default=0)
+    # Combustion
+    combustion_pctreleased = models.FloatField("% dry matter released", default=0)
+    CH4 = models.FloatField("CH4 Released (kg/t)", default=0)
+    N2O = models.FloatField("N2O Released (kg/t)", default=0)
+    # Growth
+    young_growth_rate = models.FloatField("Young growth rate (t DM/ha/yr)",default=0)
+    old_growth_rate = models.FloatField("Old growth rate (t DM/ha/yr)",default=0)
+    biomassratio = models.FloatField("Above/Below Biomass Ratio", default=0)
+    #managed = models.BooleanField()   # is this necessary?
+
+    @property
+    def Biomass(self):
+        return self.biomassa + self.biomassb
+    @property
+    def DeadCarbon(self):
+        return self.litter + self.dead_wood
+    def __unicode__(self):
+        return self.name
+    class Meta:
+        ordering = ['name']
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['project']  # These are the FK fields we also want to deepcopy
+        for delta in deltas:
+            old_obj = getattr(self, delta)
+            new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+            new_obj = old_obj.__class__.objects.get(id=new_obj_id)
+            setattr(self_copy, delta, new_obj)
+
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id #setting key to value
+      #  raise Exception("test")
+        return self_copy
+
+class Practice(LandCategories, _ModelURLs):
+    """ Practices apply to Scenarios """
+    # Forest ?
+    harvest = models.FloatField("Harvested Wood Product (tDM/ha/yr", default=0)
+    burn = models.FloatField("Residue Burned (tDM/ha/yr)",default=0)
+    #rateFunc = models.CharField(max_length=1, choices=('Linear', 'Exponential', 'Immediate'), default='Immediate')
+    # Crops
+    #use_prescribed_accum = models.BooleanField("Use",default=False)
+    #prescribed_accum = models.FloatField("Soil Accumulation", help_text='ton C Ha-1 yr-1', default=0.0)
+    # Crops
+    agricultural_practices = models.ManyToManyField(Agricultural_Practice,null=True,blank=True)
+    # Rice
+    #cultivation_period = models.IntegerField(default=0)
+    def __unicode__(self):
+        return self.name
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['project']  # These are the FK fields we also want to deepcopy
+        for delta in deltas:
+            old_obj = getattr(self, delta)
+            new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+            new_obj = old_obj.__class__.objects.get(id=new_obj_id)
+            setattr(self_copy, delta, new_obj)
+
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id
+
+        return self_copy
+
+class Parcel(ProjectModel_override_ecalc_parcel_set, _ModelURLs):
+    """ a discrete contiguous and homogeneous unit of landscape """
+    location = models.CharField(max_length=80, blank=True)
+    area = models.FloatField("Area (ha)")
+    initial_lc = models.ForeignKey('LandCover', verbose_name=u'Land Cover', related_name='initial')
+    def __unicode__(self):
+        return self.name
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['project', 'initial_lc']  # These are the FK fields we also want to deepcopy
+        for delta in deltas:
+            old_obj = getattr(self, delta)
+            new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+            new_obj = old_obj.__class__.objects.get(id=new_obj_id)
+            setattr(self_copy, delta, new_obj)
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id
+        #raise Exception("tsdsdsdst")
+        return self_copy
+
+class Scenario(ProjectModel, _ModelURLs):
+    parcel = models.ForeignKey('Parcel',null=True)
+    reference_scenario = models.ForeignKey('Scenario', null=True)
+    landcovers = models.ManyToManyField(LandCover, through='LandUse')
+
+    @models.permalink
+    def get_list_url(self):
+        if self.reference_scenario:
+            return('ecalc-projectscenarios', [str(self.project.id)])
+        else:
+            return('ecalc-referencescenarios', [str(self.project.id)])
+
+    @models.permalink
+    def get_delete_url(self):
+        if self.reference_scenario:
+            return('ecalc-projectscenario-del', [str(self.project.id), str(self.id)])
+        else:
+            return('ecalc-referencescenario-del', [str(self.project.id), str(self.id)])
+
+    def LandCover(self, year):
+        landuses = LandUse.objects.filter(scenario=self, start_year__lte=year)
+        return landuses[landuses.count()-1].landcover
+
+    def InitialPools(self):
+        #print dir(self.parcel)
+        #print self.parcel.name
+        return CarbonPools(scenario=self, year=0,
+                           landcover=self.parcel.initial_lc,
+                           biomassa=self.parcel.initial_lc.biomassa * self.project.cdm,
+                           biomassb=self.parcel.initial_lc.biomassb * self.project.cdm,
+                           litter=self.parcel.initial_lc.litter,
+                           dead_wood=self.parcel.initial_lc.dead_wood,
+                           soil=self.parcel.initial_lc.soil)
+
+    def Emissions(self):  # This returns the total emissions associated with the scenario over the whole duration
+        try:
+            lastpool = self.carbonpools_set.get(scenario=self, year=self.project.duration)
+            return lastpool.Emissions
+        except ObjectDoesNotExist:
+            return 0.0
+
+    def EmissionsDifference(self):  # This returns the total emissions associated with the scenario over the whole duration, minus the reference scenario emissions
+        if not self.reference_scenario:
+            return self.Emissions()  # break out of function if no reference scenario, presenting data differenced by 0.0
+        return self.Emissions() - self.reference_scenario.Emissions()
+
+    def _CumulativeEmissionsData(self):  # This returns a list container of cumulative emissions iterated by project year
+        ret = list()
+        for cp in self.carbonpools_set.all():
+            ret.append(cp.Emissions)
+        return ret
+
+    def CumulativeEmissionsDifferenceData(self):  # This returns a list container of emissions iterated by project year, less reference scenario emissions
+        """ Returns list of tuples of (project year, differenced cumulative emissions) -- [(0, 10101.0), (1, 10232.4), etc] """
+        projscenario_data = self._CumulativeEmissionsData()
+        if not self.reference_scenario:
+            return projscenario_data  # break out of function if no reference scenario, presenting data differenced by 0.0
+
+        refscenario_data = self.reference_scenario._CumulativeEmissionsData()
+        differenced_data = map(lambda x: x[1] - x[0], zip(refscenario_data, projscenario_data))  # Merge the two lists as a list of tuples, then subtract
+        differenced_data = zip(range(len(differenced_data)), differenced_data)  # Format list as tuples of [(0, emissions), (1, emissions)]
+
+        return differenced_data
+
+    def __unicode__(self):
+        return self.name
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['project']  # These are the FK fields we also want to deepcopy
+
+        for delta in deltas:
+            old_obj = getattr(self, delta) #Same as old_obj = self.delta, -> self.project, self.parcel etc
+
+            if old_obj is not None:  # ignore Null foreign keys -- there is nothing to replace
+                
+                new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+                # the VALUE of this KEY (old_obj.__doc__, old_obj.id) is the NEW ID.
+
+                new_obj = old_obj.__class__.objects.get(id=new_obj_id) #new object is the copied object with a new foreign key from delta dict
+                setattr(self_copy, delta, new_obj)
+                #setattr is doing this --> self_copy.delta = new_obj
+
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id
+
+        # scenarios have to do extra work! children!
+        children = list(chain(self.landuse_set.all(), self.carbonpools_set.all()))
+        for child in children:
+            child.clone(delta_dict)
+
+        return self_copy
+
+class LandUse(models.Model):
+    landcover = models.ForeignKey(LandCover,null=True,blank=True)
+    start_year = models.IntegerField(default=0)
+    scenario = models.ForeignKey('Scenario')
+    adoption = models.IntegerField("Adoption (yrs)", default=0,null=True,blank=True)
+
+    degraded = models.IntegerField("% Degradation", default=0)
+    prior_harvest = models.FloatField("Harvested Wood Product (tDM/ha)", default=0)
+    prior_burn = models.BooleanField("Burned",default=False)
+    practice = models.ForeignKey(Practice)
+    @property
+    def DegradationFactor(self):
+        return (100.0-self.degraded)/100.0
+    @property
+    def project(self):
+        return self.scenario.project
+    @property
+    def BiomassA(self):
+        return self.landcover.biomassa * self.DegradationFactor
+    @property
+    def BiomassB(self):
+        return self.landcover.biomassb * self.DegradationFactor
+    @property
+    def Litter(self):
+        return self.landcover.litter * self.DegradationFactor
+    @property
+    def DeadWood(self):
+        return self.landcover.dead_wood * self.DegradationFactor
+    @property
+    def Soil(self):
+        return self.landcover.soil * self.DegradationFactor
+    def save(self, *args, **kwargs):
+        # set to previous landcover
+        LandUses = LandUse.objects.filter(scenario=self.scenario, start_year__lte=self.start_year)
+        if self.landcover is None:
+            if LandUses.count() == 0:
+                self.landcover = self.scenario.parcel.initial_lc
+            else: self.landcover = LandUses[LandUses.count()-1].landcover
+        #if (self.climate_zone != self._original_climate_zone) or (self.moisture_zone != self._original_moisture_zone) or\
+        #(self.soil_type != self._original_soil_type) or (self.duration != self._original_duration) or\
+        #(self.country != self._original_country) or (self.region != self._original_region):
+         #       self.generate_default_land_covers()
+        #if self.start_year == 0:
+        #    if LandUses.count() == 0:
+        #        self.start_year = 0
+        #    else: self.start_year = LandUses[LandUses.count()-1].start_year+1
+        super(LandUse,self).save(*args,**kwargs)
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['landcover', 'scenario', 'practice']  # These are the FK fields we also want to deepcopy
+        for delta in deltas:
+            old_obj = getattr(self, delta)
+            new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+            new_obj = old_obj.__class__.objects.get(id=new_obj_id)
+            setattr(self_copy, delta, new_obj)
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id
+        #raise Exception("test")
+        return self_copy
+
+class CarbonPools(models.Model, _ModelURLs):
+    """ Carbon Pools for single year of a scenario """
+    year = models.IntegerField("Year",default=0)
+    scenario = models.ForeignKey('Scenario')
+    landcover = models.ForeignKey(LandCover)
+    age = models.IntegerField("Age of current land cover", default=0)
+    # biomass
+    biomassa = models.FloatField("Aboveground Biomass Carbon (tC)", default=0)
+    biomassb = models.FloatField("Belowground Biomass Carbon (tC)", default=0)
+    # dead carbon
+    litter = models.FloatField("Litter (tC)", default=0)
+    dead_wood = models.FloatField("Dead wood (tC)", default=0)
+    # soil
+    soil = models.FloatField("Soil Carbon (tC)", default=0)
+    dsoil = models.FloatField("Soil Carbon change (dtC)", default=0)
+    # atmosphere
+    atm_carbon = models.FloatField("Atmospheric Carbon (tC)", default=0)
+    atm_ch4 = models.FloatField("Atmospheric CH4 (tC)", default=0)
+    atm_n2o = models.FloatField("Atmospheric N2O (tC)", default=0)
+    annual_emissions = models.FloatField("Annual Emissions (tCO2e)", default=0)
+    annual_nonco2 = models.FloatField("Annual Non-CO2 Emissions (tCO2e)", default=0)
+    # harvested (e.g. logging)
+    harvested = models.FloatField("Harvested Carbon (tC)", default=0)
+    @property
+    def Emissions(self):  # this function is an alias of GetAtm
+        return self.GetAtm
+    @property
+    def GetArea(self):
+        """ Adopted Area (time dependent) """
+        # Adoption for current scenario
+        area = self.scenario.parcel.area
+        if self.year == 0: return area
+        adopt = self.GetLandUse.adoption
+        if adopt == 0:
+            return area
+        else: ratio = self.age/float(adopt)
+        if ratio < 0 or ratio >= 1.0:
+            return self.scenario.parcel.area
+        else:
+            return self.scenario.parcel.area * ratio
+    # Get Properties
+    @property
+    def GetBiomassA(self):
+        return self.biomassa * self.GetArea
+    @property
+    def GetBiomassB(self):
+        return self.biomassb * self.GetArea
+    @property
+    def GetBiomass(self):
+        #print 'year', self.year, 'biomassa',self.biomassa, 'area',self.GetArea, 'BA',self.GetBiomassA
+        return self.GetBiomassA + self.GetBiomassB
+    @property
+    def GetLitter(self):
+        return self.litter * self.GetArea
+    @property
+    def GetDeadWood(self):
+        return self.dead_wood * self.GetArea
+    @property
+    def GetDeadCarbon(self):
+        if self.landcover.category == 'F':
+            return self.GetLitter + self.GetDeadWood
+        else:
+            return 0
+    @property
+    def GetCarbon(self):
+        return self.GetBiomass + self.GetDeadCarbon
+    @property
+    def GetSoil(self):
+        return self.soil * self.GetArea
+    @property
+    def GetAtm(self):
+        co2 = self.GetAtmCarbon * 3.67
+        return self.GetAtmCH4 * self.scenario.project.gwp_ch4 + self.GetAtmN2O * self.scenario.project.gwp_n2o + co2
+    @property
+    def GetAtmCarbon(self):
+        return self.atm_carbon * self.GetArea
+    @property
+    def GetNonCO2(self):
+        return self.GetAtmCH4 * self.scenario.project.gwp_ch4 + self.GetAtmN2O * self.scenario.project.gwp_n2o
+    @property
+    def GetAtmCH4(self):
+        return self.atm_ch4 * self.GetArea
+    @property
+    def GetAtmN2O(self):
+        return self.atm_n2o * self.GetArea
+    @property
+    def GetHarvested(self):
+        return self.harvested * self.GetArea
+    @property
+    def GetLandCat(self):
+        return self.landcover.category
+    @property
+    def GetLandUse(self):
+        #print self.year,' ', self.scenario
+        #lus = LandUse.objects.filter(scenario=self.scenario, landcover=self.landcover, start_year__lte=self.year)
+        lus = LandUse.objects.filter(scenario=self.scenario, start_year__lte=self.year)
+        return lus[lus.count()-1]
+    # Methods
+    def Age(self):
+        self.age += 1
+        if self.age <= 20:
+            self.soil += self.dsoil
+            self.atm_carbon -= self.dsoil
+    def Burn(self, percent, ch4, n2o):
+        """ Burn aboveground biomass, creates CH4, N2O emissions """
+        if self.GetLandUse.prior_burn:
+            biomass_burned = percent * self.biomassa/self.scenario.project.cdm
+            self.atm_ch4 += (biomass_burned * ch4)/1000.0
+            self.atm_n2o += (biomass_burned * n2o)/1000.0
+            #print self.year, biomass_burned, self.atm_ch4, ch4
+    def ResidueBurn(self, residue):
+        biomass_burned = residue * self.landcover.combustion_pctreleased
+        self.atm_ch4 += (biomass_burned * self.landcover.CH4)
+        self.atm_n2o += (biomass_burned * self.landcover.N2O)
+    #def atmosphere(self):
+        #return self.atm_carbon + self.atm_ch4 * self.project.gwp_ch4() + self.atm_n20 * self.project.gwp_n20()
+    def Harvest(self, val):
+        """ Move some C from aboveground biomass to harvested wood pool """
+        # Don't let more wood be harvested then available biomass
+        if val > self.biomassa:
+            val = self.biomassa
+        harvest =  (self.scenario.project.cdm * val)
+        self.harvested += harvest
+        self.biomassa -= harvest
+    def Decompose(self):
+        """ Move all biomass and dead carbon to atmosphere """
+        self.atm_carbon += self.biomassa + self.biomassb + self.litter + self.dead_wood
+        self.biomassa = 0
+        self.biomassb = 0
+        self.litter = 0
+        self.dead_wood = 0
+    #def degrade(self):
+       # if self.land() == 'F':
+        #    degradation = self.landuse().practices.degradation
+            #if degradation != 0.0
+    def Convert(self):
+        """ Reset biomass, litter, deadwood pools to current land_cover type, and set soil target """
+        lu = self.GetLandUse
+        self.biomassa = lu.BiomassA * self.scenario.project.cdm
+        self.biomassb = lu.BiomassB * self.scenario.project.cdm
+        self.litter = lu.Litter
+        self.dead_wood = lu.DeadWood
+        self.atm_carbon -= (self.dead_wood + self.litter)
+        self.atm_carbon -= (self.biomassa + self.biomassb)
+        self.dsoil = (lu.Soil - self.soil)/(20.0 + lu.adoption)
+        self.age = 0
+    def Grow(self):
+        """ Increase above and below ground biomass according to growth rate and age """
+        if self.GetLandCat == 'F':
+            #print self.year, self.GetLandCat, self.age
+            cdm = self.scenario.project.cdm
+            # Growth rate in DM, not Carbon
+            if self.age <= 20:
+                growth_rate = self.landcover.young_growth_rate * (self.GetArea/self.scenario.parcel.area)
+            else:
+                growth_rate = self.landcover.old_growth_rate * (self.GetArea/self.scenario.parcel.area)
+            growth_rate = growth_rate * cdm
+            old_biomassa = self.biomassa
+            old_biomassb = self.biomassb
+            self.biomassa += growth_rate
+            self.biomassb += growth_rate * self.landcover.biomassratio
+            biomassa_max = self.landcover.biomassa * cdm
+            biomassb_max = self.landcover.biomassb * cdm
+            if self.biomassa > biomassa_max: self.biomassa = biomassa_max
+            if self.biomassb > biomassb_max: self.biomassb = biomassb_max
+            # subtract growth C from atmosphere
+            growth = (self.biomassa - old_biomassa) + (self.biomassb - old_biomassb)
+            self.atm_carbon -= growth
+    def Practice(self):
+        """ Apply practices """
+        practice = self.GetLandUse.practice
+        sclimate = self.scenario.parcel.project.SClimate()
+        self.Harvest(practice.harvest)
+        self.ResidueBurn(practice.burn)
+        agpractices = practice.agricultural_practices.all()
+        for p in agpractices:
+            co2 = Agriculture_Carbon_Stored.objects.get(simple_climate=sclimate,agricultural_practice=p)
+            carbon = co2.amountC/3.67
+            self.soil += carbon
+            self.atm_carbon -= carbon
+    def __unicode__(self):
+        return 'Scenario ' + self.scenario.name + ' ' + str(self.year) + ' pools'
+    class Meta:
+        ordering = ['year']
+
+    def clone(self, delta_dict):
+        """ Returns a copy of itself, updates the delta_dict with the changed ID, updates any foreign_keys using the delta dict, and returns itself """
+        self_copy = deepcopy(self)
+        self_copy.id = None  # Setting the PK to none will create a new object upon .save()
+        deltas = ['scenario', 'landcover']  # These are the FK fields we also want to deepcopy
+        for delta in deltas:
+            old_obj = getattr(self, delta)
+            new_obj_id = delta_dict[(old_obj.__doc__, old_obj.id)]
+            new_obj = old_obj.__class__.objects.get(id=new_obj_id)
+            setattr(self_copy, delta, new_obj)
+        self_copy.save()  # This will create the clone and give it a new ID
+
+        # Add this new delta to delta_dict
+        delta_dict[(self.__doc__, self.id)] = self_copy.id
+
+        return self_copy

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Information Report</title>
+    <!-- Bootstrap CSS -->
+    <style type="text/css">
+/*        body {
+            font-size: 12px;
+        }
+        .success {
+            background-color: #dff0d8;
+            text-align: left;
+            font-size: 14px;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 2.5px;
+            margin: 20px;
+            border-bottom: 0px;
+        }
+        .odd {
+            background-color: #efefef;
+        }
+        table {
+            padding: 5px;
+        }
+        table th {
+            text-align: left;
+            padding-left: 5px;
+            vertical-align: top;
+            margin-top: 5px;
+        }
+        table td {
+            vertical-align: top;
+            margin-top: 5px;
+        }
+        table tr {
+            margin-top: 10px;
+            border-bottom: 1px solid #000;
+
+        }*/
+
+        .success {
+            background-color: #dff0d8;
+        }
+
+        .success h4 {
+            font-size: 14px;
+            font-weight: bold;
+            vertical-align: center;
+            text-align: left;
+        }
+        table {
+            font-size: 12px;
+            margin-bottom:20px;
+        }
+        tr th {
+            text-align: left;
+            vertical-align: top;
+        }
+        tr td {
+            text-align: left;
+            vertical-align: top;
+        }
+        .odd {
+            background-color: #efefef;
+        }
+    </style>
+    <!-- jQuery -->
+</head>
+<body>
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="2"><h4>Table of Contents</h4></th></tr>
+            <tr>
+                <th>1.</th>
+                <td>Project Description</td>
+            </tr>
+            <tr class="odd">
+                <th>2.</th>
+                <td>Contact Information</td>
+            </tr>
+            <tr>
+                <th>3.</th>
+                <td>General Project Information</td>
+            </tr>
+        </table>
+
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="2"><h4>Project Description</h4></th></tr>
+            <tr>
+                <th>Project Name:</th>
+                <td>{{ project.name }}</td>
+            </tr>
+            <tr class="odd">
+                <th>Abstract:</th>
+                <td>{{ project.abstract }}</td>
+            </tr>
+            <tr>
+                <th>Project Type:</th>
+                <td>{{ project.type }}</td>
+            </tr>
+            <tr class="odd">
+                <th>Project Duration (years):</th>
+                <td>{{ project.duration }}</td>
+            </tr>
+        </table>
+        
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="2"><h4>Contact Information</h4></th></tr>
+            <tr>
+                <th>Name:</th>
+                <td>{{ project.contact }}</td>
+            </tr>
+            <tr class="odd">
+                <th>Address:</th>
+                <td>{{ project.address }} <br/> {{ project.address2 }}</td>
+            </tr>
+            <tr>
+                <th>Telephone:</th>
+                <td>{{ project.telephone }}</td>
+            </tr>
+            <tr class="odd">
+                <th>Email:</th>
+                <td>{{ project.email }}</td>
+            </tr>
+        </table>
+        <div>
+            <pdf:nextpage/>
+        </div>
+        <table cellpadding="10" cellspacing="10">
+            <tr class="success"><th colspan="4"><h4>General Project Information</h4></th></tr>
+            <tr>
+                <th>Continent:</th>
+                <td>{{ project.region }}</td>
+                <th>Country:</th>
+                <td>{{ project.country }}</td>
+            </tr>
+            <tr class="odd">
+                <th>Climate Zone:</th>
+                <td>{{ project.climate_zone }}</td>
+                <th>Moisture Zone:</th>
+                <td>{{ project.moisture_zone }}</td>
+            </tr>
+            <tr>
+                <th>Soil Type:</th>
+                <td>{{ project.soil_type }}</td>
+                <th>Carbon/Dry Matter:</th>
+                <td>{{ project.cdm }}</td>
+            </tr>
+        </table>
+
+
+    <img width="100%" src="static/images/normal_11590.jpg"/>
+
+    <!-- Loading Bootstrap JS last to improve speed -->
+</body>
+</html>

@@ -1,0 +1,111 @@
+{% extends "allometric/species_base.html" %}
+{% load aeq_tags %}
+
+{% block page_title %}
+{{title}} List
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+	<li class="active">Species</li>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src="{{ mathjax }}"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        	tex2jax: { inlineMath: [['$', '$'], ['\\(','\\)']] },
+         "HTML-CSS": {
+         	linebreaks: { automatic: true },
+         	imageFont: null,
+         	scale: 100,
+
+         },
+                SVG: { linebreaks: { automatic: true } },
+
+        });
+    </script>
+
+    <style type="text/css">
+
+    h3 {
+    	font-size: 20px;
+    }
+    </style>
+
+{% endblock page_scripts %}
+
+{% block page_content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">{{ title }}</h4>
+		</div>
+		<div class="panel-body">
+
+		<b>Legend</b><br>
+		<table class="table" id="gridtable" style="width: 100%">
+		<tr>
+			<td>$\text{BE}_1$</td>
+			<td>equation used to estimate biomass(kg) of the small wood of trees having a diameter at breast height of 10cm or more</td>
+		</tr>
+		<tr>
+			<td>$\text{BE}_2$</td>
+			<td>equation used to estimate biomass(kg) of the foliage of trees having a diameter at breast height of 10cm or more</td>
+		</tr>
+		<tr>
+			<td>$\text{BE}_3$</td>
+			<td>equation used to estimate biomass(kg) of the small wood of trees having a diameter at breast height of less than 10cm</td>
+		</tr>
+		<tr>
+			<td>$\text{BE}_4$</td>
+			<td>equation used to estimate biomass(kg) of the foliage of trees having a diameter at breast height of less than 10cm</td>
+		</tr>
+		<tr>
+			<td>$D_{BH}$</td>
+			<td>diameter at breast height</td>
+		</tr>
+		</table>
+
+		{% for region in regions %}
+			{% get_equations_for_region title region.name %}
+			{% if equations %}
+				<h3>{{ region }}</h3>
+				<div style="border-top: 1px solid #E4E4E4; ">
+					{% if volumetric %}
+						<div>
+						<center>
+							<font size="4"><b>Volume Equation</b></font>
+						</center>
+						</div>
+						<center>\begin{equation}V={{ volumetric.string|cut:" "|TeX:"VL,false" }}\end{equation}</center>
+					{% endif %}
+					<br><br>
+					{% if nonvolumetric_equations %}
+							<center><font size="4"><b>
+								Biomass Equations
+							</b></font></center>
+							<font align="left">
+							\begin{align}
+								{% if more_than_10_SW %}
+									BE_1& ={{ more_than_10_SW.string|cut:" "|TeX:"SW,false" }}\\
+								{% endif %}
+
+								{% if more_than_10_FL %}
+									BE_2& ={{ more_than_10_FL.string|cut:" "|TeX:"FL,false" }}\\
+								{% endif %}
+
+								{% if less_than_10_SW %}
+									BE_3& ={{ less_than_10_SW.string|cut:" "|TeX:"SW,true" }}\\
+								{% endif %}
+
+								{% if less_than_10_FL %}
+									BE_4& ={{ less_than_10_FL.string|cut:" "|TeX:"FL,true" }}
+								{% endif %}
+							\end{align}
+							</font>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+{% endblock page_content %}

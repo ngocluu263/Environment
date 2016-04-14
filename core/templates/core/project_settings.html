@@ -1,0 +1,133 @@
+{% extends "stage_project.html" %}
+
+
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#project-settings-pill").addClass("active");
+        $("#project-settings-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="project-settings-tab" class="active"><a href= "{% url "project-settings" request.session.project_id %}"><span class="glyphicon glyphicon-edit"></span> Project Settings</a></li>
+    <li id="add-users-tab" class=""><a href="{% url "add-user-project" request.session.project_id %}"><span class="glyphicon glyphicon-user"></span> Add User</a></li>
+    <li id="list-users-tab"><a href="{% url 'list-permissions' request.session.project_id %}"><i class="fa fa-users"></i> List Users</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+	<li><a href="/../core/project-settings/{{ request.session.project_id }}">Project Settings</a></li>
+    <li class="active">Project Details</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}{{ project.name|capfirst }} Settings{% endblock page_title %}
+
+{% block page_content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Project Settings</h4>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-12">
+					The settings displayed here are to specifically control settings for this project. This includes deleting the project as well as resetting the secret code for the project. Eventually, you will be able to copy the project as well as add users to this project from this section.
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-2">
+					Your project secret code is <span id="secret">{{ project.secret }}</span>
+				</div>
+				<div class="col-sm-2 col-sm-offset-2">
+					<button id="resetbutton" type="button" class="btn btn-warning btn-sm">Reset</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-8">
+					<button type="button" class="btn btn-warning btn-sm pull-right" data-toggle="modal" data-target="#copyProjectModal">Copy Project</button>
+				</div>
+				<div class="col-sm-2">
+					<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteProjectModal">Delete Project</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal modal-fade" id="deleteProjectModal" role="dialog" aria-labelledby="deleteProject" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="deleteProject">Delete Project Confirmation</h4>
+				</div>
+				<div class="modal-body">
+					Are you sure you want to delete this project?
+				</div>
+			
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+					<a href="{% url "delete-project" project.id %}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal modal-fade" id="copyProjectModal" role="dialog" aria-labelledby="copyProject" aria-hidden="true">
+		<div class="modal-dialog">
+			<form action="./copy_project/" method="post" class="form-horizontal" id="copyProjectForm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="copyProject">Copy Project</h4>
+					</div>
+					<div class="modal-body">
+						Are you sure you want to copy the project?
+						<hr/>
+
+						<div class="form-group">
+							<label for="id_name" class='col-sm-4 control-label'>New Project Name:</label>
+							<div class="col-sm-6">
+								<input id="id_name" type="text" name="name" class="form-control" placeholder="{{ project.name }}"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="id_owner" class="col-sm-4 control-label">Owner (username): </label>
+							<div class="col-sm-6">
+								<input id="id_owner" type="text" name="owner" class="form-control" value="{{ project.owner }}"/>
+							</div> 
+						</div>
+					</div>
+					<div class="modal-footer">
+						{% csrf_token %}
+						<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary btn-sm">Copy</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock page_content %}
+
+{% block page_bottomscripts %}
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$('#resetbutton').on('click', function(event){
+				event.preventDefault();
+
+				var request = new XMLHttpRequest();
+				request.open('GET','/core/utilities/copy_project/reset/{{ project.id }}/', false);
+				request.send();
+				$('#secret').html(request.responseText);
+			})
+
+		})
+	</script>
+
+{% endblock %}

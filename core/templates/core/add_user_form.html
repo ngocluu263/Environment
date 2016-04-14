@@ -1,0 +1,45 @@
+{% extends "stage_workgroup.html" %}
+
+{% block page_title %}
+Add User
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li class="active">Add User</li>
+{% endblock breadcrumbs %}
+
+{% block sidebar %}
+	
+{% endblock %}
+
+{% block navtabs %}
+    <li id="add-user-tab"><a href="#"><span class="glyphicon glyphicon-user"></span> Add User</a>
+    <li class ="disabled" id="manage-access-tab"><a href="#"><span class="glyphicon glyphicon-lock"></span> Manage Access</a>
+
+{% endblock navtabs %}
+
+{% block page_content %}
+        {% if error_message %}
+                <strong>{{ error_message }}</strong>
+        {% endif %}
+        <form action="." method="POST">
+        <table id=mrv_utilities_table>
+        {{ form }}
+        {% csrf_token %}
+        </table>
+        <input id=add-user-button type="submit" value="Add User">
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#manage-users-pill").addClass("active");
+        $("#manage-users-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#add-user-tab").addClass("active");
+        $("#add-user-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

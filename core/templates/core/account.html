@@ -1,0 +1,54 @@
+{% extends "stage_account.html" %}
+
+{% block page_title %}
+    {{ user.username|capfirst }} Details
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li class="active">Account Information</li>
+{% endblock breadcrumbs %}
+
+{% block sidebar %}
+	
+{% endblock %}
+
+{% block navtabs %}
+    <li id="profile-tab"><a href="#"><span class="glyphicon glyphicon-user"></span> User Information</a></li>
+{% endblock navtabs %}
+
+{% block page_content %}
+
+<table>
+    <tr>
+        <td style="text-align: right; font-weight: bold">Name:</td>
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; font-weight: bold">Username:</td>
+        <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; font-weight: bold">Email:</td>
+        <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
+    </tr>
+    <tr>
+        <td style="text-align: right; font-weight: bold">Admin:</td>
+        <td>{{ user.is_staff }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#account-info-pill").addClass("active");
+        $("#account-info-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#profile-tab").addClass("active");
+        $("#profile-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

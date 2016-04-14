@@ -1,0 +1,17 @@
+{% extends "ecalc/base.html" %}
+
+{% block pagetitle %}Delete {{ object.name }}?{% endblock %}
+
+{% block sidebaritems %}
+{% endblock %}
+
+{% block content %}
+	<p>Are you sure you would like to delete {{ object.name }}?</p>
+	<form method="POST">
+		{% csrf_token %}
+        <li><input type="submit" value="Yes" /></li>
+    </form>
+    
+    <li><a href="{{ object.get_list_url }}">No</a></li>
+	
+{% endblock %}

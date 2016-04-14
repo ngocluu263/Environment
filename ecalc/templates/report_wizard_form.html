@@ -1,0 +1,87 @@
+<style>
+div li {
+    list-style-type: none;
+}
+</style>
+
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}
+Emissions Calculator &mdash; Report Wizard &mdash; Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
+{% endblock %}
+
+{% block navtabs %}
+    <li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li class="active" id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=project.id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+
+
+{% block breadcrumbs %}
+    <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li><a href="{% url "ecalc-report-wizard" request.session.project_id %}">Report Wizard</a></li>
+    <li class="active">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</li>
+{% endblock breadcrumbs %}
+
+{% block sidebar %}
+    <ul>
+        <li><a href="{% url 'ecalc-project' project.id %}">{{ project.name }}</a></li>
+    </ul>
+{% endblock %}
+
+{% block page_content %}
+<form id="wizard" action="" method="post">{% csrf_token %}
+    
+{{ wizard.management_form }}
+{{ wizard.form.management_form }}
+    <div class="panel panel-primary" id="no_ul">
+        <div class="panel-heading">
+            <h4 class="panel-title">Selections</h4>
+        </div>
+        {% if wizard.form.errors or landuse_formset.non_form_errors %}
+        <div class="panel-body">
+            <p style="color: red;">
+                Please correct the errors below.
+            </p>
+            {{ landuse_formset.non_form_errors }}
+        </div>
+        {% endif %}
+        <table class="table table-hover">
+            <tr>
+                <th>Parcel Name</th>
+                <th style="padding-left:45px">Scenario</th>
+            </tr>
+            {% for form in wizard.form.forms %}
+                {% if forloop.last %}
+                {% else %}
+                    <tr>
+                        <td>{{ form.instance.name }}</td>
+                        {% for field in form.visible_fields %}
+                            <td>
+                            {% if forloop.first %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                            {% endif %}
+                            {{ field.errors.as_ul }}
+                            {{ field }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary btn-sm pull-right" type="submit" value="Submit"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+{% endblock %}

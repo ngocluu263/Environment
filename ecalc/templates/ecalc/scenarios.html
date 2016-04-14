@@ -1,0 +1,22 @@
+{% load ags_tags %}
+{% load humanize %}
+<table>
+<tr>
+<th>Scenario</th>
+<th>Parcel</th>
+<th>Emissions (t CO2)</th>
+<th>{{ scenario_list.0.name }} difference</th>
+</tr>
+
+{% for s in scenario_list %}
+	<tr>
+	<td><a href="{% url "ecalc-scenario" ppk=project.id pk=s.id %}">{{ s.name }}</a></td>
+	<td><a href="{% url "ecalc-parcel" ppk=project.id pk=s.parcel.id %}">{{ s.parcel }}</a></td>
+	<td><a href="{% url "ecalc-carbonpoolss" ppk=project.id spk=s.id %}">{{ s.Emissions|floatformat:"0"|intcomma }}</a></td>
+	<td>{{ s.Emissions|subtract:scenario_list.0.Emissions|floatformat:"0"|intcomma  }}</a></td>
+	</tr>
+{% empty %}
+	</table>
+	<p>No Scenarios are available for this parcel.</p>
+{% endfor %}
+</table>

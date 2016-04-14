@@ -1,0 +1,15 @@
+{% extends "stage_utilities.html" %}
+
+{% block navtabs %} <!-- move to module template -->
+    <li id="species-list"><a href="{% url "species_list" %}"><span class="glyphicon glyphicon-list"></span> Available Species</a>
+    <li id="species-create"><a href="{% url "species_create" %}"><span class="glyphicon glyphicon-pencil"></span> Create Species</a>
+    
+{% endblock navtabs %}
+
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#species-pill").addClass("active");
+        $("#species-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}

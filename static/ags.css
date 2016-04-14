@@ -1,0 +1,22 @@
+/* AGS CSS Stylesheet */
+
+table {
+	width: 100%;
+	padding: 25;
+}
+table.narrow {
+	width: 50%;
+}
+
+table.center th {
+	text-align: center;
+}
+
+th {
+	font-weight: bold;
+	vertical-align: bottom;
+}
+
+.center {
+	text-align: center;
+}

@@ -1,0 +1,546 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#project-docs-pill").addClass("active");
+        $("#project-docs-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="project-documents-tab" class="active"><a href= "/../core/project_documents/{{ request.session.project_id }}">
+        <span class="glyphicon glyphicon-folder-open"></span> Folders</a></li>
+
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block page_title %}
+    {{ project.name }} Documents
+{% endblock page_title %}
+
+{% block page_content %}
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4 class="panel-title" style="margin-top:6px;">Directory <i id="info-icon" 
+                    class="fa fa-info-circle" data-toggle="popover" title="Instructions" 
+                    data-content="Click on an element in the directory to expand it, showing its content. 
+                    To perform actions, simply right-click an element to bring up the menu. The menu will 
+                    contain actions allowing you to either create a new folder, upload a file, rename the 
+                    element, or delete it.To create a new folder in the root of the directory, use the 
+                    'New Folder' button below." style="color:#fff;"></i>   
+                        <i id="progress" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                        <i id="success" class="fa fa-check" style="display: none; color: #5ca038"></i>
+                        <i id="failure" class="fa fa-warning" style="display: none; color: #c41425"></i></h4>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search" style="color:#999;"></i></span>
+                        <input type="text" class="form-control input-sm" id="search_form" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <!-- Start of jsTree -->
+            <div id="jstree">
+
+            </div>
+            <!-- End of jsTree -->
+        </div>
+        <div class="panel-footer" style="text-align:right;">
+            <form action="." method="post" class="form-horizontal">{% csrf_token %}
+                {% if form.non_field_errors %}
+                    <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            {{ form.name|add_class:'form-control' }}
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">New Folder</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>   
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="." method="POST" enctype="multipart/form-data" class="form-horizontal" id="fileUpload">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Upload File</h4>    
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="well">
+                                <center><input type="file" name="upload" id="upload" /></center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="File Name" name="text" id="fileName" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock page_content %}
+
+
+{% block page_bottomscripts %}
+
+<link rel="stylesheet" href="/static/js/jstree/themes/default/style.min.css"/>
+<script src="/static/js/jstree/jstree.min.js"></script>
+
+<script type="text/javascript">
+
+    // Popover instructions
+    $(document).ready(function(){
+        $('#info-icon').popover({
+            "placement": "right",
+            "trigger": "hover",
+            "delay": {show:100,hide:100},
+            "container": "body"
+        })
+    });
+
+    function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        function sameOrigin(url) {
+            // test that a given url is a same-origin URL
+            // url could be relative or scheme relative or absolute
+            var host = document.location.host; // host + port
+            var protocol = document.location.protocol;
+            var sr_origin = '//' + host;
+            var origin = protocol + sr_origin;
+            // Allow absolute or scheme relative URLs to same origin
+            return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                // or any other URL that isn't scheme relative or absolute i.e relative.
+                !(/^(\/\/|http:|https:).*/.test(url));
+        }
+
+    $(function() {
+        // AJAX for documents
+        function getFolders() {
+            var folders = []
+            var request = new XMLHttpRequest();
+            request.open('GET', '/api/v1/documents/?limit=50&format=json&project={{ request.session.project_id }}', false);
+            request.send();
+
+            if (request.status == 200) {
+                var response = JSON.parse(request.responseText);
+
+                $.each(response['objects'], function(key, val) {
+                    console.log(val['parent']);
+                    var obj = {};
+                    obj['id'] = val['id'];
+                    if(!val['parent'])
+                        obj['parent'] = '#';  
+                    else
+                        obj['parent'] = val['parent']
+                    obj['text'] = val['text']
+
+                    if(val['upload'])
+                        obj['type'] = 'file'
+                    folders.push(obj);
+                })
+            }
+            return folders;
+        }
+
+
+        function InitTree()
+        {
+            $('#jstree').off();
+             // Creating instance and assigning paramenters
+            $('#jstree').jstree({
+                "plugins" : ["contextmenu", "dnd", "search", "sort", "types", "wholerow"], // Setting plugins for instance
+                "core": {
+                    "check_callback": true,
+                    "themes": {
+                        "stripes": true
+                    },
+                    "multiple": false,
+                    "data": getFolders()
+                },
+                "rules": {
+                    "draggable" : [ "folder", "default", "file"]
+                },
+                "types": {
+                    "#" : {
+                      "max_depth" : 5, // Max sub-nodes to 5 levels deep
+                      "icon": "fa fa-folder"
+                    },
+                    "file" : {
+                        "icon" : "fa fa-file",
+                        "valid_children" : []
+                    },
+                    "default" : {
+                        "icon" : "fa fa-folder"
+                    },
+                    "folder": {
+                        "icon" : "fa fa-folder",
+                        "valid_children" : ['file', 'folder', '#', 'default']
+                    }
+                },
+                "search":{
+                    "fuzzy": false,
+                    "show_only_matches": true
+                },
+                "contextmenu":{         
+                    "items": function($node) {
+                        var tree = $("#jstree").jstree(true);
+
+                        if ($node.type == "folder" || $node.type == "default") {
+                            return {
+                                    // "Create" : false,
+                                    "Create": {
+                                        "separator_before": false,
+                                        "separator_after": false,
+                                        "label": "New Folder",
+                                        "icon": "fa fa-folder",
+                                        "action": function (obj) { 
+                                            console.log($node);
+                                            $node = tree.create_node($node);
+                                            console.log($node);
+                                            tree.edit($node);
+                                        }
+                                    },
+                                    "Upload": {
+                                        "separator_before": false,
+                                        "separator_after": false,
+                                        "label": "Upload",
+                                        "icon": "fa fa-upload",
+                                        "action": function (obj) { 
+                                            if( $node.type == "default" || $node.type == "folder" ) {
+                                                uploadFile($node.id, $node);
+                                            }
+                                        }
+                                    },
+                                    "Download": {
+                                        "separator_before": false,
+                                        "separator_after": false,
+                                        "label": "Download",
+                                        "icon": "fa fa-download",
+                                        "action": function (obj) {
+                                            downloadZip($node.id, $node);
+                                        }
+                                    },
+                                    "Rename": {
+                                        "separator_before": false,
+                                        "separator_after": false,
+                                        "label": "Rename",
+                                        "icon": "fa fa-pencil",
+                                        "action": function (obj) { 
+                                            tree.edit($node);
+                                        }
+                                    },                         
+                                    "Remove": {
+                                        "separator_before": false,
+                                        "separator_after": false,
+                                        "label": "Delete",
+                                        "icon": "fa fa-trash-o",
+                                        "action": function (obj) {
+                                            var confirmDelete = confirm("Are you sure you'd like to delete your selection?");
+                                            if (confirmDelete == true) 
+                                                tree.delete_node($node);
+                                        }
+                                    },
+                                }
+                            }
+                        else {
+                            return {
+                                "Create" : false,
+                                "Download": {
+                                    "separator_before": false,
+                                    "separator_after": false,
+                                    "label": "Download",
+                                    "icon": "fa fa-download",
+                                    "action": function (obj) {
+                                        if($node.type == "file") {
+                                            downloadZip($node.id, $node);
+                                        }
+                                    }
+                                },
+                                "Rename": {
+                                    "separator_before": false,
+                                    "separator_after": false,
+                                    "label": "Rename",
+                                    "icon": "fa fa-pencil",
+                                    "action": function (obj) { 
+                                        tree.edit($node);
+                                    }
+                                },                         
+                                "Remove": {
+                                    "separator_before": false,
+                                    "separator_after": false,
+                                    "label": "Delete",
+                                    "icon": "fa fa-trash-o",
+                                    "action": function (obj) {
+                                        var confirmDelete = confirm("Are you sure you'd like to delete your selection?");
+                                        if (confirmDelete == true) {
+                                            tree.delete_node($node);
+                                        }
+                                    }
+                                }
+                            };
+                        }
+                    }
+                }
+            });
+
+            // Bind events triggered on tree
+            $('#jstree').on('changed.jstree', function (e, data) {
+                //console.log(data);
+            });
+            $('#jstree').on('move_node.jstree', function (e, data) {
+                var patch = {};
+                if( data.node.parent != '#')
+                    patch["parent_uri"] = '/api/v1/documents/' + data.node.parent + '/';
+                else
+                    patch["parent_uri"] = null;
+                patchDocument(data.node.id, patch);
+            });
+            $("#jstree").on('rename_node.jstree', function (e, data) {
+                var patch = {};
+                patch["text"] = data.text;
+                patchDocument(data.node.id, patch);
+            });
+            $("#jstree").on('create_node.jstree', function (e, data) {
+                var post = {}
+                post["id"] = null;
+                post["text"] = data.node.text;
+                post["project"] = '/api/v1/project/{{ request.session.project_id }}/';
+                post["parent_uri"] = '/api/v1/documents/' + data.node.parent + '/';
+                var promise = createFolder(post);
+
+                promise.success(function(response){
+                    setTimeout(function() {$('#success').show(300)}, 1000);
+                    setTimeout(function() {$('#success').hide(300)}, 2000);
+                    data.instance.set_id(data.node, response['id']);
+                });
+            });
+            $("#jstree").on('delete_node.jstree', function (e, data) {
+                // delete folder
+                var id = parseInt(data.node.id);
+                if(id || id === 0) // check if id is an int
+                {
+                    deleteDocument(id);
+                }
+            });
+        }
+       
+        InitTree();
+
+        // Search the directory
+        var to = false;
+        $('#search_form').keyup(function(){
+            if(to) {clearTimeout(to);}
+            to = setTimeout(function() {
+                var v = $('#search_form').val();
+                $('#jstree').jstree(true).search(v);
+            }, 250);
+        });
+
+        var uploadFile = function(folder_id, node) {
+            //console.log(folder_id);
+            //console.log(node);
+           
+            $('#uploadModal').off('shown.bs.modal').on('shown.bs.modal', function(){
+                 var s = 1;
+                $('#fileUpload').off('submit').on('submit', function(event){
+                    event.preventDefault();
+                    //console.log('in here');
+                    console.log(s);
+                    s = s + 1;
+
+                    var requestObj = new XMLHttpRequest();
+                    var formdata = new FormData($(this)[0]);
+                    formdata.append("parent_uri","/api/v1/documents/" + folder_id + "/");
+                    formdata.append("project", "/api/v1/project/{{ request.session.project_id }}/");
+                    //requestObj.open('POST', '/core/project_documents/{{ request.session.project.id }}/upload/' + folder_id + '/', false);
+                    if($("#upload").val() != "") // if there is a file to upload
+                    {
+                        requestObj.open('POST', '/api/v1/documents/', false);
+                        requestObj.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+                        requestObj.send(formdata);
+                    }
+                    else
+                    {
+                        $('#uploadModal').modal('hide');
+                    }
+
+
+
+                    if (requestObj.status == 201) {
+                        
+
+                        $("#jstree").jstree(true).destroy();
+
+                        InitTree();
+                        $("#jstree").jstree(true).select_node(node);
+                        $("#jstree").jstree(true).open_node(node);
+                        setTimeout(function() {$('#success').show(300)}, 1000);
+                        setTimeout(function() {$('#success').hide(300)}, 2000);
+                        $('#uploadModal').modal('hide');
+                    } else if ( requestObj.status >= 400 ) {
+                        setTimeout(function() {$('#failure').show(300)}, 1000);
+                        setTimeout(function() {$('#failure').hide(300)}, 2000);
+                    }
+                });
+            });
+
+            $('#uploadModal').modal('show');
+        }
+
+        var downloadZip = function(id, node) {
+            window.location.href = "/core/project_documents/" + id + "/download/";
+        }
+
+        var deleteDocument = function(id) {
+             $.ajax({
+                url: '/api/v1/documents/' + id + '/',
+                type: 'DELETE',
+                dataType: 'json',
+                beforeSend: function(xhr, settings){
+                    var csrftoken = getCookie('csrftoken');
+                    $('#progress').show();
+                    if ( !csrfSafeMethod(settings.type)) {
+                        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+                    }
+                },
+                complete: function() {
+                    setTimeout(function() {$('#progress').hide(300)}, 1000);
+                },
+                success: function(data) {
+                    setTimeout(function() {$('#success').show(300)}, 1000);
+                    setTimeout(function() {$('#success').hide(300)}, 2000);
+                    console.log("delete success");
+                },
+                error: function() {
+                    setTimeout(function() {$('#failure').show(300)}, 1000);
+                    setTimeout(function() {$('#failure').hide(300)}, 2000);
+                }
+            });
+        }
+
+        var patchDocument = function(id, patch) {
+            $.ajax({
+                url : '/api/v1/documents/' + id + '/',
+                data : JSON.stringify(patch),
+                type : 'PATCH',
+                beforeSend: function(xhr, settings){
+                    var csrftoken = getCookie('csrftoken');
+                    $('#progress').show();
+                    if ( !csrfSafeMethod(settings.type)) {
+                        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+                    }
+                },
+                complete: function() {
+                    setTimeout(function() {$('#progress').hide(300)}, 1000);
+                },
+                contentType : 'application/json',
+                processData: false,
+                dataType: 'json',
+                success: function() {
+                    setTimeout(function() {$('#success').show(300)}, 1000);
+                    setTimeout(function() {$('#success').hide(300)}, 2000);
+                },
+                error: function() {
+                    setTimeout(function() {$('#failure').show(300)}, 1000);
+                    setTimeout(function() {$('#failure').hide(300)}, 2000);
+                }
+            });
+        }
+
+        var createFolder = function(text) {
+            return $.ajax({
+                url: '/api/v1/documents/',
+                type: 'POST',
+                beforeSend: function(xhr, settings){
+                    $('#progress').show();
+                    var csrftoken = getCookie('csrftoken');
+                    if ( !csrfSafeMethod(settings.type)) {
+                        xhr.setRequestHeader('X-CSRFToken', csrftoken);
+                    }
+                },
+                complete: function() {
+                    setTimeout(function() {$('#progress').hide(300)}, 1000);
+                },
+                data: JSON.stringify(text),
+                contentType: 'application/json',
+                dataType: 'json',
+            });
+        }
+
+    });
+
+    $('#uploadModal').on('hidden.bs.modal', function(event){
+        $('#fileUpload')[0].reset();
+    })
+
+</script>
+
+<style>
+.fa-folder {
+    color:#ED9C28;
+}
+.fa-file {
+    color:#39B3D7;
+}
+.fa-trash-o {
+    color:#D2322D;
+}
+.fa-pencil {
+    color:#e8b909;
+}
+.fa-upload {
+    color:#39B3D7;
+}
+.fa-download {
+    color:#5CB85C;
+}
+</style>
+
+{% endblock page_bottomscripts %}

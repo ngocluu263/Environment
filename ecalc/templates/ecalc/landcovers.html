@@ -1,0 +1,32 @@
+<table class="table table-hover">
+	<tr>
+		<th>Cover Name</th>
+		<th>Category</th>
+		<th>Total Biomass (tDM/ha)</th>
+		<th>Dead Carbon (tC/ha)</th>
+		<th>Soil Carbon (tC/ha)</th>
+	</tr>
+	{% for lc in landcover_list %}
+		<tr>
+			<td><a href="{% url "ecalc-landcover" ppk=project.id pk=lc.id %}" data-target="#myModal" data-toggle="modal">{{ lc.name }}</a></td>
+			<td class="center">{{ lc.category }}</td>
+			<td class="center">{{ lc.Biomass }}</td>
+			<td class="center">{{ lc.DeadCarbon }}</td>
+			<td class="center">{{ lc.soil }}</td>
+		</tr>
+	{% empty %}
+		<tr>
+			<td colspan="5">
+				<p>No Land Covers are available for this project.</p>
+			</td>
+		</tr>
+	{% endfor %}
+	<tr>
+		<td colspan="4">
+		</td>
+		<td>
+			<a href="{% url "ecalc-landcover-new" ppk=project.id %}" data-target="#myModal" data-toggle="modal"><button class="btn btn-primary btn-sm pull-right">Add New</button></a>
+		</td>
+	</tr>
+</table>
+

@@ -1,0 +1,102 @@
+{% extends "module_aeq.html" %}
+
+{% block page_title %}
+Allometric Equations
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+	<li class="active"><a href="{% url "group_aeq" %}">Allometric Equations</a></li>
+{% endblock %}
+
+
+{% block page_content %}
+
+	<div class="bg-info" style="padding:10px;">
+	Select which allometric equations you would like to view by clicking the plus sign to expand the list.  Country names are also clickable.
+	</div>
+	<table class="table" id="gridtable" >
+	<tbody>
+		<td width=40%>
+			{% for country in countries %}
+				<h3><a href="list/?country={{ country }}">{{ country }}</a>
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ country|lower }}">+</a>
+				</h3>
+					<div id="collapse{{ country|lower }}" class="panel-collapse collapse in">
+						<ul style="list-style-type: none; line-height:200%;">
+							{% for object in object_list %}
+								{% if object.country == country%}
+								<li>
+									<a href="list/?country={{ country }}&region={{ object|slugify }}">{{ object }}</a>
+								</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+			{% endfor %}
+		</td>
+
+		<td>
+			<h3>Categories
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseCategories">+</a>
+			</h3>
+			<div id="collapseCategories" class="panel-collapse collapse in">
+				<ul style="list-style-type: none; line-height:200%;">
+					<li>
+						<a href="list/">All</a>
+					</li>
+
+					<li>
+						<a href="list/?category=general">General (Brown, Chave, IPCC)</a>
+					</li>
+
+					<li>
+						<a href="list/?category=carbon">Carbon Benefits</a>
+					</li>
+				</ul>
+			</div>
+			<!--<h3>Species
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseGenus">+</a>
+			</h3>
+			<div id="collapseGenus" class="panel-collapse collapse">
+				<table class="table" id="gridtable">
+					{% for genusname in genus %}
+							<tr>
+							<th class="col-sm-1">
+								<b><a href="list/?genus={{ genusname }}">{{ genusname }}</a>
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ genusname }}">+</a></b>
+							</th>
+							<td>
+								<div id="collapse{{ genusname }}" class="panel-collapse collapse in">
+									<ul style="list-style-type: none; line-height:200%;">
+									{% for specimen in species %}
+										{% if specimen.genus|cut:" " == genusname|cut:" " %}
+													<a href="list/?species={{ specimen|slugify }}">{{ specimen }}</a><br>
+										{% endif %}
+									{% endfor %}
+									</ul>
+								</div>
+							</td>
+					{% endfor %}
+				</table>
+			</div>
+			-->
+		</td>
+	</tbody>
+	</table>
+
+{% endblock %}
+
+{% block page_bottomscripts %}
+<script type="text/javascript">
+	$(document).ready()
+
+
+</script>
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#aeq-list").addClass("active");
+        $("#aeq-list a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

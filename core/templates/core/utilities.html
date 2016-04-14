@@ -1,0 +1,41 @@
+{% extends "stage_utilities.html" %}
+
+{% block page_title %}
+Utilities Overview
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="active">Overview</li>
+{% endblock %}
+
+{% block navtabs %}
+    <li id="utilities-overview-tab"><a href="#">Overview</a>
+{% endblock navtabs %}
+
+{% block page_content %}
+        Welcome to MRV utilities.
+
+        <h3>AEQ Editor</h3>
+        Lipsum...
+
+        <h3>Land Cover Editor</h3>
+        dolor sic...
+
+        <h3>Copy Project Tool</h3>
+        amet.
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#utilities-overview-pill").addClass("active");
+        $("#utilities-overview-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#utilities-overview-tab").addClass("active");
+        $("#utilities-overview-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

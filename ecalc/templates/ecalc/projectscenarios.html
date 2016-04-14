@@ -1,0 +1,37 @@
+{% load ags_tags %}
+{% load humanize %}
+<table class="table table-hover">
+	<tr>
+		<th>Scenario</th>
+		<th>Reference Scenario</th>
+		<th>Parcel</th>
+		<th>Emissions (t CO2)</th>
+		<th>Reference difference</th>
+		<th></th>
+	</tr>
+
+	{% for s in projscenario_list %}
+		<tr>
+			<td><a href="{% url "ecalc-projectscenario" ppk=project.id pk=s.id %}">{{ s.name }}</a></td>
+			<td><a href="{% url "ecalc-referencescenario" ppk=project.id pk=s.reference_scenario.id %}">{{ s.reference_scenario }}</a></td>
+			<td><a href="{% url "ecalc-parcel" ppk=project.id pk=s.parcel.id %}">{{ s.reference_scenario.parcel }}</a></td>
+			<td><a href="{% url "ecalc-carbonpools" ppk=project.id spk=s.id %}">{{ s.Emissions|floatformat:"0"|intcomma }}</a></td>
+			<td>{{ s.Emissions|subtract:s.reference_scenario.Emissions|floatformat:"0"|intcomma  }}</a></td>
+			<td><button type="button" class="btn btn-danger btn-sm pull-right"
+				onclick="if(confirm('Are you sure you want to delete this scenario')) window.open('{% url 'ecalc-projectscenario-del' pk=s.id ppk=project.id %}', '_self');">Delete</button></td>
+		</tr>
+	{% empty %}
+		<tr>
+			<td colspan="6">
+				<p>No Scenarios are available for this parcel.</p>
+			</td>
+		</tr>
+	{% endfor %}
+	<tr>
+		<td colspan="5">
+		</td>
+		<td>
+			<a href="{% url "ecalc-projectscenario-new" ppk=project.id %}"><button class="btn btn-primary btn-sm pull-right">Add New</button></a>
+		</td>
+	</tr>
+</table>

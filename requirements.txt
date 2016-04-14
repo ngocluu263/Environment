@@ -1,0 +1,73 @@
+# Add Python modules your project requires here. 
+# If you don't have them, you will have them installed into python_modules folder upon the first request after IIS-app restart.
+# Learn more at http://www.pip-installer.org/en/latest/requirement-format.html
+
+########################################################
+## Basic Django Requirements
+########################################################
+django==1.6.3
+south
+Pillow==2.4.0
+celery==3.1.11
+django-celery==3.1.10
+#GDAL
+django-cas-provider==0.3.1
+django-jenkins
+
+########################################################
+## HTML to PDF Packages
+########################################################
+reportlab==3.1.8
+pisa==3.0.33
+html5lib==0.999
+
+########################################################
+## Excel Parsing
+########################################################
+xlwt
+xlrd
+xlutils
+mimeparse
+
+python-dateutil
+#lxml>=2.3.2
+httpagentparser
+pyshp
+
+########################################################
+## Tastpie -- Our API framework
+########################################################
+django-tastypie==0.11.0
+
+########################################################
+## Mathematics libraries
+########################################################
+sympy==0.7.5
+#numpy
+#scipy
+matplotlib==1.3.1
+python-flot-utils
+
+psycopg2
+defusedxml
+coverage
+kombu
+billiard
+pytz
+setproctitle
+
+###############################################################
+# LEGACY STUFF
+#django-tastypie==0.9.12 # KNOWN TO WORK for mrv 1.6
+#django-tastypie==0.10.0 # does not work for login view... will need >= 0.10.0
+#defusedxml==0.4.1
+#uncomment next one for mobile api login view
+#-e git://github.com/toastdriven/django-tastypie.git@c697e4fb7f9091298416600a387b396dd0fd3973#egg=django-tastypie-dev
+#django-cas-provider==0.3.2 # I require some tweaks to cas/logout to remove the ASPX cookie, etc.
+#sympy==0.7.12-git
+#-e git://github.com/sympy/sympy.git@07933cd11c8050ffb24def7ed1e6724833eee230#egg=sympy-dev
+#numpy==1.7.0  # windows: http://sourceforge.net/projects/numpy/files/NumPy/1.7.0/
+#scipy==0.12.0  # windows: http://sourceforge.net/projects/scipy/files/scipy/0.12.0/
+#matplotlib==1.2.0  # windows: https://github.com/downloads/matplotlib/matplotlib/matplotlib-1.2.0.win32-py2.7.exe
+#python-flot-utils==0.2.1
+#psycopg2>=2.5

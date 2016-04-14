@@ -1,0 +1,297 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#measuring-pill").addClass("active");
+        $("#measuring-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="parcel-management-tab"><a href= "{% url 'parcel-management' request.session.project_id %}"><span class="glyphicon glyphicon-tree-deciduous"></span> 
+    	Parcel Management</a></li>
+    <li id="inventory-planning-tab"><a href="{% url 'inventory-planning' request.session.project_id %}"><span class="glyphicon glyphicon-th-list"></span> 
+    	Inventory Planning</a></li>
+    <li id="data-management-tab"><a href= "{% url 'data-management' request.session.project_id %}"><span class="glyphicon glyphicon-folder-open"></span> 
+    	Data Management</a></li>
+    <li id="carbon-calculations-tab" class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> 
+    	Carbon Calculations</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+    <li><a href="/../measuring/parcel_management/{{ request.session.project_id }}">Measuring</a></li>
+    <li class="active">Carbon Calculations</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}Carbon Calculations{% endblock page_title %}
+
+{% block page_content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Carbon Data for Project: {{ project.name }}
+            </h4>
+        </div>
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label style="margin-bottom: 0px;">Select Parcel</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-12">
+                               <select id="parcelDropdown" class="form-control">
+                                    <option value="" id="parcelDropDown" selected="selected">Select a parcel</option>
+                                    {% for parcel in parcels %}
+                                        <option value="{{ parcel.id }}">{{ parcel.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr id="equationsRow" style="display:none;">
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label style="margin-bottom:0px;">Equations Used</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button id="equationsLink" class="btn btn-primary btn-sm pull-right" type="button" data-target="#equationsUsed" data-toggle="modal">Click Here</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Tier 1 Carbon Data
+            </h4>
+        </div>
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-lg-3">
+                        <label id="tier1ParcelStock" style="margin-bottom: 0px; text-align: right; font-weight: bold;">Carbon Stocks</label>
+                    </td>
+
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="t1StocksLink" class="btn btn-primary btn-sm" data-target="#tierOneStocks" data-toggle="modal" style="display: none;">Click Here</button>
+                        </span>
+                        <br />
+                        <label id="t1CreationMessage" style="color: red;"></label>
+                        <span id="t1Instructions" runat="server" visible="true"
+                            style="font-style: italic; font-size: 11px;" font-bold="False">
+                            You must Select a Parcel to activate this link.</span></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label id="labelTierOneByParcel" style="margin-bottom: 0px;">Carbon Stocks by Parcel</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="tierOneByParcelLink" class="btn btn-primary btn-sm" data-target="#tierOneByParcel" data-toggle="modal" >Click Here</button>
+                        </span>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label id="labelTierOneSummary" style="margin-bottom: 0px;">Carbon Summary</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="tierOneSummaryLink" class="btn btn-primary btn-sm" data-target="#tierOneSummary" data-toggle="modal" >Click Here</button>
+                        </span>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Tier 2 Carbon Data
+            </h4>
+        </div>
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-lg-3">
+                        <label id="tier2ParcelStock" style="margin-bottom: 0px; text-align: right; font-weight: bold;">Carbon Stocks</label>
+                    </td>
+
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="t2StocksLink" class="btn btn-primary btn-sm" data-target="#tierTwoStocks" data-toggle="modal" style="display: none;">Click Here</button>
+                        </span>
+                        <br />
+                        <label id="t2CreationMessage" style="color: red;"></label>
+                        <span id="t2Instructions" runat="server" visible="true"
+                            style="font-style: italic; font-size: 11px;" font-bold="False">
+                            You must Select a Parcel to activate this link.</span></td>
+                </tr>
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label id="labelTierTwoByParcel" style="margin-bottom: 0px;">Carbon Stocks by Parcel</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="tierTwoByParcelLink" class="btn btn-primary btn-sm" data-target="#tierTwoByParcel" data-toggle="modal" >Click Here</button>
+                        </span>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label id="labelTierTwoSummary" style="margin-bottom: 0px;">Carbon Summary</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <span style="float:right;">
+                            <button id="tierTwoSummaryLink" class="btn btn-primary btn-sm" data-target="#tierTwoSummary" data-toggle="modal" >Click Here</button>
+                        </span>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Tier 3 Carbon Data
+            </h4>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <label id="labelPlotSummary" style="margin-bottom: 0px;">Statistical Summary of Plots</label>
+                </td>
+                <td class="col-lg-9">
+                    
+                    <span style="float:right;">           
+                        <button id="plotSummaryLink" class="btn btn-primary btn-sm" data-target="#plotSummary" data-toggle="modal" style="display: none;">Click Here</button>                    
+                    </span>
+                    <br />
+                    <label id="parcelCreationMessage" style="color: red;"></label>
+                    <span id="step10instruction" runat="server" visible="true"
+                        style="font-style: italic; font-size: 11px;" font-bold="False">
+                        You must Select a Parcel to activate this link.</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <label id="labelCarbonStocksByPlot" style="margin-bottom: 0px;">Carbon Stocks by Plot</label>
+                </td>
+                <td class="col-lg-9">
+                    <span style="float:right;">
+                        <button id="carbonStocksPlotLink" class="btn btn-primary btn-sm" data-target="#stocksByPlot" data-toggle="modal" style="display: none;">Click Here</button>                    
+                    </span>
+                    <br />
+                    <label id="createPlotMessage" style="color: red;"></label>
+                    <span id="step11instruction" runat="server" visible="true" style="font-style: italic; font-size: 11px;">
+                        You must Select a Parcel to activate this link.</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <label id="labelCarbonStocksByParcel" style="margin-bottom: 0px;">Carbon Stocks by Parcel</label>
+                </td>
+                <td class="col-lg-9">
+                    <span style="float:right;">
+                        <button id="carbonStocksLink" class="btn btn-primary btn-sm" data-target="#stocksByParcel" data-toggle="modal" >Click Here</button>
+                    </span>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <label id="labelCarbonCalculatorSummary" style="margin-bottom: 0px;">Carbon Summary</label>
+                </td>
+                <td class="col-lg-9">
+                    <span style="float:right;">
+                        <button id="carbonCalcSummaryLink" class="btn btn-primary btn-sm" data-target="#carbonCalcSummary" data-toggle="modal" >Click Here</button>
+                    </span>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <label id="labelCarbonCalcUncertainty" style="margin-bottom: 0px;">Carbon Uncertainty</label>
+                </td>
+                <td class="col-lg-9">
+                    <span style="float:right;">
+                        <button id="carbonCalcUncertaintyLink" class="btn btn-primary btn-sm" data-target="#carbonCalcUncertainty" data-toggle="modal" >Click Here</button>
+                    </span>
+                    <br />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="modal fade" id="tierOneStocks" tabindex="-1" role="dialog" aria-labelledby="tierOneStocks" aria-hidden="true">
+        {% include "measuring/carbon_stocks_tier_one.html" %}
+    </div>
+
+    <div class="modal fade" id="tierOneByParcel" tabindex="-1" role="dialog" aria-labelledby="tierOneByParcel" aria-hidden="true">
+        {% include "measuring/carbon_stocks_parcel_t1.html" %}
+    </div>
+
+    <div class="modal fade" id="tierOneSummary" tabindex="-1" role="dialog" aria-labelledby="tierOneSummary" aria-hidden="true">
+        {% include "measuring/carbon_calc_summary_t1.html" %}
+    </div>
+
+    <div class="modal fade" id="tierTwoStocks" tabindex="-1" role="dialog" aria-labelledby="tierTwoStocks" aria-hidden="true">
+        {% include "measuring/carbon_stocks_tier_two.html" %}
+    </div>
+
+    <div class="modal fade" id="tierTwoByParcel" tabindex="-1" role="dialog" aria-labelledby="tierTwoByParcel" aria-hidden="true">
+        {% include "measuring/carbon_stocks_parcel_t2.html" %}
+    </div>
+
+    <div class="modal fade" id="tierTwoSummary" tabindex="-1" role="dialog" aria-labelledby="tierTwoSummary" aria-hidden="true">
+        {% include "measuring/carbon_calc_summary_t2.html" %}
+    </div>
+
+    <div class="modal fade" id="plotSummary" tabindex="-1" role="dialog" aria-labelledby="plotSummary" aria-hidden="true">
+        {% include "measuring/carbon_plot_summary.html" %}
+    </div>
+
+    <div class="modal fade" id="stocksByPlot" tabindex="-1" role="dialog" aria-labelledby="stocksByPlot" aria-hidden="true">
+        {% include "measuring/carbon_stocks_plot.html" %}
+    </div>
+
+    <div class="modal fade" id="stocksByParcel" tabindex="-1" role="dialog" aria-labelledby="stocksByParcel" aria-hidden="true">
+        {% include "measuring/carbon_stocks_parcel.html" %}
+    </div>
+
+    <div class="modal fade" id="carbonCalcSummary" tabindex="-1" role="dialog" aria-labelledby="carbonCalcSummary" aria-hidden="true">
+        {% include "measuring/carbon_calc_summary.html" %}
+    </div>
+
+    <div class="modal fade" id="carbonCalcUncertainty" tabindex="-1" role="dialog" aria-labelledby="carbonCalcUncertainty" aria-hidden="true">
+        {% include "measuring/carbon_calc_uncertainty.html" %}
+    </div>
+
+    <div class="modal fade" id="equationsUsed" tabindex="-1" role="dialog" aria-labelledby="equationsUsed" aria-hidden="true">
+        {% include "measuring/carbon_calc_equations.html" %}
+    </div>
+
+
+    <div class="overlay"><div class="spinner spinner--steps icon-spinner" aria-hidden="true"></div></div>
+
+
+{% endblock page_content %}
+
+{% block page_bottomscripts %}
+<style>
+    .table-striped>tbody>tr.totals:last-child>td {
+        background-color: #D9EDF7;
+    }
+</style>
+<script src="/static/js/measuring/carbonCalc.js" type="text/javascript"></script>
+{% endblock %}

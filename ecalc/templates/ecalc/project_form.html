@@ -1,0 +1,36 @@
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}Project {{ project.name }}{% endblock %}
+
+{% block breadcrumbs %}
+   <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+{% endblock breadcrumbs %}
+
+
+
+
+{% block page_content %}
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="." method="post", class="Project_Form">
+    	{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            {{ lc_formset.as_table }}
+            <tr>
+            <th></th>
+            <td><input type="submit" value="Submit"></td>
+            </tr>
+       	</table>
+    </form>
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#ecalc-project-tool-tab").addClass("active");
+    </script>
+{% endblock selecttabjs %}

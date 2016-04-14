@@ -1,0 +1,129 @@
+{% load core_tags %}
+<div class="modal-dialog" id="landcoverCreate">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Create Landcover</h4>
+		</div>
+		<form action="{% url "ecalc-landcover-new" ppk=project.id %}" method="POST" class="form-horizontal" id="createlandcoverform">
+		{% csrf_token %}
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="id_name" class="col-sm-3 control-label">Name:</label>
+						<div class="col-sm-9">
+							{{ form.name|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+					<div class="col-sm-6 form-group" style="margin-left:15px">
+						<label for="id_category" class="col-sm-4 control-label">Category:</label>
+						<div class="col-sm-8">
+							{{ form.category|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_biomassa" class="col-sm-6 control-label">{{ form.biomassa.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.biomassa|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_biomassb" class="col-sm-6 control-label">{{ form.biomassb.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.biomassb|add_class:'form-control' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_litter" class="col-sm-6 control-label">{{ form.litter.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.litter|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_dead_wood" class="col-sm-6 control-label">{{ form.dead_wood.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.dead_wood|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_soil" class="col-sm-6 control-label">{{ form.soil.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.soil|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_combustion_pctreleased" class="col-sm-6 control-label"> {{ form.combustion_pctreleased.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.combustion_pctreleased|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_CH4" class="col-sm-6 control-label"> {{ form.CH4.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.CH4|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_N2O" class="col-sm-6 control-label"> {{ form.N2O.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.N2O|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_young_growth_rate" class="col-sm-6 control-label"> {{ form.young_growth_rate.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.young_growth_rate|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_old_growth_rate" class="col-sm-6 control-label"> {{ form.old_growth_rate.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.old_growth_rate|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_biomassratio" class="col-sm-6 control-label"> {{ form.biomassratio.label }}:</label>
+						<div class="col-sm-6">
+							{{ form.biomassratio|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary btn-sm">Create Landcover</button>
+		</form>
+	</div>
+</div>
+{% block page_bottomscripts %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#createlandcoverform').submit(function(){
+				$('#myModal').modal('hide');
+			});
+		})
+	</script>
+{% endblock %}

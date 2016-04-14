@@ -1,0 +1,11 @@
+{% extends "ecalc/base.html" %}
+
+{% block pagetitle %}<a href="{{ project.get_absolute_url }}">{{ project.name }}</a>: {{ model.classname_plural|capfirst }}{% endblock %}
+
+{% block navtabs %}
+	<li class="active" id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project.id %}"><span class="glyphicon glyphicon-align-center"></span> Emissions Calculator</a></li>
+{% endblock %}
+
+{% block sidebaritems %}
+	<li><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></li>
+{% endblock %}

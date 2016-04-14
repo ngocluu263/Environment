@@ -1,0 +1,123 @@
+{% extends "module_leakage_calculator.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Leakage Estimation Tool &mdash; Results
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "leakage-estimation-tool" %}">Leakage Estimation Tool</a></li>
+    <li>Results</li>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src="{% settings_value "MATHJAX_CDN_URL" %}"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$'], ['\\(','\\)']]}});
+    </script>
+    
+    <script type="text/javascript">
+        $(function() {
+            $("#leakage-estimation-accordion").accordion({
+                collapsible: true,
+                heightStyle: "content",
+                active: false,
+            });
+        });
+    </script>
+{% endblock page_scripts %}
+
+{% block page_content %}
+
+    <div>
+        <ul id="ulnone">
+            <li><b>Leakage due to displacement of agricultural activities</b>: {{ result }} $tCO_{2}e$</li>
+        </ul>
+    </div>
+
+    <div id="leakage-estimation-accordion">
+        <h3>Form Inputs</h3>
+        <div>
+            <ul id="ulnone">
+                <li><b>Project</b>: {{ meta_form.project.name }} [duration = {{ meta_form.project.duration }} years]</li>
+                <li><b>Forestland fraction</b>: {{ meta_form.level_of_error }}%</li>
+            </ul>
+            <table id="woyp_table">
+            {% for stratum in agriculture_form %}
+                {% if forloop.first %}
+                    <thead>
+                        <tr>
+                            <th>Stratum Name</th>
+                            <th>Area (ha)</th>
+                            <th>Area previously under pasture (ha)</th>
+                            <th>Carbon density at beginning (tC/ha)</th>
+                            <th>Carbon density at verification (tC/ha)</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tr>
+                    <td>{{ stratum.name }}</td>
+                    <td>{{ stratum.area }}</td>
+                    <td>{{ stratum.area_pasture_ha }}</td>
+                    <td>{{ stratum.beginning_tc_ha }}</td>
+                    <td>{{ stratum.verification_tc_ha }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+
+        <h3>Intermediate Calculations</h3>
+        <div>
+            <table id="woyp_table">
+            {% for stratum in agriculture_form %}
+                {% if forloop.first %}
+                    <thead>
+                        <tr>
+                            <th>Stratum Name</th>
+                            <th>Change in carbon stocks in pre-project agricultural areas (tC) $\Delta C_{stratum}$</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tr>
+                    <td>{{ stratum.name }}</td>
+                    <td>{{ stratum.delta_carbon_tc }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <ul id="ulnone">
+            \[ \Delta C d_{t^*} = D_{t^*} \cdot \Delta C_{t^*} \]
+                <li>$D_{t^*}$ = fraction of project area subject to pre-project agricultural activities</li>
+                <li>$D_{t^*} = \frac{area_{agriculture}}{area_{project}} = \frac{ {{ area_pasture }} }{ {{ area_project }} } = {{ area_fraction }}$</li>
+                <br>
+                <li>$\Delta C_{t^*}$ = change in carbon stocks in reforested pre-project agricultural areas</li>
+                <li>$\Delta C_{t^*} = \sum \Delta C_{stratum} = {{ delta_carbon_tc }}$</li>
+                <br>
+            </ul>
+            <small>* The area ratio is used for calculating weighted figures. $\left( \frac{area_{stratum}}{area_{project}} \right)$</small>
+        </div>
+
+        <h3>Formula &amp; References</h3>
+        <div>
+            <small>CDM Tool EB 51 annex 15: <a href="http://cdm.unfccc.int/methodologies/ARmethodologies/tools/ar-am-tool-15-v1.pdf" target="_blank">Estimation of the increase in GHG emissions attributable to displacement of pre-project agricultural activities in A/R CDM project activity</a></small>
+            
+            \[ {LK}_{agriculture, t^*} = \frac{f}{T_{cred}} \cdot \Delta C d_{t^*} \cdot \frac{44}{12} \]
+            <ul id="ulnone">
+                <li>${LK}_{agriculture, t^*} =$ &nbsp; &nbsp; the average leakage due to displacement of agricultural activities in year $t^*$
+                <li>$f$ = the fraction of land covered by forest</li>
+                <li>$T_{cred}$ &nbsp;= the number of years in the project duration or first crediting period</li>
+                <li>$\Delta C d_{t^*}$ &nbsp; = the change in carbon stocks from the project start $t=0$ to the reporting year $t^*$ attributable to reforested pre-project agricultural areas</li>
+                <li>$\frac{44}{12}$ = the ratio of molecular weight of ${CO}_2$ &nbsp; to $C$</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock page_content %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#leakage-estimation-tool-tab").addClass("active");
+        $("#leakage-estimation-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

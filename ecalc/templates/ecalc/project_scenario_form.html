@@ -1,0 +1,159 @@
+{% extends "ecalc/_form.html" %}
+{% load core_tags %}
+
+{% block page_title %}{% endblock %}
+
+{% block navtabs %}
+    <li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li class="active"><a href="{% url "ecalc-wiz-parcel" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=project.id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li class="active"><a href="{% url "ecalc-step-1" request.session.project_id %}">Project Wizard</a></li>
+{% endblock breadcrumbs %}
+
+{% block page_content %}
+    <form action="." method="post" class="form-horizontal">
+    	{% csrf_token %}
+        {{ landuse_formset.management_form }}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Project Scenario
+                </h4>
+            </div>
+            {% if form.non_form_errors %}
+            <div class="panel-body">     
+                {{ landuse_formset.non_form_errors }}
+            </div>
+            {% endif %}
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-sm-3"><label for="id_name">Name </label></td>
+                    <td class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.name|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                <span style="color:red">{{ form.name.errors }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-sm-3"><label for="reference_senario">Reference Scenario: </label></td>
+                    <td class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.reference_scenario|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                <span style="color:red">{{ form.reference_scenario.errors }}</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Landuse for Project Scenario
+                </h4>
+            </div>
+            {% if landuse_formset.non_form_errors or landuse_formset.errors %}
+            <div class="panel-body">
+                {% for error in landuse_formset.non_form_errors %}
+                    <span style="color:red"><em>{{ error }}</em></span>
+                {% endfor %}
+                {% for error in landuse_formset.errors %}
+                    <span style="color:red"><em>{{ error }}</em></span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-sm-2">Landcover 
+                            <a href="{% url "ecalc-landcover-new" ppk=project.id %}" 
+                            data-target="#myModal" data-toggle="modal">
+                                <span class="badge">Add New</span>
+                            </a>
+                        </th>
+
+                        <th class="col-sm-2">Practice 
+                            <a href="{% url "ecalc-practice-new" ppk=project.id %}" 
+                            data-target="#myModal" data-toggle="modal">
+                                <span class="badge">Add New</span>
+                            </a>
+                        </th>
+
+                        <th class="col-sm-1">Start Year</th>
+                        <th class="col-sm-1">% Degraded</th>
+                        <th class="col-sm-1">Harvested Wood(tDM/ha)</th>
+                        <th class="col-sm-1">Burned</th>
+                        <th class="col-sm-1">Delete</th>
+                    </tr>
+                </thead>    
+                {% for landform in landuse_formset %}
+                    <tr>
+                        {% for hidden in landform.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="col-sm-4">
+                                    {{ landform.landcover|add_class:'form-control' }}
+                            </div>
+                        </td>
+                        <td class="col-sm-4">
+                                    {{ landform.practice|add_class:'form-control' }}
+                        </td>
+                        <td class="col-sm-1">{{ landform.start_year|add_class:'form-control' }}</td>
+                        <td class="col-sm-1">{{ landform.degraded|add_class:'form-control' }}</td>
+                        <td class="col-sm-1">{{ landform.prior_harvest|add_class:'form-control' }}</td>
+                        <td class="col-sm-1">{{ landform.prior_burn|add_class:'form-control' }}</td>
+
+                        <td class="col-sm-1" id="tooltip" href="#" data-toggle="tooltip" title="Warning: Deleting the only landcover will also delete the project scenario you are working with.">{{ landform.DELETE|add_class:'form-control' }}</td></a>
+
+                        <!--<td class="col-sm-1">{{ landform.DELETE|add_class:'form-control' }}</td>-->
+                    </tr>
+                    
+                {% endfor %}
+                    <tr>
+                        <td colspan="7" class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-1 pull-right">
+                                    <input type="submit" value="Submit" class="btn btn-primary btn-sm pull-right" />
+                                    
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+
+
+
+    </form>
+{% endblock %}
+
+{% block page_bottomscripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#myModal').on('hidden.bs.modal',function(){
+                location.reload();
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        $('document').ready(function(){
+            $('#My Tooltip Text').tooltip();
+        });
+    </script>
+{% endblock %}

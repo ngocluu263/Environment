@@ -1,0 +1,177 @@
+{% extends "module_aeq.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Allometric Equation Uploader
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+    <li class="active">Upload Allometric Equations</li>
+{% endblock %}
+
+{% block page_content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Upload Allometric Equations</h4>
+		</div>
+		<div class="panel-body">
+			<h3>How to Get Started</h3>
+			<p>
+			You can upload allometric equations using a comma separated value (.csv) file only. A template can be downloaded at the bottom of the page, but any <b>.csv</b> file will work.  Make sure to include all required fields in the correct order or your equations may not be uploaded properly.</p>
+			<p>The .csv file must be in the following format:<br/><br/>
+			<center>
+				<b>name</b>,<b>equation_string</b>,<b>region</b>,<b>genus</b>,<b>species</b>,<b>volumetric</b>,<b>dbh&lt;10cm</b>,<b>shared</b>,<b>category</b>, <b>anatomy</b>
+			</center>
+			The string above represents one row of the .csv file.
+			</p>
+
+			<h3>Parameters</h3>
+			<table class="table">
+			<thead>
+			<tr>
+				<th>parameter</th>
+				<th>optional</th>
+				<th>description</th>
+			</thead>
+			<tbody>
+			<tr>
+				<td><b>name</b></td>
+				<td><span class="glyphicon glyphicon-remove"></span></td>
+				<td>The name of the equation.
+				<br><i>Ex: Tropical moist forests (Brown 1997)</i></td>
+			</tr>
+			<tr>
+				<td><b>equation_string</b></td>
+				<td><span class="glyphicon glyphicon-remove"></span></td>
+				<td>The equation in the specified format.  See <a href="#tree_eqtn">the documentation below</a> for more information.
+				<br><i>Ex: 42.69 - 12.8(dbh) + 1.242(dbh^2)</i></td>
+			</tr>
+			<tr>
+				<td><b>region</b></td>
+				<td><span class="glyphicon glyphicon-ok"></span></td>
+				<td>The region for the equation.  This must match the name of the region listed in the MRV. See Add AEQ or Measuring page for a list of regions.
+				<br><i>Ex: Western Ghats</i></td>
+			</tr>
+			<tr>
+				<td><b>genus</b></td>
+				<td><span class="glyphicon glyphicon-ok"></span></td>
+				<td>The capitalized genus of the tree that the equation is specific to. This can be left blank if desired.
+				<br><i>Ex: Tectona</i></td>
+			</tr>
+			<tr>
+				<td><b>species</b></td>
+				<td><span class="glyphicon glyphicon-ok"></span></td>
+				<td>The species of the tree that the equation is specific to.  This can be left blank if desired.
+				<br><i>Ex: grandis</i></td>
+			</tr>
+			<tr>
+				<td><b><a name="volumetric"></a>volumetric</b></td>
+				<td><span class="glyphicon glyphicon-remove"></span></td>
+				<td>A true or false value that indicates whether the equation is for volume.  If the value is false the equation is assumed to be a biomass equation.
+				<br><i>Ex: true</i></td>
+			</tr>
+			<tr>
+				<td><b>dbh&lt;10cm</b></td>
+				<td><span class="glyphicon glyphicon-remove"></span></td>
+				<td> A true or false value that indicates whether the equation is for trees with a diameter at breast height (dbh) of less than ten centimeters.  True indicates the dbh is less than ten centimeters.
+				<br><i>Ex: true or false or null</i></td>
+			</tr>
+			<tr>
+				<td><b>shared</b> </td>
+				<td><span class="glyphicon glyphicon-remove"></span></td>
+				<td>A true or false value that indicates whether or not equation is shared with others. True indicates you wish to share the equation with other users.</td>
+			</tr>
+			<tr>
+				<td><b>category</b></td>
+				<td><span class="glyphicon glyphicon-ok"></span></td>
+				<td>Takes a value of C (for Carbon Benefits equations) or G (for General equations not specific to a region).
+				<br /><i></i></td>
+			</tr>
+			<tr>
+				<td><b>anatomy</b></td>
+				<td><span class="glyphicon glyphicon-ok"></span></td>
+				<td>This parameter is specific to biomass equations. The anatomy of the tree that the equation calculates biomass for, either small wood and foliage.
+				<br><i>Ex: small wood</i></td>
+			</tr>
+			<tr>
+				<td><b></b></td>
+				<td></td>
+			</tr>
+			</tbody>
+			</table>
+			</p>
+    		<h3><a name="tree_eqtn"></a>Tree Equation Format</h3>
+    		The equation string includes everything on the righthand side of the equality sign.  The dependent variable will be automatically determined based on the 'volumetric' parameter.  If volumetric is true, the dependent variable will be set to volume (V) in units of m^3.  If volumetric is false, the dependent variable will be set to biomass (M) in units of kg. <br>
+ 
+    		<br>Tree parameters are case-sensitive and include: <b>dbh, total_height, crown_d_max, crown_d_90, wood_gravity</b>.<br>
+    		<br>
+    		<img src="/static/images/tree_crown_spread.tif" width="20%" style="float:right;">
+    		<table class="table" style="width: 80%">
+			<tr>
+				<td><b>dbh</b></td>
+				<td>The diameter at breast height of the tree.  For the purposes of the MRV system, this will be defined as the diameter of the tree at 1.4 meters tall.</td>
+			</tr>
+			<tr>
+				<td><b>total_height</b></td>
+				<td>The total height of the tree.</td>
+			</tr>
+			<tr>
+				<td><b>crown_d_max</b></td>
+				<td>Crown diameter of the tree at the widest point of the crown, also known as longest spread.</td>
+			</tr>
+			<tr>
+				<td><b>crown_d_90</b></td>
+				<td>Crown diameter of the tree, measured perpindicular to the crown_d_max, also known as longest cross-spread.</td>
+			</tr>
+			<tr>
+				<td><b>wood_gravity</b></td>
+				<td>The wood gravity value of the tree.  If none is provided for a specific tree, the default value for the species will be used.</td>
+			</tr>
+    		</table>
+    		
+
+    		  		Example: <table class="table">
+    		<tr><td>Original Equation</td> <td>V = 42.69 - 12.8D + 1.242D^2</td>
+    		<tr><td>Correct format for csv</td><td>42.69 - 12.8(dbh) + 1.242(dbh^2)</td>
+    		<tr><td>volumetric</td><td>true</td></tr>
+    		<tr><td>dependent variable</td><td>volume</td></tr>
+    		</table>
+    
+    		<p class="bg-warning">Please note that triple exponentiation (w^x^y) and large constants (c > 999,999), among other subexpressions, are prohibited. Please contact <a href=mailto:admin@carbon2markets.org>admin@carbon2markets.org</a> if this is problematic for you.</p>
+    		
+            <hr/>
+            <h3>Download/Upload</h3>
+            <div class="row">
+            </div>
+
+            <form id="aequpload" action="{% url "aeq_upload_process" %}" method="POST" enctype="multipart/form-data">
+            	{% csrf_token %}
+	            <div class="well well-lg">
+		            <div class="form-group">
+		            	<div class="col-sm-5"><label class="pull-right">Allometric Equations: </label></div>
+		            	<div class="col-sm-7"><input type="file" name="aeqsheet" /></div>
+		            </div>
+	            </div>
+	            <div class="form-group">
+
+	            	<div class="col-sm-12">
+	            <a href="/static/downloads/allometric_equation_upload_template.csv" class="btn btn-warning btn-sm">Download</a>
+
+	            <input type="submit" class="btn btn-primary btn-sm pull-right" value="Upload" /></div>
+	            </div>
+
+            </form>
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block page_bottomscripts %}
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#aeq-upload").addClass("active");
+        $("#aeq-upload a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

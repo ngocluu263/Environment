@@ -1,0 +1,29 @@
+<div class="modal-dialog">
+    <form action="." method="POST">{% csrf_token %}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete Allometric Equation</h4>
+            </div>
+            <div class="modal-body">
+        		Are you sure you wish to delete this allometric equation?
+
+                <ul><b>{{ object.name }}</b>
+                        <li>Equation: {{ object.string }}</li>
+                        <li>Public: {{ object.public }}</li>
+                        <li>Owner: {{ object.owner }}</li>
+                        <li>Sample calculation: {{ object.sample_calculation_html|safe }}</li>
+                </ul>
+                {% if error_message %}
+                        <strong>{{ error_message }}</strong>
+                {% endif %}
+                
+                {{ form }}
+                
+            </div>
+            <div class="modal-footer">
+                <a href="{% url "delete_aeq" pk=object.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </div>
+    </form>
+</div>

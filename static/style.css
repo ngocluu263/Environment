@@ -1,0 +1,128 @@
+﻿/* important override for all Flot graphs - legend XXX */
+.legend table {
+    width: auto;
+    height: auto;
+}
+.legend td {
+    margin: auto;
+}
+.legend div {
+    margin: auto;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.legendColorBox div {
+    padding: 0px;
+}
+
+table #woyp_table
+{
+}
+
+#woyp_table td, th
+{
+    padding: 3px;
+    margin: 3px;
+    vertical-align: top;
+}
+
+#woyp_table input, select 
+{
+    background-color: Khaki;
+}
+
+#ulnone li
+{
+    list-style-type: none;
+}
+
+table #mrv_utilities_table
+{
+}
+
+#mrv_utilities_table tr
+{
+    height: 50px;
+}
+
+#mrv_utilities_table th
+{
+    vertical-align: top;
+}
+
+#mrv_utilities_table td
+{
+    vertical-align: top;
+}
+
+
+#mrv_utilities_table .helptext
+{
+        white-space:nowrap;
+        float:left;
+        font-size: 0.9em;
+        margin-top: -5px;
+}
+
+#mrv_utilities_table input, select
+{
+    background-color: Khaki;
+}
+
+#mrv_utilities_table .errorlist
+{
+        color: #ff0000;
+}
+#add-user-button 
+{
+    margin: 0 0 0 110px;
+}
+
+#gridtable {
+    width: 100%;
+    border:1px solid black;
+    border-collapse: collapse;
+}
+
+#gridtable th {
+    border:1px solid black;
+    vertical-align: top;
+    background-color: #478827;
+    color: #ffffff;
+    padding: 2px;
+}
+
+#gridtable tfoot td {
+    border:1px solid black;
+    vertical-align: top;
+    font-style: italic;
+    background-color: #478827;
+    color: #ffffff;
+    padding: 2px;
+}
+
+#gridtable td {
+    border:1px solid black;
+    padding: 2px;
+}
+
+#gridtable td.is_True {
+    background-color: #C4F66E;
+}
+
+#gridtable td.is_False {
+    background-color: #65E17B;
+}
+
+#gridtable a {
+    display: inline;
+    color: #A61000;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#gridtable a:hover {
+    color: #FF5240;
+}

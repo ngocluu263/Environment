@@ -1,0 +1,42 @@
+{% extends "master.html" %}
+{% load core_tags %}
+
+{% block stage_content %}
+	<ol id="mrvcrumbs" class="breadcrumb">
+        <li><a href="{% settings_value 'ROOT_BREADCRUMB_URL' %}">Forest Carbon MRV System</a></li>
+        {% block allbreadcrumbs %}
+          <li><a href="#">Workgroup</a></li>
+          {% block section_breadcrumb %}{% endblock section_breadcrumb %}
+          {% block breadcrumbs %}{% endblock breadcrumbs %}      
+        {% endblock allbreadcrumbs %}
+      </ol>
+
+      <div class="lefty">
+        <div class="">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="disabled" id="group-content-pill" class="disabled"><a href="#"><span class="glyphicon glyphicon-folder-open"></span> Group Content</a></li>
+            <li id="manage-users-pill" class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> Manage Users</a></li>
+          
+            
+          </ul>
+        </div>
+      </div>
+
+      <div class="righty">
+        <!-- Main component for a primary marketing message or call to action -->
+
+          <ul class="nav nav-tabs">
+          {% block navtabs %}{% endblock %}
+          </ul>
+        <div class="content">
+
+
+          <h2>{% block page_title %}Welcome to the Carbon MRV System{% endblock page_title %}</h2>
+
+          
+          {% block page_content %}{% endblock page_content %}
+
+        </div>
+
+      </div>
+{% endblock stage_content %}

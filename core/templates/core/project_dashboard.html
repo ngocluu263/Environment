@@ -1,0 +1,21 @@
+{% extends "module_dashboard.html" %}
+
+{% block page_title %}
+Dashboard for Project: {{ project.name }}
+{% endblock page_title %}
+
+{% block page_scripts %}
+{% endblock page_scripts %}
+
+
+{% block page_content %}
+To do.
+{% endblock page_content %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#project-dashboard-tab").addClass("active");
+        $("#project-dashboard-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

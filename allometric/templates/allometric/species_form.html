@@ -1,0 +1,98 @@
+{% extends "allometric/species_base.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Species Editor
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+	<li class="active">Species</li>
+{% endblock %}
+
+{% block page_content %}
+	<form class="form-horizontal" action="." method="POST">
+	{% csrf_token %}
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title">Create New Species</h4>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="id_genus" class="control-label pull-right">Genus: </label>
+						</div>
+						<div class="col-sm-7">
+							{{ form.genus|add_class:'form-control' }}
+						</div>
+					</div>
+					{% if form.genus.errors %}
+						{% for error in form.genus.errors %}
+							<div class="row">
+								<div class="col-sm-7 col-sm-offset-3">
+									<em>{{ error }}</em>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="id_species" class="control-label pull-right">Species: </label>
+						</div>
+						<div class="col-sm-7">
+							{{ form.name|add_class:'form-control' }}
+						</div>
+					</div>
+					{% if form.name.errors %}
+						
+						{% for error in form.name.errors %}
+							<div class="row">
+								<div class="col-sm-7 col-sm-offset-3">
+									<em>{{ error }}</em>
+								</div>
+							</div>
+						{% endfor %}
+						
+					{% endif %}
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="id_genus" class="control-label pull-right">Wood Density: </label>
+						</div>
+						<div class="col-sm-7">
+							{{ form.wood_density }}
+						</div>
+					</div>
+					{% if form.wood_density.errors %}
+						{% for error in form.wood_density.errors %}
+							<div class="row">
+								<div class="col-sm-7 col-sm-offset-3">
+									<em>{{ error }}</em>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+			<div class="panel-footer">
+				<div class="form-group">
+					<div class="col-sm-11">
+						<input type="submit" value="Submit" class="btn btn-primary btn-sm pull-right" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+{% endblock %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#species-create").addClass("active");
+        $("#species-create a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

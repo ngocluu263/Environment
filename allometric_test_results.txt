@@ -1,0 +1,1409 @@
+-----------------------Equation Biomass Results---------------Equation Name,Species,Results,Region,pk,string
+System Default,None,0.0000,None,1,0.0
+Moist Tropical Forests (IPCC 2003),None,0.0000,None,2,exp(-2.289 + 2.649 * ln(dbh) - 0.021 * (ln(dbh))^2)
+Wet Tropical Forests (IPCC 2003),None,0.0000,None,3,21.297 - (6.953 * dbh) + (0.740 * dbh^2)
+Temperate and tropical pines (IPCC 2003),None,0.0000,None,4,0.887 + ((10486 * dbh^(2.84)) / (dbh^(2.84) + 376907))
+Temperate hardwoods (IPCC 2003),None,0.0000,None,5,0.5 + ((25000 * dbh^(2.5)) / (dbh^(2.5) + 246872))
+Tropical Dry Forests (Brown 1997),None,0.0000,None,6,exp(-1.996 + 2.23 * ln(dbh))
+Tropical moist forests (Brown 1997),None,0.0000,None,7,42.69 - 12.8(dbh) + 1.242(dbh^2)
+Dry tropical forests (Chave et al.),None,0.0000,None,8,0.112 * (wood_gravity * total_height * (dbh)^2)^0.916
+Moist tropical forests (Chave et al.),None,0.0000,None,9,0.0509 * wood_gravity * total_height * (dbh)^2
+Wet tropical forests (Chave et al.),None,0.0000,None,10,0.0776 * (wood_gravity * total_height * (dbh)^2)^0.940
+Carbon Benefits Project #1,None,0.0000,None,11,exp(-2.403)*((dbh)^(2.472))
+Carbon Benefits Project #2,None,0.0000,None,12,exp(1.8128) * (crown_d_max * crown_d_90 / 4 * pi)^(1.2535)
+Pinus roxburghii,Pinus roxburghii,0.0000,Western Himalayas,356, 608.6848 (dbh/100) - 82.2998 (dbh/100) + 19.9426
+Pinus roxburghii,Pinus roxburghii,0.0000,Western Himalayas,357, 26.2180 (dbh/100)^2 + 1.6287 (dbh/100) + 0.8936
+Pinus roxburghii,Pinus roxburghii,0.0000,Western Himalayas,358, -0.0443 (dbh)^2 + 1.6656 (dbh) - 1.7908
+Pinus roxburghii,Pinus roxburghii,0.0000,Western Himalayas,359, 0.0023 (dbh)^2 + 0.1103 (dbh) - 0.0527
+Pinus longifolia,Pinus longifolia,0.0000,Western Himalayas,360, 608.6848 (dbh/100) - 82.2998 (dbh/100) + 19.9426
+Pinus longifolia,Pinus longifolia,0.0000,Western Himalayas,361, 26.2180 (dbh/100)^2 + 1.6287 (dbh/100) + 0.8936
+Pinus longifolia,Pinus longifolia,0.0000,Western Himalayas,362, -0.0443 (dbh)^2 + 1.6656 (dbh) - 1.7908
+Pinus longifolia,Pinus longifolia,0.0000,Western Himalayas,363, 0.0023 (dbh)^2 + 0.1103 (dbh) - 0.0527
+Quercus incana,Quercus incana,0.0000,Western Himalayas,364, 185.5939 loge(dbh/100) + 442.2679
+Quercus incana,Quercus incana,0.0000,Western Himalayas,365, 21.6921 loge(dbh/100) + 52.8184
+Quercus incana,Quercus incana,0.0000,Western Himalayas,366, 0.2861 (dbh)^2 - 0.1181 (dbh) + 0.0455
+Quercus incana,Quercus incana,0.0000,Western Himalayas,367, 0.0024 (dbh)^3 + 0.0075 (dbh)^2 - 0.0543 (dbh)+0.0868
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Western Himalayas,368, -262.1187 (dbh/100)^2 + 419.5980 (dbh/100) - 19.2402
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Western Himalayas,369, 6.5974 loge(dbh/100) + 17.4170
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Western Himalayas,370, 0.0776 (dbh)^2 + 0.4770 (dbh) + 0.1780
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Western Himalayas,371, 0.0172 (dbh)^2 + 0.0488 (dbh) - 0.0212
+Quercus semecarpifolia,Quercus semecarpifolia,0.0000,Western Himalayas,372, -46.1643 (dbh/100)^2 + 323.0309 (dbh/100) - 23.3726
+Quercus semecarpifolia,Quercus semecarpifolia,0.0000,Western Himalayas,373, -4.5071 (dbh/100)^2 + 46.8789 (dbh/100) - 3.3746
+Quercus semecarpifolia,Quercus semecarpifolia,0.0000,Western Himalayas,374, 0.0776 (dbh) 2 + 0.4770 (dbh) + 0.1780
+Quercus semecarpifolia,Quercus semecarpifolia,0.0000,Western Himalayas,375, 0.0177 (dbh)^2 + 0.0423 (dbh) - 0.0023
+Lyonia ovalifolia,Lyonia ovalifolia,0.0000,Western Himalayas,376, 413.6936 (dbh/100)^2 + 163.3936 (dbh/100) - 6.2066
+Lyonia ovalifolia,Lyonia ovalifolia,0.0000,Western Himalayas,377, 15.4757 (dbh/100)^2 + 16.9044 (dbh/100) - 0.7621
+Lyonia ovalifolia,Lyonia ovalifolia,0.0000,Western Himalayas,378, 0.2511 (dbh)^2 - 0.5647 (dbh) + 0.8784
+Lyonia ovalifolia,Lyonia ovalifolia,0.0000,Western Himalayas,379, 0.0046 (dbh)^3 - 0.0492 (dbh)^2 + 0.1761 (dbh) - 0.1050
+Pieris ovalifolia,Pieris ovalifolia,0.0000,Western Himalayas,380, 413.6936 (dbh/100)^2 + 163.3936 (dbh/100) - 6.2066
+Pieris ovalifolia,Pieris ovalifolia,0.0000,Western Himalayas,381, 15.4757 (dbh/100)^2 + 16.9044 (dbh/100) - 0.7621
+Pieris ovalifolia,Pieris ovalifolia,0.0000,Western Himalayas,382, 0.2511 (dbh)^2 - 0.5647 (dbh) + 0.8784
+Pieris ovalifolia,Pieris ovalifolia,0.0000,Western Himalayas,383, 0.0046 (dbh)^3 - 0.0492 (dbh)^2 + 0.1761 (dbh) - 0.1050
+Cedrus deodara,Cedrus deodara,0.0000,Western Himalayas,384, -49.9504 (dbh/100)^2 + 143.3015 (dbh/100) + 10.5851
+Cedrus deodara,Cedrus deodara,0.0000,Western Himalayas,385, 1.7605 loge(dbh/100) + 5.5882
+Cedrus deodara,Cedrus deodara,0.0000,Western Himalayas,386, 0.0787 (dbh)^3 - 1.0246 (dbh)^2 + 4.7307 (dbh) - 1.7967
+Cedrus deodara,Cedrus deodara,0.0000,Western Himalayas,387, 0.0072 (dbh)^3 - 0.1118 (dbh)^2 + 0.5714 (dbh) - 0.2522
+Shorea robusta,Shorea robusta,0.0000,Western Himalayas,388, -56.4459 (dbh/100)^2 + 140.2030 (dbh/100) + 6.1908
+Shorea robusta,Shorea robusta,0.0000,Western Himalayas,389, -3.4159 (dbh/100)^2 + 18.1330 (dbh/100) + 0.2431
+Shorea robusta,Shorea robusta,0.0000,Western Himalayas,390, 0.1094 (dbh)^2 + 0.7826 (dbh) - 0.8099
+Shorea robusta,Shorea robusta,0.0000,Western Himalayas,391, 0.0204 (dbh)^2 + 0.0470 (dbh) - 0.0245
+Mallotus philippensis,Mallotus philippensis,0.0000,Western Himalayas,392, -0.3399 (dbh/100)^2 + 63.3702 (dbh/100) + 4.6962
+Mallotus philippensis,Mallotus philippensis,0.0000,Western Himalayas,393, -1.5869 (dbh/100)^2 + 6.5544 (dbh/100) + 0.4646
+Mallotus philippensis,Mallotus philippensis,0.0000,Western Himalayas,394, 0.0844 (dbh)^2 + 0.8311 (dbh) - 0.1602
+Mallotus philippensis,Mallotus philippensis,0.0000,Western Himalayas,395, 0.0003 (dbh)^3 + 0.0082 (dbh)^2 + 0.0685 (dbh) - 0.0181
+Tectona grandis,Tectona grandis,0.0000,Western Himalayas,396, -218.7650 (dbh/100)^2 + 252.6165 (dbh/100) - 6.4059
+Tectona grandis,Tectona grandis,0.0000,Western Himalayas,397, -19.8692 (dbh/100)^2 + 21.2077 (dbh/100) - 0.5973
+Tectona grandis,Tectona grandis,0.0000,Western Himalayas,398, 0.1189 (dbh)^2 + 0.1503 (dbh) + 0.5695
+Tectona grandis,Tectona grandis,0.0000,Western Himalayas,399, 0.0103 (dbh)^2 - 0.0272 (dbh) + 0.1544
+Acacia catechu,Acacia catechu,0.0000,Western Himalayas,400, 412.4293 (dbh/100)^2- 101.8017 (dbh/100) + 21.9977
+Acacia catechu,Acacia catechu,0.0000,Western Himalayas,401, 5.0812 (dbh/100)^2 + 1.7792 (dbh/100) + 0.3749
+Acacia catechu,Acacia catechu,0.0000,Western Himalayas,402, 0.1995 (dbh)^2 - 0.3849 (dbh) + 1.6476
+Acacia catechu,Acacia catechu,0.0000,Western Himalayas,403, 0.0493 (dbh) + 0.0429
+Machilus species,Machilus species,0.0000,Western Himalayas,404, 11.3342 (dbh/100)^2 + 117.6158 (dbh/100) + 2.3917
+Machilus species,Machilus species,0.0000,Western Himalayas,405, -8.1106 (dbh/100)^2 + 13.5748 (dbh/100) + 0.4823
+Machilus species,Machilus species,0.0000,Western Himalayas,406, -0.0367 (dbh)^3 + 0.5986 (dbh)^2 - 0.8331 (dbh) + 0.5136
+Machilus species,Machilus species,0.0000,Western Himalayas,407, 0.0079 (dbh)^2 + 0.1270 (dbh) - 0.1368
+Myrica sapida,Myrica sapida,0.0000,Western Himalayas,408, -19.9850 (dbh/100)^2 + 89.8844 (dbh/100) + 4.6474
+Myrica sapida,Myrica sapida,0.0000,Western Himalayas,409, -3.0448 (dbh/100)^2 + 7.8240 (dbh/100) + 0.3483
+Myrica sapida,Myrica sapida,0.0000,Western Himalayas,410, -0.0032 (dbh)^3 + 0.0844 (dbh)^2 + 0.8019 (dbh) - 0.0739
+Myrica sapida,Myrica sapida,0.0000,Western Himalayas,411, -0.0014 (dbh)^3 + 0.0331(dbh)^2- 0.0898 (dbh) + 0.0719
+Myrica nagi,Myrica nagi,0.0000,Western Himalayas,412, -19.9850 (dbh/100)^2 + 89.8844 (dbh/100) + 4.6474
+Myrica nagi,Myrica nagi,0.0000,Western Himalayas,413, -3.0448 (dbh/100)^2 + 7.8240 (dbh/100) + 0.3483
+Myrica nagi,Myrica nagi,0.0000,Western Himalayas,414, -0.0032 (dbh)^3 + 0.0844 (dbh)^2 + 0.8019 (dbh) - 0.0739
+Myrica nagi,Myrica nagi,0.0000,Western Himalayas,415, -0.0014 (dbh)^3 + 0.0331(dbh)^2- 0.0898 (dbh) + 0.0719
+Myrica esculenta,Myrica esculenta,0.0000,Western Himalayas,416, -19.9850 (dbh/100)^2 + 89.8844 (dbh/100) + 4.6474
+Myrica esculenta,Myrica esculenta,0.0000,Western Himalayas,417, -3.0448 (dbh/100)^2 + 7.8240 (dbh/100) + 0.3483
+Myrica esculenta,Myrica esculenta,0.0000,Western Himalayas,418, -0.0032 (dbh)^3 + 0.0844 (dbh)^2 + 0.8019 (dbh) - 0.0739
+Myrica esculenta,Myrica esculenta,0.0000,Western Himalayas,419, -0.0014 (dbh)^3 + 0.0331(dbh)^2- 0.0898 (dbh) + 0.0719
+Myrica integrifolia,Myrica integrifolia,0.0000,Western Himalayas,420, -19.9850 (dbh/100)^2 + 89.8844 (dbh/100) + 4.6474
+Myrica integrifolia,Myrica integrifolia,0.0000,Western Himalayas,421, -3.0448 (dbh/100)^2 + 7.8240 (dbh/100) + 0.3483
+Myrica integrifolia,Myrica integrifolia,0.0000,Western Himalayas,422, -0.0032 (dbh)^3 + 0.0844 (dbh)^2 + 0.8019 (dbh) - 0.0739
+Myrica integrifolia,Myrica integrifolia,0.0000,Western Himalayas,423, -0.0014 (dbh)^3 + 0.0331(dbh)^2- 0.0898 (dbh) + 0.0719
+Quercus species,Quercus species,0.0000,Eastern Himalayas,424, 69.2347 (dbh/100) + 135.6707 (dbh/100) - 1.4147
+Quercus species,Quercus species,0.0000,Eastern Himalayas,425, 0.8100 (dbh/100)^2 + 8.7234 (dbh/100) + 0.1811
+Quercus species,Quercus species,0.0000,Eastern Himalayas,426, 0.1810 (dbh)^2 - 0.4654 (dbh) + 1.6797
+Quercus species,Quercus species,0.0000,Eastern Himalayas,427, 0.0024 (dbh)^2 + 0.0991 (dbh) + 0.0344
+Rhododendron species,Rhododendron species,0.0000,Eastern Himalayas,428, -17.6343 (dbh/100)^2 + 237.1436 (dbh/100) - 8.9400
+Rhododendron species,Rhododendron species,0.0000,Eastern Himalayas,429, -4.7666 (dbh/100)^2 + 12.3843 (dbh/100) - 0.5536
+Rhododendron species,Rhododendron species,0.0000,Eastern Himalayas,430, 0.1635 (dbh)^2- 0.3656 (dbh) + 1.4922
+Rhododendron species,Rhododendron species,0.0000,Eastern Himalayas,431, -0.0022 (dbh)^2 + 0.0874 (dbh) - 0.0154
+Macaranga species,Macaranga species,0.0000,Eastern Himalayas,432, -255.0664 (dbh/100)^2 + 507.2459 (dbh/100) - 43.8670
+Macaranga species,Macaranga species,0.0000,Eastern Himalayas,433, -8.5948 (dbh/100)^2 + 15.9095 (dbh/100) - 0.6507
+Macaranga species,Macaranga species,0.0000,Eastern Himalayas,434, 0.1277 (dbh)^2- 0.3029 (dbh) + 0.8538
+Macaranga species,Macaranga species,0.0000,Eastern Himalayas,435, 0.0025 (dbh)^2 + 0.0314 (dbh) + 0.1583
+Alnus nepalensis,Alnus nepalensis,0.0000,Eastern Himalayas,436, -458.2088 (dbh/100)^2 + 893.8913 (dbh/100) - 66.9783
+Alnus nepalensis,Alnus nepalensis,0.0000,Eastern Himalayas,437, -10.0112 (dbh/100)^2 + 18.4510 (dbh/100) - 1.0379
+Alnus nepalensis,Alnus nepalensis,0.0000,Eastern Himalayas,438, 0.1785 (dbh)^2- 0.5265 (dbh) + 1.9236
+Alnus nepalensis,Alnus nepalensis,0.0000,Eastern Himalayas,439, 0.0085 (dbh)^2- 0.0182 (dbh) + 0.1152
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Eastern Himalayas,440, 112.6006 (dbh/100)^2 + 135.5182 (dbh/100) - 2.3433
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Eastern Himalayas,441, 11.2386 (dbh/100)^2 + 3.0581 (dbh/100) + 0.1432
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Eastern Himalayas,442, 0.1194 (dbh)^2 + 0.0907 (dbh) + 0.9907
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Eastern Himalayas,443, 0.0018 (dbh)^2 + 0.0516 (dbh) + 0.0361
+Ficus species,Ficus species,0.0000,Eastern Himalayas,444, 328.6517 (dbh/100)^2 + 41.5013 (dbh/100) + 5.8245
+Ficus species,Ficus species,0.0000,Eastern Himalayas,445, 43.8976 (dbh/100)^2 + 1.7589 (dbh/100) + 0.3012
+Ficus species,Ficus species,0.0000,Eastern Himalayas,446, 0.1420 (dbh)^2- 0.2210 (dbh) + 1.2739
+Ficus species,Ficus species,0.0000,Eastern Himalayas,447, 0.0128 (dbh)^2 - 0.0368 (dbh) + 0.1336
+Terminalia species,Terminalia elliptica,0.0000,Eastern Himalayas,448, 138.5098 (dbh/100)^2 + 230.1472 (dbh/100) - 12.1090
+Terminalia species,Terminalia elliptica,0.0000,Eastern Himalayas,449, 5.1039 (dbh/100)^2 + 8.0168 (dbh/100) - 0.3351
+Terminalia species,Terminalia elliptica,0.0000,Eastern Himalayas,450, 0.2029 (dbh)^2- 0.4475 (dbh) + 0.2983
+Terminalia species,Terminalia elliptica,0.0000,Eastern Himalayas,451, 0.0085 1312- 0.0165 (dbh) + 0.0270
+Machilus species,Machilus species,0.0000,Eastern Himalayas,452, 84.3775 (dbh/100)^2 + 94.3260 (dbh/100) + 4.1137
+Machilus species,Machilus species,0.0000,Eastern Himalayas,453, -3.4948 (dbh/100)^2 + 12.2233 (dbh/100) + 0.5985
+Machilus species,Machilus species,0.0000,Eastern Himalayas,454, 0.0503 (dbh)^2 + 1.3645 (dbh) - 1.3642
+Machilus species,Machilus species,0.0000,Eastern Himalayas,455, 0.0122 (dbh)^2 + 0.0941 (dbh) - 0.0972
+Eurya japonica,Eurya japonica,0.0000,Eastern Himalayas,456, 328.6517 (dbh/100)^2 + 41.5013 (dbh/100) + 5.8245
+Eurya japonica,Eurya japonica,0.0000,Eastern Himalayas,457, 47.6984 (dbh/100)^2 + 0.8919 (dbh/100) + 0.1988
+Eurya japonica,Eurya japonica,0.0000,Eastern Himalayas,458, 0.101 (dbh)^2 + 0.222 (dbh) + 0.604
+Eurya japonica,Eurya japonica,0.0000,Eastern Himalayas,459, -0.004 (dbh)^2 + 0.123 (dbh) + 0.139
+Schima wallichii,Schima wallichii,0.0000,North-Eastern Ranges,460, 1000.7174 (dbh/100)^2 - 208.9540 (dbh/100) + 30.8140
+Schima wallichii,Schima wallichii,0.0000,North-Eastern Ranges,461, 78.8815 (dbh/100)^2- 13.3130 (dbh/100) + 1.6297
+Schima wallichii,Schima wallichii,0.0000,North-Eastern Ranges,462, 0.293 (dbh)^2 - 1.098 (dbh) + 1.290
+Schima wallichii,Schima wallichii,0.0000,North-Eastern Ranges,463, 0.0060 (dbh)^2 + 0.0551 (dbh) + 0.0619
+Macaranga species,Macaranga species,0.0000,North-Eastern Ranges,464, 295.2237 (dbh/100)^2 + 329.7146 (dbh/100) - 21.1529
+Macaranga species,Macaranga species,0.0000,North-Eastern Ranges,465, -6.5259 (dbh/100)^2 + 22.0047 (dbh/100) - 0.8689
+Macaranga species,Macaranga species,0.0000,North-Eastern Ranges,466, 0.2135 (dbh)^2 - 0.5857 (dbh) + 0.6587
+Macaranga species,Macaranga species,0.0000,North-Eastern Ranges,467, 0.0167 (dbh)^2- 0.0088 (dbh) + 0.1192
+Shorea robusta,Shorea robusta,0.0000,North-Eastern Ranges,468, 239.3148 (dbh/100)^2- 3.3963 (dbh/100) + 21.0528
+Shorea robusta,Shorea robusta,0.0000,North-Eastern Ranges,469, 21.7716 (dbh/100)^2 + 3.7241 (dbh/100) + 0.5622
+Shorea robusta,Shorea robusta,0.0000,North-Eastern Ranges,470, 0.4006 (dbh)^2 - 1.5864 (dbh) + 2.3434
+Shorea robusta,Shorea robusta,0.0000,North-Eastern Ranges,471, 0.0130 (dbh)^2 - 0.0264 (dbh) + 0.2234
+Syzygium cumini,Syzygium cumini,0.0000,North-Eastern Ranges,472, 133.7182 (dbh/100)^2 + 199.3136 (dbh/100) - 9.3632
+Syzygium cumini,Syzygium cumini,0.0000,North-Eastern Ranges,473, 10.8365 (dbh/100)^2 + 2.7031 (dbh/100) + 1.2267
+Syzygium cumini,Syzygium cumini,0.0000,North-Eastern Ranges,474, 0.0847 (dbh)^2 + 0.4512 (dbh) - 0.3127
+Syzygium cumini,Syzygium cumini,0.0000,North-Eastern Ranges,475, 0.0089 (dbh)^2- 0.0260 (dbh) + 0.0249
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North-Eastern Ranges,476, 133.7182 (dbh/100)^2 + 199.3136 (dbh/100) - 9.3632
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North-Eastern Ranges,477, 10.8365 (dbh/100)^2 + 2.7031 (dbh/100) + 1.2267
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North-Eastern Ranges,478, 0.0847 (dbh)^2 + 0.4512 (dbh) - 0.3127
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North-Eastern Ranges,479, 0.0089 (dbh)^2- 0.0260 (dbh) + 0.0249
+Eugenia jambolana,Eugenia jambolana,0.0000,North-Eastern Ranges,480, 133.7182 (dbh/100)^2 + 199.3136 (dbh/100) - 9.3632
+Eugenia jambolana,Eugenia jambolana,0.0000,North-Eastern Ranges,481, 10.8365 (dbh/100)^2 + 2.7031 (dbh/100) + 1.2267
+Eugenia jambolana,Eugenia jambolana,0.0000,North-Eastern Ranges,482, 0.0847 (dbh)^2 + 0.4512 (dbh) - 0.3127
+Eugenia jambolana,Eugenia jambolana,0.0000,North-Eastern Ranges,483, 0.0089 (dbh)^2- 0.0260 (dbh) + 0.0249
+Careya arborea,Careya arborea,0.0000,North-Eastern Ranges,484, 340.5659 (dbh/100)^2 + 91.1216 (dbh/100) + 3.3365
+Careya arborea,Careya arborea,0.0000,North-Eastern Ranges,485, 18.1285 (dbh/100)^2 + 4.8505 (dbh/100) + 0.1776
+Careya arborea,Careya arborea,0.0000,North-Eastern Ranges,486, 0.1089 (dbh)^2 + .5761 (dbh) + 0.2813
+Careya arborea,Careya arborea,0.0000,North-Eastern Ranges,487, -0.0024 (dbh)^2 + 0.1238 (dbh) - 0.0092
+Tectona grandis,Tectona grandis,0.0000,North-Eastern Ranges,488, -235.2067 (dbh/100)^2 + 454.1317 (dbh/100) - 29.7996
+Tectona grandis,Tectona grandis,0.0000,North-Eastern Ranges,489, -9.3264 (dbh/100)^2 + 18.3483 (dbh/100) - 0.8165
+Tectona grandis,Tectona grandis,0.0000,North-Eastern Ranges,490, 0.1775  (dbh)^2 -0.0216 (dbh) + 0.6538
+Tectona grandis,Tectona grandis,0.0000,North-Eastern Ranges,491, 0.0099 (dbh)^2  +  0.0007 (dbh) + 0.0188
+Bauhinia species,Bauhinia species,0.0000,North-Eastern Ranges,492, -40.1501 (dbh/100)^2 + 109.6091 (dbh/100) + 3.7405
+Bauhinia species,Bauhinia species,0.0000,North-Eastern Ranges,493, -2.8341 (dbh/100)^2 + 7.7369 (dbh/100) + 0.2640
+Bauhinia species,Bauhinia species,0.0000,North-Eastern Ranges,494, 0.1139 (dbh)^2 + 0.1204 (dbh) + 0.3863
+Bauhinia species,Bauhinia species,0.0000,North-Eastern Ranges,495, 0.0046 (dbh)^2 + 0.0798 (dbh) - 0.0373
+Ficus species,Ficus species,0.0000,North-Eastern Ranges,496, 481.1172 (dbh/100)^2 + 39.3014 (dbh/100) + 5.8236
+Ficus species,Ficus species,0.0000,North-Eastern Ranges,497, 42.6242 (dbh/100)^2 + 1.7079 (dbh/100) + 0.2924
+Ficus species,Ficus species,0.0000,North-Eastern Ranges,498, 0.141 (dbh)^2- 0.180 (dbh) + 0.410
+Ficus species,Ficus species,0.0000,North-Eastern Ranges,499, 0.010 (dbh)^2 + 0.026 (dbh) + 0.011
+Shorea robusta,Shorea robusta,0.0000,Northern Plain,500, 25.5451 (dbh/100)^2 + 201.6606 (dbh/100) - 13.1829
+Shorea robusta,Shorea robusta,0.0000,Northern Plain,501, 9.1786 (dbh/100)^2 + 11.0520 (dbh/100) - 0.8946
+Shorea robusta,Shorea robusta,0.0000,Northern Plain,502, -0.0766 (dbh)^2 + 1.5811 (dbh) - 1.0110
+Shorea robusta,Shorea robusta,0.0000,Northern Plain,503, -0.0060 (dbh)^2 + 0.1003 (dbh) + 0.0134
+Mallotus philippensis,Mallotus philippensis,0.0000,Northern Plain,504, 131.2114 (dbh/100)^2 - 20.6129 (dbh/100) + 12.2762
+Mallotus philippensis,Mallotus philippensis,0.0000,Northern Plain,505, 6.9373 (dbh/100)^2 - 1.0890 (dbh/100) + 0.5986
+Mallotus philippensis,Mallotus philippensis,0.0000,Northern Plain,506, 0.0746 (dbh)^2 + 0.6614 (dbh) + 0.2329
+Mallotus philippensis,Mallotus philippensis,0.0000,Northern Plain,507, 0.0041 (dbh)^2 + 0.0024 (dbh) + 0.0519
+Tectona grandis,Tectona grandis,0.0000,Northern Plain,508, -172.2384 (dbh/100)^2 + 234.5179 (dbh/100) - 5.5074
+Tectona grandis,Tectona grandis,0.0000,Northern Plain,509, -17.8148 (dbh/100)^2 + 24.5465 (dbh/100) - 0.6081
+Tectona grandis,Tectona grandis,0.0000,Northern Plain,510, 0.048 (dbh)^2 + 0.812 (dbh) - 0.351
+Tectona grandis,Tectona grandis,0.0000,Northern Plain,511, 0.0095 (dbh)^2 - 0.0266 (dbh) + 0.1383
+Acacia catechu,Acacia catechu,0.0000,Northern Plain,512, -40.0134 (dbh/100)^2 + 178.4533 (dbh/100) - 4.2859
+Acacia catechu,Acacia catechu,0.0000,Northern Plain,513, 10.8820 (dbh/100) + 0.0076
+Acacia catechu,Acacia catechu,0.0000,Northern Plain,514, 0.0642 (dbh)^2 + 1.4964 (dbh) - 0.7879
+Acacia catechu,Acacia catechu,0.0000,Northern Plain,515, 0.0114 (dbh)^2 - 0.0090 (dbh) + 0.0917
+Eucalyptus species,Eucalyptus species,0.0000,Northern Plain,516, 33.6773 (dbh/100)^2 + 101.4271 (dbh/100) - 2.2653
+Eucalyptus species,Eucalyptus species,0.0000,Northern Plain,517, 16.6353 (dbh/100)^2 + 18.3505 (dbh/100) - 1.1172
+Eucalyptus species,Eucalyptus species,0.0000,Northern Plain,518, 0.2870 (dbh)^2 - 1.1264 (dbh) + 1.2830
+Eucalyptus species,Eucalyptus species,0.0000,Northern Plain,519, 0.0122 (dbh)^2 + 0.0347 (dbh) - 0.0213
+Syzygium cumini,Syzygium cumini,0.0000,Northern Plain,520, 148.1069 (dbh/100)^2 + 306.2417 (dbh/100) - 20.7654
+Syzygium cumini,Syzygium cumini,0.0000,Northern Plain,521, -4.0782 (dbh/100)^2 + 8.9461 (dbh/100) + 0.0084
+Syzygium cumini,Syzygium cumini,0.0000,Northern Plain,522, 0.0873 (dbh)^2 - 0.0444 (dbh) + 0.4975
+Syzygium cumini,Syzygium cumini,0.0000,Northern Plain,523, 0.0060 (dbh)^2 + 0.0176 (dbh) - 0.0035
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Northern Plain,524, 148.1069 (dbh/100)^2 + 306.2417 (dbh/100) - 20.7654
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Northern Plain,525, -4.0782 (dbh/100)^2 + 8.9461 (dbh/100) + 0.0084
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Northern Plain,526, 0.0873 (dbh)^2 - 0.0444 (dbh) + 0.4975
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Northern Plain,527, 0.0060 (dbh)^2 + 0.0176 (dbh) - 0.0035
+Eugenia jambolana,Eugenia jambolana,0.0000,Northern Plain,528, 148.1069 (dbh/100)^2 + 306.2417 (dbh/100) - 20.7654
+Eugenia jambolana,Eugenia jambolana,0.0000,Northern Plain,529, -4.0782 (dbh/100)^2 + 8.9461 (dbh/100) + 0.0084
+Eugenia jambolana,Eugenia jambolana,0.0000,Northern Plain,530, 0.0873 (dbh)^2 - 0.0444 (dbh) + 0.4975
+Eugenia jambolana,Eugenia jambolana,0.0000,Northern Plain,531, 0.0060 (dbh)^2 + 0.0176 (dbh) - 0.0035
+Dalbergia sissoo,Dalbergia sissoo,0.0000,Northern Plain,532, 7.2757 (dbh/100)^2 + 53.1018 (dbh/100) + 12.3640
+Dalbergia sissoo,Dalbergia sissoo,0.0000,Northern Plain,533, -4.6845 (dbh/100)^2 + 14.7263 (dbh/100) - 0.0240
+Dalbergia sissoo,Dalbergia sissoo,0.0000,Northern Plain,534, 0.1418 (dbh)^2 + 0.7801 (dbh) - 0.3749
+Dalbergia sissoo,Dalbergia sissoo,0.0000,Northern Plain,535, 0.0035 (dbh)^2 + 0.1600 (dbh) - 0.0726
+Trewia nudiflora,Wrightia tomentosa,0.0000,Northern Plain,536, 96.5047 (dbh/100)^2 + 13.8015 (dbh/100) + 7.1858
+Trewia nudiflora,Wrightia tomentosa,0.0000,Northern Plain,537, 11.9851 (dbh/100)^2 + 0.4885 (dbh/100) + 0.4786
+Trewia nudiflora,Wrightia tomentosa,0.0000,Northern Plain,538, -0.0023 (dbh)^2 + 0.9608 (dbh) - 0.4878
+Trewia nudiflora,Wrightia tomentosa,0.0000,Northern Plain,539, -0.0034 (dbh)^2 + 0.0899 (dbh) - 0.0439
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Northern Plain,540, -184.5679 (dbh/100)^2 + 168.5082 (dbh/100) - 10.0526
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Northern Plain,541, 2.5585 (dbh/100)^2 + 3.9530 (dbh/100) - 0.0693
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Northern Plain,542, 0.066 (dbh)^2 - 0.179 (dbh) + 0.458
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Northern Plain,543, 0.0007 (dbh)^2 + 0.0065 (dbh) + 0.0083
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Northern Plain,544, -6.8624 (dbh/100)^2 + 88.2043 (dbh/100) + 11.2256
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Northern Plain,545, 4.6996 (dbh/100)^2 + 13.7476 (dbh/100) + 1.0999
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Northern Plain,546, 0.1977 (dbh)^2 + 0.2373 (dbh) + 0.4882
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Northern Plain,547, 0.0245 (dbh)^2 - 0.0023 (dbh) + 0.0097
+Bombax ceiba,Bombax ceiba,0.0000,Northern Plain,548, 142.4990 (dbh/100)^2 + 15.7340 (dbh/100) + 11.7480
+Bombax ceiba,Bombax ceiba,0.0000,Northern Plain,549, 4.1172 (dbh/100)^2 + 0.8835 (dbh/100) + 0.2329
+Bombax ceiba,Bombax ceiba,0.0000,Northern Plain,550, 0.1772 (dbh)^2 - 0.2771 (dbh) + 0.7359
+Bombax ceiba,Bombax ceiba,0.0000,Northern Plain,551, -0.0009 (dbh)^2 + 0.0399 (dbh) + 0.0226
+Bombax insigne,Bombax insigne,0.0000,Northern Plain,552, 142.4990 (dbh/100)^2 + 15.7340 (dbh/100) + 11.7480
+Bombax insigne,Bombax insigne,0.0000,Northern Plain,553, 4.1172 (dbh/100)^2 + 0.8835 (dbh/100) + 0.2329
+Bombax insigne,Bombax insigne,0.0000,Northern Plain,554, 0.1772 (dbh)^2 - 0.2771 (dbh) + 0.7359
+Bombax insigne,Bombax insigne,0.0000,Northern Plain,555, -0.0009 (dbh)^2 + 0.0399 (dbh) + 0.0226
+Salmalia malabarica,Salmalia malabarica,0.0000,Northern Plain,556, 142.4990 (dbh/100)^2 + 15.7340 (dbh/100) + 11.7480
+Salmalia malabarica,Salmalia malabarica,0.0000,Northern Plain,557, 4.1172 (dbh/100)^2 + 0.8835 (dbh/100) + 0.2329
+Salmalia malabarica,Salmalia malabarica,0.0000,Northern Plain,558, 0.1772 (dbh)^2 - 0.2771 (dbh) + 0.7359
+Salmalia malabarica,Salmalia malabarica,0.0000,Northern Plain,559, -0.0009 (dbh)^2 + 0.0399 (dbh) + 0.0226
+Bombax malabaricum,Bombax malabaricum,0.0000,Northern Plain,560, 142.4990 (dbh/100)^2 + 15.7340 (dbh/100) + 11.7480
+Bombax malabaricum,Bombax malabaricum,0.0000,Northern Plain,561, 4.1172 (dbh/100)^2 + 0.8835 (dbh/100) + 0.2329
+Bombax malabaricum,Bombax malabaricum,0.0000,Northern Plain,562, 0.1772 (dbh)^2 - 0.2771 (dbh) + 0.7359
+Bombax malabaricum,Bombax malabaricum,0.0000,Northern Plain,563, -0.0009 (dbh)^2 + 0.0399 (dbh) + 0.0226
+Butea monosperma,Butea monosperma,0.0000,Northern Plain,564, -22.7925 (dbh/100)^2 + 53.4590 (dbh/100) - 1.4797
+Butea monosperma,Butea monosperma,0.0000,Northern Plain,565, -2.0225 (dbh/100)^2 + 5.2640 (dbh/100) + 0.1399
+Butea monosperma,Butea monosperma,0.0000,Northern Plain,566, 0.0093 (dbh)^2 + 0.3026 (dbh) + 0.2964
+Butea monosperma,Butea monosperma,0.0000,Northern Plain,567, -0.0039 (dbh)^2 + 0.1019 (dbh) + 0.0318
+Butea frondosa,Butea frondosa,0.0000,Northern Plain,568, -22.7925 (dbh/100)^2 + 53.4590 (dbh/100) - 1.4797
+Butea frondosa,Butea frondosa,0.0000,Northern Plain,569, -2.0225 (dbh/100)^2 + 5.2640 (dbh/100) + 0.1399
+Butea frondosa,Butea frondosa,0.0000,Northern Plain,570, 0.0093 (dbh)^2 + 0.3026 (dbh) + 0.2964
+Butea frondosa,Butea frondosa,0.0000,Northern Plain,571, -0.0039 (dbh)^2 + 0.1019 (dbh) + 0.0318
+Shorea robusta,Shorea robusta,0.0000,Eastern Plain,572, -136.4916 (dbh/100)^2 + 321.3854 (dbh/100) - 15.6215
+Shorea robusta,Shorea robusta,0.0000,Eastern Plain,573, 20.7480 (dbh/100)^2 + 0.9479 (dbh/100) + 0.4223
+Shorea robusta,Shorea robusta,0.0000,Eastern Plain,574, 0.0770 (dbh)^2 + 0.8211 (dbh) - 0.4931
+Shorea robusta,Shorea robusta,0.0000,Eastern Plain,575, 0.0037 (dbh)^2 + 0.0199 (dbh) + 0.0438
+Lagerstroemia flosreginae,Lagerstroemia flosreginae,0.0000,Eastern Plain,576, 282.0677 (dbh/100)^2 + 122.5817 (dbh/100) - 1.6765
+Lagerstroemia flosreginae,Lagerstroemia flosreginae,0.0000,Eastern Plain,577, 4.3637 (dbh/100)^2 + 10.5371 (dbh/100) - 0.2504
+Lagerstroemia flosreginae,Lagerstroemia flosreginae,0.0000,Eastern Plain,578, 0.1708 (dbh)^2 + 0.2991 (dbh) - 0.0735
+Lagerstroemia flosreginae,Lagerstroemia flosreginae,0.0000,Eastern Plain,579, 0.0154 (dbh)^2 - 0.0430 (dbh) + 0.0677
+Lagerstroemia speciosa,Lagerstroemia speciosa,0.0000,Eastern Plain,580, 282.0677 (dbh/100)^2 + 122.5817 (dbh/100) - 1.6765
+Lagerstroemia speciosa,Lagerstroemia speciosa,0.0000,Eastern Plain,581, 4.3637 (dbh/100)^2 + 10.5371 (dbh/100) - 0.2504
+Lagerstroemia speciosa,Lagerstroemia speciosa,0.0000,Eastern Plain,582, 0.1708 (dbh)^2 + 0.2991 (dbh) - 0.0735
+Lagerstroemia speciosa,Lagerstroemia speciosa,0.0000,Eastern Plain,583, 0.0154 (dbh)^2 - 0.0430 (dbh) + 0.0677
+Amoora wallichii,Amoora wallichii,0.0000,Eastern Plain,584, 1536.3332 (dbh/100)^2 - 381.4076 (dbh/100) + 39.6576
+Amoora wallichii,Amoora wallichii,0.0000,Eastern Plain,585, 43.9892 (dbh/100)^2 - 7.6717 (dbh/100) + 0.9609
+Amoora wallichii,Amoora wallichii,0.0000,Eastern Plain,586, 0.1708 (dbh)^2 + 0.2991 (dbh) - 0.0735
+Amoora wallichii,Amoora wallichii,0.0000,Eastern Plain,587, 0.0154 (dbh)^2 - 0.0430 (dbh) + 0.0677
+Aglaia hiernii,Aglaia hiernii,0.0000,Eastern Plain,588, 1536.3332 (dbh/100)^2 - 381.4076 (dbh/100) + 39.6576
+Aglaia hiernii,Aglaia hiernii,0.0000,Eastern Plain,589, 43.9892 (dbh/100)^2 - 7.6717 (dbh/100) + 0.9609
+Aglaia hiernii,Aglaia hiernii,0.0000,Eastern Plain,590, 0.1708 (dbh)^2 + 0.2991 (dbh) - 0.0735
+Aglaia hiernii,Aglaia hiernii,0.0000,Eastern Plain,591, 0.0154 (dbh)^2 - 0.0430 (dbh) + 0.0677
+Schima wallichii,Schima wallichii,0.0000,Eastern Plain,592, 845.4033 (dbh/100)^2 - 151.7822 (dbh/100) + 22.8579
+Schima wallichii,Schima wallichii,0.0000,Eastern Plain,593, 29.1497 (dbh/100)^2 - 3.6565 (dbh/100) + 0.9238
+Schima wallichii,Schima wallichii,0.0000,Eastern Plain,594, 0.1270 (dbh)^2 + 0.5903 (dbh) + 0.1752
+Schima wallichii,Schima wallichii,0.0000,Eastern Plain,595, 0.0068 (dbh)^2 + 0.0347 (dbh) + 0.0934
+Careya arborea,Careya arborea,0.0000,Eastern Plain,596, 371.7445 (dbh/100)^2 + 99.4637 (dbh/100) + 3.6420
+Careya arborea,Careya arborea,0.0000,Eastern Plain,597, 15.2099 (dbh/100)^2 + 4.0695 (dbh/100) + 0.1490
+Careya arborea,Careya arborea,0.0000,Eastern Plain,598, 0.1089 (dbh)^2 + 0.5761 (dbh) + 0.2813
+Careya arborea,Careya arborea,0.0000,Eastern Plain,599, -0.0024 (dbh)^2 + 0.1238 (dbh) - 0.0092
+Anogeissus pendula,Anogeissus pendula,0.0000,Western Plain,600, 128.0517 (dbh/100)^2 + 0.5828 (dbh/100) + 9.3216
+Anogeissus pendula,Anogeissus pendula,0.0000,Western Plain,601, 4.3925 (dbh/100)^2 + 0.2702 (dbh/100) + 0.2610
+Anogeissus pendula,Anogeissus pendula,0.0000,Western Plain,602, 0.1337 (dbh)^2 + 0.2955 (dbh) - 0.0497
+Anogeissus pendula,Anogeissus pendula,0.0000,Western Plain,603, 0.0045 (dbh)^2 - 0.0118 (dbh) + 0.0117
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Western Plain,604, 33.4482 (dbh/100)^2 + 31.7569 (dbh/100) + 4.2284
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Western Plain,605, 2.5576 (dbh/100)^2 + 2.4283 (dbh/100) + 0.3233
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Western Plain,606, 0.1047 (dbh)^2 + 0.3438 (dbh) - 0.1780
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Western Plain,607, 0.0098 (dbh)^2 - 0.0394 (dbh) + 0.0496
+Boswellia serrata,Boswellia serrata,0.0000,Western Plain,608, -6.5495 (dbh/100)^2 + 51.2405 (dbh/100) + 2.7240
+Boswellia serrata,Boswellia serrata,0.0000,Western Plain,609, 0.4262 (dbh/100)^2 + 4.9770 (dbh/100) + 0.2160
+Boswellia serrata,Boswellia serrata,0.0000,Western Plain,610, 0.1826 (dbh)^2 - 0.3714 (dbh) + 0.4298
+Boswellia serrata,Boswellia serrata,0.0000,Western Plain,611, 0.0062 (dbh)^2 + 0.0331 (dbh) + 0.0154
+Lannea coromandelica,Lannea coromandelica,0.0000,Western Plain,612, -62.5969 (dbh/100)^2 + 161.9918 (dbh/100) - 11.4549
+Lannea coromandelica,Lannea coromandelica,0.0000,Western Plain,613, -4.5518 (dbh/100)^2 + 12.0968 (dbh/100) - 0.7425
+Lannea coromandelica,Lannea coromandelica,0.0000,Western Plain,614, -0.0103 (dbh)^2 + 0.7183 (dbh) - 0.2651
+Lannea coromandelica,Lannea coromandelica,0.0000,Western Plain,615, -0.0042 (dbh)^2 + 0.0895 (dbh) + 0.0302
+Odina wodier,Odina wodier,0.0000,Western Plain,616, -62.5969 (dbh/100)^2 + 161.9918 (dbh/100) - 11.4549
+Odina wodier,Odina wodier,0.0000,Western Plain,617, -4.5518 (dbh/100)^2 + 12.0968 (dbh/100) - 0.7425
+Odina wodier,Odina wodier,0.0000,Western Plain,618, -0.0103 (dbh)^2 + 0.7183 (dbh) - 0.2651
+Odina wodier,Odina wodier,0.0000,Western Plain,619, -0.0042 (dbh)^2 + 0.0895 (dbh) + 0.0302
+Lannea grandis,Lannea grandis,0.0000,Western Plain,620, -62.5969 (dbh/100)^2 + 161.9918 (dbh/100) - 11.4549
+Lannea grandis,Lannea grandis,0.0000,Western Plain,621, -4.5518 (dbh/100)^2 + 12.0968 (dbh/100) - 0.7425
+Lannea grandis,Lannea grandis,0.0000,Western Plain,622, -0.0103 (dbh)^2 + 0.7183 (dbh) - 0.2651
+Lannea grandis,Lannea grandis,0.0000,Western Plain,623, -0.0042 (dbh)^2 + 0.0895 (dbh) + 0.0302
+Butea monosperma,Butea monosperma,0.0000,Western Plain,624, 34.3335 (dbh/100)^2 - 7.3049 (dbh/100) + 6.2960
+Butea monosperma,Butea monosperma,0.0000,Western Plain,625, 13.7310 (dbh/100)^2 - 2.7107 (dbh/100) + 1.3816
+Butea monosperma,Butea monosperma,0.0000,Western Plain,626, 0.0705 (dbh)^2 + 0.0149 (dbh) + 0.6722
+Butea monosperma,Butea monosperma,0.0000,Western Plain,627, 0.0059 (dbh)^2 + 0.0714 (dbh) + 0.0245
+Butea frondosa,Butea frondosa,0.0000,Western Plain,628, 34.3335 (dbh/100)^2 - 7.3049 (dbh/100) + 6.2960
+Butea frondosa,Butea frondosa,0.0000,Western Plain,629, 13.7310 (dbh/100)^2 - 2.7107 (dbh/100) + 1.3816
+Butea frondosa,Butea frondosa,0.0000,Western Plain,630, 0.0705 (dbh)^2 + 0.0149 (dbh) + 0.6722
+Butea frondosa,Butea frondosa,0.0000,Western Plain,631, 0.0059 (dbh)^2 + 0.0714 (dbh) + 0.0245
+Acacia lenticularis,Acacia lenticularis,0.0000,Western Plain,632, 192.6516 (dbh/100)^2 - 41.3427 (dbh/100) + 12.0217
+Acacia lenticularis,Acacia lenticularis,0.0000,Western Plain,633, 6.2026 (dbh/100)^2 - 1.2040 (dbh/100) + 0.3180
+Acacia lenticularis,Acacia lenticularis,0.0000,Western Plain,634, 0.061 (dbh)^2 + 1.089 (dbh) - 0.433
+Acacia lenticularis,Acacia lenticularis,0.0000,Western Plain,635, 0.0207 (dbh) - 0.0075
+Acacia leucophloea,Acacia leucophloea,0.0000,Western Plain,636, 192.6516 (dbh/100)^2 - 41.3427 (dbh/100) + 12.0217
+Acacia leucophloea,Acacia leucophloea,0.0000,Western Plain,637, 6.2026 (dbh/100)^2 - 1.2040 (dbh/100) + 0.3180
+Acacia leucophloea,Acacia leucophloea,0.0000,Western Plain,638, 0.061 (dbh)^2 + 1.089 (dbh) - 0.433
+Acacia leucophloea,Acacia leucophloea,0.0000,Western Plain,639, 0.0207 (dbh) - 0.0075
+Prosopis juliflora,Prosopis juliflora,0.0000,Western Plain,640, -39.6165 (dbh/100)^2 + 107.8593 (dbh/100) + 3.0089
+Prosopis juliflora,Prosopis juliflora,0.0000,Western Plain,641, -2.8724 (dbh/100)^2 + 4.2047 (dbh/100) + 0.1598
+Prosopis juliflora,Prosopis juliflora,0.0000,Western Plain,642, 0.1142 (dbh)^2 + 0.8472 (dbh) - 1.0051
+Prosopis juliflora,Prosopis juliflora,0.0000,Western Plain,643, 0.0070 (dbh)^2 - 0.0239 (dbh) + 0.0297
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Plain,644, -222.4935 (dbh/100)^2 + 246.0476 (dbh/100) - 15.0305
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Plain,645, -3.3058 (dbh/100)^2 + 14.4901 (dbh/100) - 1.1089
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Plain,646, 0.0292 (dbh)^2 + 1.0467 (dbh) - 0.9345
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Plain,647, 0.0001 (dbh)^2 + 0.0265 (dbh) - 0.0114
+Prosopis cineraria,Prosopis cineraria,0.0000,Western Plain,648, 374.8853 (dbh/100)^2 - 102.6065 (dbh/100) + 19.8870
+Prosopis cineraria,Prosopis cineraria,0.0000,Western Plain,649, 9.2529 (dbh/100)^2 - 2.6345 (dbh/100) + 0.4375
+Prosopis cineraria,Prosopis cineraria,0.0000,Western Plain,650, 0.0724 (dbh)^2 + 1.1342 (dbh) - 0.9111
+Prosopis cineraria,Prosopis cineraria,0.0000,Western Plain,651, 0.0053 1312- 0.0112 (dbh) + 0.0115
+Acacia species,Acacia species,0.0000,Western Plain,652, -67.6663 (dbh/100)^2 + 113.1102 (dbh/100) + 4.3385
+Acacia species,Acacia species,0.0000,Western Plain,653, -8.2494 (dbh/100)^2 + 12.7608 (dbh/100) - 0.7229
+Acacia species,Acacia species,0.0000,Western Plain,654, 0.1080 (dbh)^2 + 0.4211 (dbh) - 0.2382
+Acacia species,Acacia species,0.0000,Western Plain,655, 0.0073 (dbh)^2- 0.0240 (dbh) + 0.0267
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Western Plain,656, -75.7877 (dbh/100)^2 + 118.0755 (dbh/100) - 0.4650
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Western Plain,657, -7.2382 (dbh/100)^2 + 14.2527 (dbh/100) - 0.0318
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Western Plain,658, 0.1480 (dbh)^2- 0.2759 (dbh) + 1.3843
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Western Plain,659, 0.0181 (dbh)^2 - 0.0604 (dbh) + 0.1507
+Bauhinia species,Bauhinia species,0.0000,Western Plain,660, -58.2370 (dbh/100)^2 + 62.9259 (dbh/100) + 1.9694
+Bauhinia species,Bauhinia species,0.0000,Western Plain,661, -7.3222 (dbh/100)^2 + 7.9117 (dbh/100) + 0.2476
+Bauhinia species,Bauhinia species,0.0000,Western Plain,662, 0.0393 (dbh)^2 + 0.5534 (dbh) - 0.2755
+Bauhinia species,Bauhinia species,0.0000,Western Plain,663, 0.0063 1312 + 0.0240 (dbh) + 0.0637
+Salvadora oleoides,Salvadora oleoides,0.0000,Western Plain,664, -37.9134 (dbh/100)^2 + 59.4648 (dbh/100) + 1.2415
+Salvadora oleoides,Salvadora oleoides,0.0000,Western Plain,665, -13.8490 (dbh/100)^2 + 20.2648 (dbh/100) - 0.9427
+Salvadora oleoides,Salvadora oleoides,0.0000,Western Plain,666, 0.0882 (dbh)^2 + 0.3256 (dbh) - 0.2153
+Salvadora oleoides,Salvadora oleoides,0.0000,Western Plain,667, -0.0066 (dbh)^2 + 0.1889 (dbh) - 0.0883
+Acacia catechu,Acacia catechu,0.0000,Western Plain,668, 862.9319 (dbh/100)^2 - 170.7552 (dbh/100) + 21.2422
+Acacia catechu,Acacia catechu,0.0000,Western Plain,669, 32.5724 (dbh/100)^2 - 6.4454 (dbh/100) + 0.8018
+Acacia catechu,Acacia catechu,0.0000,Western Plain,670, 0.0345 (dbh)^2 + 1.1686 (dbh) + 0.1762
+Acacia catechu,Acacia catechu,0.0000,Western Plain,671, 0.0068 (dbh)^2 - 0.0193 (dbh) + 0.0323
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Plain,672, -176.0015 (dbh/100)^2 + 165.7520 (dbh/100) - 6.7282
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Plain,673, -8.7809 (dbh/100)^2 + 8.2695 (dbh/100) - 0.3357
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Plain,674, 0.0180 (dbh)^2 + 0.7709 (dbh) - 0.6103
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Plain,675, 0.0054 (dbh)^2 + 0.0031 (dbh) + 0.0326
+Acacia catechu,Acacia catechu,0.0000,Central Highlands,676, 461.0594 (dbh/100)^2 + 127.4788 (dbh/100) - 8.6248
+Acacia catechu,Acacia catechu,0.0000,Central Highlands,677, 14.1668 (dbh/100)^2 + 8.6870 (dbh/100) - 0.4187
+Acacia catechu,Acacia catechu,0.0000,Central Highlands,678, 0.0111 (dbh)^2 + 1.7348 (dbh) - 0.8604
+Acacia catechu,Acacia catechu,0.0000,Central Highlands,679, 0.0078 (dbh)^2 + 0.0060 (dbh) + 0.0809
+Anogeissus pendula,Anogeissus pendula,0.0000,Central Highlands,680, -256.5319 (dbh/100)^2 + 327.3360 (dbh/100) - 19.9557
+Anogeissus pendula,Anogeissus pendula,0.0000,Central Highlands,681, -24.9712 (dbh/100)^2 + 27.0362 (dbh/100) - 1.6791
+Anogeissus pendula,Anogeissus pendula,0.0000,Central Highlands,682, -0.0413 (dbh)^2 + 1.6164 (dbh) - 0.8311
+Anogeissus pendula,Anogeissus pendula,0.0000,Central Highlands,683, 0.0612 (dbh) + 0.0148
+Boswellia serrata,Boswellia serrata,0.0000,Central Highlands,684, 120.4804 (dbh/100)^2 + 162.6570 (dbh/100) - 9.0293
+Boswellia serrata,Boswellia serrata,0.0000,Central Highlands,685, 5.0517 (dbh/100)^2 + 8.6131 (dbh/100) - 0.2364
+Boswellia serrata,Boswellia serrata,0.0000,Central Highlands,686, 0.1294 (dbh)^2 - 0.0842 (dbh) + 0.1589
+Boswellia serrata,Boswellia serrata,0.0000,Central Highlands,687, 0.0037 (dbh)^2 + 0.0198 (dbh) + 0.0092
+Lannea coromandelica,Lannea coromandelica,0.0000,Central Highlands,688, 37.5026 (dbh/100)^2 + 235.1910 (dbh/100) - 16.6356
+Lannea coromandelica,Lannea coromandelica,0.0000,Central Highlands,689, -4.6969 (dbh/100)^2 + 29.3272 (dbh/100) - 1.8890
+Lannea coromandelica,Lannea coromandelica,0.0000,Central Highlands,690, 0.0252 (dbh)^2 + 0.5893 (dbh) - 0.0258
+Lannea coromandelica,Lannea coromandelica,0.0000,Central Highlands,691, 0.0036 (dbh)^2 + 0.0276 (dbh) + 0.0877
+Lannea grandis,Lannea grandis,0.0000,Central Highlands,692, 37.5026 (dbh/100)^2 + 235.1910 (dbh/100) - 16.6356
+Lannea grandis,Lannea grandis,0.0000,Central Highlands,693, -4.6969 (dbh/100)^2 + 29.3272 (dbh/100) - 1.8890
+Lannea grandis,Lannea grandis,0.0000,Central Highlands,694, 0.0252 (dbh)^2 + 0.5893 (dbh) - 0.0258
+Lannea grandis,Lannea grandis,0.0000,Central Highlands,695, 0.0036 (dbh)^2 + 0.0276 (dbh) + 0.0877
+Odina wodier,Odina wodier,0.0000,Central Highlands,696, 37.5026 (dbh/100)^2 + 235.1910 (dbh/100) - 16.6356
+Odina wodier,Odina wodier,0.0000,Central Highlands,697, -4.6969 (dbh/100)^2 + 29.3272 (dbh/100) - 1.8890
+Odina wodier,Odina wodier,0.0000,Central Highlands,698, 0.0252 (dbh)^2 + 0.5893 (dbh) - 0.0258
+Odina wodier,Odina wodier,0.0000,Central Highlands,699, 0.0036 (dbh)^2 + 0.0276 (dbh) + 0.0877
+Butea monosperma,Butea monosperma,0.0000,Central Highlands,700, 221.3745 (dbh/100)^2- 43.7095 (dbh/100) + 5.1897
+Butea monosperma,Butea monosperma,0.0000,Central Highlands,701, 20.3847 (dbh/100)^2- 2.5894 (dbh/100) + 0.8161
+Butea monosperma,Butea monosperma,0.0000,Central Highlands,702, 0.0716 (dbh)^2- 0.2408 (dbh) + 0.7970
+Butea monosperma,Butea monosperma,0.0000,Central Highlands,703, 0.0070 (dbh)^2 - 0.0174 (dbh) + 0.0790
+Butea frondosa,Butea frondosa,0.0000,Central Highlands,704, 221.3745 (dbh/100)^2- 43.7095 (dbh/100) + 5.1897
+Butea frondosa,Butea frondosa,0.0000,Central Highlands,705, 20.3847 (dbh/100)^2- 2.5894 (dbh/100) + 0.8161
+Butea frondosa,Butea frondosa,0.0000,Central Highlands,706, 0.0716 (dbh)^2- 0.2408 (dbh) + 0.7970
+Butea frondosa,Butea frondosa,0.0000,Central Highlands,707, 0.0070 (dbh)^2 - 0.0174 (dbh) + 0.0790
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Central Highlands,708, 409.0799 (dbh/100)^2- 108.5871 (dbh/100) + 14.2917
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Central Highlands,709, 29.9753 (dbh/100)^2 - 6.1664 (dbh/100) + 0.9315
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Central Highlands,710, 0.0764 (dbh)^2- 0.2359 (dbh) + 0.4756
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Central Highlands,711, 0.0068 (dbh)^2 + 0.0021 (dbh) + 0.0124
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Central Highlands,712, -185.9612 (dbh/100)^2 + 363.4651 (dbh/100) - 23.7470
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Central Highlands,713, -8.7736 (dbh/100)^2 + 18.6843 (dbh/100) - 1.2968
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Central Highlands,714, 0.0506 (dbh)^2 + 0.6227 (dbh) - 0.3709
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Central Highlands,715, 0.0030 (dbh)^2 + 0.0121 (dbh) + 0.0401
+Terminalia crenulata,Terminalia crenulata,0.0000,Central Highlands,716, 412.9096 (dbh/100)^2 + 218.7041 (dbh/100) - 21.1708
+Terminalia crenulata,Terminalia crenulata,0.0000,Central Highlands,717, 27.3545 (dbh/100)^2 + 9.4647 (dbh/100) - 0.9363
+Terminalia crenulata,Terminalia crenulata,0.0000,Central Highlands,718, 0.1189 (dbh)^2 - 0.1393 (dbh) + 0.5844
+Terminalia crenulata,Terminalia crenulata,0.0000,Central Highlands,719, 0.0028 (dbh)^2- 0.0009 (dbh) + 0.0261
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Central Highlands,720, 412.9096 (dbh/100)^2 + 218.7041 (dbh/100) - 21.1708
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Central Highlands,721, 27.3545 (dbh/100)^2 + 9.4647 (dbh/100) - 0.9363
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Central Highlands,722, 0.1189 (dbh)^2 - 0.1393 (dbh) + 0.5844
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Central Highlands,723, 0.0028 (dbh)^2- 0.0009 (dbh) + 0.0261
+Mitragyna parviflora,Mitragyna parviflora,0.0000,Central Highlands,724, -70.9902 (dbh/100)^2 + 315.1673 (dbh/100) - 25.4308
+Mitragyna parviflora,Mitragyna parviflora,0.0000,Central Highlands,725, -4.7461 (dbh/100)^2 + 20.5859 (dbh/100) - 1.6376
+Mitragyna parviflora,Mitragyna parviflora,0.0000,Central Highlands,726, 0.0524 (dbh)^2 + 0.1302 (dbh) - 0.0629
+Mitragyna parviflora,Mitragyna parviflora,0.0000,Central Highlands,727, 0.0050 (dbh)^2- 0.0093 (dbh) + 0.0334
+Stephegyne parviflora,Stephegyne parviflora,0.0000,Central Highlands,728, -70.9902 (dbh/100)^2 + 315.1673 (dbh/100) - 25.4308
+Stephegyne parviflora,Stephegyne parviflora,0.0000,Central Highlands,729, -4.7461 (dbh/100)^2 + 20.5859 (dbh/100) - 1.6376
+Stephegyne parviflora,Stephegyne parviflora,0.0000,Central Highlands,730, 0.0524 (dbh)^2 + 0.1302 (dbh) - 0.0629
+Stephegyne parviflora,Stephegyne parviflora,0.0000,Central Highlands,731, 0.0050 (dbh)^2- 0.0093 (dbh) + 0.0334
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Central Highlands,732, 243.9454 (dbh/100)^2 + 177.3004 (dbh/100) - 16.2788
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Central Highlands,733, 0.5403 (dbh/100)^2 + 5.9345 (dbh/100) - 0.3329
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Central Highlands,734, 0.0132 (dbh)^2 + 0.7130 (dbh) - 0.4479
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Central Highlands,735, -0.0014 (dbh)^2 + 0.0265 (dbh) + 0.0104
+Aegle marmelos,Aegle marmelos,0.0000,Central Highlands,736, -316.8777 (dbh/100)^2 + 401.7510 (dbh/100) - 28.8949
+Aegle marmelos,Aegle marmelos,0.0000,Central Highlands,737, -26.68 (dbh/100)^2 + 33.47 (dbh/100) - 2.394
+Aegle marmelos,Aegle marmelos,0.0000,Central Highlands,738, 0.1395 (dbh)^2- 0.1710 (dbh) + 0.6693
+Aegle marmelos,Aegle marmelos,0.0000,Central Highlands,739, 0.0090 (dbh)^2 - 0.0048 (dbh) + 0.0680
+Acacia lenticularis,Acacia lenticularis,0.0000,Central Highlands,740, 290.6110 (dbh/100)^2 + 78.7053 (dbh/100) - 6.0127
+Acacia lenticularis,Acacia lenticularis,0.0000,Central Highlands,741, 6.5580 (dbh/100)^2 + 4.6176 (dbh/100) - 0.3076
+Acacia lenticularis,Acacia lenticularis,0.0000,Central Highlands,742, 0.0891 (dbh)^2 + 0.2386 (dbh) + 0.1853
+Acacia lenticularis,Acacia lenticularis,0.0000,Central Highlands,743, -0.0012 (dbh)^2 + 0.0353 (dbh) - 0.0078
+Acacia leucophloea,Acacia leucophloea,0.0000,Central Highlands,744, 290.6110 (dbh/100)^2 + 78.7053 (dbh/100) - 6.0127
+Acacia leucophloea,Acacia leucophloea,0.0000,Central Highlands,745, 6.5580 (dbh/100)^2 + 4.6176 (dbh/100) - 0.3076
+Acacia leucophloea,Acacia leucophloea,0.0000,Central Highlands,746, 0.0891 (dbh)^2 + 0.2386 (dbh) + 0.1853
+Acacia leucophloea,Acacia leucophloea,0.0000,Central Highlands,747, -0.0012 (dbh)^2 + 0.0353 (dbh) - 0.0078
+Madhuca latifolia,Madhuca latifolia,0.0000,Central Highlands,748, 215.7248 (dbh/100) + 189.7812 (dbh/100) - 8.4775
+Madhuca latifolia,Madhuca latifolia,0.0000,Central Highlands,749, 14.6794 (dbh/100)^2 + 3.5935 (dbh/100) - 0.1774
+Madhuca latifolia,Madhuca latifolia,0.0000,Central Highlands,750, 0.0471 (dbh)^2 + 0.3412 (dbh) + 0.1263
+Madhuca latifolia,Madhuca latifolia,0.0000,Central Highlands,751, 0.0028 (dbh)^2 - 0.0074 (dbh) + 0.0863
+Bassia latifolia,Bassia latifolia,0.0000,Central Highlands,752, 215.7248 (dbh/100) + 189.7812 (dbh/100) - 8.4775
+Bassia latifolia,Bassia latifolia,0.0000,Central Highlands,753, 14.6794 (dbh/100)^2 + 3.5935 (dbh/100) - 0.1774
+Bassia latifolia,Bassia latifolia,0.0000,Central Highlands,754, 0.0471 (dbh)^2 + 0.3412 (dbh) + 0.1263
+Bassia latifolia,Bassia latifolia,0.0000,Central Highlands,755, 0.0028 (dbh)^2 - 0.0074 (dbh) + 0.0863
+Madhuca indica,Madhuca indica,0.0000,Central Highlands,756, 215.7248 (dbh/100) + 189.7812 (dbh/100) - 8.4775
+Madhuca indica,Madhuca indica,0.0000,Central Highlands,757, 14.6794 (dbh/100)^2 + 3.5935 (dbh/100) - 0.1774
+Madhuca indica,Madhuca indica,0.0000,Central Highlands,758, 0.0471 (dbh)^2 + 0.3412 (dbh) + 0.1263
+Madhuca indica,Madhuca indica,0.0000,Central Highlands,759, 0.0028 (dbh)^2 - 0.0074 (dbh) + 0.0863
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,760, 564.5753 (dbh/100)^2- 11.5172 (dbh/100) + 4.8052
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,761, 28.1133 (dbh/100)^2- 0.5735 (dbh/100) + 0.2393
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,762, -0.0386 (dbh)^2 + 1.3890 (dbh) - 0.2761
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,763, -0.0029 (dbh)^2 + 0.0835 (dbh) + 0.0256
+Flacourtia ramontchi,Flacourtia ramontchi,0.0000,Central Highlands,764, 564.5753 (dbh/100)^2- 11.5172 (dbh/100) + 4.8052
+Flacourtia ramontchi,Flacourtia ramontchi,0.0000,Central Highlands,765, 28.1133 (dbh/100)^2- 0.5735 (dbh/100) + 0.2393
+Flacourtia ramontchi,Flacourtia ramontchi,0.0000,Central Highlands,766, -0.0386 (dbh)^2 + 1.3890 (dbh) - 0.2761
+Flacourtia ramontchi,Flacourtia ramontchi,0.0000,Central Highlands,767, -0.0029 (dbh)^2 + 0.0835 (dbh) + 0.0256
+Tectona grandis,Tectona grandis,0.0000,North Deccan,768, 724.8313 (dbh/100) ^(1.8139)
+Tectona grandis,Tectona grandis,0.0000,North Deccan,769, -5.7898 (dbh/100)^2 + 16.1859 (dbh/100) - 0.8153
+Tectona grandis,Tectona grandis,0.0000,North Deccan,770, 0.1701 (dbh)^2 - 0.5602 (dbh) +(dbh).3209
+Tectona grandis,Tectona grandis,0.0000,North Deccan,771, 0.0080 (dbh)^2 + 0.0186 (dbh) + 0.0245
+Terminalia crenulata,Terminalia crenulata,0.0000,North Deccan,772, -893.2875 (dbh/100)^3 + 1888.8940 (dbh/100)^2 - 463.5333 (dbh/100) + 54.7484
+Terminalia crenulata,Terminalia crenulata,0.0000,North Deccan,773, 20.0615 (dbh/100)^2 +1.5684 (dbh/100) + 0.4141
+Terminalia crenulata,Terminalia crenulata,0.0000,North Deccan,774, 0.1545 (dbh)^2 + 0.0612 (dbh) + 0.5004
+Terminalia crenulata,Terminalia crenulata,0.0000,North Deccan,775, 0.0061 (dbh)^2 - 0.0027 (dbh) + 0.0550
+Terminalia tomentosa,Terminalia tomentosa,0.0000,North Deccan,776, -893.2875 (dbh/100)^3 + 1888.8940 (dbh/100)^2 - 463.5333 (dbh/100) + 54.7484
+Terminalia tomentosa,Terminalia tomentosa,0.0000,North Deccan,777, 20.0615 (dbh/100)^2 +1.5684 (dbh/100) + 0.4141
+Terminalia tomentosa,Terminalia tomentosa,0.0000,North Deccan,778, 0.1545 (dbh)^2 + 0.0612 (dbh) + 0.5004
+Terminalia tomentosa,Terminalia tomentosa,0.0000,North Deccan,779, 0.0061 (dbh)^2 - 0.0027 (dbh) + 0.0550
+Terminalia elliptica,Terminalia myriocarpa,0.0000,North Deccan,780, -893.2875 (dbh/100)^3 + 1888.8940 (dbh/100)^2 - 463.5333 (dbh/100) + 54.7484
+Terminalia elliptica,Terminalia myriocarpa,0.0000,North Deccan,781, 20.0615 (dbh/100)^2 +1.5684 (dbh/100) + 0.4141
+Terminalia elliptica,Terminalia myriocarpa,0.0000,North Deccan,782, 0.1545 (dbh)^2 + 0.0612 (dbh) + 0.5004
+Terminalia elliptica,Terminalia myriocarpa,0.0000,North Deccan,783, 0.0061 (dbh)^2 - 0.0027 (dbh) + 0.0550
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,North Deccan,784, 884.6576 (dbh/100)^2 + 395.8155 (dbh/100) - 38.2331
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,North Deccan,785, 13.0100 (dbh/100) - 0.3999
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,North Deccan,786, 0.1990 (dbh)^2 - 0.3570 (dbh) + 0.5943
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,North Deccan,787, 0.0118 (dbh)^2 - 0.0027 (dbh) + 0.0401
+Anogeissus pendula,Anogeissus pendula,0.0000,North Deccan,788, 1299.4268 (dbh/100)^3 - 1653.6151 (dbh/100)^2 + 1320.6808 (dbh/100) -110.1954
+Anogeissus pendula,Anogeissus pendula,0.0000,North Deccan,789, -3.8043 (dbh/100)^2 + 10.7862 (dbh/100) - 0.3515
+Anogeissus pendula,Anogeissus pendula,0.0000,North Deccan,790, -0.0650 (dbh)^2 + 2.1152 (dbh)- 1.1784
+Anogeissus pendula,Anogeissus pendula,0.0000,North Deccan,791, -0.0079 (dbh)^2 + 0.1908 (dbh) - 0.0179
+Butea monosperma,Butea monosperma,0.0000,North Deccan,792, 287.6540 (dbh/100)^2 + 67.0071 (dbh/100) - 1.9463
+Butea monosperma,Butea monosperma,0.0000,North Deccan,793, 4.6446 (dbh/100)^2 + 3.8577 (dbh/100) + 0.2056
+Butea monosperma,Butea monosperma,0.0000,North Deccan,794, 0.8883 (dbh) - 0.0294
+Butea monosperma,Butea monosperma,0.0000,North Deccan,795, 0.0040 (dbh)^2 + 0.0373 (dbh) + 0.1501
+Butea frondosa,Butea frondosa,0.0000,North Deccan,796, 287.6540 (dbh/100)^2 + 67.0071 (dbh/100) - 1.9463
+Butea frondosa,Butea frondosa,0.0000,North Deccan,797, 4.6446 (dbh/100)^2 + 3.8577 (dbh/100) + 0.2056
+Butea frondosa,Butea frondosa,0.0000,North Deccan,798, 0.8883 (dbh) - 0.0294
+Butea frondosa,Butea frondosa,0.0000,North Deccan,799, 0.0040 (dbh)^2 + 0.0373 (dbh) + 0.1501
+Lannea coromandelica,Lannea coromandelica,0.0000,North Deccan,800, 84.0382 (dbh/100)^2 + 262.3237 (dbh/100) - 20.4447
+Lannea coromandelica,Lannea coromandelica,0.0000,North Deccan,801, 1.611 (dbh/100)^2 + 18.47 (dbh/100) - 0.894
+Lannea coromandelica,Lannea coromandelica,0.0000,North Deccan,802, 0.011 (dbh)^3 - 0.068 (dbh)^2 + 0.351 (dbh) + 0.296
+Lannea coromandelica,Lannea coromandelica,0.0000,North Deccan,803, 0.007 (dbh)^2 + 0.006 (dbh) + 0.192
+Lannea grandis,Lannea grandis,0.0000,North Deccan,804, 84.0382 (dbh/100)^2 + 262.3237 (dbh/100) - 20.4447
+Lannea grandis,Lannea grandis,0.0000,North Deccan,805, 1.611 (dbh/100)^2 + 18.47 (dbh/100) - 0.894
+Lannea grandis,Lannea grandis,0.0000,North Deccan,806, 0.011 (dbh)^3 - 0.068 (dbh)^2 + 0.351 (dbh) + 0.296
+Lannea grandis,Lannea grandis,0.0000,North Deccan,807, 0.007 (dbh)^2 + 0.006 (dbh) + 0.192
+Odina wodier,Odina wodier,0.0000,North Deccan,808, 84.0382 (dbh/100)^2 + 262.3237 (dbh/100) - 20.4447
+Odina wodier,Odina wodier,0.0000,North Deccan,809, 1.611 (dbh/100)^2 + 18.47 (dbh/100) - 0.894
+Odina wodier,Odina wodier,0.0000,North Deccan,810, 0.011 (dbh)^3 - 0.068 (dbh)^2 + 0.351 (dbh) + 0.296
+Odina wodier,Odina wodier,0.0000,North Deccan,811, 0.007 (dbh)^2 + 0.006 (dbh) + 0.192
+Diospyros species,Diospyros species,0.0000,North Deccan,812, 479.3323 (dbh/100)^2 + 25.4894 (dbh/100) + 8.4235
+Diospyros species,Diospyros species,0.0000,North Deccan,813, 6.7291 (dbh/100)^2 + 6.0102 (dbh/100) + 0.2414
+Diospyros species,Diospyros species,0.0000,North Deccan,814, 0.0307 (dbh)^2 + 0.7393 (dbh) - 0.2260
+Diospyros species,Diospyros species,0.0000,North Deccan,815, 0.0033 (dbh)^2 + 0.0669 (dbh) - 0.0027
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,North Deccan,816, 243.9685 (dbh/100)^2 + 163.6429 (dbh/100) - 12.3582
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,North Deccan,817, -35.4845 (dbh/100)^3 + 44.3745 (dbh/100)^2- 1.2717 (dbh/100) + 0.2303
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,North Deccan,818, 0.0326 (dbh)^2 + 0.4611 (dbh) + 0.3191
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,North Deccan,819, 0.0074 (dbh)^2 - 0.0222 (dbh) + 0.0456
+Buchanania latifolia,Buchanania latifolia,0.0000,North Deccan,820, 225.0254 (dbh/100)^2 + 81.1387 (dbh/100) - 3.3972
+Buchanania latifolia,Buchanania latifolia,0.0000,North Deccan,821, 25.4746 (dbh/100)^2 - 0.6373 (dbh/100) + 0.6366
+Buchanania latifolia,Buchanania latifolia,0.0000,North Deccan,822, 0.0888 (dbh)^2 + 0.0680 (dbh) + 0.5616
+Buchanania latifolia,Buchanania latifolia,0.0000,North Deccan,823, 0.0108 (dbh)^2 - 0.0187 (dbh) + 0.1278
+Buchanania lanzan,Buchanania lanzan,0.0000,North Deccan,824, 225.0254 (dbh/100)^2 + 81.1387 (dbh/100) - 3.3972
+Buchanania lanzan,Buchanania lanzan,0.0000,North Deccan,825, 25.4746 (dbh/100)^2 - 0.6373 (dbh/100) + 0.6366
+Buchanania lanzan,Buchanania lanzan,0.0000,North Deccan,826, 0.0888 (dbh)^2 + 0.0680 (dbh) + 0.5616
+Buchanania lanzan,Buchanania lanzan,0.0000,North Deccan,827, 0.0108 (dbh)^2 - 0.0187 (dbh) + 0.1278
+Madhuca latifolia,Madhuca latifolia,0.0000,North Deccan,828, 199.2222 (dbh/100)^2 + 263.1915 (dbh/100) - 9.9139
+Madhuca latifolia,Madhuca latifolia,0.0000,North Deccan,829, 6.1590 (dbh/100) - 0.3077
+Madhuca latifolia,Madhuca latifolia,0.0000,North Deccan,830, 0.1405 (dbh)^2 - 0.0649 (dbh) + 0.7852
+Madhuca latifolia,Madhuca latifolia,0.0000,North Deccan,831, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Madhuca longifolia,Madhuca longifolia,0.0000,North Deccan,832, 199.2222 (dbh/100)^2 + 263.1915 (dbh/100) - 9.9139
+Madhuca longifolia,Madhuca longifolia,0.0000,North Deccan,833, 6.1590 (dbh/100) - 0.3077
+Madhuca longifolia,Madhuca longifolia,0.0000,North Deccan,834, 0.1405 (dbh)^2 - 0.0649 (dbh) + 0.7852
+Madhuca longifolia,Madhuca longifolia,0.0000,North Deccan,835, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Madhuca indica,Madhuca indica,0.0000,North Deccan,836, 199.2222 (dbh/100)^2 + 263.1915 (dbh/100) - 9.9139
+Madhuca indica,Madhuca indica,0.0000,North Deccan,837, 6.1590 (dbh/100) - 0.3077
+Madhuca indica,Madhuca indica,0.0000,North Deccan,838, 0.1405 (dbh)^2 - 0.0649 (dbh) + 0.7852
+Madhuca indica,Madhuca indica,0.0000,North Deccan,839, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Bassia latifolia,Bassia latifolia,0.0000,North Deccan,840, 199.2222 (dbh/100)^2 + 263.1915 (dbh/100) - 9.9139
+Bassia latifolia,Bassia latifolia,0.0000,North Deccan,841, 6.1590 (dbh/100) - 0.3077
+Bassia latifolia,Bassia latifolia,0.0000,North Deccan,842, 0.1405 (dbh)^2 - 0.0649 (dbh) + 0.7852
+Bassia latifolia,Bassia latifolia,0.0000,North Deccan,843, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Acacia catechu,Acacia catechu,0.0000,North Deccan,844, 412.9191 (dbh/100)^2- 2.7602 (dbh/100) + 11.2512
+Acacia catechu,Acacia catechu,0.0000,North Deccan,845, 7.0246 (dbh/100)^2 - 1.8951 (dbh/100) + 0.5892
+Acacia catechu,Acacia catechu,0.0000,North Deccan,846, 0.1995 (dbh)^2 - 0.3849 (dbh) + 1.6476
+Acacia catechu,Acacia catechu,0.0000,North Deccan,847, -0.0007 (dbh)^2 + 0.0562 (dbh) + 0.0312
+Gardenia resinifera,Gardenia resinifera,0.0000,North Deccan,848, 167.8008 (dbh/100)^2 + 212.0485 (dbh/100) - 10.6145
+Gardenia turgida,Gardenia turgida,0.0000,North Deccan,849, 167.8008 (dbh/100)^2 + 212.0485 (dbh/100) - 10.6145
+Gardenia lucida,Gardenia lucida,0.0000,North Deccan,850, 167.8008 (dbh/100)^2 + 212.0485 (dbh/100) - 10.6145
+Gardenia latifolia,Gardenia latifolia,0.0000,North Deccan,851, 167.8008 (dbh/100)^2 + 212.0485 (dbh/100) - 10.6145
+Gardenia resinifera,Gardenia resinifera,0.0000,North Deccan,852, 3.9604 (dbh/100)^2 + 2.5419 (dbh/100) + 0.4212
+Gardenia turgida,Gardenia turgida,0.0000,North Deccan,853, 3.9604 (dbh/100)^2 + 2.5419 (dbh/100) + 0.4212
+Gardenia lucida,Gardenia lucida,0.0000,North Deccan,854, 3.9604 (dbh/100)^2 + 2.5419 (dbh/100) + 0.4212
+Gardenia latifolia,Gardenia latifolia,0.0000,North Deccan,855, 3.9604 (dbh/100)^2 + 2.5419 (dbh/100) + 0.4212
+Gardenia resinifera,Gardenia resinifera,0.0000,North Deccan,856, 0.1779 (dbh)^2 - 0.5745 (dbh) + 1.6701
+Gardenia turgida,Gardenia turgida,0.0000,North Deccan,857, 0.1779 (dbh)^2 - 0.5745 (dbh) + 1.6701
+Gardenia lucida,Gardenia lucida,0.0000,North Deccan,858, 0.1779 (dbh)^2 - 0.5745 (dbh) + 1.6701
+Gardenia latifolia,Gardenia latifolia,0.0000,North Deccan,859, 0.1779 (dbh)^2 - 0.5745 (dbh) + 1.6701
+Gardenia resinifera,Gardenia resinifera,0.0000,North Deccan,860, 0.0119 (dbh)^2 - 0.0425 (dbh) + 0.1287
+Gardenia turgida,Gardenia turgida,0.0000,North Deccan,861, 0.0119 (dbh)^2 - 0.0425 (dbh) + 0.1287
+Gardenia lucida,Gardenia lucida,0.0000,North Deccan,862, 0.0119 (dbh)^2 - 0.0425 (dbh) + 0.1287
+Gardenia latifolia,Gardenia latifolia,0.0000,North Deccan,863, 0.0119 (dbh)^2 - 0.0425 (dbh) + 0.1287
+Wrightia tinctoria,Wrightia tinctoria,0.0000,North Deccan,864, 703.4801 (dbh/100)^2 - 128.9582 (dbh/100) + 13.6679
+Wrightia tinctoria,Wrightia tinctoria,0.0000,North Deccan,865, -4.0215 (dbh/100)^2 + 4.6618 (dbh/100) - 0.2465
+Wrightia tinctoria,Wrightia tinctoria,0.0000,North Deccan,866, 0.0232 (dbh)^2 + 0.5686 (dbh) - 0.2292
+Wrightia tinctoria,Wrightia tinctoria,0.0000,North Deccan,867, 0.0006 (dbh)^2 + 0.0111 (dbh) + 0.0151
+Cleistanthus collinus,Cleistanthus collinus,0.0000,North Deccan,868, 267.9289 (dbh/100)^2 + 203.8644 (dbh/100) - 13.2061
+Cleistanthus collinus,Cleistanthus collinus,0.0000,North Deccan,869, 4.1925 (dbh/100)^2 + 0.6047 (dbh/100) + 0.1422
+Cleistanthus collinus,Cleistanthus collinus,0.0000,North Deccan,870, 0.0895 (dbh)^2 + 0.3236 (dbh) + 0.5934
+Cleistanthus collinus,Cleistanthus collinus,0.0000,North Deccan,871, 0.0006 (dbh)^2 + 0.0129 (dbh) - 0.0064
+Syzygium cumini,Syzygium cumini,0.0000,North Deccan,872, 252.1925 (dbh/100)^2 + 138.7321 (dbh/100) - 10.9596
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North Deccan,873, 252.1925 (dbh/100)^2 + 138.7321 (dbh/100) - 10.9596
+Eugenia jambolana,Eugenia jambolana,0.0000,North Deccan,874, 252.1925 (dbh/100)^2 + 138.7321 (dbh/100) - 10.9596
+Syzygium cumini,Syzygium cumini,0.0000,North Deccan,875, 10.9963 (dbh/100)^2 - 1.6709 (dbh/100) + 0.6265
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North Deccan,876, 10.9963 (dbh/100)^2 - 1.6709 (dbh/100) + 0.6265
+Eugenia jambolana,Eugenia jambolana,0.0000,North Deccan,877, 10.9963 (dbh/100)^2 - 1.6709 (dbh/100) + 0.6265
+Syzygium cumini,Syzygium cumini,0.0000,North Deccan,878, 0.5933 (dbh) - 0.0378
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North Deccan,879, 0.5933 (dbh) - 0.0378
+Eugenia jambolana,Eugenia jambolana,0.0000,North Deccan,880, 0.5933 (dbh) - 0.0378
+Syzygium cumini,Syzygium cumini,0.0000,North Deccan,881, 0.0095 (dbh)^2 - 0.0349 (dbh) + 0.0480
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North Deccan,882, 0.0095 (dbh)^2 - 0.0349 (dbh) + 0.0480
+Eugenia jambolana,Eugenia jambolana,0.0000,North Deccan,883, 0.0095 (dbh)^2 - 0.0349 (dbh) + 0.0480
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,North Deccan,884, 625.9479 (dbh/100)^2 - 132.8810 (dbh/100) + 16.6826
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,North Deccan,885, 1.4667 (dbh/100)^2 + 0.4772 (dbh/100) + 0.0650
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,North Deccan,886, 0.0564 (dbh)^2 + 0.5274 (dbh) - 0.3069
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,North Deccan,887, -0.0005 (dbh)^2 + 0.0207 (dbh) + 0.0120
+Aegle marmelos,Aegle marmelos,0.0000,North Deccan,888, 604.8017 (dbh/100)^2 + 0.0041 (dbh/100) + 1.7251
+Aegle marmelos,Aegle marmelos,0.0000,North Deccan,889, 43.2013 (dbh/100)^2- 11.9883 (dbh/100) + 1.0009
+Aegle marmelos,Aegle marmelos,0.0000,North Deccan,890, 0.0940 (dbh)^2 + 0.0813 (dbh) + 0.1856
+Aegle marmelos,Aegle marmelos,0.0000,North Deccan,891, 0.0081 (dbh)^2 - 0.0021 (dbh) + 0.0102
+Bauhinia retusa,Bauhinia retusa,0.0000,North Deccan,892, 57.2611 (dbh/100)^2 + 205.3085 (dbh/100) - 15.5737
+Bauhinia variegata,Bauhinia variegata,0.0000,North Deccan,893, 57.2611 (dbh/100)^2 + 205.3085 (dbh/100) - 15.5737
+Phanera variegata,Phanera variegata,0.0000,North Deccan,894, 57.2611 (dbh/100)^2 + 205.3085 (dbh/100) - 15.5737
+Bauhinia retusa,Bauhinia retusa,0.0000,North Deccan,895, 1.6214 loge(dbh/100) + 3.9181
+Bauhinia variegata,Bauhinia variegata,0.0000,North Deccan,896, 1.6214 loge(dbh/100) + 3.9181
+Phanera variegata,Phanera variegata,0.0000,North Deccan,897, 1.6214 loge(dbh/100) + 3.9181
+Bauhinia retusa,Bauhinia retusa,0.0000,North Deccan,898, 0.0508 (dbh)^2 + 0.3060 (dbh) + 0.2747
+Bauhinia variegata,Bauhinia variegata,0.0000,North Deccan,899, 0.0508 (dbh)^2 + 0.3060 (dbh) + 0.2747
+Phanera variegata,Phanera variegata,0.0000,North Deccan,900, 0.0508 (dbh)^2 + 0.3060 (dbh) + 0.2747
+Bauhinia retusa,Bauhinia retusa,0.0000,North Deccan,901, 0.0083 (dbh)^2 - 0.0012 (dbh) + 0.0113
+Bauhinia variegata,Bauhinia variegata,0.0000,North Deccan,902, 0.0083 (dbh)^2 - 0.0012 (dbh) + 0.0113
+Phanera variegata,Phanera variegata,0.0000,North Deccan,903, 0.0083 (dbh)^2 - 0.0012 (dbh) + 0.0113
+Shorea robusta,Shorea robusta,0.0000,East Deccan,904, 96.1525 (dbh/100)^2 + 141.9383 (dbh/100) - 7.6058
+Shorea robusta,Shorea robusta,0.0000,East Deccan,905, 17.2383 (dbh/100)^2 + 4.2380 (dbh/100) - 0.1970
+Shorea robusta,Shorea robusta,0.0000,East Deccan,906, -0.0561 (dbh)^2 + 1.3533 (dbh) - 0.6625
+Shorea robusta,Shorea robusta,0.0000,East Deccan,907, 0.0001 (dbh)^3- 0.0085 (dbh)^2+ 0.1150 (dbh) - 0.0198
+Terminalia crenulata,Terminalia crenulata,0.0000,East Deccan,908, 487.5527 (dbh/100)^2 + 151.9905 (dbh/100) - 10.5122
+Terminalia crenulata,Terminalia crenulata,0.0000,East Deccan,909, 20.6898 (dbh/100)^2 + 0.6700 (dbh/100) + 0.7183
+Terminalia crenulata,Terminalia crenulata,0.0000,East Deccan,910, 0.2261 (dbh)^2- 0.2118 (dbh) + 0.4479
+Terminalia crenulata,Terminalia crenulata,0.0000,East Deccan,911, 0.0231 (dbh)^2- 0.0128 (dbh) + 0.0067
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Deccan,912, 487.5527 (dbh/100)^2 + 151.9905 (dbh/100) - 10.5122
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Deccan,913, 20.6898 (dbh/100)^2 + 0.6700 (dbh/100) + 0.7183
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Deccan,914, 0.2261 (dbh)^2- 0.2118 (dbh) + 0.4479
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Deccan,915, 0.0231 (dbh)^2- 0.0128 (dbh) + 0.0067
+Buchanania latifolia,Buchanania latifolia,0.0000,East Deccan,916, 371.3904 (dbh/100)^2 - 24.8493 (dbh/100) + 11.8891
+Buchanania latifolia,Buchanania latifolia,0.0000,East Deccan,917, 11.5126 (dbh/100)^2 + 11.7616 (dbh/100) - 0.4661
+Buchanania latifolia,Buchanania latifolia,0.0000,East Deccan,918, 0.1774 (dbh)^2 + 0.0497 (dbh) + 0.2405
+Buchanania latifolia,Buchanania latifolia,0.0000,East Deccan,919, 0.0167 (dbh)^2- 0.0533 (dbh) + 0.1272
+Buchanania lanzan,Buchanania lanzan,0.0000,East Deccan,920, 0.0167 (dbh)^2- 0.0533 (dbh) + 0.1272
+Buchanania lanzan,Buchanania lanzan,0.0000,East Deccan,921, 371.3904 (dbh/100)^2 - 24.8493 (dbh/100) + 11.8891
+Buchanania lanzan,Buchanania lanzan,0.0000,East Deccan,922, 11.5126 (dbh/100)^2 + 11.7616 (dbh/100) - 0.4661
+Buchanania lanzan,Buchanania lanzan,0.0000,East Deccan,923, 0.1774 (dbh)^2 + 0.0497 (dbh) + 0.2405
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,East Deccan,924, 282.0677 (dbh/100)^2 + 122.5817 (dbh/100) - 1.6765
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,East Deccan,925, 4.4738 (dbh/100)^2 + 10.3883 (dbh/100) - 0.2022
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,East Deccan,926, 0.3060 (dbh)^2 - 0.8760 (dbh) + 1.8367
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,East Deccan,927, 0.0057 (dbh)^2 + 0.0473 (dbh) + 0.0448
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,East Deccan,928, 454.7209 (dbh/100)^2 + 91.0511 (dbh/100) - 0.7796
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,East Deccan,929, 6.0086 (dbh/100)^2 + 14.4343 (dbh/100) - 0.6523
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,East Deccan,930, 0.2289 (dbh)^2 - 0.5895 (dbh) + 1.2901
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,East Deccan,931, 0.0054 (dbh)^2 - 0.0027 (dbh) + 0.0586
+Lannea coromandelica,Lannea coromandelica,0.0000,East Deccan,932, -480.8026 (dbh/100)^3 + 776.5053 (dbh/100)^2 - 12.8368 (dbh/100) +3.2642
+Lannea coromandelica,Lannea coromandelica,0.0000,East Deccan,933, 24.8730 (dbh/100)^3 - 34.3265 (dbh/100)^2 + 32.9611 (dbh/100) - 2.2382
+Lannea coromandelica,Lannea coromandelica,0.0000,East Deccan,934, 0.1437 (dbh)^2 - 0.0925 (dbh) + 0.2315
+Lannea coromandelica,Lannea coromandelica,0.0000,East Deccan,935, 0.0041 (dbh)^2 + 0.0476 (dbh) + 0.0538
+Lannea grandis,Lannea grandis,0.0000,East Deccan,936, -480.8026 (dbh/100)^3 + 776.5053 (dbh/100)^2 - 12.8368 (dbh/100) +3.2642
+Lannea grandis,Lannea grandis,0.0000,East Deccan,937, 24.8730 (dbh/100)^3 - 34.3265 (dbh/100)^2 + 32.9611 (dbh/100) - 2.2382
+Lannea grandis,Lannea grandis,0.0000,East Deccan,938, 0.1437 (dbh)^2 - 0.0925 (dbh) + 0.2315
+Lannea grandis,Lannea grandis,0.0000,East Deccan,939, 0.0041 (dbh)^2 + 0.0476 (dbh) + 0.0538
+Odina wodier,Odina wodier,0.0000,East Deccan,940, -480.8026 (dbh/100)^3 + 776.5053 (dbh/100)^2 - 12.8368 (dbh/100) +3.2642
+Odina wodier,Odina wodier,0.0000,East Deccan,941, 24.8730 (dbh/100)^3 - 34.3265 (dbh/100)^2 + 32.9611 (dbh/100) - 2.2382
+Odina wodier,Odina wodier,0.0000,East Deccan,942, 0.1437 (dbh)^2 - 0.0925 (dbh) + 0.2315
+Odina wodier,Odina wodier,0.0000,East Deccan,943, 0.0041 (dbh)^2 + 0.0476 (dbh) + 0.0538
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Deccan,944, 617.5004 (dbh/100)^2 + 213.1245 (dbh/100) - 10.7193
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Deccan,945, 2.6012 (dbh/100)^2 + 4.6100 (dbh/100) + 0.4850
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Deccan,946, 0.0093 (dbh)^2 + 2.0713 (dbh)- 1.3562
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Deccan,947, 0.0055 (dbh)^2 + 0.0538 (dbh) - 0.0308
+Madhuca latifolia,Madhuca latifolia,0.0000,East Deccan,948, 363.8918 (dbh/100)^2 + 21.7241 (dbh/100) + 12.4076
+Madhuca latifolia,Madhuca latifolia,0.0000,East Deccan,949, -0.5623 (dbh/100)^2 + 5.9581 (dbh/100) - 0.3769
+Madhuca latifolia,Madhuca latifolia,0.0000,East Deccan,950, 0.1643 (dbh)^2- 0.1839 (dbh) + 0.8660
+Madhuca latifolia,Madhuca latifolia,0.0000,East Deccan,951, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Madhuca longifolia,Madhuca longifolia,0.0000,East Deccan,952, 363.8918 (dbh/100)^2 + 21.7241 (dbh/100) + 12.4076
+Madhuca longifolia,Madhuca longifolia,0.0000,East Deccan,953, -0.5623 (dbh/100)^2 + 5.9581 (dbh/100) - 0.3769
+Madhuca longifolia,Madhuca longifolia,0.0000,East Deccan,954, 0.1643 (dbh)^2- 0.1839 (dbh) + 0.8660
+Madhuca longifolia,Madhuca longifolia,0.0000,East Deccan,955, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Madhuca indica,Madhuca indica,0.0000,East Deccan,956, 363.8918 (dbh/100)^2 + 21.7241 (dbh/100) + 12.4076
+Madhuca indica,Madhuca indica,0.0000,East Deccan,957, -0.5623 (dbh/100)^2 + 5.9581 (dbh/100) - 0.3769
+Madhuca indica,Madhuca indica,0.0000,East Deccan,958, 0.1643 (dbh)^2- 0.1839 (dbh) + 0.8660
+Madhuca indica,Madhuca indica,0.0000,East Deccan,959, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Bassia latifolia,Bassia latifolia,0.0000,East Deccan,960, 363.8918 (dbh/100)^2 + 21.7241 (dbh/100) + 12.4076
+Bassia latifolia,Bassia latifolia,0.0000,East Deccan,961, -0.5623 (dbh/100)^2 + 5.9581 (dbh/100) - 0.3769
+Bassia latifolia,Bassia latifolia,0.0000,East Deccan,962, 0.1643 (dbh)^2- 0.1839 (dbh) + 0.8660
+Bassia latifolia,Bassia latifolia,0.0000,East Deccan,963, 0.0015 (dbh)^2 + 0.0042 (dbh) + 0.0175
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Deccan,964, 975.0536 (dbh/100)^2 + 304.3150 (dbh/100) - 28.7845
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Deccan,965, 1.1759 (dbh/100)^2 + 12.2568 (dbh/100) - 0.5698
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Deccan,966, 0.2140 (dbh)^2 - 0.3769 (dbh) + 0.6000
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Deccan,967, 0.0104 (dbh)^2 - 0.0135 (dbh) + 0.0148
+Tectona grandis,Tectona grandis,0.0000,East Deccan,968, 400.7901 (dbh/100)^2 + 154.6186 (dbh/100) - 10.3648
+Tectona grandis,Tectona grandis,0.0000,East Deccan,969, 0.8874 (dbh/100)^2 + 7.7946 (dbh/100) + 0.2524
+Tectona grandis,Tectona grandis,0.0000,East Deccan,970, 0.0236 (dbh)^3 - 0.0907 (dbh)^2 + 0.1486 (dbh) + 0.7882
+Tectona grandis,Tectona grandis,0.0000,East Deccan,971, 0.0121 (dbh)^2 - 0.0132 (dbh) + 0.0450
+Butea frondosa,Butea frondosa,0.0000,East Deccan,972, 370.0886 (dbh/100)^2 - 109.6483 (dbh/100) + 17.2888
+Butea frondosa,Butea frondosa,0.0000,East Deccan,973, 60.7797 (dbh/100)^2 - 17.5339 (dbh/100) + 2.3183
+Butea frondosa,Butea frondosa,0.0000,East Deccan,974, 0.0863 (dbh)^2 - 0.0040 (dbh) + 0.5788
+Butea frondosa,Butea frondosa,0.0000,East Deccan,975, 0.0033 (dbh)^2 + 0.0519 (dbh) + 0.1722
+Butea monosperma,Butea monosperma,0.0000,East Deccan,976, 370.0886 (dbh/100)^2 - 109.6483 (dbh/100) + 17.2888
+Butea monosperma,Butea monosperma,0.0000,East Deccan,977, 60.7797 (dbh/100)^2 - 17.5339 (dbh/100) + 2.3183
+Butea monosperma,Butea monosperma,0.0000,East Deccan,978, 0.0863 (dbh)^2 - 0.0040 (dbh) + 0.5788
+Butea monosperma,Butea monosperma,0.0000,East Deccan,979, 0.0033 (dbh)^2 + 0.0519 (dbh) + 0.1722
+Tectona grandis,Tectona grandis,0.0000,South Deccan,980, 539.6789 (dbh/100)^2- 91.0556 (dbh/100) + 27.1753
+Tectona grandis,Tectona grandis,0.0000,South Deccan,981, 25.3092 (dbh/100)^2 + 0.7069 (dbh/100) + 0.5550
+Tectona grandis,Tectona grandis,0.0000,South Deccan,982, 0.2044 (dbh)^2 + 1.0601 (dbh) - 1.2801
+Tectona grandis,Tectona grandis,0.0000,South Deccan,983, 0.0080 (dbh)^2 + 0.0186 (dbh) + 0.0267
+Anogeissus latifolia,Anogeissus latifolia,0.0000,South Deccan,984, 527.5528 (dbh/100)^2 + 190.9378 (dbh/100) - 6.3153
+Anogeissus latifolia,Anogeissus latifolia,0.0000,South Deccan,985, 1.8701 (dbh/100)^2 + 2.0075 (dbh/100) - 0.0042
+Anogeissus latifolia,Anogeissus latifolia,0.0000,South Deccan,986, 0.1675 (dbh)^2 + 0.5589 (dbh) + 0.7879
+Anogeissus latifolia,Anogeissus latifolia,0.0000,South Deccan,987, 0.0025 (dbh)^2 + 0.0046 (dbh) + 0.0086
+Terminalia crenulata,Terminalia crenulata,0.0000,South Deccan,988, 810.6925 (dbh/100)^2 - 139.3736 (dbh/100) + 36.0631
+Terminalia crenulata,Terminalia crenulata,0.0000,South Deccan,989, 5.5404 (dbh/100)^2 + 2.6344 (dbh/100) + 0.0470
+Terminalia crenulata,Terminalia crenulata,0.0000,South Deccan,990, 0.2952 (dbh)^2 - 0.5102 (dbh) + 1.4387
+Terminalia crenulata,Terminalia crenulata,0.0000,South Deccan,991, 0.0021 (dbh)^2 - 0.0009 (dbh) + 0.0157
+Terminalia tomentosa,Terminalia tomentosa,0.0000,South Deccan,992, 810.6925 (dbh/100)^2 - 139.3736 (dbh/100) + 36.0631
+Terminalia tomentosa,Terminalia tomentosa,0.0000,South Deccan,993, 5.5404 (dbh/100)^2 + 2.6344 (dbh/100) + 0.0470
+Terminalia tomentosa,Terminalia tomentosa,0.0000,South Deccan,994, 0.2952 (dbh)^2 - 0.5102 (dbh) + 1.4387
+Terminalia tomentosa,Terminalia tomentosa,0.0000,South Deccan,995, 0.0021 (dbh)^2 - 0.0009 (dbh) + 0.0157
+Albizia amara,Albizia amara,0.0000,South Deccan,996, -31.5487 (dbh/100)^2 + 88.5829 (dbh/100) + 1.3364
+Albizia amara,Albizia amara,0.0000,South Deccan,997, -0.6411 (dbh/100)^2 + 2.7919 (dbh/100) + 0.0396
+Albizia amara,Albizia amara,0.0000,South Deccan,998, 0.0363 (dbh)^2 + 1.4877 (dbh) - 0.7142
+Albizia amara,Albizia amara,0.0000,South Deccan,999, 0.0012 (dbh)^2 + 0.0209 (dbh) + 0.0161
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,South Deccan,1000, 488.0505 (dbh/100)^2 + 33.6399 (dbh/100) + 15.4392
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,South Deccan,1001, 14.1500 (dbh/100)^2 - 0.9931 (dbh/100) + 0.4151
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,South Deccan,1002, 0.3823 (dbh)^2- 1.2603 (dbh) + 1.8184
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,South Deccan,1003, 0.0043 (dbh)^2- 0.0183 (dbh) + 0.0393
+Dalbergia paniculata,Dalbergia paniculata,0.0000,South Deccan,1004, -102.7024 (dbh/100)^2 + 293.0061 (dbh/100) - 11.0535
+Dalbergia paniculata,Dalbergia paniculata,0.0000,South Deccan,1005, -9.9474 (dbh/100)^2 + 15.0404 (dbh/100) - 0.1593
+Dalbergia paniculata,Dalbergia paniculata,0.0000,South Deccan,1006, 0.2463 (dbh)^2 - 0.3225 (dbh) + 0.5993
+Dalbergia paniculata,Dalbergia paniculata,0.0000,South Deccan,1007, 0.0072 (dbh)^2 + 0.0776 (dbh) - 0.0471
+Eucalyptus species,Eucalyptus species,0.0000,South Deccan,1008, 1992.5579 (dbh/100)^2 - 569.1502 (dbh/100) + 58.6038
+Eucalyptus species,Eucalyptus species,0.0000,South Deccan,1009, 108.9443 (dbh/100)^2 - 30.6000 (dbh/100) + 3.4514
+Eucalyptus species,Eucalyptus species,0.0000,South Deccan,1010, 0.1846 (dbh)^2 + 0.6850 (dbh) - 0.6812
+Eucalyptus species,Eucalyptus species,0.0000,South Deccan,1011, 0.0169 (dbh)^2 + 0.0038 (dbh) + 0.0106
+Butea monosperma,Butea monosperma,0.0000,South Deccan,1012, -112.9531 (dbh/100)^2 + 137.3176 (dbh/100) - 6.7571
+Butea monosperma,Butea monosperma,0.0000,South Deccan,1013, -21.0604 (dbh/100)^2 + 28.5709 (dbh/100) - 1.8295
+Butea monosperma,Butea monosperma,0.0000,South Deccan,1014, 0.0459 (dbh)^2 + 0.4265 (dbh) - 0.4595
+Butea monosperma,Butea monosperma,0.0000,South Deccan,1015, 0.0011 (dbh)^2 + 0.0548 (dbh) - 0.0031
+Butea frondosa,Butea frondosa,0.0000,South Deccan,1016, -112.9531 (dbh/100)^2 + 137.3176 (dbh/100) - 6.7571
+Butea frondosa,Butea frondosa,0.0000,South Deccan,1017, 0.0459 (dbh)^2 + 0.4265 (dbh) - 0.4595
+Butea frondosa,Butea frondosa,0.0000,South Deccan,1018, -21.0604 (dbh/100)^2 + 28.5709 (dbh/100) - 1.8295
+Butea frondosa,Butea frondosa,0.0000,South Deccan,1019, 0.0011 (dbh)^2 + 0.0548 (dbh) - 0.0031
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,South Deccan,1020, 100.9008 (dbh/100)^2 + 84.8999 (dbh/100) + 4.2891
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,South Deccan,1021, 8.7374 (dbh/100)^2 + 6.2665 (dbh/100) - 0.4480
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,South Deccan,1022, 0.1927 (dbh)^2 + 0.4646 (dbh) + 0.1709
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,South Deccan,1023, 0.0026 (dbh)^2 + 0.0024 (dbh) + 0.0440
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,South Deccan,1024, 100.9008 (dbh/100)^2 + 84.8999 (dbh/100) + 4.2891
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,South Deccan,1025, 8.7374 (dbh/100)^2 + 6.2665 (dbh/100) - 0.4480
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,South Deccan,1026, 0.1927 (dbh)^2 + 0.4646 (dbh) + 0.1709
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,South Deccan,1027, 0.0026 (dbh)^2 + 0.0024 (dbh) + 0.0440
+Hardwickia binata,Hardwickia binata,0.0000,South Deccan,1028, 111.0238 (dbh/100)^2 + 88.3600 (dbh/100) + 5.3628
+Hardwickia binata,Hardwickia binata,0.0000,South Deccan,1029, -2.4828 (dbh/100)^2 + 13.0998 (dbh/100) - 0.2666
+Hardwickia binata,Hardwickia binata,0.0000,South Deccan,1030, 0.2426 (dbh)^2 + 0.1704 (dbh) - 0.2384
+Hardwickia binata,Hardwickia binata,0.0000,South Deccan,1031, 0.0128 (dbh)^2 + 0.0298 (dbh) - 0.0483
+Wrightia tinctoria,Wrightia tinctoria,0.0000,South Deccan,1032, 844.1903 (dbh/100)^2- 209.0971 (dbh/100) + 22.2997
+Wrightia tinctoria,Wrightia tinctoria,0.0000,South Deccan,1033, 32.1939 (dbh/100)^2 - 5.8653 (dbh/100) + 0.8683
+Wrightia tinctoria,Wrightia tinctoria,0.0000,South Deccan,1034, 0.1241 (dbh)^2 + 0.3036 (dbh) - 0.2649
+Wrightia tinctoria,Wrightia tinctoria,0.0000,South Deccan,1035, 0.0054 (dbh)^2 + 0.0148 (dbh) - 0.0268
+Syzygium cumini,Syzygium cumini,0.0000,South Deccan,1036, 855.3180 (dbh/100)^2 - 242.6737 (dbh/100) + 46.4286
+Syzygium cumini,Syzygium cumini,0.0000,South Deccan,1037, 53.5761 (dbh/100)^2 - 11.0837 (dbh/100) + 2.0611
+Syzygium cumini,Syzygium cumini,0.0000,South Deccan,1038, 0.1650 (dbh)^2 + 1.5328 (dbh) - 1.9294
+Syzygium cumini,Syzygium cumini,0.0000,South Deccan,1039, 0.0108 (dbh)^2 + 0.0597 (dbh) - 0.0420
+Syzygium jambolanum,Syzygium jambolanum,0.0000,South Deccan,1040, 855.3180 (dbh/100)^2 - 242.6737 (dbh/100) + 46.4286
+Syzygium jambolanum,Syzygium jambolanum,0.0000,South Deccan,1041, 53.5761 (dbh/100)^2 - 11.0837 (dbh/100) + 2.0611
+Syzygium jambolanum,Syzygium jambolanum,0.0000,South Deccan,1042, 0.1650 (dbh)^2 + 1.5328 (dbh) - 1.9294
+Syzygium jambolanum,Syzygium jambolanum,0.0000,South Deccan,1043, 0.0108 (dbh)^2 + 0.0597 (dbh) - 0.0420
+Eugenia jambolana,Eugenia jambolana,0.0000,South Deccan,1044, 855.3180 (dbh/100)^2 - 242.6737 (dbh/100) + 46.4286
+Eugenia jambolana,Eugenia jambolana,0.0000,South Deccan,1045, 53.5761 (dbh/100)^2 - 11.0837 (dbh/100) + 2.0611
+Eugenia jambolana,Eugenia jambolana,0.0000,South Deccan,1046, 0.1650 (dbh)^2 + 1.5328 (dbh) - 1.9294
+Eugenia jambolana,Eugenia jambolana,0.0000,South Deccan,1047, 0.0108 (dbh)^2 + 0.0597 (dbh) - 0.0420
+Tectona grandis,Tectona grandis,0.0000,Western Ghats,1048, 426.4085 (dbh/100)^2 - 65.3303 (dbh/100) + 30.9354
+Tectona grandis,Tectona grandis,0.0000,Western Ghats,1049, 4.0598 (dbh/100)^2 + 1.0953 (dbh/100) + 0.3664
+Tectona grandis,Tectona grandis,0.0000,Western Ghats,1050, 0.3533 (dbh)^2 + 0.1121 (dbh) - 0.3794
+Tectona grandis,Tectona grandis,0.0000,Western Ghats,1051, 0.0015 (dbh)^2 + 0.0013 (dbh) + 0.0066
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Ghats,1052, 1983.9425 (dbh/100)^3 - 1588.1130 (dbh/100)^2 + 533.6380 (dbh/100) -23.3952
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Ghats,1053, 6.6210 (dbh/100)^2 - 1.2689 (dbh/100) + 0.4737
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Ghats,1054, 0.3349 (dbh)^2- 0.3465 (dbh) + 1.9953
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Ghats,1055, 0.0012 (dbh)^2 + 0.0045 (dbh) + 0.0504
+Terminalia crenulata,Terminalia crenulata,0.0000,Western Ghats,1056, 1815.5165 (dbh/100)^3-1348.7147 (dbh/100)^2 + 594.0835 (dbh/100) -29.0793
+Terminalia crenulata,Terminalia crenulata,0.0000,Western Ghats,1057, 44.8486 (dbh/100)^2 - 8.7590 (dbh/100) + 1.2305
+Terminalia crenulata,Terminalia crenulata,0.0000,Western Ghats,1058, 0.4186 (dbh)^2- 1.3886 (dbh) + 2.4775
+Terminalia crenulata,Terminalia crenulata,0.0000,Western Ghats,1059, 0.0105 (dbh)^2- 0.0363 (dbh) + 0.1030
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Western Ghats,1060, 1815.5165 (dbh/100)^3-1348.7147 (dbh/100)^2 + 594.0835 (dbh/100) -29.0793
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Western Ghats,1061, 44.8486 (dbh/100)^2 - 8.7590 (dbh/100) + 1.2305
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Western Ghats,1062, 0.4186 (dbh)^2- 1.3886 (dbh) + 2.4775
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Western Ghats,1063, 0.0105 (dbh)^2- 0.0363 (dbh) + 0.1030
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Ghats,1064, 140.3103 (dbh/100)^2 + 199.3693 (dbh/100) - 8.2801
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Ghats,1065, 6.6914 (dbh/100)^2 + 11.6819 (dbh/100) - 0.7106
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Ghats,1066, 0.1875 (dbh)^2 + 0.4663 (dbh) + 1.2023
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Ghats,1067, 0.0656 (dbh) - 0.0051
+Terminalia paniculata,Terminalia paniculata,0.0000,Western Ghats,1068, 362.5509 (dbh/100)^2 + 278.3135 (dbh/100) - 17.7837
+Terminalia paniculata,Terminalia paniculata,0.0000,Western Ghats,1069, 8.1731 (dbh/100)^2 + 10.4816 (dbh/100) - 0.7031
+Terminalia paniculata,Terminalia paniculata,0.0000,Western Ghats,1070, 0.2724 (dbh)^2- 0.0125 (dbh) - 0.0558
+Terminalia paniculata,Terminalia paniculata,0.0000,Western Ghats,1071, 0.0064 (dbh)^2- 0.0052 (dbh) + 0.0306
+Macaranga peltata,Macaranga peltata,0.0000,Western Ghats,1072, -351.6206 (dbh/100)^2 + 698.1528 (dbh/100) - 49.8923
+Macaranga peltata,Macaranga peltata,0.0000,Western Ghats,1073, -17.3870 (dbh/100)^2 + 43.6160 (dbh/100) - 3.0387
+Macaranga peltata,Macaranga peltata,0.0000,Western Ghats,1074, 0.2502 (dbh)^2 + 0.1864 (dbh) - 0.4365
+Macaranga peltata,Macaranga peltata,0.0000,Western Ghats,1075, 0.0208 (dbh)^2- 0.0584 (dbh) + 0.0589
+Syzygium cumini,Syzygium cumini,0.0000,Western Ghats,1076, 1720.1630 (dbh/100)^2 - 423.8031 (dbh/100) + 49.9381
+Syzygium cumini,Syzygium cumini,0.0000,Western Ghats,1077, 30.1113 (dbh/100)^3 + 47.5624 (dbh/100)^2- 12.5773 (dbh/100) + 2.7618
+Syzygium cumini,Syzygium cumini,0.0000,Western Ghats,1078, 0.4284 (dbh)^2 - 1.4660 (dbh) + 2.4189
+Syzygium cumini,Syzygium cumini,0.0000,Western Ghats,1079, 0.0222 (dbh)^2 - 0.0127 (dbh) + 0.0632
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Western Ghats,1080, 1720.1630 (dbh/100)^2 - 423.8031 (dbh/100) + 49.9381
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Western Ghats,1081, 30.1113 (dbh/100)^3 + 47.5624 (dbh/100)^2- 12.5773 (dbh/100) + 2.7618
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Western Ghats,1082, 0.4284 (dbh)^2 - 1.4660 (dbh) + 2.4189
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Western Ghats,1083, 0.0222 (dbh)^2 - 0.0127 (dbh) + 0.0632
+Eugenia jambolana,Eugenia jambolana,0.0000,Western Ghats,1084, 1720.1630 (dbh/100)^2 - 423.8031 (dbh/100) + 49.9381
+Eugenia jambolana,Eugenia jambolana,0.0000,Western Ghats,1085, 30.1113 (dbh/100)^3 + 47.5624 (dbh/100)^2- 12.5773 (dbh/100) + 2.7618
+Eugenia jambolana,Eugenia jambolana,0.0000,Western Ghats,1086, 0.4284 (dbh)^2 - 1.4660 (dbh) + 2.4189
+Eugenia jambolana,Eugenia jambolana,0.0000,Western Ghats,1087, 0.0222 (dbh)^2 - 0.0127 (dbh) + 0.0632
+Schleichera trijuga,Schleichera trijuga,0.0000,Western Ghats,1088, -23.7715 (dbh/100)^2 + 374.0009 (dbh/100) - 11.3382
+Schleichera trijuga,Schleichera trijuga,0.0000,Western Ghats,1089, 13.2675 (dbh/100)^2 + 10.6145 (dbh/100) + 0.7554
+Schleichera trijuga,Schleichera trijuga,0.0000,Western Ghats,1090, 0.5121 (dbh)^2- 1.2087 (dbh) + 1.9627
+Schleichera trijuga,Schleichera trijuga,0.0000,Western Ghats,1091, 0.0058 (dbh)^2 + 0.1484 (dbh) + 0.0070
+Schleichera oleosa,Schleichera oleosa,0.0000,Western Ghats,1092, -23.7715 (dbh/100)^2 + 374.0009 (dbh/100) - 11.3382
+Schleichera oleosa,Schleichera oleosa,0.0000,Western Ghats,1093, 13.2675 (dbh/100)^2 + 10.6145 (dbh/100) + 0.7554
+Schleichera oleosa,Schleichera oleosa,0.0000,Western Ghats,1094, 0.5121 (dbh)^2- 1.2087 (dbh) + 1.9627
+Schleichera oleosa,Schleichera oleosa,0.0000,Western Ghats,1095, 0.0058 (dbh)^2 + 0.1484 (dbh) + 0.0070
+Myristica malabarica,Myristica malabarica,0.0000,Western Ghats,1096, 368.3320 (dbh/100)^2 + 159.3366 (dbh/100) + 7.8771
+Myristica malabarica,Myristica malabarica,0.0000,Western Ghats,1097, 16.2036 (dbh/100)^2 + 5.4228 (dbh/100) + 1.5594
+Myristica malabarica,Myristica malabarica,0.0000,Western Ghats,1098, 0.3164 (dbh)^2 + 0.3275 (dbh) + 0.2305
+Myristica malabarica,Myristica malabarica,0.0000,Western Ghats,1099, 0.0340 (dbh)^2 - 0.1066 (dbh) + 0.2631
+Artocarpus heterophyllus,Artocarpus heterophyllus,0.0000,Western Ghats,1100, -187.2610 (dbh/100)^2 + 496.1925 (dbh/100) - 31.2311
+Artocarpus heterophyllus,Artocarpus heterophyllus,0.0000,Western Ghats,1101, -4.7945 (dbh/100)^2 + 26.9481 (dbh/100) - 1.5618
+Artocarpus heterophyllus,Artocarpus heterophyllus,0.0000,Western Ghats,1102, 0.3121 (dbh)^2- 0.7693 (dbh) + 1.1439
+Artocarpus heterophyllus,Artocarpus heterophyllus,0.0000,Western Ghats,1103, 0.0197 (dbh)^2- 0.0557 (dbh)+ 0.1090
+Artocarpus integrifolia,Artocarpus integrifolia,0.0000,Western Ghats,1104, -187.2610 (dbh/100)^2 + 496.1925 (dbh/100) - 31.2311
+Artocarpus integrifolia,Artocarpus integrifolia,0.0000,Western Ghats,1105, -4.7945 (dbh/100)^2 + 26.9481 (dbh/100) - 1.5618
+Artocarpus integrifolia,Artocarpus integrifolia,0.0000,Western Ghats,1106, 0.3121 (dbh)^2- 0.7693 (dbh) + 1.1439
+Artocarpus integrifolia,Artocarpus integrifolia,0.0000,Western Ghats,1107, 0.0197 (dbh)^2- 0.0557 (dbh)+ 0.1090
+Pinus patula,Pinus patula,0.0000,Western Ghats,1108, 593.5119 (dbh/100)^2 + 67.7435 (dbh/100) + 6.1820
+Pinus patula,Pinus patula,0.0000,Western Ghats,1109, 91.3057 (dbh/100)^2 - 13.2752 (dbh/100) + 2.3799
+Pinus patula,Pinus patula,0.0000,Western Ghats,1110, 0.3316 (dbh)^2 + 0.5356 (dbh) - 0.2299
+Pinus patula,Pinus patula,0.0000,Western Ghats,1111, 0.0117 (dbh)^2 + 0.1553 (dbh) - 0.0117
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,Western Ghats,1112, -123.7223 (dbh/100)^2 + 290.7752 (dbh/100) - 13.5650
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,Western Ghats,1113, -2.7947 (dbh/100)^2 + 7.1714 (dbh/100) - 0.3286
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,Western Ghats,1114, 0.2400 (dbh)^2- 0.1514 (dbh) + 0.7339
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,Western Ghats,1115, 0.0041 (dbh)^2 - 0.0095 (dbh) + 0.0495
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,Western Ghats,1116, -123.7223 (dbh/100)^2 + 290.7752 (dbh/100) - 13.5650
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,Western Ghats,1117, -2.7947 (dbh/100)^2 + 7.1714 (dbh/100) - 0.3286
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,Western Ghats,1118, 0.2400 (dbh)^2- 0.1514 (dbh) + 0.7339
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,Western Ghats,1119, 0.0041 (dbh)^2 - 0.0095 (dbh) + 0.0495
+Olea dioica,Olea dioica,0.0000,Western Ghats,1120, 362.7717 (dbh/100)^2 + 210.9870 (dbh/100) - 12.1988
+Olea dioica,Olea dioica,0.0000,Western Ghats,1121, 23.3807 (dbh/100)^2 + 3.2779 (dbh/100) + 0.2784
+Olea dioica,Olea dioica,0.0000,Western Ghats,1122, 0.1892 (dbh)^2 + 0.4478 (dbh) - 0.0970
+Olea dioica,Olea dioica,0.0000,Western Ghats,1123, 0.0037 (dbh)^2 + 0.0383 (dbh) + 0.0399
+Aporosa lindleyana,Aporosa lindleyana,0.0000,Western Ghats,1124, 530.3446 (dbh/100)^2 - 110.2824 (dbh/100) + 24.3668
+Aporosa lindleyana,Aporosa lindleyana,0.0000,Western Ghats,1125, 35.9394 (dbh/100)^2 - 2.9608 (dbh/100) + 0.8623
+Aporosa lindleyana,Aporosa lindleyana,0.0000,Western Ghats,1126, 0.2798 (dbh)^2 + 0.0430 (dbh) + 0.0606
+Aporosa lindleyana,Aporosa lindleyana,0.0000,Western Ghats,1127, 0.0107 (dbh)^2 + 0.0178 (dbh) - 0.0003
+Palaquium ellipticum,Palaquim ellipticum,0.0000,Western Ghats,1128, 775.1896 (dbh/100)^2 + 125.0958 (dbh/100) - 6.8587
+Palaquium ellipticum,Palaquim ellipticum,0.0000,Western Ghats,1129, 110.1075 (dbh/100)^2 - 30.0260 (dbh/100) + 2.9517
+Palaquium ellipticum,Palaquim ellipticum,0.0000,Western Ghats,1130, 0.0466 (dbh)^3 - 0.3060 (dbh)^2 + 1.4217 (dbh) - 0.3071
+Palaquium ellipticum,Palaquim ellipticum,0.0000,Western Ghats,1131, 0.0020 (dbh)^3 - 0.0205 (dbh)^2 + 0.0923 (dbh) + 0.0019
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Western Ghats,1132, 568.7019 (dbh/100)^2 - 55.8345 (dbh/100) + 21.9233
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Western Ghats,1133, 41.5004 (dbh/100)^2 - 8.6750 (dbh/100) + 1.3020
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Western Ghats,1134, 0.2545 (dbh)^2 + 0.2466 (dbh) + 0.0771
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Western Ghats,1135, 0.0093 (dbh)^2 - 0.0287 (dbh) + 0.0676
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Eastern Ghats,1136, -121.0216 (dbh/100)^2 + 500.9042 (dbh/100) - 28.9668
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Eastern Ghats,1137, -5.4172 (dbh/100)^2 + 25.3317 (dbh/100) - 1.9576
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Eastern Ghats,1138, 0.3864 (dbh) 2 - 0.1017 (dbh) + 0.6930
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Eastern Ghats,1139, 0.0119 (dbh)^2- 0.0244 (dbh) + 0.0553
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,Eastern Ghats,1140, 110.8192 (dbh/100)^2 + 214.1240 (dbh/100) + 3.5771
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,Eastern Ghats,1141, 4.2573 (dbh/100)^2 + 1.6800 (dbh/100) + 0.9568
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,Eastern Ghats,1142, 0.4878 (dbh)^2- 0.9367 (dbh) + 0.5848
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,Eastern Ghats,1143, 0.0143 (dbh)^2- 0.0025 (dbh) + 0.0594
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Eastern Ghats,1144, -496.1913 (dbh/100)^3 + 1071.9492 (dbh/100)^2-1654776 (dbh/100) + 23.4904
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Eastern Ghats,1145, 14.0701 (dbh/100)^2 + 3.9727 (dbh/100) + 0.3602
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Eastern Ghats,1146, 0.1199 (dbh)^2 + 1.2698 (dbh) - 0.1217
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Eastern Ghats,1147, 0.0048 (dbh)^2 + 0.0336 (dbh) + 0.1327
+Lannea coromandelica,Lannea coromandelica,0.0000,Eastern Ghats,1148, 271.6220 (dbh/100)^2 - 40.3564 (dbh/100) + 19.9687
+Lannea coromandelica,Lannea coromandelica,0.0000,Eastern Ghats,1149, 11.1041 (dbh/100)^2- 1.5074 (dbh/100) + 0.6238
+Lannea coromandelica,Lannea coromandelica,0.0000,Eastern Ghats,1150, 0.2214 (dbh)^2- 0.3856 (dbh) + 1.0501
+Lannea coromandelica,Lannea coromandelica,0.0000,Eastern Ghats,1151, 0.0083 (dbh)^2 - 0.0262 (dbh) + 0.0415
+Lannea grandis,Lannea grandis,0.0000,Eastern Ghats,1152, 271.6220 (dbh/100)^2 - 40.3564 (dbh/100) + 19.9687
+Lannea grandis,Lannea grandis,0.0000,Eastern Ghats,1153, 11.1041 (dbh/100)^2- 1.5074 (dbh/100) + 0.6238
+Lannea grandis,Lannea grandis,0.0000,Eastern Ghats,1154, 0.2214 (dbh)^2- 0.3856 (dbh) + 1.0501
+Lannea grandis,Lannea grandis,0.0000,Eastern Ghats,1155, 0.0083 (dbh)^2 - 0.0262 (dbh) + 0.0415
+Odina wodier,Odina wodier,0.0000,Eastern Ghats,1156, 271.6220 (dbh/100)^2 - 40.3564 (dbh/100) + 19.9687
+Odina wodier,Odina wodier,0.0000,Eastern Ghats,1157, 11.1041 (dbh/100)^2- 1.5074 (dbh/100) + 0.6238
+Odina wodier,Odina wodier,0.0000,Eastern Ghats,1158, 0.2214 (dbh)^2- 0.3856 (dbh) + 1.0501
+Odina wodier,Odina wodier,0.0000,Eastern Ghats,1159, 0.0083 (dbh)^2 - 0.0262 (dbh) + 0.0415
+Albizia amara,Albizia amara,0.0000,Eastern Ghats,1160, -386.5990 (dbh/100)^3 + 671.8284 (dbh/100)^2- 31.9297 (dbh/100) + 13.2123
+Albizia amara,Albizia amara,0.0000,Eastern Ghats,1161, 9.0211 (dbh/100)^2 + 0.9626 (dbh/100) + 0.6121
+Albizia amara,Albizia amara,0.0000,Eastern Ghats,1162, 0.2472 (dbh)^2 - 0.4306 (dbh) + 1.1724
+Albizia amara,Albizia amara,0.0000,Eastern Ghats,1163, 0.0103 (dbh)^2 - 0.0305 (dbh) + 0.0394
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Ghats,1164, -40.7829 (dbh/100)^2 + 287.6667 (dbh/100) - 6.1942
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Ghats,1165, 5.9678 (dbh/100)^2 + 12.1631 (dbh/100) - 0.0384
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Ghats,1166, 0.2815 (dbh)^2 + 0.1622 (dbh) - 0.3747
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Ghats,1167, 0.0084 (dbh)^2 + 0.0047 (dbh) + 0.0684
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Ghats,1168, -40.7829 (dbh/100)^2 + 287.6667 (dbh/100) - 6.1942
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Ghats,1169, 5.9678 (dbh/100)^2 + 12.1631 (dbh/100) - 0.0384
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Ghats,1170, 0.2815 (dbh)^2 + 0.1622 (dbh) - 0.3747
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Ghats,1171, 0.0084 (dbh)^2 + 0.0047 (dbh) + 0.0684
+Syzygium cumini,Syzygium cumini,0.0000,Eastern Ghats,1172, 986.1005 (dbh/100)^2 - 92.1288 (dbh/100) + 33.8089
+Syzygium cumini,Syzygium cumini,0.0000,Eastern Ghats,1173, 11.5552 (dbh/100)^2 + 17.0550 (dbh/100) - 0.7249
+Syzygium cumini,Syzygium cumini,0.0000,Eastern Ghats,1174, 0.4195 (dbh)^2- 1.3629 (dbh) + 2.2772
+Syzygium cumini,Syzygium cumini,0.0000,Eastern Ghats,1175, 0.0120 (dbh)^2 + 0.0650 (dbh) - 0.0304
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Eastern Ghats,1176, 986.1005 (dbh/100)^2 - 92.1288 (dbh/100) + 33.8089
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Eastern Ghats,1177, 11.5552 (dbh/100)^2 + 17.0550 (dbh/100) - 0.7249
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Eastern Ghats,1178, 0.4195 (dbh)^2- 1.3629 (dbh) + 2.2772
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Eastern Ghats,1179, 0.0120 (dbh)^2 + 0.0650 (dbh) - 0.0304
+Eugenia jambolana,Eugenia jambolana,0.0000,Eastern Ghats,1180, 986.1005 (dbh/100)^2 - 92.1288 (dbh/100) + 33.8089
+Eugenia jambolana,Eugenia jambolana,0.0000,Eastern Ghats,1181, 11.5552 (dbh/100)^2 + 17.0550 (dbh/100) - 0.7249
+Eugenia jambolana,Eugenia jambolana,0.0000,Eastern Ghats,1182, 0.4195 (dbh)^2- 1.3629 (dbh) + 2.2772
+Eugenia jambolana,Eugenia jambolana,0.0000,Eastern Ghats,1183, 0.0120 (dbh)^2 + 0.0650 (dbh) - 0.0304
+Protium caudatum,Protium caudatum,0.0000,Eastern Ghats,1184, -62.6698 (dbh/100)^2 + 247.9972 (dbh/100) + 0.1338
+Protium caudatum,Protium caudatum,0.0000,Eastern Ghats,1185, 11.8728 (dbh/100)^2 - 2.2968 (dbh/100) + 1.2622
+Protium caudatum,Protium caudatum,0.0000,Eastern Ghats,1186, 0.3017 (dbh)^2 - 0.2789 (dbh) + 1.2292
+Protium caudatum,Protium caudatum,0.0000,Eastern Ghats,1187, 0.0050 (dbh)^2 + 0.0070 (dbh) + 0.1057
+Tectona grandis,Tectona grandis,0.0000,Eastern Ghats,1188, -169.7104 (dbh/100)^2 + 395.4129 (dbh/100) - 20.4598
+Tectona grandis,Tectona grandis,0.0000,Eastern Ghats,1189, -1.0487 (dbh/100)^2 + 5.7623 (dbh/100) + 0.0875
+Tectona grandis,Tectona grandis,0.0000,Eastern Ghats,1190, 0.3080 (dbh)^2 - 0.2848 (dbh) + 1.2549
+Tectona grandis,Tectona grandis,0.0000,Eastern Ghats,1191, 0.0439 (dbh) + 0.0603
+Buchanania latifolia,Buchanania latifolia,0.0000,Eastern Ghats,1192, 514.5816 (dbh/100)^2 - 110.3860 (dbh/100) + 19.3994
+Buchanania latifolia,Buchanania latifolia,0.0000,Eastern Ghats,1193, 26.1420 (dbh/100)^2 - 1.3736 (dbh/100) + 0.1491
+Buchanania latifolia,Buchanania latifolia,0.0000,Eastern Ghats,1194, 0.1721 (dbh)^2- 0.1164 (dbh) + 1.0897
+Buchanania latifolia,Buchanania latifolia,0.0000,Eastern Ghats,1195, 0.0029 (dbh)^2- 0.0005 (dbh) + 0.0924
+Buchanania lanzan,Buchanania lanzan,0.0000,Eastern Ghats,1196, 514.5816 (dbh/100)^2 - 110.3860 (dbh/100) + 19.3994
+Buchanania lanzan,Buchanania lanzan,0.0000,Eastern Ghats,1197, 26.1420 (dbh/100)^2 - 1.3736 (dbh/100) + 0.1491
+Buchanania lanzan,Buchanania lanzan,0.0000,Eastern Ghats,1198, 0.1721 (dbh)^2- 0.1164 (dbh) + 1.0897
+Buchanania lanzan,Buchanania lanzan,0.0000,Eastern Ghats,1199, 0.0029 (dbh)^2- 0.0005 (dbh) + 0.0924
+Semecarpus anacardium,Semecarpus anacardium,0.0000,Eastern Ghats,1200, 238.3735 (dbh/100)^2 + 154.6146 (dbh/100) + 0.4939
+Semecarpus anacardium,Semecarpus anacardium,0.0000,Eastern Ghats,1201, -145.9652 (dbh/100)^3 + 152.4208 (dbh/100)^2- 20.6768 (dbh/100) + 1.1954
+Semecarpus anacardium,Semecarpus anacardium,0.0000,Eastern Ghats,1202, 0.4337 (dbh)^2- 1.7265 (dbh) + 2.9325
+Semecarpus anacardium,Semecarpus anacardium,0.0000,Eastern Ghats,1203, 0.0015 (dbh)^2 + 0.0480 (dbh) + 0.0867
+Memecylon angustifolium,Memecylon angustifolium,0.0000,Eastern Ghats,1204, 1066.9594 (dbh/100)^2 + 17.0450 (dbh/100) + 8.6471
+Memecylon angustifolium,Memecylon angustifolium,0.0000,Eastern Ghats,1205, 115.6513 (dbh/100)^2 - 21.8666 (dbh/100) + 2.4348
+Memecylon angustifolium,Memecylon angustifolium,0.0000,Eastern Ghats,1206, 0.2995 (dbh)^2 - 0.6521 (dbh) + 1.0513
+Memecylon angustifolium,Memecylon angustifolium,0.0000,Eastern Ghats,1207, 0.0095 (dbh)^2 + 0.0629 (dbh) - 0.0146
+Eucalyptus globulus,Eucalyptus globulus,0.0000,Eastern Ghats,1208, 557.4072 (dbh/100)^2 - 32.8449 (dbh/100) + 7.5162
+Eucalyptus globulus,Eucalyptus globulus,0.0000,Eastern Ghats,1209, 40.1676 (dbh/100)^2- 10.4524 (dbh/100) + 1.5134
+Eucalyptus globulus,Eucalyptus globulus,0.0000,Eastern Ghats,1210, 0.0473 (dbh)^2 + 1.4532 (dbh) - 0.9075
+Eucalyptus globulus,Eucalyptus globulus,0.0000,Eastern Ghats,1211, 0.0064 (dbh)^2 + 0.0264 (dbh) + 0.0089
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,Eastern Ghats,1212, 1088.6600 (dbh/100)^2 - 295.8026 (dbh/100) + 31.3839
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,Eastern Ghats,1213, 31.8648 (dbh/100)^2 - 5.8728 (dbh/100) + 0.9027
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,Eastern Ghats,1214, 0.1080 (dbh)^2 + 0.0197 (dbh) + 0.3650
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,Eastern Ghats,1215, 0.0027 (dbh)^2 + 0.0187 (dbh) + 0.0524
+Albizia species,Albizia species,0.0000,Eastern Ghats,1216, -0.5537 (dbh/100)^2 + 311.6459 (dbh/100) - 17.5544
+Albizia species,Albizia species,0.0000,Eastern Ghats,1217, 13.3705 (dbh/100)^2 + 3.3486 (dbh/100) - 0.0903
+Albizia species,Albizia species,0.0000,Eastern Ghats,1218, 0.2918 (dbh)^2 - 0.3776 (dbh) + 0.3181
+Albizia species,Albizia species,0.0000,Eastern Ghats,1219, 0.0012 (dbh)^2 + 0.0382 (dbh) + 0.0381
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,1220, -37.7511 (dbh/100)^2 + 567.6453 (dbh/100) - 32.7446
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,1221, -30.8783 (dbh/100)^2 + 33.6090 (dbh/100) - 1.5800
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,1222, 0.4783 (dbh)^2- 1.7953 (dbh) + 2.8131
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,1223, 0.0254 (dbh)^2- 0.0856 (dbh) + 0.1643
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Eastern Ghats,1224, 363.4903 (dbh/100)^2 + 63.6002 (dbh/100) + 18.6796
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Eastern Ghats,1225, 10.6620 (dbh/100)^2 + 1.9007 (dbh/100) + 0.6227
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Eastern Ghats,1226, 0.4217 (dbh)^2 - 0.8802 (dbh) + 1.7676
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Eastern Ghats,1227, 0.0118 (dbh)^2 - 0.0391 (dbh) + 0.0988
+Terminalia crenulata,Terminalia crenulata,0.0000,West Coast,1228, 129.4544 (dbh/100)^2 + 279.1008 (dbh/100) - 15.8988
+Terminalia crenulata,Terminalia crenulata,0.0000,West Coast,1229, 3.7497 (dbh/100)^2 + 10.4516 (dbh/100) - 0.4220
+Terminalia crenulata,Terminalia crenulata,0.0000,West Coast,1230, 0.2705 (dbh)^2 - 0.5967 (dbh) + 0.3978
+Terminalia crenulata,Terminalia crenulata,0.0000,West Coast,1231, 0.0095 (dbh)^2 - 0.0183 (dbh) + 0.0300
+Terminalia tomentosa,Terminalia tomentosa,0.0000,West Coast,1232, 129.4544 (dbh/100)^2 + 279.1008 (dbh/100) - 15.8988
+Terminalia tomentosa,Terminalia tomentosa,0.0000,West Coast,1233, 3.7497 (dbh/100)^2 + 10.4516 (dbh/100) - 0.4220
+Terminalia tomentosa,Terminalia tomentosa,0.0000,West Coast,1234, 0.2705 (dbh)^2 - 0.5967 (dbh) + 0.3978
+Terminalia tomentosa,Terminalia tomentosa,0.0000,West Coast,1235, 0.0095 (dbh)^2 - 0.0183 (dbh) + 0.0300
+Tectona grandis,Tectona grandis,0.0000,West Coast,1236, -210.8047 (dbh/100)^2 + 363.7074 (dbh/100) - 30.9608
+Tectona grandis,Tectona grandis,0.0000,West Coast,1237, -12.3596 (dbh/100)^2 + 19.0225 (dbh/100) - 1.4386
+Tectona grandis,Tectona grandis,0.0000,West Coast,1238, 0.0199 (dbh)^2 + 0.4817 (dbh) - 0.0768
+Tectona grandis,Tectona grandis,0.0000,West Coast,1239, 0.0024 (dbh)^2+ 0.0092 (dbh) + 0.0005
+Terminalia paniculata,Terminalia paniculata,0.0000,West Coast,1240, 89.4351 (dbh/100)^2 + 144.8093 (dbh/100) + 3.4972
+Terminalia paniculata,Terminalia paniculata,0.0000,West Coast,1241, 1.0052 (dbh/100)^2 + 5.8501 (dbh/100) - 0.2071
+Terminalia paniculata,Terminalia paniculata,0.0000,West Coast,1242, 0.2006 (dbh)^2 + 0.0929 (dbh) - 0.1476
+Terminalia paniculata,Terminalia paniculata,0.0000,West Coast,1243, 0.0036 (dbh)^2 + 0.0151 (dbh) - 0.0085
+Anogeissus latifolia,Anogeissus latifolia,0.0000,West Coast,1244, 203.6969 (dbh/100)^2 + 181.8029 (dbh/100) - 4.7474
+Anogeissus latifolia,Anogeissus latifolia,0.0000,West Coast,1245, 19.0048 (dbh/100)^2 + 2.7890 (dbh/100) + 0.1024
+Anogeissus latifolia,Anogeissus latifolia,0.0000,West Coast,1246, 0.1883 (dbh)^2 + 1.2756 (dbh) - 0.8306
+Anogeissus latifolia,Anogeissus latifolia,0.0000,West Coast,1247, 0.0127 (dbh)^2 - 0.0328 (dbh) + 0.0646
+Lannea coromandelica,Lannea coromandelica,0.0000,West Coast,1248, 506.4382 (dbh/100)^2 - 52.4468 (dbh/100) + 3.0437
+Lannea coromandelica,Lannea coromandelica,0.0000,West Coast,1249, 7.7513 (dbh/100)^2 + 0.3448 (dbh/100) + 0.1622
+Lannea coromandelica,Lannea coromandelica,0.0000,West Coast,1250, 0.0941 (dbh)^2- 0.2675 (dbh) + 0.8115
+Lannea coromandelica,Lannea coromandelica,0.0000,West Coast,1251, 0.0020 (dbh)^2 + 0.0278 (dbh) + 0.0088
+Lannea grandis,Lannea grandis,0.0000,West Coast,1252, 506.4382 (dbh/100)^2 - 52.4468 (dbh/100) + 3.0437
+Lannea grandis,Lannea grandis,0.0000,West Coast,1253, 7.7513 (dbh/100)^2 + 0.3448 (dbh/100) + 0.1622
+Lannea grandis,Lannea grandis,0.0000,West Coast,1254, 0.0941 (dbh)^2- 0.2675 (dbh) + 0.8115
+Lannea grandis,Lannea grandis,0.0000,West Coast,1255, 0.0020 (dbh)^2 + 0.0278 (dbh) + 0.0088
+Odina wodier,Odina wodier,0.0000,West Coast,1256, 506.4382 (dbh/100)^2 - 52.4468 (dbh/100) + 3.0437
+Odina wodier,Odina wodier,0.0000,West Coast,1257, 7.7513 (dbh/100)^2 + 0.3448 (dbh/100) + 0.1622
+Odina wodier,Odina wodier,0.0000,West Coast,1258, 0.0941 (dbh)^2- 0.2675 (dbh) + 0.8115
+Odina wodier,Odina wodier,0.0000,West Coast,1259, 0.0020 (dbh)^2 + 0.0278 (dbh) + 0.0088
+Wrightia tinctoria,Wrightia tinctoria,0.0000,West Coast,1260, 25.0382 (dbh/100)^2 + 14.3874 (dbh/100) + 3.4237
+Wrightia tinctoria,Wrightia tinctoria,0.0000,West Coast,1261, 2.5184 (dbh/100)^2 + 1.4471 (dbh/100) + 0.3444
+Wrightia tinctoria,Wrightia tinctoria,0.0000,West Coast,1262, 0.0188 (dbh)^2 + 0.3085 (dbh) - 0.2230
+Wrightia tinctoria,Wrightia tinctoria,0.0000,West Coast,1263, 0.0034 (dbh)^2 + 0.0226 (dbh) - 0.0197
+Bombax ceiba,Bombax ceiba,0.0000,West Coast,1264, 199.7191 (dbh/100)^2 + 40.5382 (dbh/100) + 2.7931
+Bombax ceiba,Bombax ceiba,0.0000,West Coast,1265, 5.1029 (dbh/100)^2 + 1.0464 (dbh/100) + 0.0809
+Bombax ceiba,Bombax ceiba,0.0000,West Coast,1266, 0.0694 (dbh)^2 + 0.5091 (dbh) - 0.1759
+Bombax ceiba,Bombax ceiba,0.0000,West Coast,1267, 0.0004 (dbh)^2 + 0.0318 (dbh) + 0.0309
+Bombax malabaricum,Bombax malabaricum,0.0000,West Coast,1268, 199.7191 (dbh/100)^2 + 40.5382 (dbh/100) + 2.7931
+Bombax malabaricum,Bombax malabaricum,0.0000,West Coast,1269, 5.1029 (dbh/100)^2 + 1.0464 (dbh/100) + 0.0809
+Bombax malabaricum,Bombax malabaricum,0.0000,West Coast,1270, 0.0694 (dbh)^2 + 0.5091 (dbh) - 0.1759
+Bombax malabaricum,Bombax malabaricum,0.0000,West Coast,1271, 0.0004 (dbh)^2 + 0.0318 (dbh) + 0.0309
+Salmalia malabarica,Salmalia malabarica,0.0000,West Coast,1272, 199.7191 (dbh/100)^2 + 40.5382 (dbh/100) + 2.7931
+Salmalia malabarica,Salmalia malabarica,0.0000,West Coast,1273, 5.1029 (dbh/100)^2 + 1.0464 (dbh/100) + 0.0809
+Salmalia malabarica,Salmalia malabarica,0.0000,West Coast,1274, 0.0694 (dbh)^2 + 0.5091 (dbh) - 0.1759
+Salmalia malabarica,Salmalia malabarica,0.0000,West Coast,1275, 0.0004 (dbh)^2 + 0.0318 (dbh) + 0.0309
+Bombax insigne,Bombax insigne,0.0000,West Coast,1276, 199.7191 (dbh/100)^2 + 40.5382 (dbh/100) + 2.7931
+Bombax insigne,Bombax insigne,0.0000,West Coast,1277, 5.1029 (dbh/100)^2 + 1.0464 (dbh/100) + 0.0809
+Bombax insigne,Bombax insigne,0.0000,West Coast,1278, 0.0694 (dbh)^2 + 0.5091 (dbh) - 0.1759
+Bombax insigne,Bombax insigne,0.0000,West Coast,1279, 0.0004 (dbh)^2 + 0.0318 (dbh) + 0.0309
+Terminalia belerica,Terminalia belerica,0.0000,West Coast,1280, 266.6358 (dbh/100)^2 + 290.2640 (dbh/100) - 23.9759
+Terminalia belerica,Terminalia belerica,0.0000,West Coast,1281, 5.2817 (dbh/100)^2 + 7.7464 (dbh/100) - 0.0264
+Terminalia belerica,Terminalia belerica,0.0000,West Coast,1282, 0.1241 (dbh)^2 + 0.7381 (dbh) - 0.8244
+Terminalia belerica,Terminalia belerica,0.0000,West Coast,1283, 0.0021 (dbh)^2 + 0.0313 (dbh) - 0.0278
+Xylia xylocarpa,Xylia xylocarpa,0.0000,West Coast,1284, 339.0974 (dbh/100)^2 + 152.6241 (dbh/100) - 7.9297
+Xylia xylocarpa,Xylia xylocarpa,0.0000,West Coast,1285, 11.2178 (dbh/100)^2 + 3.3692 (dbh/100) + 0.2132
+Xylia xylocarpa,Xylia xylocarpa,0.0000,West Coast,1286, 0.1214 (dbh)^2 + 0.3886 (dbh) + 1.4836
+Xylia xylocarpa,Xylia xylocarpa,0.0000,West Coast,1287, 0.0046 (dbh)^2 + 0.0077 (dbh) + 0.1764
+Careya arborea,Careya arborea,0.0000,West Coast,1288, 458.3502 (dbh/100)^2 - 89.9168 (dbh/100) + 10.8998
+Careya arborea,Careya arborea,0.0000,West Coast,1289, 36.5716 (dbh/100)^2 - 7.1744 (dbh/100) + 0.8697
+Careya arborea,Careya arborea,0.0000,West Coast,1290, 0.0434 (dbh)^2 + 0.8321 (dbh) - 0.8767
+Careya arborea,Careya arborea,0.0000,West Coast,1291, 0.0140 (dbh)^2 - 0.0328 (dbh) + 0.0291
+Bridelia retusa,Bridelia retusa,0.0000,West Coast,1292, 274.2959 (dbh/100)^2 - 15.3477 (dbh/100) + 6.6623
+Bridelia retusa,Bridelia retusa,0.0000,West Coast,1293, 4.3652 (dbh/100)^2 + 5.8977 (dbh/100) + 0.0525
+Bridelia retusa,Bridelia retusa,0.0000,West Coast,1294, 0.7561 (dbh) + 0.0612
+Bridelia retusa,Bridelia retusa,0.0000,West Coast,1295, 0.0081 (dbh)^2 - 0.0285 (dbh) + 0.0630
+Bridelia squamosa,Bridelia squamosa,0.0000,West Coast,1296, 274.2959 (dbh/100)^2 - 15.3477 (dbh/100) + 6.6623
+Bridelia squamosa,Bridelia squamosa,0.0000,West Coast,1297, 4.3652 (dbh/100)^2 + 5.8977 (dbh/100) + 0.0525
+Bridelia squamosa,Bridelia squamosa,0.0000,West Coast,1298, 0.7561 (dbh) + 0.0612
+Bridelia squamosa,Bridelia squamosa,0.0000,West Coast,1299, 0.0081 (dbh)^2 - 0.0285 (dbh) + 0.0630
+Boswellia serrata,Boswellia serrata,0.0000,West Coast,1300, -645.0798 (dbh/100)^3 + 1113.3680 (dbh/100)^2- 259.1198 (dbh/100) + 27.2892
+Boswellia serrata,Boswellia serrata,0.0000,West Coast,1301, -34.4889 (dbh/100)^3 + 59.3882 (dbh/100)^2- 14.6827 (dbh/100) + 1.5184
+Boswellia serrata,Boswellia serrata,0.0000,West Coast,1302, 0.1294 (dbh)^2 - 0.0842 (dbh) + 0.1589
+Boswellia serrata,Boswellia serrata,0.0000,West Coast,1303, 0.0037 (dbh)^2 + 0.0198 (dbh) + 0.0092
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Coast,1304, 674.1855 (dbh/100)^2- 110.5556 (dbh/100) + 29.0428
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Coast,1305, 33.2586 (dbh/100)^3 - 19.0005 (dbh/100)^2 + 8.5843 (dbh/100) + 0.1585
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Coast,1306, 0.3659 (dbh)^2 - 0.4339 (dbh) + 2.8980
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Coast,1307, 0.0109 (dbh)^2 - 0.0210 (dbh) + 0.0506
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Coast,1308, 765.2303 (dbh/100)^2 + 168.2262 (dbh/100) - 3.0852
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Coast,1309, 8.9006 (dbh/100)^2 + 9.2803 (dbh/100) + 0.2925
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Coast,1310, 0.3048 (dbh)^2 + 0.0510 (dbh) + 1.3016
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Coast,1311, 0.0192 (dbh)^2 - 0.0604 (dbh) + 0.1462
+Hardwickia binata,Hardwickia binata,0.0000,East Coast,1312, 77.1275 (dbh/100)^2 + 151.8085 (dbh/100) - 3.8947
+Hardwickia binata,Hardwickia binata,0.0000,East Coast,1313, 16.5442 (dbh/100)^2 + 2.5420 (dbh/100) + 0.2356
+Hardwickia binata,Hardwickia binata,0.0000,East Coast,1314, 0.2191 (dbh)^2 - 0.4328 (dbh) + 1.0074
+Hardwickia binata,Hardwickia binata,0.0000,East Coast,1315, 0.0135 (dbh)^2- 0.0276 (dbh) + 0.0517
+Lannea coromandelica,Lannea coromandelica,0.0000,East Coast,1316, 432.2980 (dbh/100)^2- 76.6868 (dbh/100) + 19.1344
+Lannea coromandelica,Lannea coromandelica,0.0000,East Coast,1317, 14.5699 (dbh/100)^2 - 2.4830 (dbh/100) + 0.7867
+Lannea coromandelica,Lannea coromandelica,0.0000,East Coast,1318, 0.3170 (dbh)^2- 0.9568 (dbh) + 1.4400
+Lannea coromandelica,Lannea coromandelica,0.0000,East Coast,1319, 0.0098 (dbh)^2- 0.0331 (dbh) + 0.0500
+Lannea grandis,Lannea grandis,0.0000,East Coast,1320, 432.2980 (dbh/100)^2- 76.6868 (dbh/100) + 19.1344
+Lannea grandis,Lannea grandis,0.0000,East Coast,1321, 14.5699 (dbh/100)^2 - 2.4830 (dbh/100) + 0.7867
+Lannea grandis,Lannea grandis,0.0000,East Coast,1322, 0.3170 (dbh)^2- 0.9568 (dbh) + 1.4400
+Lannea grandis,Lannea grandis,0.0000,East Coast,1323, 0.0098 (dbh)^2- 0.0331 (dbh) + 0.0500
+Odina wodier,Odina wodier,0.0000,East Coast,1324, 432.2980 (dbh/100)^2- 76.6868 (dbh/100) + 19.1344
+Odina wodier,Odina wodier,0.0000,East Coast,1325, 14.5699 (dbh/100)^2 - 2.4830 (dbh/100) + 0.7867
+Odina wodier,Odina wodier,0.0000,East Coast,1326, 0.3170 (dbh)^2- 0.9568 (dbh) + 1.4400
+Odina wodier,Odina wodier,0.0000,East Coast,1327, 0.0098 (dbh)^2- 0.0331 (dbh) + 0.0500
+Terminalia crenulata,Terminalia crenulata,0.0000,East Coast,1328, 53.1260 (dbh/100)^2 + 168.7540 (dbh/100) - 4.2270
+Terminalia crenulata,Terminalia crenulata,0.0000,East Coast,1329, 8.2135 (dbh/100)^2 + 10.4334 (dbh/100) - 0.2935
+Terminalia crenulata,Terminalia crenulata,0.0000,East Coast,1330, 0.3285 (dbh)^2- 0.8470 (dbh) + 1.5459
+Terminalia crenulata,Terminalia crenulata,0.0000,East Coast,1331, 0.0056 (dbh)^2 + 0.0240 (dbh) + 0.0470
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Coast,1332, 53.1260 (dbh/100)^2 + 168.7540 (dbh/100) - 4.2270
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Coast,1333, 8.2135 (dbh/100)^2 + 10.4334 (dbh/100) - 0.2935
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Coast,1334, 0.3285 (dbh)^2- 0.8470 (dbh) + 1.5459
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Coast,1335, 0.0056 (dbh)^2 + 0.0240 (dbh) + 0.0470
+Boswellia serrata,Boswellia serrata,0.0000,East Coast,1336, 131.8646 (dbh/100)^2 + 151.2382 (dbh/100) - 6.7430
+Boswellia serrata,Boswellia serrata,0.0000,East Coast,1337, 5.7979 (dbh/100)^2 + 7.9756 (dbh/100) - 0.1766
+Boswellia serrata,Boswellia serrata,0.0000,East Coast,1338, 0.1619 (dbh)^2 + 0.0616 (dbh) + 0.1171
+Boswellia serrata,Boswellia serrata,0.0000,East Coast,1339, 0.0102 (dbh)^2- 0.0267 (dbh) + 0.0624
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Coast,1340, 36.2830 (dbh/100)^2 + 180.2650 (dbh/100) + 6.6087
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Coast,1341, 2.3214 (dbh/100)^2 + 3.1932 (dbh/100) + 0.6980
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Coast,1342, 0.4378 (dbh/100)^2-12-914 (dbh) + 1.6650
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Coast,1343, 0.0047 (dbh)^2 + 0.0659 (dbh) - 0.0257
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,East Coast,1344, 700.8008 (dbh/100)^2- 165.1396 (dbh/100) + 18.5104
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,East Coast,1345, 9.8070 (dbh/100)^2- (dbh/100)^2-673 (dbh/100) + 0.2926
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,East Coast,1346, 0.0610 (dbh)^2 + 0.7082 (dbh) + 0.0818
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,East Coast,1347, 0.0049 (dbh)^2- 0.0135 (dbh) + 0.0390
+Dalbergia paniculata,Dalbergia paniculata,0.0000,East Coast,1348, 843.0770 (dbh/100)^2 - 201.6857 (dbh/100) + 31.5918
+Dalbergia paniculata,Dalbergia paniculata,0.0000,East Coast,1349, 18.1052 (dbh/100)^2 + 1.8575 (dbh/100) + 0.3899
+Dalbergia paniculata,Dalbergia paniculata,0.0000,East Coast,1350, 0.2468 (dbh)^2 - 0.3282 (dbh) + 0.6072
+Dalbergia paniculata,Dalbergia paniculata,0.0000,East Coast,1351, 0.0091 (dbh)^2 + 0.0517 (dbh) - 0.0079
+Grewia species,Grewia species,0.0000,East Coast,1352, 431.9626 (dbh/100)^2 + 42.0418 (dbh/100) + 5.3807
+Grewia species,Grewia species,0.0000,East Coast,1353, 23.9226 (dbh/100)^2 - 1.6761 (dbh/100) + 0.4293
+Grewia species,Grewia species,0.0000,East Coast,1354, 0.2228 (dbh)^2 - 0.2016 (dbh) + 0.7210
+Grewia species,Grewia species,0.0000,East Coast,1355, 0.0039 (dbh)^2 + 0.0185 (dbh) + 0.0143
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,East Coast,1356, 774.4589 (dbh/100)^2 - 116.1260 (dbh/100) + 18.3122
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,East Coast,1357, 36.5148 (dbh/100)^2 - 7.4833 (dbh/100) + 0.8974
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,East Coast,1358, 0.1224 (dbh)^2 + 0.5551 (dbh) - 0.5487
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,East Coast,1359, 0.0021 (dbh/100)V + 0.0203 (dbh) + 0.0515
+Tectona grandis,Tectona grandis,0.0000,East Coast,1360, 621.9517 (dbh/100)^2- 154.0887 (dbh/100) + 25.0716
+Tectona grandis,Tectona grandis,0.0000,East Coast,1361, 9.0619 (dbh/100)^2 - 1.0880 (dbh/100) + 0.5854
+Tectona grandis,Tectona grandis,0.0000,East Coast,1362, 0.3555 (dbh)^2- 1.1680 (dbh) + 1.8808
+Tectona grandis,Tectona grandis,0.0000,East Coast,1363, 0.0017 (dbh)^2 + 0.0248 (dbh) + 0.0803
+Sterculia urens,Sterculia urens,0.0000,East Coast,1364, -48.6227 (dbh/100)^2 + 94.6488 (dbh/100) - 0.0630
+Sterculia urens,Sterculia urens,0.0000,East Coast,1365, -0.0177 (dbh/100)^2 + 4.8882 (dbh/100) - 0.0948
+Sterculia urens,Sterculia urens,0.0000,East Coast,1366, 0.1480 (dbh)^2 + 0.0066 (dbh) + 0.5951
+Sterculia urens,Sterculia urens,0.0000,East Coast,1367, 0.0010 (dbh)^2 + 0.0366 (dbh) - 0.0128
+Diospyros species,Diospyros species,0.0000,East Coast,1368, 164.0576 (dbh/100)^2 + 98.0941(dbh/100) + 1.3802
+Diospyros species,Diospyros species,0.0000,East Coast,1369, 7.4373 (dbh/100)^2 + 3.4612 (dbh/100) - 0.0140
+Diospyros species,Diospyros species,0.0000,East Coast,1370, 0.1460 (dbh)^2 + 0.1213 (dbh) +(dbh).8565
+Diospyros species,Diospyros species,0.0000,East Coast,1371, 0.0060 (dbh)^2 - 0.0218 (dbh) + 0.0310
+Wrightia tinctoria,Wrightia tinctoria,0.0000,East Coast,1372, 111.7943 (dbh/100)^2 + 0.7670 (dbh/100) + 4.4363
+Wrightia tinctoria,Wrightia tinctoria,0.0000,East Coast,1373, 8.5389 (dbh/100)^2 + 0.8670 (dbh/100) + 0.3686
+Wrightia tinctoria,Wrightia tinctoria,0.0000,East Coast,1374, 0.0539 (dbh)^2 + 0.1154 (dbh) + 0.4646
+Wrightia tinctoria,Wrightia tinctoria,0.0000,East Coast,1375, 0.0048 (dbh)^2+ 0.0126 (dbh) - 0.0080
+Acacia sundra,Acacia sundra,0.0000,East Coast,1376, -46.9981 (dbh/100)^2 + 148.5105 (dbh/100) + 1.1821
+Acacia sundra,Acacia sundra,0.0000,East Coast,1377, -1.0538 (dbh/100)^2 + 4.4842 (dbh/100) + 0.0021
+Acacia sundra,Acacia sundra,0.0000,East Coast,1378, 0.1821 (dbh)^2 + 0.2052 (dbh)+ 1.7224
+Acacia sundra,Acacia sundra,0.0000,East Coast,1379, 0.0081 (dbh)^2- 0.0249 (dbh) + 0.0269
+Abies pindrow,Abies pindrow,0.0000,Western Himalayas,1380, -0.0491 (dbh)^2 + 2.7026 (dbh) - 2.8253
+Abies pindrow,Abies pindrow,0.0000,Western Himalayas,1381, -0.0022 (dbh)^3+ 0.0260 (dbh)^2+ 0.1971 (dbh) - 0.0809
+Michelia species,Michelia species,0.0000,Eastern Himalayas,1382, 0.1699 (dbh)^2- 0.2576 (dbh) + 0.9618
+Michelia species,Michelia species,0.0000,Eastern Himalayas,1383, -0.0026 (dbh)^2 + 0.1016 (dbh) - 0.0145
+Cedrela toona,Cedrela toona,0.0000,North-Eastern Ranges,1384, 650.9882 (dbh/100)^2 - 142.8644 (dbh/100) + 25.0843
+Cedrela toona,Cedrela toona,0.0000,North-Eastern Ranges,1385, 24.2705 (dbh/100)^2 - 1.1020 (dbh/100) + 0.7574
+Toona ciliata,Terminalia species,0.0000,North-Eastern Ranges,1386, 650.9882 (dbh/100)^2 - 142.8644 (dbh/100) + 25.0843
+Toona ciliata,Terminalia species,0.0000,North-Eastern Ranges,1387, 24.2705 (dbh/100)^2 - 1.1020 (dbh/100) + 0.7574
+Toona microcarpa,Toona febrifuga,0.0000,North-Eastern Ranges,1388, 650.9882 (dbh/100)^2 - 142.8644 (dbh/100) + 25.0843
+Toona microcarpa,Toona febrifuga,0.0000,North-Eastern Ranges,1389, 24.2705 (dbh/100)^2 - 1.1020 (dbh/100) + 0.7574
+Toona febrifuga,Toona ciliata,0.0000,North-Eastern Ranges,1390, 650.9882 (dbh/100)^2 - 142.8644 (dbh/100) + 25.0843
+Toona febrifuga,Toona ciliata,0.0000,North-Eastern Ranges,1391, 24.2705 (dbh/100)^2 - 1.1020 (dbh/100) + 0.7574
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,North-Eastern Ranges,1392, 0.0134 (dbh)^2 - 0.0042 (dbh) + 0.0014
+Holoptelea integrifolia,Holoptelea integrifolia,0.0000,Western Plain,1393, 0.0617 (dbh)^2 + 0.6450 (dbh) - 0.5946
+Holoptelea integrifolia,Holoptelea integrifolia,0.0000,Western Plain,1394, 0.0058 (dbh)^2 + 0.0177 (dbh) + 0.0234
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,Central Highlands,1395, 0.0511(dbh)^2+ 0.5596 (dbh)- 0.1862
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,Central Highlands,1396, -0.0017(dbh)^2 + 0.0328 (dbh) - 0.0021
+Miliusa tomentosum,Miliusa tomentosum,0.0000,Central Highlands,1397, 0.0305 (dbh)^2 + 0.9146 (dbh) - 0.7580
+Miliusa tomentosum,Miliusa tomentosum,0.0000,Central Highlands,1398, 0.0078 (dbh)^2 - 0.0227 (dbh) + 0.0692
+Saccopetalum tomentosum,Saccopetalum tomentosum,0.0000,Central Highlands,1399, 0.0305 (dbh)^2 + 0.9146 (dbh) - 0.7580
+Saccopetalum tomentosum,Saccopetalum tomentosum,0.0000,Central Highlands,1400, 0.0078 (dbh)^2 - 0.0227 (dbh) + 0.0692
+Acrocarpus fraxinifolius,Acrocarpus fraxinifolius,0.0000,Western Ghats,1401, 461.9579 (dbh/100)^2 - 2.3924 (dbh/100) + 13.4012
+Acrocarpus fraxinifolius,Acrocarpus fraxinifolius,0.0000,Western Ghats,1402, 6.3026 (dbh/100)^2 + 7.7195 (dbh/100) + 0.1565
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,1403, 0.1990 (dbh)^2- 0.3570 (dbh) + 0.5943
+Acacia catechu,Acacia catechu,0.0000,West Coast,1404, 0.1804 (dbh)^2 - 0.1351 (dbh) + 0.0823
+Acacia catechu,Acacia catechu,0.0000,West Coast,1405, 0.0077 (dbh)^2 - 0.0163 (dbh) + 0.0109
+Albizia amara,Albizia amara,0.0000,East Coast,1406, 0.1924 (dbh)^2 + 0.8919 (dbh) - 1.3365
+Albizia amara,Albizia amara,0.0000,East Coast,1407, 0.0117 (dbh)^2- 0.0395 (dbh) + 0.0487
+Dolichandrone falcata,Dolichandrone falcata,0.0000,East Coast,1408, 0.2869 (dbh)^2 - 0.7273 (dbh) + 1.1723
+Abies densa,Abies densa,0.0000,Western Himalayas,13,9.364041 (dbh/100)^2 - 0.515959 (dbh/100) + 0.007107
+Abies pindrow,Abies pindrow,0.0000,Western Himalayas,14,15.922114 (dbh/100)^2 - 3.441808 (dbh/100) + 0.293884
+Abies smithiana,Abies smithiana,0.0000,Western Himalayas,15,-13.086392 (dbh/100)^(3/2) + 21.053415 (dbh/100)^2 + 3.873510 (dbh/100) - 0.571838 sqrt(dbh/100) +  0.040200
+Acacia catechu,Acacia catechu,0.0000,Western Himalayas,16,7.468880 (dbh/100)^2 - 0.721610 (dbh/100) + 0.023840
+Acer species,Acer species,0.0000,Western Himalayas,17,9.256806 (dbh/100)^2 - 0.660283 (dbh/100) + 0.011774
+Lyonia ovalifolia,Lyonia ovalifolia,0.0000,Western Himalayas,18,4.722820 (dbh/100)^2 - 0.568780 (dbh/100) + 0.034680
+Pieris ovalifolia,Pieris ovalifolia,0.0000,Western Himalayas,19,4.722820 (dbh/100)^2 - 0.568780 (dbh/100) + 0.034680
+Mallotus philippensis,Mallotus philippensis,0.0000,Western Himalayas,20,19.619770 (dbh/100)^2 - 2.875030 (dbh/100) + 0.147490
+Pinus excelsa,Pinus excelsa,0.0000,Western Himalayas,21,12.631292 (dbh/100)^2 + 0.213315
+Pinus wallichiana,Pinus wallichiana,0.0000,Western Himalayas,22,12.631292 (dbh/100)^2 + 0.213315
+Pinus roxburghii,Pinus roxburghii,0.0000,Western Himalayas,23,-8.167109 (dbh/100)^(3/2) + 15.887399 (dbh/100)^2 + 1.458633 (dbh/100) - 0.105134 sqrt(dbh/100) +  0.002633
+Pinus longifolia,Pinus longifolia,0.0000,Western Himalayas,24,-8.167109 (dbh/100)^(3/2) + 15.887399 (dbh/100)^2 + 1.458633 (dbh/100) - 0.105134 sqrt(dbh/100) +  0.002633
+Quercus dilatata,Quercus dilatata,0.0000,Western Himalayas,25,10.163100 (dbh/100)^2 - 1.554700 (dbh/100) + 0.098800
+Quercus floribunda,Quercus floribunda,0.0000,Western Himalayas,26,10.163100 (dbh/100)^2 - 1.554700 (dbh/100) + 0.098800
+Quercus incana,Quercus incana,0.0000,Western Himalayas,27,-10.654325 (dbh/100)^(3/2) + 14.592927 (dbh/100)^2 + 3.779519 (dbh/100) - 0.669807 sqrt(dbh/100) +  0.057675
+Quercus semecarpifolia,Quercus semecarpifolia,0.0000,Western Himalayas,28,10.163100 (dbh/100)^2 - 1.554700 (dbh/100) + 0.098800
+Rhododendron arboreum,Rhododendron arboreum,0.0000,Western Himalayas,29,3.634280 (dbh/100)^2 - 0.218740 sqrt(dbh/100) + 0.060070
+Shorea robusta,Shorea robusta,0.0000,Western Himalayas,30,11.756300 (dbh/100)^2 - 2.707000 (dbh/100) + 0.191900
+Taxus baccata,Taxus baccata,0.0000,Western Himalayas,31,6.362390 (dbh/100)^2 - 0.842660 (dbh/100) + 0.044300
+Tectona grandis,Tectona grandis,0.0000,Western Himalayas,32,7.881000 (dbh/100)^2 - 0.656230 (dbh/100) + 0.003410
+Alnus nepalensis,Alnus nepalensis,0.0000,Eastern Himalayas,33,0.001559 (dbh/100)^2 - 0.020390 (dbh/100) + 0.066740
+Castanopsis indica,Castanopsis indica,0.0000,Eastern Himalayas,34,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Castanopsis species,Castanopsis species,0.0000,Eastern Himalayas,35,6.525330 (dbh/100)^2 - 0.870980 (dbh/100) + 0.053310
+Cinnamomum species,Cinnamomum species,0.0000,Eastern Himalayas,36,6.097000 (dbh/100)^2 - 0.886660 (dbh/100) + 0.109700
+Ficus species,Ficus species,0.0000,Eastern Himalayas,37,-6.675827 (dbh/100)^(3/2) + 15.633246 (dbh/100)^2 + 0.999664 (dbh/100) - 0.061273 sqrt(dbh/100) +  0.001317
+Macaranga species,Macaranga species,0.0000,Eastern Himalayas,38,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Machilus species,Machilus species,0.0000,Eastern Himalayas,39,4.840090 (dbh/100)^2 - 0.024020
+Michelia species,Michelia species,0.0000,Eastern Himalayas,40,17.626190 (dbh/100)^2 - 3.514940 (dbh/100) + 0.230570
+Quercus species,Quercus species,0.0000,Eastern Himalayas,41,5.094700 (dbh/100)^2 + 0.005630
+Symplocos theaefolia,Symplocos theaefolia,0.0000,Eastern Himalayas,42,0.000587 (dbh/100)^2 - 0.037540
+Terminalia myriocarpa,Trewia nudiflora,0.0000,Eastern Himalayas,43,0.001065 (dbh/100)^2 - 0.096981
+Albizia species,Albizia species,0.0000,North-Eastern Ranges,44,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Bauhinia species,Bauhinia species,0.0000,North-Eastern Ranges,45,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Callicarpa arborea,Callicarpa arborea,0.0000,North-Eastern Ranges,46,5.449703 (dbh/100)^2 - 0.210382 (dbh/100) + 0.002030
+Castanopsis hystrix,Castanopsis hystrix,0.0000,North-Eastern Ranges,47,-13.149206 (dbh/100)^(3/2) + 15.941573 (dbh/100)^2 + 5.477625 (dbh/100) - 1.140806 sqrt(dbh/100) +  0.119993
+Castanopsis tribuloides,Castanopsis tribuloides,0.0000,North-Eastern Ranges,48,-13.149206 (dbh/100)^(3/2) + 15.941573 (dbh/100)^2 + 5.477625 (dbh/100) - 1.140806 sqrt(dbh/100) +  0.119993
+Quercus tribuloides,Quercus tribuloides,0.0000,North-Eastern Ranges,49,-13.149206 (dbh/100)^(3/2) + 15.941573 (dbh/100)^2 + 5.477625 (dbh/100) - 1.140806 sqrt(dbh/100) +  0.119993
+Castanopsis species,Castanopsis species,0.0000,North-Eastern Ranges,50,6.525330 (dbh/100)^2 - 0.870980 (dbh/100) + 0.053310
+Cynometra polyandra,Cynometra polyandra,0.0000,North-Eastern Ranges,51,8.250140 (dbh/100)^2 - 1.579760 (dbh/100) + 0.159580
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Central Highlands,162,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Dysoxylum binectariferum,Dysoxylum binectariferum,0.0000,North-Eastern Ranges,52,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Eugenia species,Eugenia species,0.0000,North-Eastern Ranges,53,-5.564650 (dbh/100)^2 + 0.929330 (dbh/100) - 0.027920
+Ficus species,Ficus species,0.0000,North-Eastern Ranges,54,-6.675827 (dbh/100)^(3/2) + 15.633246 (dbh/100)^2 + 0.999664 (dbh/100) - 0.061273 sqrt(dbh/100) +  0.001317
+Gmelina arborea,Gmelina arborea,0.0000,North-Eastern Ranges,55,5.104480 (dbh/100)^2 + 0.212300 (dbh/100) + 0.011560
+Jonesia asoca,Jonesia asoca,0.0000,North-Eastern Ranges,56,8.250140 (dbh/100)^2 - 1.579760 (dbh/100) + 0.159580
+Saraca asoca,Saraca asoca,0.0000,North-Eastern Ranges,57,8.250140 (dbh/100)^2 - 1.579760 (dbh/100) + 0.159580
+Saraca indica,Saraca indica,0.0000,North-Eastern Ranges,58,8.250140 (dbh/100)^2 - 1.579760 (dbh/100) + 0.159580
+Macaranga species,Macaranga species,0.0000,North-Eastern Ranges,59,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Schima wallichii,Schima wallichii,0.0000,North-Eastern Ranges,60,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Stereospermum personatum,Stereospermum personatum,0.0000,North-Eastern Ranges,61,-34.110202 (dbh/100)^(3/2) + 35.814719 (dbh/100)^2 + 14.075841 (dbh/100) - 2.835383 sqrt(dbh/100) +  0.247466
+Stereospermum colais,Stereospermum colais,0.0000,North-Eastern Ranges,62,-34.110202 (dbh/100)^(3/2) + 35.814719 (dbh/100)^2 + 14.075841 (dbh/100) - 2.835383 sqrt(dbh/100) +  0.247466
+Stereospermum chelonoides,Stereospermum chelonoides,0.0000,North-Eastern Ranges,63,-34.110202 (dbh/100)^(3/2) + 35.814719 (dbh/100)^2 + 14.075841 (dbh/100) - 2.835383 sqrt(dbh/100) +  0.247466
+Syzygium cumini,Syzygium cumini,0.0000,North-Eastern Ranges,64,5.459419 (dbh/100)^2 - 0.276787 (dbh/100) + 0.003508
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North-Eastern Ranges,65,5.459419 (dbh/100)^2 - 0.276787 (dbh/100) + 0.003508
+Eugenia jambolana,Eugenia jambolana,0.0000,North-Eastern Ranges,66,5.459419 (dbh/100)^2 - 0.276787 (dbh/100) + 0.003508
+Tectona grandis,Tectona grandis,0.0000,North-Eastern Ranges,67,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Acacia catechu,Acacia catechu,0.0000,Northern Plain,68,-11.602480 (dbh/100)^3 + 17.221270 (dbh/100)^2 - 2.788510 (dbh/100) + 0.166090
+Aegle marmelos,Aegle marmelos,0.0000,Northern Plain,69,-11.602480 (dbh/100)^3 + 17.221270 (dbh/100)^2 - 2.788510 (dbh/100) + 0.166090
+Bombax ceiba,Bombax ceiba,0.0000,Northern Plain,70,15.035760 (dbh/100)^2 - 2.854180 (dbh/100) + 0.185730
+Bombax malabaricum,Bombax malabaricum,0.0000,Northern Plain,71,15.035760 (dbh/100)^2 - 2.854180 (dbh/100) + 0.185730
+Salmalia malabarica,Salmalia malabarica,0.0000,Northern Plain,72,15.035760 (dbh/100)^2 - 2.854180 (dbh/100) + 0.185730
+Bombax insigne,Bombax insigne,0.0000,Northern Plain,73,15.035760 (dbh/100)^2 - 2.854180 (dbh/100) + 0.185730
+Butea monosperma,Butea monosperma,0.0000,Northern Plain,74,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Butea frondosa,Butea frondosa,0.0000,Northern Plain,75,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Dalbergia sissoo,Dalbergia sissoo,0.0000,Northern Plain,76,0.000636 (dbh/100)^2 + 0.003310
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Northern Plain,77,6.110170 (dbh/100)^2 - 0.578532 (dbh/100) + 0.024814
+Diospyros species,Diospyros species,0.0000,Northern Plain,78,9.778164 (dbh/100)^2 - 1.436090 (dbh/100) + 0.062060
+Ehretia laevis,Ehretia laevis,0.0000,Northern Plain,79,-11.602480 (dbh/100)^3 + 17.221270 (dbh/100)^2 - 2.788510 (dbh/100) + 0.166090
+Eucalyptus species,Eucalyptus species,0.0000,Northern Plain,80,8.724160 (dbh/100)^2 - 0.892840 (dbh/100) + 0.028940
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Northern Plain,81,14.449610 (dbh/100)^2 - 2.787760 (dbh/100) + 0.179940
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,Northern Plain,82,10.295730 (dbh/100)^2 - 1.688290 (dbh/100) + 0.105290
+Mallotus philippensis,Mallotus philippensis,0.0000,Northern Plain,83,19.619770 (dbh/100)^2 - 2.875030 (dbh/100) + 0.147490
+Shorea robusta,Shorea robusta,0.0000,Northern Plain,84,-15.422563 (dbh/100)^(3/2) + 24.001181 (dbh/100)^2 + 4.075233 (dbh/100) - 0.513319 sqrt(dbh/100) +  0.026589
+Syzygium cumini,Syzygium cumini,0.0000,Northern Plain,85,12.630470 (dbh/100)^2 - 1.817740 (dbh/100) + 0.084810
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Northern Plain,86,12.630470 (dbh/100)^2 - 1.817740 (dbh/100) + 0.084810
+Eugenia jambolana,Eugenia jambolana,0.0000,Northern Plain,87,12.630470 (dbh/100)^2 - 1.817740 (dbh/100) + 0.084810
+Tectona grandis,Tectona grandis,0.0000,Northern Plain,88,11.989790 (dbh/100)^2 - 1.469360 (dbh/100) + 0.088470
+Terminalia crenulata,Terminalia crenulata,0.0000,Northern Plain,89,18.607990 (dbh/100)^2 - 2.858650 (dbh/100) + 0.181490
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Northern Plain,90,18.607990 (dbh/100)^2 - 2.858650 (dbh/100) + 0.181490
+Terminalia elliptica,Terminalia myriocarpa,0.0000,Northern Plain,91,18.607990 (dbh/100)^2 - 2.858650 (dbh/100) + 0.181490
+Trewia nudiflora,Wrightia tomentosa,0.0000,Northern Plain,92,-1.747456 (dbh/100)^(3/2) + 0.171611 (dbh/100)^2 + 4.823848 (dbh/100) - 1.911378 sqrt(dbh/100) +  0.205318
+Zizyphus mauritiana,Acacia sundra,0.0000,Northern Plain,93,4.663714 (dbh/100)^2 + 0.027354
+Zizyphus jujuba,Zizyphus mauritiana,0.0000,Northern Plain,94,4.663714 (dbh/100)^2 + 0.027354
+Amoora species,Amoora species,0.0000,Eastern Plain,95,-4.893713 (dbh/100)^(3/2) + 14.173719 (dbh/100)^2 + 0.490552 (dbh/100) - 0.011764 sqrt(dbh/100) +  0.000082
+Aglaia hiernii,Aglaia hiernii,0.0000,Eastern Plain,96,-4.893713 (dbh/100)^(3/2) + 14.173719 (dbh/100)^2 + 0.490552 (dbh/100) - 0.011764 sqrt(dbh/100) +  0.000082
+Amoora wallichii,Amoora wallichii,0.0000,Eastern Plain,97,-4.893713 (dbh/100)^(3/2) + 14.173719 (dbh/100)^2 + 0.490552 (dbh/100) - 0.011764 sqrt(dbh/100) +  0.000082
+Careya arborea,Careya arborea,0.0000,Eastern Plain,98,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Castanopsis species,Castanopsis species,0.0000,Eastern Plain,99,6.525330 (dbh/100)^2 - 0.870980 (dbh/100) + 0.053310
+Dillenia pentagyna,Dillenia pentagyna,0.0000,Eastern Plain,100,-17.507961 (dbh/100)^(3/2) + 22.649509 (dbh/100)^2 + 6.353292 (dbh/100) - 1.147859 sqrt(dbh/100) +  0.097356
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,Eastern Plain,101,9.764640 (dbh/100)^2 - 1.589410 (dbh/100) + 0.117400
+Lagerstroemia speciosa,Lagerstroemia speciosa,0.0000,Eastern Plain,102,9.764640 (dbh/100)^2 - 1.589410 (dbh/100) + 0.117400
+Lagerstroemia flosreginae,Lagerstroemia flosreginae,0.0000,Eastern Plain,103,9.764640 (dbh/100)^2 - 1.589410 (dbh/100) + 0.117400
+Schima wallichii,Schima wallichii,0.0000,Eastern Plain,104,15.866870 (dbh/100)^2 - 3.684430 (dbh/100) + 0.276090
+Shorea robusta,Shorea robusta,0.0000,Eastern Plain,105,6.907330 (dbh/100)^2 - 0.275160 (dbh/100) + 0.003890
+Tectona grandis,Tectona grandis,0.0000,Eastern Plain,106,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Terminalia belerica,Terminalia belerica,0.0000,Eastern Plain,107,12.357400 (dbh/100)^2 - 3.052490 (dbh/100) + 0.264540
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Plain,108,9.472100 (dbh/100)^2 - 0.841580 (dbh/100) + 0.022389
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Plain,109,9.472100 (dbh/100)^2 - 0.841580 (dbh/100) + 0.022389
+Terminalia elliptica,Terminalia myriocarpa,0.0000,Eastern Plain,110,9.472100 (dbh/100)^2 - 0.841580 (dbh/100) + 0.022389
+Trewia nudiflora,Wrightia tomentosa,0.0000,Eastern Plain,111,0.001000 (dbh/100)^2 - 0.013100 (dbh/100) + 0.054900
+Wrightia tomentosa,Zizyphus jujuba,0.0000,Eastern Plain,112,-13.778384 (dbh/100)^(3/2) + 19.505119 (dbh/100)^2 + 4.485056 (dbh/100) - 0.724694 sqrt(dbh/100) +  0.053959
+Acacia catechu,Acacia catechu,0.0000,Western Plain,113,1.120830 (dbh/100)^2 + 0.168970 (dbh/100) - 0.024710
+Acacia ferruginea,Acacia ferruginea,0.0000,Western Plain,114,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Acacia lenticularis,Acacia lenticularis,0.0000,Western Plain,115,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Acacia leucophloea,Acacia leucophloea,0.0000,Western Plain,116,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Acacia species,Acacia species,0.0000,Western Plain,117,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Anogeissus pendula,Anogeissus pendula,0.0000,Western Plain,118,-0.905850 (dbh/100)^3 + 4.773860 (dbh/100)^2 - 0.351650 (dbh/100) + 0.000850
+Bauhinia species,Bauhinia species,0.0000,Western Plain,119,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Boswellia serrata,Boswellia serrata,0.0000,Western Plain,120,5.882565 (dbh/100)^2 - 0.564100 (dbh/100) + 0.013523
+Butea monosperma,Butea monosperma,0.0000,Western Plain,121,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Butea frondosa,Butea frondosa,0.0000,Western Plain,122,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Western Plain,123,9.175590 (dbh/100)^2 - 2.207500 (dbh/100) + 0.155810
+Lannea coromandelica,Lannea coromandelica,0.0000,Western Plain,124,5.338950 (dbh/100)^2 - 0.399530 (dbh/100) - 0.001460
+Lannea grandis,Lannea grandis,0.0000,Western Plain,125,5.338950 (dbh/100)^2 - 0.399530 (dbh/100) - 0.001460
+Odina wodier,Odina wodier,0.0000,Western Plain,126,5.338950 (dbh/100)^2 - 0.399530 (dbh/100) - 0.001460
+Manilkara achras,Manilkara achras,0.0000,Western Plain,127,0.000719 (dbh/100)^2 - 0.004970 (dbh/100) + 0.024500
+Prosopis cineraria,Prosopis cineraria,0.0000,Western Plain,128,6.452918 (dbh/100)^2 - 1.063661 (dbh/100) + 0.081467
+Prosopis juliflora,Prosopis juliflora,0.0000,Western Plain,129,6.452918 (dbh/100)^2 - 1.063661 (dbh/100) + 0.081467
+Salvadora oleoides,Salvadora oleoides,0.0000,Western Plain,130,6.452918 (dbh/100)^2 - 1.063661 (dbh/100) + 0.081467
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Western Plain,131,7.777047 (dbh/100)^3 + 0.028917
+Acacia catechu,Acacia catechu,0.0000,Central Highlands,132,1.120830 (dbh/100)^2 + 0.168970 (dbh/100) - 0.024710
+Acacia lenticularis,Acacia lenticularis,0.0000,Central Highlands,133,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Acacia leucophloea,Acacia leucophloea,0.0000,Central Highlands,134,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Aegle marmelos,Aegle marmelos,0.0000,Central Highlands,135,-11.602480 (dbh/100)^3 + 17.221270 (dbh/100)^2 - 2.788510 (dbh/100) + 0.166090
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Central Highlands,136,9.800594 (dbh/100)^2 - 1.267012 (dbh/100) + 0.040950
+Anogeissus pendula,Anogeissus pendula,0.0000,Central Highlands,137,-0.905850 (dbh/100)^3 + 4.773860 (dbh/100)^2 - 0.351650 (dbh/100) + 0.000850
+Boswellia serrata,Boswellia serrata,0.0000,Central Highlands,138,7.807833 (dbh/100)^2 - 0.839952 (dbh/100) + 0.022590
+Buchanania latifolia,Buchanania latifolia,0.0000,Central Highlands,139,6.040660 (dbh/100)^2 - 0.640870 (dbh/100) + 0.031000
+Buchanania lanzan,Buchanania lanzan,0.0000,Central Highlands,140,6.040660 (dbh/100)^2 - 0.640870 (dbh/100) + 0.031000
+Butea monosperma,Butea monosperma,0.0000,Central Highlands,141,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Butea frondosa,Butea frondosa,0.0000,Central Highlands,142,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Central Highlands,143,2.043969 (dbh/100)^2 - 0.003156
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Central Highlands,144,9.175590 (dbh/100)^2 - 2.207500 (dbh/100) + 0.155810
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,145,7.420770 (dbh/100)^2 - 0.838878 (dbh/100) + 0.023708
+Flacourtia ramontchi,Flacourtia ramontchi,0.0000,Central Highlands,146,7.420770 (dbh/100)^2 - 0.838878 (dbh/100) + 0.023708
+Flacourtia indica,Flacourtia indica,0.0000,Central Highlands,147,7.420770 (dbh/100)^2 - 0.838878 (dbh/100) + 0.023708
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,Central Highlands,148,10.295730 (dbh/100)^2 - 1.688290 (dbh/100) + 0.105290
+Lannea coromandelica,Lannea coromandelica,0.0000,Central Highlands,149,11.907260 (dbh/100)^2 - 2.359900 (dbh/100) + 0.140040
+Lannea grandis,Lannea grandis,0.0000,Central Highlands,150,11.907260 (dbh/100)^2 - 2.359900 (dbh/100) + 0.140040
+Odina wodier,Odina wodier,0.0000,Central Highlands,151,11.907260 (dbh/100)^2 - 2.359900 (dbh/100) + 0.140040
+Madhuca latifolia,Madhuca latifolia,0.0000,Central Highlands,152,5.355486 (dbh/100)^3 + 0.063632
+Madhuca longifolia,Madhuca longifolia,0.0000,Central Highlands,153,5.355486 (dbh/100)^3 + 0.063632
+Madhuca indica,Madhuca indica,0.0000,Central Highlands,154,5.355486 (dbh/100)^3 + 0.063632
+Bassia latifolia,Bassia latifolia,0.0000,Central Highlands,155,5.355486 (dbh/100)^3 + 0.063632
+Miliusa tomentosa,Miliusa tomentosa,0.0000,Central Highlands,156,-51.766347 (dbh/100)^(3/2) + 49.433977 (dbh/100)^2 + 22.886734 (dbh/100) - 4.887481 sqrt(dbh/100) +  0.440657
+Saccopetalum tomentosum,Saccopetalum tomentosum,0.0000,Central Highlands,157,-51.766347 (dbh/100)^(3/2) + 49.433977 (dbh/100)^2 + 22.886734 (dbh/100) - 4.887481 sqrt(dbh/100) +  0.440657
+Mitragyna parviflora,Mitragyna parviflora,0.0000,Central Highlands,158,10.086934 (dbh/100)^2 - 1.744274 (dbh/100) + 0.099768
+Stephegyne parviflora,Stephegyne parviflora,0.0000,Central Highlands,159,10.086934 (dbh/100)^2 - 1.744274 (dbh/100) + 0.099768
+Tectona grandis,Tectona grandis,0.0000,Central Highlands,160,3.913117 (dbh/100)^(3/2) + 3.926659 (dbh/100)^2 - 0.633702 (dbh/100) - 0.801530 sqrt(dbh/100) +  0.164747
+Terminalia crenulata,Terminalia crenulata,0.0000,Central Highlands,161,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia elliptica,Terminalia myriocarpa,0.0000,Central Highlands,163,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Wrightia tinctoria,Wrightia tinctoria,0.0000,Central Highlands,164,-4.285759 (dbh/100)^(3/2) + 9.706322 (dbh/100)^2 + 0.786468 (dbh/100) - 0.069186 sqrt(dbh/100) +  0.002529
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,Central Highlands,165,4.663714 (dbh/100)^2 + 0.027354
+Acacia catechu,Acacia catechu,0.0000,North Deccan,166,7.268750 (dbh/100)^2 - 0.742400 (dbh/100) + 0.042350
+Aegle marmelos,Aegle marmelos,0.0000,North Deccan,167,9.258000 (dbh/100)^2 - 1.768000 (dbh/100) + 0.119000
+Anogeissus latifolia,Anogeissus latifolia,0.0000,North Deccan,168,7.952136 (dbh/100)^2 - 0.061856
+Bauhinia retusa,Bauhinia retusa,0.0000,North Deccan,169,1.236100 (dbh/100)^2 + 0.307800 (dbh/100) - 0.023600
+Bauhinia variegata,Bauhinia variegata,0.0000,North Deccan,170,1.236100 (dbh/100)^2 + 0.307800 (dbh/100) - 0.023600
+Buchanania latifolia,Buchanania latifolia,0.0000,North Deccan,171,1.038300 (dbh/100)^2 + 0.265400 (dbh/100) - 0.007670
+Buchanania lanzan,Buchanania lanzan,0.0000,North Deccan,172,1.038300 (dbh/100)^2 + 0.265400 (dbh/100) - 0.007670
+Butea monosperma,Butea monosperma,0.0000,North Deccan,173,7.208000 (dbh/100)^2 - 0.061900 (dbh/100) - 0.032000
+Butea frondosa,Butea frondosa,0.0000,North Deccan,174,7.208000 (dbh/100)^2 - 0.061900 (dbh/100) - 0.032000
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,North Deccan,175,5.277700 (dbh/100)^2 - 0.668900 (dbh/100) + 0.024200
+Cleistanthus collinus,Cleistanthus collinus,0.0000,North Deccan,176,4.784837 (dbh/100)^2 - 0.320414 (dbh/100) + 0.005364
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,North Deccan,177,8.255412 (dbh/100)^2 - 0.975148 (dbh/100) + 0.033867
+Gardenia resinifera,Gardenia resinifera,0.0000,North Deccan,178,6.751000 (dbh/100)^2 - 1.188000 (dbh/100) + 0.078000
+Gardenia turgida,Gardenia turgida,0.0000,North Deccan,179,6.751000 (dbh/100)^2 - 1.188000 (dbh/100) + 0.078000
+Gardenia lucida,Gardenia lucida,0.0000,North Deccan,180,6.751000 (dbh/100)^2 - 1.188000 (dbh/100) + 0.078000
+Gardenia latifolia,Gardenia latifolia,0.0000,North Deccan,181,6.751000 (dbh/100)^2 - 1.188000 (dbh/100) + 0.078000
+Gardenia gum,Gardenia gum,0.0000,North Deccan,182,6.751000 (dbh/100)^2 - 1.188000 (dbh/100) + 0.078000
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,North Deccan,183,9.629971 (dbh/100)^2 - 1.371984 (dbh/100) + 0.064660
+Lannea coromandelica,Lannea coromandelica,0.0000,North Deccan,184,9.011590 (dbh/100)^2 - 1.531417 (dbh/100) + 0.093318
+Lannea grandis,Lannea grandis,0.0000,North Deccan,185,9.011590 (dbh/100)^2 - 1.531417 (dbh/100) + 0.093318
+Odina wodier,Odina wodier,0.0000,North Deccan,186,9.011590 (dbh/100)^2 - 1.531417 (dbh/100) + 0.093318
+Madhuca latifolia,Madhuca latifolia,0.0000,North Deccan,187,7.726902 (dbh/100)^2 - 1.230020 (dbh/100) + 0.074069
+Madhuca longifolia,Madhuca longifolia,0.0000,North Deccan,188,7.726902 (dbh/100)^2 - 1.230020 (dbh/100) + 0.074069
+Madhuca indica,Madhuca indica,0.0000,North Deccan,189,7.726902 (dbh/100)^2 - 1.230020 (dbh/100) + 0.074069
+Bassia latifolia,Bassia latifolia,0.0000,North Deccan,190,7.726902 (dbh/100)^2 - 1.230020 (dbh/100) + 0.074069
+Memecylon edule,Memecylon edule,0.0000,North Deccan,191,9.692000 (dbh/100)^2 - 1.709000 (dbh/100) + 0.103000
+Miliusa tomentosa,Miliusa tomentosa,0.0000,North Deccan,192,-51.766347 (dbh/100)^(3/2) + 49.433977 (dbh/100)^2 + 22.886734 (dbh/100) - 4.887481 sqrt(dbh/100) +  0.440657
+Saccopetalum tomentosum,Saccopetalum tomentosum,0.0000,North Deccan,193,-51.766347 (dbh/100)^(3/2) + 49.433977 (dbh/100)^2 + 22.886734 (dbh/100) - 4.887481 sqrt(dbh/100) +  0.440657
+Syzygium cumini,Syzygium cumini,0.0000,North Deccan,194,12.959000 (dbh/100)^2 - 3.377000 (dbh/100) + 0.273600
+Syzygium jambolanum,Syzygium jambolanum,0.0000,North Deccan,195,12.959000 (dbh/100)^2 - 3.377000 (dbh/100) + 0.273600
+Eugenia jambolana,Eugenia jambolana,0.0000,North Deccan,196,12.959000 (dbh/100)^2 - 3.377000 (dbh/100) + 0.273600
+Tectona grandis,Tectona grandis,0.0000,North Deccan,197,6.565986 (dbh/100)^2 - 0.546922 (dbh/100) + 0.011389
+Terminalia crenulata,Terminalia crenulata,0.0000,North Deccan,198,8.204564 (dbh/100)^2 - 1.056150 (dbh/100) + 0.048532
+Terminalia tomentosa,Terminalia tomentosa,0.0000,North Deccan,199,8.204564 (dbh/100)^2 - 1.056150 (dbh/100) + 0.048532
+Terminalia elliptica,Terminalia myriocarpa,0.0000,North Deccan,200,8.204564 (dbh/100)^2 - 1.056150 (dbh/100) + 0.048532
+Wrightia tinctoria,Wrightia tinctoria,0.0000,North Deccan,201,4.149345 (dbh/100)^2 - 0.009510
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,North Deccan,202,1.479400 (dbh/100)^2 + 0.231300 (dbh/100) - 0.025700
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Deccan,203,8.050030 (dbh/100)^2 - 0.029580
+Boswellia serrata,Boswellia serrata,0.0000,East Deccan,204,9.484710 (dbh/100)^2 - 1.327680 sqrt(dbh/100) + 0.364320
+Bridelia retusa,Bridelia retusa,0.0000,East Deccan,205,-8.956530 (dbh/100)^(3/2) + 17.033037 (dbh/100)^2 + 2.136550 (dbh/100) - 0.252174 sqrt(dbh/100) +  0.013502
+Bridelia squamosa,Bridelia squamosa,0.0000,East Deccan,206,-8.956530 (dbh/100)^(3/2) + 17.033037 (dbh/100)^2 + 2.136550 (dbh/100) - 0.252174 sqrt(dbh/100) +  0.013502
+Buchanania latifolia,Buchanania latifolia,0.0000,East Deccan,207,6.040660 (dbh/100)^2 - 0.640870 (dbh/100) + 0.031000
+Buchanania lanzan,Buchanania lanzan,0.0000,East Deccan,208,6.040660 (dbh/100)^2 - 0.640870 (dbh/100) + 0.031000
+Butea monosperma,Butea monosperma,0.0000,East Deccan,209,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Butea frondosa,Butea frondosa,0.0000,East Deccan,210,8.733503 (dbh/100)^2 - 1.434833 (dbh/100) + 0.058932
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,East Deccan,211,2.043969 (dbh/100)^2 - 0.003156
+Cleistanthus collinus,Cleistanthus collinus,0.0000,East Deccan,212,5.709471 (dbh/100)^2 - 0.567037 (dbh/100) + 0.030925
+Dalbergia paniculata,Dalbergia paniculata,0.0000,East Deccan,213,-58.827992 (dbh/100)^(3/2) + 53.549758 (dbh/100)^2 + 27.410766 (dbh/100) - 6.181716 sqrt(dbh/100) +  0.591299
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,East Deccan,214,10.877470 (dbh/100)^2 - 2.009660 (dbh/100) + 0.124010
+Diospyros species,Diospyros species,0.0000,East Deccan,215,10.877470 (dbh/100)^2 - 2.009660 (dbh/100) + 0.124010
+Emblica officinalis,Emblica officinalis,0.0000,East Deccan,216,4.889163 (dbh/100)^2 - 0.022635
+Phyllanthus emblica,Phyllanthus emblica,0.0000,East Deccan,217,4.889163 (dbh/100)^2 - 0.022635
+Gardenia resinifera,Gardenia resinifera,0.0000,East Deccan,218,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Gardenia turgida,Gardenia turgida,0.0000,East Deccan,219,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Gardenia lucida,Gardenia lucida,0.0000,East Deccan,220,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Gardenia latifolia,Gardenia latifolia,0.0000,East Deccan,221,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Gardenia gum,Gardenia gum,0.0000,East Deccan,222,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,East Deccan,223,11.891190 (dbh/100)^2 - 1.376050 (dbh/100) + 0.069130
+Lannea coromandelica,Lannea coromandelica,0.0000,East Deccan,224,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Lannea grandis,Lannea grandis,0.0000,East Deccan,225,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Odina wodier,Odina wodier,0.0000,East Deccan,226,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Madhuca latifolia,Madhuca latifolia,0.0000,East Deccan,227,7.344600 (dbh/100)^2 - 0.555470 (dbh/100) - 0.000920
+Madhuca longifolia,Madhuca longifolia,0.0000,East Deccan,228,7.344600 (dbh/100)^2 - 0.555470 (dbh/100) - 0.000920
+Madhuca indica,Madhuca indica,0.0000,East Deccan,229,7.344600 (dbh/100)^2 - 0.555470 (dbh/100) - 0.000920
+Bassia latifolia,Bassia latifolia,0.0000,East Deccan,230,7.344600 (dbh/100)^2 - 0.555470 (dbh/100) - 0.000920
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Deccan,231,8.069010 (dbh/100)^2 - 0.046590
+Shorea robusta,Shorea robusta,0.0000,East Deccan,232,10.519820 (dbh/100)^2 - 1.229940 (dbh/100) + 0.058230
+Tectona grandis,Tectona grandis,0.0000,East Deccan,233,1.956610 (dbh/100)^3 + 8.182610 (dbh/100)^2 - 0.918630 (dbh/100) + 0.045181
+Terminalia crenulata,Terminalia crenulata,0.0000,East Deccan,234,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Deccan,235,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia elliptica,Terminalia myriocarpa,0.0000,East Deccan,236,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Zizyphus xylopyrus,Zizyphus xylopyrus,0.0000,East Deccan,237,4.663714 (dbh/100)^2 + 0.027354
+Acacia auriculiformis,Acacia auriculiformis,0.0000,South Deccan,238,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Albizia amara,Albizia amara,0.0000,South Deccan,239,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Anogeissus latifolia,Anogeissus latifolia,0.0000,South Deccan,240,11.771000 (dbh/100)^2 - 2.653000 (dbh/100) + 0.289000
+Butea monosperma,Butea monosperma,0.0000,South Deccan,241,8.984266 (dbh/100)^2 - 1.490948 (dbh/100) + 0.088183
+Butea frondosa,Butea frondosa,0.0000,South Deccan,242,8.984266 (dbh/100)^2 - 1.490948 (dbh/100) + 0.088183
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,South Deccan,243,3.237800 (dbh/100)^2 - 0.053200 (dbh/100)
+Dalbergia paniculata,Dalbergia paniculata,0.0000,South Deccan,244,10.544620 (dbh/100)^2 - 2.462150 (dbh/100) + 0.189450
+Eucalyptus species,Eucalyptus species,0.0000,South Deccan,245,8.724160 (dbh/100)^2 - 0.892840 (dbh/100) + 0.028940
+Hardwickia binata,Hardwickia binata,0.0000,South Deccan,246,5.355486 (dbh/100)^3 + 0.063632
+Lagerstroemia parviflora,Lagerstroemia parviflora,0.0000,South Deccan,247,9.403257 (dbh/100)^2 - 1.334512 (dbh/100) + 0.066188
+Lannea coromandelica,Lannea coromandelica,0.0000,South Deccan,248,10.246240 (dbh/100)^2 - 1.661530 (dbh/100) + 0.091153
+Lannea grandis,Lannea grandis,0.0000,South Deccan,249,10.246240 (dbh/100)^2 - 1.661530 (dbh/100) + 0.091153
+Odina wodier,Odina wodier,0.0000,South Deccan,250,10.246240 (dbh/100)^2 - 1.661530 (dbh/100) + 0.091153
+Syzygium cumini,Syzygium cumini,0.0000,South Deccan,251,8.984266 (dbh/100)^2 - 1.490948 (dbh/100) + 0.088183
+Syzygium jambolanum,Syzygium jambolanum,0.0000,South Deccan,252,8.984266 (dbh/100)^2 - 1.490948 (dbh/100) + 0.088183
+Eugenia jambolana,Eugenia jambolana,0.0000,South Deccan,253,8.984266 (dbh/100)^2 - 1.490948 (dbh/100) + 0.088183
+Tectona grandis,Tectona grandis,0.0000,South Deccan,254,-5.581600 (dbh/100)^2 + 2.845800 (dbh/100) - 0.241400
+Terminalia crenulata,Terminalia crenulata,0.0000,South Deccan,255,7.991280 (dbh/100)^2 - 1.076790 (dbh/100) + 0.051812
+Terminalia tomentosa,Terminalia tomentosa,0.0000,South Deccan,256,7.991280 (dbh/100)^2 - 1.076790 (dbh/100) + 0.051812
+Terminalia elliptica,Terminalia myriocarpa,0.0000,South Deccan,257,7.991280 (dbh/100)^2 - 1.076790 (dbh/100) + 0.051812
+Terminalia paniculata,Terminalia paniculata,0.0000,South Deccan,258,9.478610 (dbh/100)^2 - 1.871320 (dbh/100) + 0.131000
+Wrightia tinctoria,Wrightia tinctoria,0.0000,South Deccan,259,-4.285759 (dbh/100)^(3/2) + 9.706322 (dbh/100)^2 + 0.786468 (dbh/100) - 0.069186 sqrt(dbh/100) +  0.002529
+Acacia mearnsii,Acacia mearnsii,0.0000,Western Ghats,260,9.242007 (dbh/100)^2 - 0.871849 (dbh/100) + 0.020562
+Acacia melanoxylon,Acacia melanoxylon,0.0000,Western Ghats,261,-2.865463 (dbh/100)^(3/2) + 6.859737 (dbh/100)^2 + 0.291804 (dbh/100) + 0.001554 sqrt(dbh/100) +  0.000002
+Acrocarpus fraxinifolius,Acrocarpus fraxinifolius,0.0000,Western Ghats,262,0.000970 (dbh/100)^2 - 0.094100
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Western Ghats,263,12.261268 (dbh/100)^2 - 1.105937 (dbh/100) + 0.030502
+Aporosa lindleyana,Aporosa lindleyana,0.0000,Western Ghats,264,8.055700 (dbh/100)^2 - 1.461300 (dbh/100) + 0.100900
+Artocarpus heterophyllus,Artocarpus heterophyllus,0.0000,Western Ghats,265,11.370000 (dbh/100)^2 - 1.319000 (dbh/100) + 0.076000
+Artocarpus integrifolia,Artocarpus integrifolia,0.0000,Western Ghats,266,11.370000 (dbh/100)^2 - 1.319000 (dbh/100) + 0.076000
+Cullenia excelsa,Cullenia excelsa,0.0000,Western Ghats,267,16.792000 (dbh/100)^(2.716800)
+Holarrhena antidysenterica,Holarrhena antidysenterica,0.0000,Western Ghats,268,14.449610 (dbh/100)^2 - 2.787760 (dbh/100) + 0.179940
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,Western Ghats,269,10.141060 (dbh/100)^2 - 2.480710 (dbh/100) + 0.238390
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,Western Ghats,270,10.141060 (dbh/100)^2 - 2.480710 (dbh/100) + 0.238390
+Macaranga peltata,Macaranga peltata,0.0000,Western Ghats,271,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Myristica malabarica,Myristica malabarica,0.0000,Western Ghats,272,-0.905850 (dbh/100)^3 + 4.773860 (dbh/100)^2 - 0.351650 (dbh/100) + 0.000850
+Olea dioica,Olea dioica,0.0000,Western Ghats,273,5.755230 (dbh/100)^2 - 0.030010
+Palaquium ellipticum,Palaquim ellipticum,0.0000,Western Ghats,274,0.000100 (dbh/100)^2 + 0.012200 (dbh/100) - 0.092900
+Pinus patula,Pinus patula,0.0000,Western Ghats,275,8.568301 (dbh/100)^2 - 1.172336 (dbh/100) + 0.040100
+Schleichera trijuga,Schleichera trijuga,0.0000,Western Ghats,276,6.221400 (dbh/100)^2 - 0.496470 (dbh/100) + 0.016042
+Schleichera oleosa,Schleichera oleosa,0.0000,Western Ghats,277,6.221400 (dbh/100)^2 - 0.496470 (dbh/100) + 0.016042
+Syzygium cumini,Syzygium cumini,0.0000,Western Ghats,278,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Western Ghats,279,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Eugenia jambolana,Eugenia jambolana,0.0000,Western Ghats,280,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Tectona grandis,Tectona grandis,0.0000,Western Ghats,281,3.913117 (dbh/100)^(3/2) + 3.926659 (dbh/100)^2 - 0.633702 (dbh/100) - 0.801530 sqrt(dbh/100) +  0.164747
+Terminalia crenulata,Terminalia crenulata,0.0000,Western Ghats,282,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Western Ghats,283,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia elliptica,Terminalia myriocarpa,0.0000,Western Ghats,284,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia paniculata,Terminalia paniculata,0.0000,Western Ghats,285,9.478610 (dbh/100)^2 - 1.871320 (dbh/100) + 0.131000
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Western Ghats,286,4.880609 (dbh/100)^2 + 0.072064 (dbh/100) + 0.000266
+Albizia amara,Albizia amara,0.0000,Eastern Ghats,287,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Albizia species,Albizia species,0.0000,Eastern Ghats,288,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Anogeissus latifolia,Anogeissus latifolia,0.0000,Eastern Ghats,289,20.224040 (dbh/100)^2 - 2.870670 (dbh/100) + 0.139280
+Bridelia retusa,Bridelia retusa,0.0000,Eastern Ghats,290,8.157614 (dbh/100)^2 - 0.839708 (dbh/100) + 0.035142
+Buchanania latifolia,Buchanania latifolia,0.0000,Eastern Ghats,291,e^(2.249100) (dbh/100)^2.520600
+Buchanania lanzan,Buchanania lanzan,0.0000,Eastern Ghats,292,e^(2.249100) (dbh/100)^2.520600
+Chloroxylon swietenia,Chloroxylon swietenia,0.0000,Eastern Ghats,293,2.043969 (dbh/100)^2 - 0.003156
+Cleistanthus collinus,Cleistanthus collinus,0.0000,Eastern Ghats,294,-7.917105 (dbh/100)^(3/2) + 14.302768 (dbh/100)^2 + 2.075568 (dbh/100) - 0.271223 sqrt(dbh/100) +  0.016786
+Diospyros melanoxylon,Diospyros melanoxylon,0.0000,Eastern Ghats,295,-8.112066 (dbh/100)^(3/2) + 16.512114 (dbh/100)^2 + 1.543109 (dbh/100) - 0.134312 sqrt(dbh/100) +  0.004527
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,Eastern Ghats,296,e^(2.249100) (dbh/100)^2.520600
+Lannea coromandelica,Lannea coromandelica,0.0000,Eastern Ghats,297,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,Eastern Ghats,298,0.227519 (dbh/100)^(3/2) + 7.952513 (dbh/100)^2 - 0.916346 (dbh/100) - 0.013131 sqrt(dbh/100) +  0.026491
+Semecarpus anacardium,Semecarpus anacardium,0.0000,Eastern Ghats,299,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Shorea robusta,Shorea robusta,0.0000,Eastern Ghats,300,-14.339236 (dbh/100)^(3/2) + 20.901264 (dbh/100)^2 + 4.287513 (dbh/100) - 0.627104 sqrt(dbh/100) +  0.039976
+Syzygium cumini,Syzygium cumini,0.0000,Eastern Ghats,301,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Syzygium jambolanum,Syzygium jambolanum,0.0000,Eastern Ghats,302,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Eugenia jambolana,Eugenia jambolana,0.0000,Eastern Ghats,303,-21.521371 (dbh/100)^(3/2) + 26.289308 (dbh/100)^2 + 7.553325 (dbh/100) - 1.288854 sqrt(dbh/100) +  0.094286
+Tectona grandis,Tectona grandis,0.0000,Eastern Ghats,304,-7.571350 (dbh/100)^3 + 16.523360 (dbh/100)^2 - 2.452120 (dbh/100) + 0.125910
+Terminalia crenulata,Terminalia crenulata,0.0000,Eastern Ghats,305,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia tomentosa,Terminalia tomentosa,0.0000,Eastern Ghats,306,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia elliptica,Terminalia myriocarpa,0.0000,Eastern Ghats,307,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Xylia xylocarpa,Xylia xylocarpa,0.0000,Eastern Ghats,308,8.963000 (dbh/100)^2 - 1.520000 (dbh/100) + 0.098000
+Acacia catechu,Acacia catechu,0.0000,West Coast,309,5.873169 (dbh/100)^2 - 0.048108
+Anogeissus latifolia,Anogeissus latifolia,0.0000,West Coast,310,5.907082 (dbh/100)^2 - 1.737154 (dbh/100) + 0.127715
+Bombax ceiba,Bombax ceiba,0.0000,West Coast,311,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Bombax malabaricum,Bombax malabaricum,0.0000,West Coast,312,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Salmalia malabarica,Salmalia malabarica,0.0000,West Coast,313,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Bombax insigne,Bombax insigne,0.0000,West Coast,314,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Boswellia serrata,Boswellia serrata,0.0000,West Coast,315,9.128465 (dbh/100)^2 - 1.139980 (dbh/100) + 0.035591
+Bridelia retusa,Bridelia retusa,0.0000,West Coast,316,8.157614 (dbh/100)^2 - 0.839708 (dbh/100) + 0.035142
+Bridelia squamosa,Bridelia squamosa,0.0000,West Coast,317,8.157614 (dbh/100)^2 - 0.839708 (dbh/100) + 0.035142
+Butea monosperma,Butea monosperma,0.0000,West Coast,318,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Butea frondosa,Butea frondosa,0.0000,West Coast,319,10.156600 (dbh/100)^2 - 2.076740 (dbh/100) + 0.136196
+Careya arborea,Careya arborea,0.0000,West Coast,320,2.263463 (dbh/100)^(3/2) + 5.442376 (dbh/100)^2 - 0.872221 (dbh/100) - 0.230316 sqrt(dbh/100) +  0.056349
+Dalbergia latifolia,Dalbergia latifolia,0.0000,West Coast,321,8.661926 (dbh/100)^2 - 0.850584 (dbh/100) + 0.020881
+Garuga pinnata,Garuga pinnata,0.0000,West Coast,322,9.797028 (dbh/100)^2 - 1.481043 (dbh/100) + 0.077965
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,West Coast,323,13.916741 (dbh/100)^3 + 0.018620
+Lagerstroemia lanceolata,Lagerstroemia lanceolata,0.0000,West Coast,324,9.285000 (dbh/100)^2 - 1.817000 (dbh/100) + 0.177000
+Lagerstroemia microcarpa,Lagerstroemia microcarpa,0.0000,West Coast,325,9.285000 (dbh/100)^2 - 1.817000 (dbh/100) + 0.177000
+Lannea coromandelica,Lannea coromandelica,0.0000,West Coast,326,-28.281042 (dbh/100)^(3/2) + 30.858592 (dbh/100)^2 + 10.969879 (dbh/100) - 2.057563 sqrt(dbh/100) +  0.163340
+Lannea grandis,Lannea grandis,0.0000,West Coast,327,-28.281042 (dbh/100)^(3/2) + 30.858592 (dbh/100)^2 + 10.969879 (dbh/100) - 2.057563 sqrt(dbh/100) +  0.163340
+Odina wodier,Odina wodier,0.0000,West Coast,328,-28.281042 (dbh/100)^(3/2) + 30.858592 (dbh/100)^2 + 10.969879 (dbh/100) - 2.057563 sqrt(dbh/100) +  0.163340
+Macaranga peltata,Macaranga peltata,0.0000,West Coast,329,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Schleichera trijuga,Schleichera trijuga,0.0000,West Coast,330,6.221400 (dbh/100)^2 - 0.496470 (dbh/100) + 0.016042
+Schleichera oleosa,Schleichera oleosa,0.0000,West Coast,331,6.221400 (dbh/100)^2 - 0.496470 (dbh/100) + 0.016042
+Tectona grandis,Tectona grandis,0.0000,West Coast,332,3.913117 (dbh/100)^(3/2) + 3.926659 (dbh/100)^2 - 0.633702 (dbh/100) - 0.801530 sqrt(dbh/100) +  0.164747
+Terminalia belerica,Terminalia belerica,0.0000,West Coast,333,8.000000 (dbh/100)^2 + 10.980000
+Terminalia crenulata,Terminalia crenulata,0.0000,West Coast,334,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia tomentosa,Terminalia tomentosa,0.0000,West Coast,335,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia elliptica,Terminalia myriocarpa,0.0000,West Coast,336,9.980639 (dbh/100)^2 - 1.288625 (dbh/100) + 0.041594
+Terminalia paniculata,Terminalia paniculata,0.0000,West Coast,337,9.478610 (dbh/100)^2 - 1.871320 (dbh/100) + 0.131000
+Wrightia tinctoria,Wrightia tinctoria,0.0000,West Coast,338,-4.285759 (dbh/100)^(3/2) + 9.706322 (dbh/100)^2 + 0.786468 (dbh/100) - 0.069186 sqrt(dbh/100) +  0.002529
+Xylia xylocarpa,Xylia xylocarpa,0.0000,West Coast,339,4.880609 (dbh/100)^2 + 0.072064 (dbh/100) + 0.000266
+Albizia amara,Albizia amara,0.0000,East Coast,340,-1.615735 (dbh/100)^(3/2) + 8.983927 (dbh/100)^2 - 0.353513 (dbh/100) + 0.038322 sqrt(dbh/100) +  0.005054
+Anogeissus latifolia,Anogeissus latifolia,0.0000,East Coast,341,11.771000 (dbh/100)^2 - 2.653000 (dbh/100) + 0.289000
+Boswellia serrata,Boswellia serrata,0.0000,East Coast,342,9.484710 (dbh/100)^2 - 1.327680 sqrt(dbh/100) + 0.364320
+Diospyros species,Diospyros species,0.0000,East Coast,343,-8.112066 (dbh/100)^(3/2) + 16.512114 (dbh/100)^2 + 1.543109 (dbh/100) - 0.134312 sqrt(dbh/100) +  0.004527
+Dolichandrone falcata,Dolichandrone falcata,0.0000,East Coast,344,8.760534 (dbh/100)^2 - 1.449236 (dbh/100) + 0.088074
+Grewia tiliaefolia,Grewia tiliaefolia,0.0000,East Coast,345,e^(2.249100) (dbh/100)^2.520600
+Lannea coromandelica,Lannea coromandelica,0.0000,East Coast,346,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Lannea grandis,Lannea grandis,0.0000,East Coast,347,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Odina wodier,Odina wodier,0.0000,East Coast,348,8.542648 (dbh/100)^2 - 1.153088 (dbh/100) + 0.057424
+Pterocarpus marsupium,Pterocarpus marsupium,0.0000,East Coast,349,0.227519 (dbh/100)^(3/2) + 7.952513 (dbh/100)^2 - 0.916346 (dbh/100) - 0.013131 sqrt(dbh/100) +  0.026491
+Shorea robusta,Shorea robusta,0.0000,East Coast,350,-14.339236 (dbh/100)^(3/2) + 20.901264 (dbh/100)^2 + 4.287513 (dbh/100) - 0.627104 sqrt(dbh/100) +  0.039976
+Tectona grandis,Tectona grandis,0.0000,East Coast,351,6.731036 (dbh/100)^2 - 0.531006 (dbh/100) + 0.023613
+Terminalia crenulata,Terminalia crenulata,0.0000,East Coast,352,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia tomentosa,Terminalia tomentosa,0.0000,East Coast,353,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Terminalia elliptica,Terminalia myriocarpa,0.0000,East Coast,354,8.778390 (dbh/100)^2 - 1.119940 (dbh/100) + 0.050610
+Wrightia tinctoria,Wrightia tinctoria,0.0000,East Coast,355,4.149345 (dbh/100)^2 - 0.009510

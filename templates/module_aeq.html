@@ -1,0 +1,16 @@
+{% extends "stage_utilities.html" %}
+
+{% block navtabs %} <!-- move to module template -->
+    <li id="aeq-list"><a href="{% url "group_aeq" %}"><span class="glyphicon glyphicon-list"></span> List by Region</a>
+    <li id="aeq-add"><a href="{% url "aeq_create" %}"><span class="glyphicon glyphicon-plus-sign"></span> Add AEQ</a>
+    <li id="aeq-upload"><a href="{% url "aeq_upload" %}"><span class="glyphicon glyphicon-cloud-upload"></span> Upload AEQ</a></li>
+    <li id="species-pill"><a href="{% url "species_list" %}"><span class="glyphicon glyphicon-tree-conifer"></span> Species</a></li>
+{% endblock navtabs %}
+
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#aeq-pill").addClass("active");
+        $("#aeq-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}

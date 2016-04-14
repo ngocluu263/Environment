@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>User Guide</title> 
+
+	<!-- jquery mobile -->
+	<link rel="stylesheet" href="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<link rel="stylesheet" href="/static/html/jquery_mobile_css/guidebook_theme/guidebook.css">
+	<link rel="stylesheet" href="/static/html/custom.css">
+	<script src="//code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	<!-- end jquery mobile -->
+
+	<script type="text/javascript">
+		$(document).ready(function () { // allow custom class "disabled" to prevent opening certain collapsible divs
+		    $(".disabled h3 a").click(function (event) {
+		        return false;
+		    });
+		});
+
+		/* bind our initPage function to page load */
+		$('body').live( 'pageinit', initPage);
+		function initPage() {
+			/* Override 1) Expand the URL hash tag section */
+			if(!location.hash){	return;	}
+			$(location.hash).trigger('expand');
+		}
+	</script>
+</head> 
+<body> 
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Carbon2Markets MRV</h1>
+
+		<a href="javascript:parent.$.pageslide.close()" data-icon="arrow-r" data-theme="d" class="ui-btn-right">Hide</a>
+
+		<div data-role="navbar">
+			<ul>
+				<li><a href="guidebook.html">GEF Guidebook</a></li>
+				<li><a href="#" class="ui-btn-active ui-state-persist">MRV User Guide</a></li>
+			</ul>
+		</div><!-- /navbar -->
+
+	</div><!-- /header -->
+
+	<div data-role="content"data-content-theme="a" >
+		<div id="citation">
+			<p>
+				This user guide provides quick documentation to help users navigate the MRV system.
+			</p>
+		</div>
+
+		<div id="s1" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>1. Introduction</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s2" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>2. Access to the MRV</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s3" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>3. Create Your Project</h3>
+			<p>
+
+			</p>
+		</div>
+
+		<div id="s4" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>4. Work on Your Project</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s5" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>5. Report Your Project</h3>
+			<p>
+				
+			</p>
+		</div>
+
+		<div id="s6" data-role="collapsible" data-collapsed-icon="" data-expanded-icon="arrow-d" data-inset="false" data-mini="true" class="disabled">
+			<h3>6. Glossary</h3>
+			<p>
+				
+			</p>
+		</div>
+
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

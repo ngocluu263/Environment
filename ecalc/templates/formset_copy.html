@@ -1,0 +1,83 @@
+<table>
+{{ wizard.management_form }}
+{{ wizard.form.non_form_errors }} {# display any formset errors #}
+{% if wizard.form.forms %} {# if... we have a FORMSET to style #}
+    {{ wizard.form.management_form }}
+
+    {% for form in wizard.form.forms %}
+        {% if forloop.first %}
+            <thead><tr>
+                <th>Parcel Name</th>
+            {% for field in form.visible_fields %}
+                <th>{{ field.label|capfirst }}</th>
+            {% endfor %}
+          </tr></thead>
+        {% endif %}
+        <tr style='background-color: {% cycle '#dfdddd' '#ffffff' %};'>
+            <td>{{ form.instance.name }}</td> <!--Parcel Name-->
+        {% for field in form.visible_fields %}
+            <td> <!--Scenario-->
+            {# Include the hidden fields in the form #}
+            {% if forloop.first %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            {% endif %}
+            {{ field.errors.as_ul }}
+            {{ field }}
+            </td>
+          {% endfor %}
+          </tr>
+    {% endfor %}
+{% else %} {# else... we have a FORM to style #}
+    {{ wizard.form }}
+{% endif %}
+</table>
+</br>
+<input class="btn btn-primary btn-sm" type="submit" value="Submit"/>
+</form>
+
+<!--New-->
+{{ wizard.management_form }}
+{{ wizard.form.management_form }}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Selections</h4>
+        </div>
+        {% if wizard.form.errors or landuse_formset.non_form_errors %}
+        <div class="panel-body">
+            <p style="color: red;">
+                Please correct the errors below.
+            </p>
+            {{ landuse_formset.non_form_errors }}
+        </div>
+        {% endif %}
+        <table class="table table-hover">
+            <tr>
+                <td>Parcel Name</td>
+                <td>Scenario</td>
+            </tr>
+            {% for form in wizard.form.forms %}
+                <tr>
+                    <td>{{ form.instance.name }}</td>
+                    {% for field in form.visible_fields %}
+                        <td>
+                        {% if forloop.first %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                        {% endif %}
+                        {{ field.errors.as_ul }}
+                        {{ field }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary btn-sm pull-right" type="submit" value="Submit"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

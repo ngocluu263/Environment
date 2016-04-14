@@ -1,0 +1,203 @@
+{% extends "module_aeq.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Allometric Equation Editor
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+    <li class="active">Allometric Equations</li>
+{% endblock %}
+
+{% block page_content %}
+<form action="." method="POST" class="form-horizontal">
+    <div class="panel panel-primary">
+        
+        <div class="panel-heading">
+            <h4 class="panel-title">Allometric Equations</h4>
+        </div>
+        <div class="panel-body" style="padding: 50px;">
+    		You can define a custom allometric equation below.
+    		<br>
+    		<br>Tree parameters are case-sensitive and include: <b>dbh, total_height, crown_d_max, crown_d_90, wood_gravity</b>.<br>
+            <br>
+            Please note that triple exponentiation (w^x^y) and large constants (c > 999,999), among other subexpressions, are prohibited. Please contact <a href=mailto:admin@carbon2markets.org>admin@carbon2markets.org</a> if this is problematic for you.
+            <br>
+            <img src="/static/images/tree_crown_spread.tif" width="20%" style="float:right;">
+            <table class="table" style="width: 80%">
+            <tr>
+                <td><b>dbh</b></td>
+                <td>The diameter at breast height of the tree.  For the purposes of the MRV system, this will be defined as the diameter of the tree at 1.4 meters tall.</td>
+            </tr>
+            <tr>
+                <td><b>total_height</b></td>
+                <td>The total height of the tree.</td>
+            </tr>
+            <tr>
+                <td><b>crown_d_max</b></td>
+                <td>Crown diameter of the tree at the widest point of the crown, also known as longest spread.</td>
+            </tr>
+            <tr>
+                <td><b>crown_d_90</b></td>
+                <td>Crown diameter of the tree, measured perpindicular to the crown_d_max, also known as longest cross-spread.</td>
+            </tr>
+            <tr>
+                <td><b>wood_gravity</b></td>
+                <td>The wood gravity value of the tree.  If none is provided for a specific tree, the default value for the species will be used.</td>
+            </tr>
+            </table>
+    		  		Example: <table class="table" id="gridtable">
+    		<tr><td class="col-md-3">Original Equation</td> <td>V = 42.69 - 12.8D + 1.242D^2</td>
+    		<tr><td class="col-md-3">Correct format for csv</td><td>42.69 - 12.8(dbh) + 1.242(dbh^2)</td>
+    		<tr><td class="col-md-3">volumetric</td><td>true</td></tr>
+    		<tr><td class="col-md-3">dependent variable</td><td>volume</td></tr>
+    		</table>
+    		
+            <hr/>
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Error</strong> {{ error }}
+                    </div>
+                {% endfor %}
+
+
+            {% endif %}
+
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="id_name" class='control-label pull-right'>{{ form.name.label }}:</label>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ form.name|add_class:'form-control' }}
+                    </div>
+                    <div class="col-sm-3">
+                        {% for error in form.name.errors %}
+                            <span style="color:red;font-size:12px;"><em>{{ error }}</em></span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-sm-6 col-sm-offset-4">
+                        <em>Ex: Tropical moist forests (Brown 1997)</em>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="id_string" class="control-label pull-right">{{ form.string.label }}:</label>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ form.string|add_class:'form-control' }}
+                    </div>
+                    <div class="col-sm-3">
+                        {% for error in form.string.errors %}
+                            <span style="color:red;font-size:12px;"><em>{{ error }}</em></span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-4">
+                        <em>Ex: 42.69 - 12.8(dbh) + 1.242(dbh^2)</em>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="id_region" class="control-label pull-right">Region: </label>
+                </div>
+                <div class="col-sm-5">
+                    {{ form.region|add_class:'form-control' }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="id_genus" class="control-label pull-right">Genus: </label>
+                </div>
+                <div class="col-sm-5">
+                    {{ form.genus|add_class:'form-control' }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="id_species" class="control-label pull-right">Species: </label>
+                </div>
+                <div class="col-sm-5">
+                    {{ form.species_text_field|add_class:'form-control' }}
+                </div>
+                <div class="col-sm-3">
+                    {{ form.species_text_field.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="id_category" class="control-label pull-right">Category: </label>
+                </div>
+                <div class="col-sm-5">
+                    {{ form.category }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label for="id_category" class="control-label pull-right">Anatomy: </label>
+                </div>
+                <div class="col-sm-5">
+                    {{ form.anatomy }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label for="id_volumetric" class="control-label pull-right">Is this a volumetric equation? </label>
+                    </div>
+                    <div class="col-sm-2" style="margin-top:.5em;">
+                        {{ form.volumetric }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label for="id_less_than_ten" class="control-label pull-right">Do you want to apply this equation to trees with dbh less than 10 cm? </label>
+                    </div>
+                    <div class="col-sm-2" style="margin-top:.5em;">
+                        {{ form.less_than_ten }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label for="id_public" class="control-label pull-right">Do you want to share this allometric equation with everyone? </label>
+                    </div>
+                    <div class="col-sm-2" style="margin-top:6px;">
+                            {{ form.public }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-11">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm" style="margin-left:-20px;"/>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</form>
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#aeq-add").addClass("active");
+        $("#aeq-add a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

@@ -1,0 +1,163 @@
+{% extends "ecalc/base.html" %}
+{% block page_title %}Emissions Calculator - Project Review{% endblock %}
+{% block navtabs %}
+	<li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li class="active"><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" request.session.project_id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li class="active"><a href="{% url "ecalc-step-1" request.session.project_id %}">Project Wizard</a></li>
+    <li class="active">Review</li>
+{% endblock breadcrumbs %}
+
+{% block page_content %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				Review Project Details
+			</h4>
+		</div>
+		<table class="table table-hover">
+				<tr>
+					<th class="col-sm-5">Project Name</th>
+					<td class="col-sm-7">{{ project.name }}</td>
+				</tr>
+	            <tr>
+	            	<th class="col-sm-5">Continent</th>
+	            	<td class="col-sm-7">{{ project.continent }}</td>
+	            </tr>
+	            <tr>
+	            	<th class="col-sm-5">Climate</th>
+	            	<td class="col-sm-7">{{ project.climate_zone }}</td>
+	            </tr>
+	            <tr>
+	            	<th class="col-sm-5">Moisture</th>
+	            	<td class="col-sm-7">{{ project.moisture_zone }}</td>
+	            </tr>
+	            <tr>
+	            	<th class="col-sm-5">Soil Type</th>
+	            	<td class="col-sm-7">{{ project.soil_type }}</td>
+	            </tr>
+	            <tr>
+	            	<th class="col-sm-5">Duration</th>
+	            	<td class="col-sm-7">{{ project.duration }}</td>
+	            </tr>
+	            <tr>
+	            	<th class="col-sm-5">Carbon/DryMatter</th>
+	            	<td class="col-sm-7">
+	            		<div id="cdm">
+	            			<div id="content" class="col-sm-3" style="margin-left:-13px">
+	            				{{ project.cdm }}
+	            			</div>
+	            			<div id="buttons" class="col-sm-9">
+	            				<button id="edit" class="btn btn-primary btn-sm pull-right">Edit</button>
+	            			</div>
+	            		</div>
+	            	</td>
+	            </tr>
+	            <tr>
+	            	<td colspan="2" class="col-sm-12">
+	            		<a href="{% url "ecalc-wiz-parcel" ppk=project.id %}"><button class="btn btn-primary btn-sm pull-right" style="margin-right:25px">Next</button></a>
+	            	</td>
+	            </tr>
+		</table>
+	</div>
+{% endblock %}
+
+{% block page_bottomscripts %}
+	<script type="text/javascript">
+		// Load the existing carbon/dry matter value into the progra
+
+		var x = {{ project.cdm }};
+		
+		// NOT IMPLEMENTED YET, gets the CSRF cookie and eventually applies it to the 
+		// request header
+		// using jQuery
+		function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie != '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = jQuery.trim(cookies[i]);
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+
+		//var csrftoken = getCookie('csrftoken');
+		function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+
+		function sameOrigin(url) {
+		    // test that a given url is a same-origin URL
+		    // url could be relative or scheme relative or absolute
+		    var host = document.location.host; // host + port
+		    var protocol = document.location.protocol;
+		    var sr_origin = '//' + host;
+		    var origin = protocol + sr_origin;
+		    // Allow absolute or scheme relative URLs to same origin
+		    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+		        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+		        // or any other URL that isn't scheme relative or absolute i.e relative.
+		        !(/^(\/\/|http:|https:).*/.test(url));
+		}
+
+		var requests;
+		
+		// The click even for when the edit button is clicked. This will change the field to a 
+		// form and allow users to edit the carbon/dry matter ratio.
+		function editClicked(e) {
+			$('#cdm').html("<form action='.' id='thisform'><div class='col-sm-3' style='margin-left:-15px;'><input id='id_cdm' name='cdm' type='text' class='form-control' value='" + x + "'/></div><div class='col-sm-9'><input type='submit' class='btn btn-primary btn-sm pull-right' value='Save'/><button class='btn btn-default btn-sm pull-right' id='cancel' style='margin-right:5px;'>Cancel</div></form>");
+			
+			// The submit event, submits the new value to the database through
+			// and AJAX call.
+			$('#thisform').on('submit', function(event){
+				event.preventDefault();			// Prevents the default form submit action
+
+				var d = {};
+
+				d = {
+					"cdm" : parseFloat($('#id_cdm').val()),
+				};
+
+				var request = new XMLHttpRequest();
+				request.open('PATCH', '/api/v1/project/{{ project.id }}/', false);
+				request.setRequestHeader("Content-type","application/json");
+				request.send(JSON.stringify(d));
+
+				if(request.status === 202)
+				{
+					x = $('#id_cdm').val();
+					$('#cdm').html("<div id='content' class='col-sm-3' style='margin-left: -13px;'>" + x + "</div><div id='buttons' class='col-sm-9'><button id='edit' class='btn btn-primary btn-sm pull-right'>Edit</button></div>");
+					$('#edit').on('click', editClicked);
+
+				}
+
+			});
+			
+			// What to do when the cancel button is clicked
+			$('#cancel').on('click', function(){
+				console.log("<div id='content' class='col-sm-3' style='margin-left: -13px;'>" + x + "</div><div id='buttons' class='col-sm-9'><button id='edit' class='btn btn-primary btn-sm pull-right'>Edit</button></div>");
+				$('#cdm').html("<div id='content' class='col-sm-3' style='margin-left: -13px;'>" + x + "</div><div id='buttons' class='col-sm-9'><button id='edit' class='btn btn-primary btn-sm pull-right'>Edit</button></div>");
+				$('#edit').on('click', editClicked);
+			});
+		}
+		
+		$(document).ready(function(){
+			$('#edit').on('click', editClicked)
+		})
+		
+		
+		
+	</script>
+{% endblock %}

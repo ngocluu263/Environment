@@ -1,0 +1,122 @@
+{% extends "module_sampling_design.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Sampling Design Step 2
+{% endblock page_title %}
+
+{% block page_scripts %}
+<script src="/static/jquery.formset.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('tr.formset_row').formset({
+                deleteText: "Remove",
+                addText: "Add Parcel",
+                prefix: "strata",
+                customHtmlButtonRemove: '<button type="button" class="btn btn-danger btn-sm">',
+                customHtmlButtonClose: '</button>',
+                customHtmlButtonAdd: '<button type="button" class="btn btn-default">'
+            });
+    });
+</script>
+{% endblock page_scripts %}
+
+
+{% block page_content %}
+    <script type="text/javascript">
+        $("ol#mrvcrumbs").append("<li><a href=\"#\">Sampling Design</a></li>");
+        $("ol#mrvcrumbs").append("<li><a href=\"{% url "sampling-design-tool" %}\">Sampling Design Tool</a></li>");
+        $("ol#mrvcrumbs").append("<li class=\"active\">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</li>");
+    </script>
+
+<form id="wizard" action="" method="post" class="form-horizontal">{% csrf_token %}
+    {{ wizard.management_form }}    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Sampling Design: Step {{ wizard.steps.step1 }} of {{wizard.steps.count }}</h4>
+        </div>
+        {% if wizard.form.non_form_errors %}
+            <div class="panel-body">
+                {{ wizard.form.non_form_errors }} {# display any formset errors #}
+            </div>
+        {% endif %}
+        {{ meta_form }}
+        <table class="table table-hover" id="form-table">
+
+        {% if wizard.form.forms %} {# if... we have a FORMSET to style #}
+            {{ wizard.form.management_form }}
+            {% for form in wizard.form.forms %}
+                {% if forloop.first %}
+                <!--<thead>-->
+                    <tr>
+                        <th>{{ form.name.label|capfirst }}</th>
+                        <th>{{ form.area_reported.label|capfirst }}</th>
+                        <!-- <th>{{ form.id.label|capfirst }}</th> -->
+                        <th>{{ form.mean_tc_ha.label|capfirst }}</th>
+                        <th>{{ form.std_dev_tc_ha.label|capfirst }}</th>
+                        <th>{{ form.plot_size_ha.label|capfirst }}</th>
+                        <th></th>
+                    </tr>
+                <!--</thead>-->
+                {% endif %}
+                <tbody>
+                    <tr class="formset_row">
+
+                        <td>
+                        {# Include the hidden fields in the form #}
+                        {% if forloop.first %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                        {% endif %}
+                            {{ form.name|add_class:"form-control" }}
+                            <span class="help-block">{{ form.name.errors }}</span>
+                        </td>
+                        <td>
+                            {{ form.area_reported|add_class:"form-control" }}
+                            <span class="help-block">{{ form.area_reported.errors }}</span>
+                        </td>
+                        <td>
+                            {{ form.mean_tc_ha|add_class:"form-control" }}
+                            <span class="help-block">{{ form.mean_tc_ha.errors }}</span>
+                        </td>
+                        <td>
+                            {{ form.std_dev_tc_ha|add_class:"form-control" }}
+                            <span class="help-block">{{ form.std_dev_tc_ha.errors }}</span>
+                        </td>
+                        <td>
+                            {{ form.plot_size_ha|add_class:"form-control" }}
+                            <span class="help-block">{{ form.plot_size_ha.errors }}</span>
+                        </td>
+                        <td></td> {# the jquery REMOVE link will be placed here #}
+                    </tr>
+
+                </tbody>
+            {% endfor %} 
+
+        {% endif %}
+
+        </table>
+    </div>
+
+</form>
+
+{% endblock page_content %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#sampling-design-tool-tab").addClass("active");
+        $("#sampling-design-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}
+
+{% block page_bottomscripts %}
+    <script type="text/javascript">
+         $(document).ready(function(){
+             $('#form-table tr:last').append('<td><input type="submit" value="Submit" class="btn btn-primary" /></td>'); 
+         })
+        
+    </script>
+{% endblock %}

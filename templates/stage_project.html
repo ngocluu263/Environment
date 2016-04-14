@@ -1,0 +1,92 @@
+{% extends "master.html" %}
+{% load core_tags %}
+
+{% block stage_content %}
+  <div>
+	<ol id="mrvcrumbs" class="breadcrumb">
+        <li><a href="{% settings_value 'ROOT_BREADCRUMB_URL' %}">Forest Carbon MRV System</a></li>
+        {% block allbreadcrumbs %}
+<!--           <li><a href="/toolbox/projects/reviewNewProject.aspx?project={{ request.session.project.id }}">{{ request.session.project.name }}</a></li> -->
+          <!-- <li><a href="/core/review_project/{{ request.session.project_id }}/">{{ request.session.project.name }}</a></li> -->
+          {% block section_breadcrumb %}{% endblock section_breadcrumb %}
+          {% block breadcrumbs %}{% endblock breadcrumbs %}      
+        {% endblock allbreadcrumbs %}
+      </ol>
+
+      <div class="lefty">
+        
+          <ul class="nav nav-pills nav-stacked">
+            <li id="project-info-pill">
+              <a href="/core/review_project/{{ request.session.project_id }}">
+              <span class="glyphicon glyphicon-list-alt"></span>
+                Project Information
+              </a>
+            </li>
+            <li id="project-docs-pill">
+              <a href="{% url "project-documents" request.session.project_id %}">
+                <span class="glyphicon glyphicon-folder-close"></span>
+                 Project Documents
+              </a>
+            </li>
+            <li id="sampling-design-pill">
+              <a href="{% url "sampling-design-tool" %}">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                 Sampling Design
+              </a>
+            </li>
+            <li id="mapping-pill">
+              <a href="{% url "mapping-index" request.session.project_id %}">
+                <span class="glyphicon glyphicon-globe"></span>
+                 Mapping
+              </a>
+            </li>
+            <li id="measuring-pill">
+              <a href="{% url "parcel-management" request.session.project_id %}">
+                <span class="glyphicon glyphicon-tree-conifer"></span>
+                 Measuring
+              </a>
+            </li>
+            <li id ="ecalc-pill">
+              <a href="{% url "ecalc-projects" %}">
+                <span class="glyphicon glyphicon-cloud-download"></span>
+                 Emissions Calculator
+              </a>
+            </li>
+            <!-- <li id="leakage-calculator-pill"><a href="{% url "leakage-estimation-tool" %}"><span class="glyphicon glyphicon-fire"></span> Leakage Calculator</a></li> -->
+            <!-- <li class="disabled"><a href="#"><span class="glyphicon glyphicon-certificate"></span> Social &amp; Environmental</a></li> -->
+            <li id="project-reporting-pill">
+              <a href="{% url 'reporting' request.session.project_id %}">
+                <span class="glyphicon glyphicon-file"></span>
+                 Reporting
+              </a>
+            </li>
+
+            {% if request.session.perm == 0 or request.session.perm == 1 %}
+            <li id="project-settings-pill">
+              <a href="{% url "project-settings" request.session.project_id %}">
+                <span class="glyphicon glyphicon-cog"></span>
+                 Project Settings
+              </a>
+            </li>
+            {% endif %}
+            <!-- <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> User access</a></li> -->
+
+          </ul>
+        
+      </div>
+  </div>
+      <div class="righty">
+        <!-- Main component for a primary marketing message or call to action -->
+
+          <ul class="nav nav-tabs">
+          {% block navtabs %}{% endblock %}
+          </ul>
+        <div class="content">
+
+          
+          {% block page_content %}{% endblock page_content %}
+
+        </div>
+
+      </div>
+{% endblock stage_content %}

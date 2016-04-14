@@ -1,0 +1,28 @@
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}Project {{ project.name }}{% endblock %}
+
+{% block page_content %}
+    <form action="." method="post">
+        <table>
+            {{ form.as_table }}
+            <fieldset class="formset">
+            	<legend>Land Covers</legend>
+            	{{ landcover_formset.management_form }}
+            	{% for form in landcover_formset %}
+            		{{ form.as_table }}
+            	{% endfor %}
+            </fieldset>
+            <fieldset class="formset">
+            	<legend>Parcels</legend>
+            	{{ parcel_formset.management_form }}
+            	{% for form in landcover_formset %}
+            		{{ form.as_table }}
+            	{% endfor %}
+            </fieldset>
+            {% csrf_token %}
+            <td><input type="submit" value="Submit"></td>
+            </tr>
+       	</table>
+    </form>
+{% endblock %}

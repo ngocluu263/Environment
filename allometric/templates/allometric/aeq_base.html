@@ -1,0 +1,23 @@
+{% extends "core/utilities.html" %}
+
+{% block pagetitle %}
+Allometric Equations
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="active">Allometric Equations</li>
+{% endblock breadcrumbs %}
+
+{% block sidebar %}
+	<ul>
+
+
+        <li><a href="{% url "aeq_list" %}">List AEQs</a></li>
+	    <li><a href="{% url "aeq_create" %}">Add AEQ</a></li>
+
+        <br />
+
+        <li><a href="{% url "utilities" %}">Workspace Utilities</a></li>
+
+    </ul>
+{% endblock sidebar %}

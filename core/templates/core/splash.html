@@ -1,0 +1,118 @@
+{% extends "master.html" %}
+{% load core_tags %}
+
+{% block stage_content %}
+    <ol id="mrvcrumbs" class="breadcrumb">
+        <li><a href="{% settings_value 'ROOT_BREADCRUMB_URL' %}">Forest Carbon MRV System</a></li>
+        {% block allbreadcrumbs %}
+          <li class="active">Welcome</li>
+          {% block section_breadcrumb %}{% endblock section_breadcrumb %}
+          {% block breadcrumbs %}{% endblock breadcrumbs %}      
+        {% endblock allbreadcrumbs %}
+      </ol>
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{% block page_title %}Forest Carbon MRV System{% endblock page_title %}</h3>
+      </div>
+      <div class="panel-body">
+        Welcome to the Forest Carbon MRV System.
+        <br><br>
+        Please click the Project Menu drop-down <span class="glyphicon glyphicon-leaf"></span> in the top-left corner to create a new project, or select an existing project.
+        <br><br>
+        {% if bulletin_true %}
+          <div class="panel panel-{{ bulletin_color|safe }}">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>{{ bulletin_heading|safe }}</strong></h3>
+            </div>
+            <div class="panel-body">
+              <strong>{{ bulletin_date|safe }}</strong> &mdash; {{ bulletin_message|safe }}</strong>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!--<div class="panel panel-default" style="width: 47%; display: inline-block; margin: 1%; min-width: 300px;">
+      <!- - Default panel contents - ->
+      <div class="panel-heading">Recent projects</div>
+
+      <!- - Table - ->
+      <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Updated</th>
+        </thead>
+        {% for project in recent_projects %}
+          <tr>
+            <td>{{ project.name }}</td>
+            <td>{{ project.updated }}</td>
+          </tr>
+        {% endfor %}
+          <tr><td colspan=2><em>Under construction.</em></td></tr>
+      </table>
+    </div>
+
+    <div class="panel panel-default" style="width: 47%; display: inline-block; margin: 1%; min-width: 300px;">
+      <!- - Default panel contents - ->
+      <div class="panel-heading">Recent changes</div>
+
+      <!- - Table - ->
+      <table class="table">
+        <thead>
+            <th>Change</th>
+            <th>Date</th>
+        </thead>
+        {% for change in recent_changes %}
+          <tr>
+            <td>{{ change.name }}</td>
+            <td>{{ change.updated }}</td>
+          </tr>
+        {% endfor %}
+          <tr><td colspan=2><em>Under construction.</em></td></tr>
+      </table>
+    </div>
+
+    <div class="panel panel-default" style="width: 47%; display: inline-block; margin: 1%; min-width: 300px;">
+      <!- - Default panel contents - ->
+      <div class="panel-heading">Messages</div>
+
+      <!- - Table - ->
+      <table class="table">
+        <thead>
+            <th>Message</th>
+            <th>Sent date</th>
+        </thead>
+        {% for messages in messages_inbox %}
+          <tr>
+            <td>{{ messages.subject }}</td>
+            <td>{{ messages.date }}</td>
+          </tr>
+        {% endfor %}
+          <tr><td colspan=2><em>Under construction.</em></td></tr>
+      </table>
+    </div>
+
+    <div class="panel panel-default" style="width: 47%; display: inline-block; margin: 1%; min-width: 300px;">
+      <!- - Default panel contents - ->
+      <div class="panel-heading">Support tickets</div>
+
+      <!- - Table - ->
+      <table class="table">
+        <thead>
+            <th>Subject</th>
+            <th>Date</th>
+        </thead>
+        {% for ticket in support_tickets %}
+          <tr>
+            <td>{{ ticket.subject }}</td>
+            <td>{{ ticket.date }}</td>
+          </tr>
+        {% endfor %}
+          <tr><td colspan=2><em>Under construction.</em></td></tr>
+      </table>
+    </div>-->
+
+{% endblock stage_content %}

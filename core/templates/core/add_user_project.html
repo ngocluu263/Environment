@@ -1,0 +1,88 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#project-settings-pill").addClass("active");
+        $("#project-settings-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="project-settings-tab" class=""><a href= "{% url "project-settings" request.session.project_id %}"><span class="glyphicon glyphicon-edit"></span> Project Settings</a></li>
+    <li id="add-users-tab" class="active"><a href= "{% url "add-user-project" request.session.project_id %}"><span class="glyphicon glyphicon-user"></span> Add User</a></li>
+    <li id="list-users-tab"><a href="{% url 'list-permissions' request.session.project_id %}"><i class="fa fa-users"></i> List Users</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+    <li>Project Details</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}{% endblock page_title %}
+
+
+{% block page_content %} 
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Add user</h4>
+		</div>
+		<form action="." method="POST" class="form-horizontal">{% csrf_token %}
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-12">
+						You may add a user to this project and specify the permission level the user should have. The permission levels currently available include Owner, Administrator, and User. 
+					</div>
+				</div>
+
+				<hr/>
+
+				{% if form.non_field_errors %}
+					{% for error in form.non_field_errors %}
+						{{ error }}
+					{% endfor %}
+				{% endif %}
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="id_user_name" class="control-label pull-right">{{ form.user_name.label }}:</label>
+						</div>
+						<div class="col-sm-6">
+							{{ form.user_name|add_class:'form-control' }}
+						</div>
+					</div>
+					{% if form.user_name.errors %}
+						{% for error in form.user_name.errors %}
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-3">
+									<span style="color:red;"><em>{{ error }}</em></span>
+								</div>
+							</div>
+						{% endfor %}
+					{% endif %}
+
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">
+						<label for="id_permission_level" class="control-label pull-right">{{ form.permission_level.label }}:</label>
+					</div>
+					<div class="col-sm-3">
+						{{ form.permission_level|add_class:'form-control' }}
+					</div>
+					<div class="col-sm-3">
+						{{ form.permission_level.errors }}
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-2 col-sm-offset-10">
+						<input type="submit" class="btn btn-sm btn-primary" value="Add User" />
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+{% endblock page_content %}

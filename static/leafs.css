@@ -1,0 +1,93 @@
+/* ------------------------- */
+/* -------Leaf Sizing------- */
+/* ------------------------- */
+
+div#leaf-2 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-3 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-4 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-5 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-6 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-7 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-8 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-9 {
+	width:920px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-10 {
+	width:960px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-11 {
+	width:980px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-12 {
+	width:970px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-13 {
+	width:970px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-15 {
+	width:800px;
+	height:125px;
+	min-height:125px; }
+
+div#leaf-17 {
+	width:970px;
+	height:125px;
+	min-height:125px; }
+
+
+/* ------------------------- */
+/* -------Leaf Columns------- */
+/* ------------------------- */
+
+
+div#wrapper div#column-1-page-single { width: 980px; }
+div#wrapper div#column-1-page-category { width: 980px; }
+div#wrapper div#column-1-page-archives { width: 980px; }
+div#wrapper div#column-1-page-tag { width: 980px; }
+div#wrapper div#column-1-page-author { width: 980px; }
+div#wrapper div#column-1-page-search { width: 980px; }
+div#wrapper div#column-1-page-four04 { width: 980px; }
+div#wrapper div#column-1-page-4 { width: 980px; }
+div#wrapper div#column-1-page-6 { width: 980px; }
+div#wrapper div#column-1-page-10 { width: 980px; }
+div#wrapper div#column-1-page-18 { width: 980px; }
+div#wrapper div#column-1-page-index { width: 980px; }
+div#wrapper div#column-1-page-77 { width: 980px; }

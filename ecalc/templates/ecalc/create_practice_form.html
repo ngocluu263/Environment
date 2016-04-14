@@ -1,0 +1,67 @@
+{% load core_tags %}
+<div class="modal-dialog" id="practiceCreate">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Create Practice</h4>
+		</div>
+		<form action="{% url "ecalc-practice-new" ppk=project.id %}" method="POST" class="form-horizontal" id="createpracticeform">
+		{% csrf_token %}
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<label for="id_name" class="col-sm-3 control-label">Name: </label>
+						<div class="col-sm-9">
+							{{ form.name|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+					<div class="col-sm-6 form-group" style="margin-left:15px">
+						<label for="id_category" class="col-sm-4 control-label">Category: </label>
+						<div class="col-sm-8">
+							{{ form.category|add_class:'form-control input-sm' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_harvest" class="col-sm-7 control-label">{{ form.harvest.label }}: </label>
+						<div class="col-sm-5">
+							{{ form.harvest|add_class:'form-control' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_burn" class="col-sm-7 control-label">{{ form.burn.label }}: </label>
+						<div class="col-sm-5">
+							{{ form.burn|add_class:'form-control' }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group">
+						<label for="id_agricultural_practices" class="col-sm-6 control-label">
+							{{ form.agricultural_practices.label }}: </label>
+						<div class="col-sm-6">
+							{{ form.agricultural_practices|add_class:'form-control' }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+				<input type="submit" value="Submit" class="btn btn-primary btn-sm"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% block page_bottomscripts %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#createpracticeform').submit(function(){
+				$('#myModal').modal('hide');
+			});
+		})
+	</script>
+{% endblock %}

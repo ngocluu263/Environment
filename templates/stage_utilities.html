@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+{% load core_tags %}
+
+{% block stage_content %}
+	<ol id="mrvcrumbs" class="breadcrumb">
+        <li><a href="{% settings_value 'ROOT_BREADCRUMB_URL' %}">Forest Carbon MRV System</a></li>
+        {% block allbreadcrumbs %}
+          
+          {% block section_breadcrumb %}{% endblock section_breadcrumb %}
+          {% block breadcrumbs %}{% endblock breadcrumbs %}      
+        {% endblock allbreadcrumbs %}
+      </ol>
+
+       <div class="lefty">
+        <div class="">
+          <ul class="nav nav-pills nav-stacked">
+            <li id="aeq-pill">
+              <a href="{% url "group_aeq" %}">
+                <span class="glyphicon glyphicon-tree-conifer">
+                  
+                </span> 
+                Allometric Equations
+              </a>
+            </li>
+            <!-- <li id="land-cover-pill" class="disabled"><a href="#"><span class="glyphicon glyphicon-tree-conifer"></span> Land Cover Editor</a></li> -->
+            <!-- <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> User access</a></li> -->
+             
+            <li id="species-pill"><a href="{% url "species_list" %}"><span class="glyphicon glyphicon-tree-conifer"></span> Species</a></li>
+          </ul>
+        </div>
+      </div>
+      
+
+      <div class="righty"> 
+        <!-- Main component for a primary marketing message or call to action -->
+
+          <ul class="nav nav-tabs">
+          {% block navtabs %}{% endblock %}
+          </ul>
+        <div class="content">
+          
+          {% block page_content %}{% endblock page_content %}
+
+      </div> 
+
+      </div>
+{% endblock stage_content %}

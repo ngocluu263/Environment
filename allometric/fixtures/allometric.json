@@ -1,0 +1,554 @@
+[
+{
+    "pk": 1,
+    "model": "allometric.EquationCountry",
+    "fields": {
+        "name": "India"
+    }
+},
+{
+	"pk": 2,
+	"model": "allometric.EquationCountry",
+	"fields": {
+		"name": "Indonesia"
+	}
+},
+{
+	"pk": 1,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "East Coast",
+		"country": 1
+	}
+},
+{
+	"pk": 2,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name":"West Coast",
+		"country": 1
+	}
+},
+{
+	"pk": 3,
+	"model": "allometric.EquationRegion",
+	"fields": {
+		"name": "Eastern Ghats",
+		"country": 1
+	}
+},
+{
+	"pk" : 4,
+	"model": "allometric.EquationRegion",
+	"fields": {
+		"name": "Western Ghats",
+		"country": 1
+	}
+},
+{
+	"pk" : 5,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Central Highlands",
+		"country": 1
+	}
+},
+{
+	"pk": 6,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "East Deccan",
+		"country": 1
+	}
+},
+{
+	"pk": 7,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "North Deccan",
+		"country": 1
+	}
+},
+{
+	"pk": 8,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "South Deccan",
+		"country": 1
+	}
+},
+{
+	"pk": 9,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Eastern Plain",
+		"country": 1
+	}
+},
+{
+	"pk": 10,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Northern Plain",
+		"country": 1
+	}
+},
+{
+	"pk": 11,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Western Plain",
+		"country":1
+	}
+},
+{
+	"pk": 12,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "North-Eastern Ranges",
+		"country": 1
+	}
+},
+{
+	"pk": 13,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Eastern Himalayas",
+		"country": 1
+	}
+},
+{
+	"pk": 14,
+	"model": "allometric.EquationRegion",
+	"fields":{
+		"name": "Western Himalayas",
+		"country": 1
+	}
+},
+{
+    "pk": 15,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Calculate By Species (Indonesia)",
+        "country": 2
+    }
+},
+{
+    "pk": 16,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Aceh",
+        "country": 2
+    }
+},
+{
+    "pk": 17,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "North Sumatra",
+        "country": 2
+    }
+},
+{
+    "pk": 18,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Riau",
+        "country": 2
+    }
+},
+{
+    "pk": 19,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Riau Islands",
+        "country": 2
+    }
+},
+{
+    "pk": 20,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Jambi",
+        "country": 2
+    }
+},
+{
+    "pk": 21,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Bengkulu",
+        "country": 2
+    }
+},
+{
+    "pk": 22,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Bangka–Belitung Islands",
+        "country": 2
+    }
+},
+{
+    "pk": 23,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Sumatra",
+        "country": 2
+    }
+},
+{
+    "pk": 24,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "South Sumatra",
+        "country": 2
+    }
+},
+{
+    "pk": 25,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Lampung",
+        "country": 2
+    }
+},
+{
+    "pk": 26,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Banten",
+        "country": 2
+    }
+},
+{
+    "pk": 27,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Java",
+        "country": 2
+    }
+},
+{
+    "pk": 28,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Central Java",
+        "country": 2
+    }
+},
+{
+    "pk": 29,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "East Java",
+        "country": 2
+    }
+},
+{
+    "pk": 30,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Jakarta",
+        "country": 2
+    }
+},
+{
+    "pk": 31,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Yogyakarta",
+        "country": 2
+    }
+},
+{
+    "pk": 32,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Bali",
+        "country": 2
+    }
+},
+{
+    "pk": 33,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Nusa Tenggara",
+        "country": 2
+    }
+},
+{
+    "pk": 34,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "East Nusa Tenggara",
+        "country": 2
+    }
+},
+{
+    "pk": 35,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Kalimantan",
+        "country": 2
+    }
+},
+{
+    "pk": 36,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Central Kalimantan",
+        "country": 2
+    }
+},
+{
+    "pk": 37,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "South Kalimantan",
+        "country": 2
+    }
+},
+{
+    "pk": 38,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "East Kalimantan",
+        "country": 2
+    }
+},
+{
+    "pk": 39,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "North Kalimantan",
+        "country": 2
+    }
+},
+{
+    "pk": 40,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Sulawesi",
+        "country": 2
+    }
+},
+{
+    "pk": 41,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "South Sulawesi",
+        "country": 2
+    }
+},
+{
+    "pk": 42,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Central Sulawesi",
+        "country": 2
+    }
+},
+{
+    "pk": 43,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Southeast Sulawesi",
+        "country": 2
+    }
+},
+{
+    "pk": 44,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "North Sulawesi",
+        "country": 2
+    }
+},
+{
+    "pk": 45,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Gorontalo",
+        "country": 2
+    }
+},
+{
+    "pk": 46,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "North Maluku",
+        "country": 2
+    }
+},
+{
+    "pk": 47,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Maluku",
+        "country": 2
+    }
+},
+{
+    "pk": 48,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "West Papua",
+        "country": 2
+    }
+},
+{
+    "pk": 49,
+    "model": "allometric.EquationRegion",
+    "fields":{
+        "name": "Papua",
+        "country": 2
+    }
+},
+{
+    "pk": 1,
+    "model": "allometric.EquationCategory",
+    "fields": {
+        "name": "G"
+    }
+},
+{
+    "pk": 2,
+    "model": "allometric.EquationCategory",
+    "fields": {
+        "name": "C"
+    }
+},
+{
+    "pk": 1,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": false,
+        "name": "System Default",
+        "string": "0.0"
+    }
+},
+{
+    "pk": 2,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Moist Tropical Forests (IPCC 2003)",
+        "string": "exp(-2.289 + 2.649 * ln(dbh) - 0.021 * (ln(dbh))^2)",
+        "category": 1
+    }
+},
+{
+    "pk": 3,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Wet Tropical Forests (IPCC 2003)",
+        "string": "21.297 - (6.953 * dbh) + (0.740 * dbh^2)",
+        "category": 1
+    }
+},
+{
+    "pk": 4,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Temperate and tropical pines (IPCC 2003)",
+        "string": "0.887 + ((10486 * dbh^(2.84)) / (dbh^(2.84) + 376907))",
+        "category": 1
+    }
+},
+{
+    "pk": 5,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Temperate hardwoods (IPCC 2003)",
+        "string": "0.5 + ((25000 * dbh^(2.5)) / (dbh^(2.5) + 246872))",
+        "category": 1
+    }
+},
+{
+    "pk": 6,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Tropical Dry Forests (Brown 1997)",
+        "string": "exp(-1.996 + 2.23 * ln(dbh))",
+        "category": 1
+    }
+},
+{
+    "pk": 7,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Tropical moist forests (Brown 1997)",
+        "string": "42.69 - 12.8(dbh) + 1.242(dbh^2)",
+        "category": 1
+    }
+},
+{
+    "pk": 8,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Dry tropical forests (Chave et al.)",
+        "string": "0.112 * (wood_gravity * total_height * (dbh)^2)^0.916",
+        "category": 1
+    }
+},
+{
+    "pk": 9,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Moist tropical forests (Chave et al.)",
+        "string": "0.0509 * wood_gravity * total_height * (dbh)^2",
+        "category": 1
+    }
+},
+{
+    "pk": 10,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Wet tropical forests (Chave et al.)",
+        "string": "0.0776 * (wood_gravity * total_height * (dbh)^2)^0.940",
+        "category": 1
+    }
+},
+{
+    "pk": 11,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Carbon Benefits Project #1",
+        "string": "exp(-2.403)*((dbh)^(2.472))",
+        "category": 2
+    }
+},
+{
+    "pk": 12,
+    "model": "allometric.Equation",
+    "fields": {
+        "owner": 1,
+        "public": true,
+        "name": "Carbon Benefits Project #2",
+        "string": "exp(1.8128) * (crown_d_max * crown_d_90 / 4 * pi)^(1.2535)",
+        "category": 2
+    }
+}
+]
+

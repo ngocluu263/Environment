@@ -1,0 +1,55 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#measuring-pill").addClass("active");
+        $("#measuring-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="parcel-management-tab" class="dropdown">
+        <a href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-tree-deciduous"></span> Parcel Management <b class="caret"></b></a>
+        <ul class="dropdown">
+            <a href= "{% url 'parcel-management' request.session.project.id %}">Data</a>
+            <a href= "{% url 'manage-parcels-plots' request.session.project.id %}">Manage</a>
+        </ul>
+    </li>
+    <li id="inventory-planning-tab"><a href="{% url 'inventory-planning' request.session.project.id %}"><span class="glyphicon glyphicon-th-list"></span> 
+    	Inventory Planning</a></li>
+    <li id="data-management-tab"><a href="{% url 'data-management' project.id %}"><span class="glyphicon glyphicon-folder-open"></span> 
+        Data Management</a></li>
+    <li id="carbon-calculations-tab"><a href="{% url 'carbon-calculations' request.session.project.id %}"><span class="glyphicon glyphicon-globe"></span> 
+    	Carbon Calculations</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+    <li><a href="/../measuring/parcel_management/{{ request.session.project.id }}">Measuring</a></li>
+    <li class="active">Parcel Management</li>
+{% endblock breadcrumbs %}
+
+{% block page_title %}{% endblock page_title %}
+
+{% block page_content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Project Allometric Equation</h4>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Parcel Manager</h4>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">Plot Manager</h4>
+        </div>
+    </div>
+{% endblock page_content %}
+
+{% block page_bottomscripts %}
+{% endblock page_bottomscripts %}

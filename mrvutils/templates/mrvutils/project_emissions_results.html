@@ -1,0 +1,130 @@
+{% extends "module_project_emissions.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Project Emissions Tool &mdash; Results
+{% endblock page_title %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src="{% settings_value "MATHJAX_CDN_URL" %}"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$'], ['\\(','\\)']]}});
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#sampling-design-accordion").accordion({
+                collapsible: true,
+                heightStyle: "content",
+                active: false,
+            });
+        });
+    </script>
+{% endblock page_scripts %}
+
+{% block breadcrumbs %}
+&rarr; <a href="{% url "project-emissions-tool" %}">Project Emissions Tool</a>
+&rarr; Results
+{% endblock %}
+
+{% block page_content %}
+
+<div>
+    <ul id="ulnone">
+        {% for stratum in results.strata %}
+            <li><b>{{ stratum.name }} number of plots</b>: {{ stratum.n_plots }}</li>
+        {% endfor %}
+        <li><b>Non-CO<sub>2</sub> emissions resulting from loss of AGB due to forest fires</b>: {{ result }} tCO<sub>2</sub>e</li>
+    </ul>
+</div>
+
+<div id="sampling-design-accordion">
+    <h3>Form Inputs</h3>
+    <div>
+        <table id="woyp_table">
+        {% for stratum in strata_form %}
+            {% if forloop.first %}
+                <thead>
+                    <tr>
+                        <th>Stratum Name</th>
+                        <th>Area Burned (ha)</th>
+                        <th>Mean AGB at last verification (tDM/ha)</th>
+                        <th>Biome</th>
+                    </tr>
+                </thead>
+            {% endif %}
+            <tr>
+                <td>{{ stratum.name }}</td>
+                <td>{{ stratum.area_burned_ha }}</td>
+                <td>{{ stratum.mean_agb_tdm_ha }}</td>
+                <td>{{ stratum.biome.name }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <ul id="ulnone">
+            <li>&#8721; Area burned = {{ intermediate.sum_area_burned_ha }} tDM</li>
+        </ul>
+    </div>
+
+    <h3>Intermediate Calculations</h3>
+    <div>
+        <table id="woyp_table">
+        {% for stratum in strata_intermediate %}
+            {% if forloop.first %}
+                <thead>
+                    <tr>
+                        <th>Stratum Name</th>
+                        <th>Biomass Burned (tDM)</th>
+                        <th>Combustion Factor</th>
+                        <th>CH<sub>4</sub> Emissions Factor</th>
+                        <th>N<sub>2</sub>O Emissions Factor</th>
+                        <th>Non-CO<sub>2</sub> Emissions</th>
+                    </tr>
+                </thead>
+            {% endif %}
+            <tr>
+                <td>{{ stratum.name }}</td>
+                <td>{{ stratum.agb_tdm_burned }}</td>
+                <td>{{ stratum.combustion_factor }}</td>
+                <td>{{ stratum.CH4_emissions_factor }}</td>
+                <td>{{ stratum.N2O_emissions_factor }}</td>
+                <td>{{ stratum.partial_emissions }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <ul id="ulnone">
+            <li>&#8721; Biomass burned = {{ intermediate.sum_agb_tdm_burned }} tDM</li>
+            <li>CH<sub>4</sub> global warming potential = {{ intermediate.CH4_gwp }}</li>
+            <li>N<sub>2</sub>O global warming potential = {{ intermediate.N2O_gwp }}</li>
+        </ul>
+    </div>
+
+    <h3>Formula &amp; References</h3>
+    <div>
+        <small>CDM Tool EB 51 annex 15: <a href="http://cdm.unfccc.int/methodologies/ARmethodologies/tools/ar-am-tool-08-v4.0.0.pdf" target="_blank">Estimation of non-CO<sub>2</sub> GHG emissions resulting from burning of biomass and forest fires</a>.</small>
+        <br><br>
+
+        \[ GHG_{FF\_TREE, t} = 0.001 \cdot \left( \sum A_{BURN,i,t} \cdot b_{TREE,i,t_L} \cdot COMF_{i} \\ \cdot \left( EF_{CH_{4},i} \cdot GWP_{CH_{4}} + EF_{N_{2}O,i} \cdot GWP_{N_{2}O} \right) \right)  \]
+
+        <ul id="ulnone">
+            <li>$GHG_{FF\_TREE, t}$ &nbsp;&nbsp;&nbsp;&nbsp; = Emission of non-CO<sub>2</sub> gases resulting from the loss of aboveground biomass of trees due to fire, in year t (tCO<sub>2</sub>e)</li>
+            <li>$A_{BURN,i,t}$ &nbsp;&nbsp; = Area burnt in stratum $i$ in year $t$</li>
+            <li>$b_{TREE,i,t_L}$ &nbsp; = Mean aboveground tree biomass per hectare in stratum $i$ in year $t_L$ which is the year in which last verification was carried out before occurrence of the fire (tDM/ha)</li>
+            <li>$COMF_{i}$ &nbsp;&nbsp; = Combustion factor stratum $i$ </li>
+            <li>$EF_{CH_{4},i}$ &nbsp;&nbsp; = Emission factor for CH<sub>4</sub> in stratum $i$</li>
+            <li>$EF_{N_{2}O,i}$ &nbsp;&nbsp; = Emission factor for N<sub>2</sub>O in stratum $i$</li>
+            <li>$GWP_{CH_{4}}$ &nbsp;&nbsp; = Global warming potential for CH<sub>4</sub></li>
+            <li>$GWP_{N_{2}O}$ &nbsp;&nbsp; = Global warming potential for N<sub>2</sub>O</li>
+        </ul>
+    </div>
+</div>
+
+
+{% endblock page_content %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#project-emissions-tool-tab").addClass("active");
+        $("#project-emissions-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

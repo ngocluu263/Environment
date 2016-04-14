@@ -1,0 +1,28 @@
+{% extends "module_copy_project.html" %}
+
+{% block page_title %}
+Copy Project
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="active">Copy Project</li>
+{% endblock %}
+
+{% block sidebar %}
+        <ul>
+
+        <li><a href="{% url "utilities" %}">Workspace Utilities</a></li>
+
+    </ul>
+{% endblock %}
+
+{% block page_content %}
+        You have successfully copied the project to your workspace. You can access it <a href="/toolbox/projects/createProject.aspx">here</a>.
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#copy-project-tool-tab").addClass("active");
+        $("#copy-project-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

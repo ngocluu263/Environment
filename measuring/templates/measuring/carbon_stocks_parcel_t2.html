@@ -1,0 +1,79 @@
+{% load humanize %}
+
+<div class="modal-dialog" style="width:auto;">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Carbon Stocks by Parcel</h4>
+		</div>
+		<div class="modal-body">
+			<div id="stocksTablePanel" class="table-responsive">
+				<table id="stocksTable" class="table table-striped table-condensed">
+					<tr>
+						<th colspan="2" class="danger">Parcel Descriptors</th>
+						<th colspan="5" class="warning">Carbon Density</th>
+						<th colspan="6" class="success">Carbon Stocks</th>
+					</tr>
+					<tr>
+						<td colspan="2" class="danger">Values below in ha</td>
+						<td colspan="5" class="warning">Values below in tC/ha</td>
+						<td colspan="6" class="success">Values below in tC</td>
+					</tr>
+
+					<tr>
+						<th>ID</th>
+						<th>Area</th>
+						<th>AGB</th>
+						<th>BGB</th>
+						<th>SOC</th>
+						<th>Litter</th>
+						<th>Deadwood</th>
+						<th>AGB</th>
+						<th>BGB</th>
+						<th>Soil</th>
+						<th>Litter</th>
+						<th>Deadwood</th>
+						<th>Total</th>
+					</tr>
+
+					{% for parcel in parcels %}
+						{% with parcel.tier_two as carbon_stocks %}
+							<tr>
+								<td>{{ parcel.name }}</td>
+								<td>{{ parcel.area | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.mean_agb_tc_ha | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.mean_bgb_tc_ha | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.mean_soc_tc_ha | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.mean_litter_tc_ha | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.mean_deadwood_tc_ha | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.agb_tc | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.bgb_tc | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.soc_tc | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.litter_tc | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.deadwood_tc | floatformat:2 | intcomma }}</td>
+								<td>{{ carbon_stocks.total_tc | floatformat:2 | intcomma }}</td>
+							</tr>
+						{% endwith %}
+					{% endfor %}
+
+					{% with project.carbon_stocks as carbon_stocks %}
+						<tr class="totals">
+							<td>Project Totals</td>
+							<td>{{ carbon_stocks.total_parcel_area | floatformat:2 | intcomma }}</td>
+							<td colspan="5"></td>
+							<td>{{ carbon_stocks.agb_tc | floatformat:2 | intcomma }}</td>
+							<td>{{ carbon_stocks.bgb_tc | floatformat:2 | intcomma }}</td>
+							<td>{{ carbon_stocks.soc_tc | floatformat:2 | intcomma }}</td>
+							<td>{{ carbon_stocks.litter_tc | floatformat:2 | intcomma }}</td>
+							<td>{{ carbon_stocks.deadwood_tc | floatformat:2 | intcomma }}</td>
+							<td>{{ carbon_stocks.total_tc | floatformat:2 | intcomma }}</td>
+						</tr>
+					{% endwith %}
+				</table>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+</div>

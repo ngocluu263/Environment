@@ -1,0 +1,37 @@
+{% load core_tags %}
+<div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Create Project
+                    </h4>
+                </div>
+                <form action="{% url "create-project" %}" method="POST" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% if error_message %}
+                            <strong>{{ error_message }}</strong>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="id_name" class="col-sm-2 control-label">
+                                Name: 
+                            </label>
+                            <div class="col-sm-10">
+                                {{ form.name|add_class:"form-control" }}
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Create Project
+                        </button>
+                    </div>
+                </form>
+        </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends "stage_project.html" %}
+
+{% block page_title %}Emissions Calculator{% endblock page_title %}
+
+{% block navtabs %}
+	<li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" request.session.project_id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+{% endblock breadcrumbs %}
+
+{% block page_content %}
+{% if home %}
+<p>The Emissions Calculator is an online tool to estimate greenhouse gas emissions from agriculture, forestry and other land use projects and activities.  The primary emphasis is on forestry and agroforestry projects including afforestation/reforestation, reducing emissions from deforestation and degradation, and modified agricultural practices.  The tool is built upon common greenhouse gas emissions calculations and regional carbon stock values published by the Intergovernmental Panel on Climate Change (IPCC).  Users can use the default IPCC values (Tier 1), enter national values (Tier 2), or enter their own project data from field measurements (Tier 3) to define the carbon stocks associated with various land covers, practices, or activities.  The Emissions Calculator reports emissions associated with a Reference Scenario, a Project Scenario, and the difference between these two scenarios.  The terrestrial carbon stocks and the greenhouse gas emissions are reported on an annual basis over the duration of the project.  The tool was developed by the Global Observatory for Ecosystem Services at Michigan State University and Applied GeoSolutions, Inc. for the Carbon Benefits Project funded by the Global Environment Facility.</p>
+{% endif %}
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#ecalc-pill").addClass("active");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block selecttabjs %}
+{% endblock selecttabjs %}

@@ -1,0 +1,282 @@
+{% extends "module_aeq.html" %}
+{% load aeq_tags %}
+
+{% block page_title %}
+Allometric Equations
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "group_aeq" %}">Allometric Equations</a></li>
+{% endblock %}s
+
+{% block page_scripts %}
+         <script type="text/javascript" src="{{ mathjax }}"></script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$', '$'], ['\\(','\\)']] },
+         "HTML-CSS": { linebreaks: { automatic: true } },
+                SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+
+    <style>
+        .pages {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+{% endblock page_scripts %}
+
+{% block page_content %}
+<div class="panel panel-primary" id='myPrimary'>
+
+    <div class="panel-heading">
+        <h4 class="panel-title">
+        {% block content_title %}
+                {{ title }}
+        {% endblock content_title %}
+        </h4>
+    </div>
+    {% if equations %}
+    <div>
+      <span class="pull-left">
+        Page {{ equations.number }} of {{ equations.paginator.num_pages }}
+      </span>
+      <span class="pull-right">
+          {% if equations.has_previous %}
+            {% if region != None %}
+              <a href="?country={{ country }}&region={{ region }}&page={{ equations.previous_page_number }}">Previous</a>
+            {% elif country != None and region == None %}
+              <a href="?country={{ country }}&page={{ equations.previous_page_number }}">Previous</a>
+            {% elif genus != None %}
+              <a href="?genus={{ genus }}&page={{ equations.previous_page_number }}">Previous</a>
+            {% else %}
+              <a href="?page={{ equations.previous_page_number }}">Previous</a>
+            {% endif %}
+          {% endif %}
+
+          {% if equations.has_next %}
+             {% if region != None %}
+              <a href="?country={{ country }}&region={{ region }}&page={{ equations.next_page_number }}">Next</a>
+            {% elif country != None and region == None %}
+              <a href="?country={{ country }}&page={{ equations.next_page_number }}">Next</a>
+            {% elif genus != None %}
+              <a href="?genus={{ genus }}&page={{ equations.next_page_number }}">Next</a>
+            {% else %}
+              <a href="?page={{ equations.next_page_number }}">Next</a>
+            {% endif %}
+          {% endif %}
+
+      </span>
+        <br>
+
+        <table class="table table-hover" id="gridtable">
+            <thead>
+                <tr>
+                    <!-- a specific category, genus or species -->
+                    {% if genus or species %}
+                        <th class="col-sm-3">Name</th>
+                        <th class="col-sm-9">Expression for Biomass (AGB in kg DM)</th>
+                        <th class="col-sm-4">Region</th>
+                        <th class="col-sm-3">Country</th>
+                    <!--a specific country-->
+                    {% elif country and region == None %}
+                        <th class="col-sm-4">Name</th>
+                        <th class="col-sm-9">Expression for Biomass (AGB in kg DM)</th>
+                        <th class="col-sm-4">Region</th>
+                    {% elif category %}
+                        <th class="col-sm-3">Name</th>
+                        <th class="col-sm-5">Expression for Biomass (AGB in kg DM)</th>
+                    <!--a specific region-->
+                    {% elif country and region %}
+                        <th class="col-sm-3">Name</th>
+                        <th class="col-sm-9">Expression for Biomass (AGB in kg DM)</th>
+                        <th>Type</th>
+                        <td>dbh<10</td>
+                    <!--all -->
+                    {% else %}
+                        <th class="col-sm-3">Name</th>
+                        <th class="col-sm-9">Expression for Biomass (AGB in kg DM)</th>
+                        <th class="col-sm-4">Region</th>
+                        <th class="col-sm-3">Country</th>
+                        <th>Type</th>
+                    {% endif %}
+                    <th class="col-sm-2">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+    {% endif %}
+
+    {% block table_content %}
+
+        {% for equation in equations %}
+
+                <tr>
+                    <!-- a specific genus or species -->
+                    {% if genus or species %}
+                        <td class="col-sm-3">{{ equation.name|nameBreak|linebreaks }}</td>
+                        <td class="col-sm-9">{{ equation.string|cut:" "|TeX3 }}</td>
+                        <td class="col-sm-4">{{ equation.region }}</td>
+                        <td class="col-sm-3">{{ equation.region.country }}</td>
+                    <!--a specific country-->
+                    {% elif country and region == None %}
+                        <td class="col-sm-4">{{ equation.name|nameBreak|linebreaks }}</td>
+                        <td class="col-sm-9">{{ equation.string|cut:" "|TeX3 }}</td>
+                        <td class="col-sm-4">{{ equation.region }}</td>
+
+                    {% elif category %}
+                        <td class="col-sm-3">{{ equation.name|nameBreak|linebreaks }}</td>
+                        <td class="col-sm-9">{{ equation.string|cut:" "|TeX3 }}</td>
+                    <!--a specific region-->
+                    {% elif country and region %}
+                        <td class="col-sm-3">{{ equation.name|nameBreak|linebreaks }}</td>
+                        <td class="col-sm-9">{{ equation.string|cut:" "|TeX3 }}</td>
+                        <td>
+                            {% if equation.volumetric == True %}
+                                Volumetric
+                            {% elif equation.anatomy == "SW" %}
+                                Small Wood
+                            {% elif equation.anatomy == "FL" %}
+                                Foliage
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ equation.less_than_ten }}
+                        </td>
+                    <!-- all -->
+                    {% else %}
+                        <td class="col-sm-3">{{ equation.name|nameBreak|linebreaks }}</td>
+                        <td class="col-sm-9">{{ equation.string|cut:" "|TeX3 }}</td>
+                        <td class="col-sm-4">{{ equation.region }}</td>
+                        <td class="col-sm-3">{{ equation.region.country }}</td>
+                        <td>
+                            {% if equation.volumetric == True %}
+                                Volumetric
+                            {% elif equation.anatomy == "SW" %}
+                                Small Wood
+                            {% elif equation.anatomy == "FL" %}
+                                Foliage
+                            {% endif %}
+                        </td>
+                    {% endif %}
+
+                    {% if equation.owner != request.user %}
+                        <td class="col-sm-2">
+                            <i><b>shared</i></b>
+                        </td>
+                    {% else %}
+                        <td class="col-sm-3">
+                            {% if equation.id == 1 %}
+                                {% if equation.id == 1 %}
+                                    &nbsp;<i><b>Update*</i></b>&nbsp;
+                                {% else %}
+                                    <a href="{% url "aeq_update" equation.id %}" class="btn btn-primary btn-sm" disabled="true">Update</a>
+                                {% endif %}
+                                &nbsp;<a href="{% url "aeq_delete_confirm" equation.id%}" class="btn btn-danger btn-sm" disabled="true">Delete</a>
+                            {% else %}
+                                <a href="{% url "aeq_update" equation.id %}" class="btn btn-primary btn-sm">Update</a>
+                                <a href="{% url "aeq_delete_confirm" equation.id %}" class="btn btn-danger btn-sm" data-target="#myModal" data-toggle="modal">Delete</a>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+        {% empty %}
+            <table class="table table-hover" id="gridtable">
+                <tr class="danger">
+                    <td>There are no equations in this list</td>
+                </tr>
+        {% endfor %}
+            </tbody>
+            <!--<tfoot>
+            <tr>
+                <td colspan=3>
+                    <i>* You are unable to modify allometric equations which are in use by someone else's project.</i>
+                    <br>
+                    <i>** You are unable to delete allometric equations which are in use by any project.</i>
+                </td>
+            </tr>
+            </tfoot>-->
+        </table>
+
+    {% endblock table_content %}
+        <div class="pages center-block">
+    <span class="pull-left">
+
+             {% if equations.has_previous %}
+              {% if region != None %}
+                <a href="?country={{ country }}&region={{ region }}&page={{ equations.previous_page_number }}">Previous</a>
+              {% elif country != None and region == None %}
+                <a href="?country={{ country }}&page={{ equations.previous_page_number }}">Previous</a>
+              {% elif genus != None %}
+                <a href="?genus={{ genus }}&page={{ equations.previous_page_number }}">Previous</a>
+              {% else %}
+                <a href="?page={{ equations.previous_page_number }}">Previous</a>
+              {% endif %}
+            {% endif %}
+
+
+        </span>
+
+      <span class="pull-right">
+      {% if equations.has_next %}
+         {% if region != None %}
+          <a href="?country={{ country }}&region={{ region }}&page={{ equations.next_page_number }}">Next</a>
+        {% elif country != None and region == None %}
+          <a href="?country={{ country }}&page={{ equations.next_page_number }}">Next</a>
+        {% elif genus != None %}
+          <a href="?genus={{ genus }}&page={{ equations.next_page_number }}">Next</a>
+        {% else %}
+          <a href="?page={{ equations.next_page_number }}">Next</a>
+        {% endif %}
+      {% endif %}
+
+
+        </span>
+      <p class="text-center">
+        Page {{ equations.number }} of {{ equations.paginator.num_pages }}
+      </p>
+    </div>
+
+        <button class="btn btn-primary" style="margin: 10px;" onclick="history.back(-1)">Back</button></a>
+    </div>
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id ="myModalLabel">Delete Allometric Equation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this allometric equation?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content%}
+
+{% block page_bottomscripts %}
+<script type="text/javascript">
+    $(document).ready()
+
+
+</script>
+{% endblock page_bottomscripts %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#aeq-list").addClass("active");
+        $("#aeq-list a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

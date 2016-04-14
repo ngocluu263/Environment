@@ -1,0 +1,570 @@
+    <script src="/static/js/mapping/jsarcgis39.js" type="text/javascript"></script>
+    <script src="/static/js/mapping/mapobject.js" type="text/javascript"></script>
+    <script src="/static/js/mapping/mapmanager.js" type="text/javascript"></script>
+    <!-- <script src="/static/js/mapping/map.js" type="text/javascript"></script> -->
+    <script src="http://esri.github.io/geojson-utils/src/jsonConverters.js" type="text/javascript"></script>
+
+    
+    <script type="text/javascript" src="/static/geo/js/underscore.js"></script>
+    <script type="text/javascript" src="/static/geo/js/backbone.js"></script>
+    <!-- <script type="text/javascript" src="/static/geo/js/backbone-tastypie.js.old"></script> -->
+    <script type="text/javascript" src="/static/geo/js/backbone-tastypie.js"></script>
+
+    <script type="text/javascript">
+
+        var map_unsaved = false;
+        var delete_parcel = false;
+        window.onbeforeunload = function() {
+            // popup warning if the user has made changes and forgot to save them.
+            if (map_unsaved) {
+                return "You have attempted to leave this page.  Any changes to the map will be lost unless you save.";
+            }
+        }
+
+        var map, toolbar;
+        var PROJECT_OUTLINE, PROJECT_FILL, PARCEL_OUTLINE, PARCEL_FILL, PLOT_OUTLINE, PLOT_FILL;
+        var toolbarEvent;
+        var mapManager = new MapManager();
+
+/*  code to add a project model
+        var Project = Backbone.Model.extend({
+            urlRoot: '/api/v1/geoproject'
+        });
+
+        var Projects = Backbone.Model.extend({
+            url: '/api/v1/geoplot/?limit=5&project={{ request.session.project_id }}',
+            model: Project
+        });
+*/
+
+        // var Parcel = Backbone.Model.extend({
+        //     urlRoot: '/api/v1/geoparcel'
+        // });
+
+        // var Parcels = Backbone.Collection.extend({
+        //     url: '/api/v1/geoplot/?limit=5&project={{ request.session.project_id }}',
+        //     model: Parcel
+        // });
+
+        // var Plot = Backbone.Model.extend({
+        //     urlRoot: '/api/v1/geoplot'
+        // });
+
+        // var Plots = Backbone.Collection.extend({
+        //     url: '/api/v1/geoplot/?limit=5&project={{ request.session.project_id }}',
+        //     model: Plot
+        // });
+
+        var markerPictures = {
+            'project': '/static/assets/grnball.png',
+            'parcel': '/static/assets/bluball.png',
+            'plot': '/static/assets/redball.png'
+        }
+        // "dojo/_base/array" - maybe?
+        // "dojo/domReady!" - maybe?
+        require([
+            "esri/map", 
+            "esri/toolbars/draw",
+            "esri/graphic",
+            "esri/symbols/SimpleMarkerSymbol",
+            "esri/symbols/SimpleLineSymbol",
+            "esri/symbols/SimpleFillSymbol",
+            "esri/geometry/Polygon",
+            "esri/Color",
+            "dojo/parser",
+            "dojo/ready",
+            "dojo/domReady!"
+          ], function(
+            Map, Draw, Graphic, 
+            SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol, 
+            Polygon, Color, parser, ready
+          ) {
+
+            ready(function() {
+                parser.parse();
+            });
+
+            map = new Map("mapcanvas", {
+                center: [-56.049, 38.485],
+                zoom: 3,
+                basemap: "hybrid"
+            });
+
+            map.on("load", function() {
+                $("#waiting_img").hide();
+                createToolbar();
+                setConstants();
+
+                map.graphics.on("click", function(evt) {
+                    console.log("geometry type: " + evt.graphic.geometry.type);
+                    if(evt.graphic.geometry.type == "polygon") {
+                        selectPolygon();
+                    }
+                    else if(evt.graphic.geometry.type == "multipoint" || evt.graphic.geometry.type == "point") {
+                        selectMarker();
+                    }
+                }); // map.graphics
+            }); // onload
+        }); // require
+        
+        var sampling_type_checker = false;
+        $('#sampling_type').click(function() {
+            if ($('#sampling_type').val() == 1) {
+                document.getElementById('new_variables').innerHTML = "";
+                sampling_type_checker = false;
+            }
+            else if ($('#sampling_type').val() == 2) {
+                // FIXME &nbsp; shouldn't be used because it's not data.  In CSS add margin for new_variables or equivalent.
+                if (!sampling_type_checker) {
+                    document.getElementById('new_variables').innerHTML = "<label for 'nth'>Every Nth:&nbsp;</label><input id='nth' type='text' value=''> <br /><label for 'column_number'>Number of Columns:&nbsp;</label><input id='column_number' type='text' value=''> <br /><label for 'row_number'>Number of Rows:&nbsp;</label><input id='row_number' type='text' value=''> <br />";
+                    sampling_type_checker = true;  // if this variable is true it won't add these fields.
+                }
+            }
+        });
+
+        function setConstants() {
+            PROJECT_OUTLINE = new esri.Color(([0,255,0])); 
+            PROJECT_FILL = new esri.Color([0,255,0,0.5]);
+            PARCEL_OUTLINE = new esri.Color(([0,0,255])); 
+            PARCEL_FILL = new esri.Color([0,0,255,0.5]);
+            PLOT_OUTLINE = new esri.Color(([255,0,0])); 
+            PLOT_FILL = new esri.Color([255,0,0,0.5]);
+        }
+
+        function createToolbar() {
+            toolbar = new esri.toolbars.Draw(map);     
+        }
+
+        function ringIsClockwise(ringToTest) {
+            var total = 0,
+                i = 0,
+                rLength = ringToTest.length,
+                pt1 = ringToTest[i],
+                pt2;
+            for (i; i < rLength - 1; i++) {
+                pt2 = ringToTest[i + 1];
+                total += (pt2[0] - pt1[0]) * (pt2[1] + pt1[1]);
+                pt1 = pt2;
+            }
+            return (total >= 0);
+        }
+
+        function esriGeometryToGcGeometry(esriGeom){
+            var gcGeom, i, g, coordinates, geomParts, ringArray, ring;
+
+            //check for x, points, paths, or rings to determine geometry type.
+            if (esriGeom) {
+                gcGeom = {};
+                if (esriGeom.x) {
+                    gcGeom.type = "Point";
+                    coordinates = [esriGeom.x, esriGeom.y];
+                } else if (esriGeom.points) {
+                    gcGeom.type = "MultiPoint";
+                    coordinates = esriGeom.points;
+                } else if (esriGeom.paths) {
+                    geomParts = esriGeom.paths;
+                    if (geomParts.length === 1) {
+                        gcGeom.type = "LineString";
+                        coordinates = geomParts[0];
+                    } else {
+                        gcGeom.type = "MultiLineString";
+                        coordinates = geomParts;
+                    }
+                } else if (esriGeom.rings) {
+                    geomParts = esriGeom.rings;
+                    ringArray = [];
+                    for (i = 0; i < geomParts.length; i++) {
+                        ring = geomParts[i];
+                        if (ringIsClockwise(ring)) {
+                            ringArray.push([ring]);
+                        } else {
+                            ringArray[ringArray.length - 1].push(ring);
+                        }
+                    }
+                    if (ringArray.length > 1) {
+                        coordinates = ringArray;
+                        gcGeom.type = "MultiPolygon";
+                    } else {
+                        coordinates = ringArray.pop();
+                        gcGeom.type = "Polygon";
+                    }
+                }
+                gcGeom.coordinates = coordinates;
+            }
+            return gcGeom;
+        }
+
+        function saveMap() {
+            // parcel object
+            var save_parcels = {
+                parcels: []
+            }
+
+            // get all projects, parcels, plots
+            var objects = mapManager.GetAll();
+            objects.forEach(function(obj) {
+                if (obj.pType == "parcel") {
+                    // declare a parcel through tastypie.backbone
+                    var parcel_instance = new Parcel();
+                    // make mpoly field
+                    var mpoly = obj.polyObj.geometry;
+                    // mpoly.coordinates = obj.polyObj.rings;
+                    // mpoly.type = "MultiPolygon";
+                    // attempt to save the map
+                    // parcel_instance
+                    save_parcels.parcels.push(parcel_instance);
+                    esri
+                    var geo = esriGeometryToGcGeometry(mpoly);
+
+                    parcel_instance.save({name: 'test', 'mpoly': geo}, {success: function () {
+                        console.log("success");
+                    }, error: function() {
+                        console.log(parcel_instance);
+                        console.warn("error");
+                    }});
+
+                    save_parcels.parcels.push(parcel_instance);
+                    // map.setExtent(map.extent);
+
+                    // var parcel_json = dojo.toJson(obj.polyObj.geometry);
+                    // $.ajax({
+                    //     url: '/api/v1/geoparcel/'
+                    // });
+                }
+            });
+            var save = dojo.toJson(save_parcels);
+            console.log(save);
+        }
+
+        function loadMap(polygons, outline, fill) {
+            // parameters are found here
+            // var geometry = saveObj.polygons;
+            // var outline = PARCEL_OUTLINE;
+            // var fill = PARCEL_FILL;
+            
+            /* old way, tutorial on esri js forums */
+
+            // dojo.forEach(loadObj.polygons, function (polygon) {
+            //     var graphic = new esri.Graphic(polygon);
+            //     feature.push(graphic);
+            //     graphic.graphic_id = polygon.attributes.id;
+            //     graphic.graphic_atts = polygon.attributes;
+            //     graphic.graphic_text = false;
+            //     app.map.getLayer('g1_anno_polygon').add(graphic)
+            // });
+            
+
+            geometry.forEach(function(i) {
+                symbol = new esri.symbol.SimpleFillSymbol();
+                symbol.setColor(fill);
+                symbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, outline, 2));
+
+                var graphic = new esri.Graphic(i, symbol);
+                map.graphics.add(graphic);
+
+                var map_obj = new MapObject("parcel", "parcel", graphic, i.type);
+                mapManager.Add(map_obj);
+            });
+        }
+
+        /**********************************************************************************
+        The following 6 functions handle adding a new geometry object to the map.  The first three 
+        handle events that the user draws.  The last three handle when we give the map a geometry 
+        object (e.g. random sampling).
+        **********************************************************************************/
+
+        function finishProject(evt) {
+            drawEnd(evt.geometry, 'project', PROJECT_OUTLINE, PROJECT_FILL);
+        }
+
+        function finishParcel(evt) {
+            drawEnd(evt.geometry, 'parcel', PARCEL_OUTLINE, PARCEL_FILL);
+        }
+
+        function finishPlot(evt) {
+            drawEnd(evt.geometry, 'plot', PLOT_OUTLINE, PLOT_FILL);
+        }
+
+        function addProject(geometry) {
+            drawEnd(geometry, 'project', PROJECT_OUTLINE, PROJECT_FILL);
+        }
+
+        function addParcel(geometry) {
+            drawEnd(geometry, 'parcel', PARCEL_OUTLINE, PARCEL_FILL);
+        }
+
+        function addPlot(geometry) {
+        	drawEnd(geometry, 'plot', PLOT_OUTLINE, PLOT_FILL);
+        }
+
+        function drawEnd(geometry, pType, outline, fill) {
+            toolbar.deactivate();
+            map.showZoomSlider();
+            console.log("geometry: " + geometry.type);
+            var text_symbol = null;
+            switch (geometry.type) {
+                case "point":
+                case "multipoint":
+                  symbol = new esri.symbol.PictureMarkerSymbol(markerPictures[pType], 13, 13);
+                  break;
+                default:
+                  symbol = new esri.symbol.SimpleFillSymbol();
+                  symbol.setColor(fill);
+                  symbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, outline, 2)); 
+                  break;
+            }
+
+            var graphic = new esri.Graphic(geometry, symbol);
+            map.graphics.add(graphic);
+
+            var map_obj = new MapObject(pType, pType, graphic, geometry.type);
+            mapManager.Add(map_obj);
+
+            if(toolbarEvent != null) {
+                toolbarEvent.remove();
+                toolbarEvent = null;
+            }
+        }
+
+        /*************************************
+        called when the user selects to draw a polygon
+        *************************************/
+        function drawPolygon(pType) {
+            map_unsaved = true;
+            toolbar.finishDrawing();
+            var colorOutline, colorFill, outline;
+            switch(pType) {      
+                case "project":   
+                    colorOutline = PROJECT_OUTLINE;
+                    colorFill = PROJECT_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishProject);
+                    break;
+                case "parcel":
+                    colorOutline = PARCEL_OUTLINE;
+                    colorFill = PARCEL_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishParcel);
+                    break;
+                case "plot":
+                    colorOutline = PLOT_OUTLINE;
+                    colorFill = PLOT_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishPlot);
+                    break;                
+            }
+
+            outline = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, colorOutline, 2); 
+            toolbar.fillSymbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, outline, colorFill);
+            toolbar.activate(esri.toolbars.Draw.POLYGON);
+        }
+
+        function clearMap() {
+            // if(confirm("Are you sure you want to clear?")) {
+            // map_unsaved doesn't change
+            map_unsaved = false;
+            mapManager.Clear();
+        }
+
+        function setSampling() {
+            mapobjects = mapManager.GetAll();
+            var parcels = new Array();
+            var selected_parcel = document.getElementById("selected_parcel");
+
+            dojo.forEach(mapobjects, function(object){
+                if (object.pType == "parcel")
+                    parcels.push(object);
+            });
+
+            if (parcels != selected_parcel.length) {
+                var len = selected_parcel.length;
+                for (i=0; i<len; i++) {
+                    var a = document.createElement("option");
+                    selected_parcel.remove(a);
+                }
+                var c = 0;
+                dojo.forEach(parcels, function(parcel){
+                    var a = document.createElement("option");
+                    a.text = parcel.pName;
+                    a.value = c;
+                    var contains_option = false;
+                    selected_parcel.add(a);
+                    c+=1;
+                });
+            }
+            $("#setSampling").modal("show");
+        }
+
+        function point_in_polygon(length, x, y, vertices) {
+            var bool = false;
+
+            for(var i=0, j=length-1; i<length; j=i++) {
+                var xi = vertices[i][0], yi = vertices[i][1];
+                var xj = vertices[j][0], yj = vertices[j][1];
+
+                var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect) bool = !bool;
+            }
+            return bool;
+        }
+
+        function generate_random_plots(parcel, plot_number) {
+            var extent = parcel._extent;
+        	var xrange = extent.xmax - extent.xmin;
+        	var yrange = extent.ymax - extent.ymin;
+
+            for (i=0; i<plot_number; i++) {
+                while (true) {
+                	var randx = xrange * Math.random() + extent.xmin; 
+                	var randy = yrange * Math.random() + extent.ymin;
+
+                    var bool = point_in_polygon(parcel.geometry.rings[0].length, randx, randy, parcel.geometry.rings[0]);
+                    if (bool) {
+                        var plot = new esri.geometry.Point(randx, randy, map.spatialReference);
+                        addPlot(plot);
+                        break;
+                    }
+                }
+            }
+        }
+
+        function generate_systematic_plots(parcel, col_c, row_c, n, plot_number) {
+            var extent = parcel.polyObj._extent;
+            var xrange = extent.xmax - extent.xmin;
+            var yrange = extent.ymax - extent.ymin;
+
+            var col_len = xrange / col_c;
+            var row_len = yrange / row_c;
+
+            var last_x = extent.xmin;
+            var last_y = extent.ymax;
+
+            // needs to take into account if n skips more lines
+            // needs to take into account if it's not a rectangle 
+            for(i=0; i<plot_number; i++) {
+                if (last_x + (col_len * n) <= extent.xmax) {
+                    last_x += (col_len * n);
+                    var plot = new esri.geometry.Point(last_x, last_y, map.spatialReference);
+                    addPlot(plot);
+                }
+                else if (last_x + (col_len * n) > extent.xmax) {
+                    var length_past_xmax = (last_x + (col_len * n)) - extent.xmax;
+                    if (length_past_xmax > xrange) {
+
+                    }
+                    last_x = extent.xmin + length_past_xmax;
+                    last_y -= row_len
+                    if (last_y < extent.ymin) {
+                        break;
+                    }
+                    else {
+                        var plot = new esri.geometry.Point(last_x, last_y, map.spatialReference);
+                        addPlot(plot);
+                    }
+                }
+            }
+        }
+
+	    function sampling() {
+            // gets these variables from the setsampling modal
+            // could use a different parse to be more exact and save space.
+            var parcel_name = parseFloat($('#selected_parcel').val());
+	    	var sampling_type = parseFloat($('#sampling_type').val());
+            var plot_number = parseFloat($('#plot_number').val());
+            
+	    	var objs = mapManager.GetAll();
+            var parcel;
+
+            // finds the parcels to use
+	    	dojo.forEach(objs, function(object) {
+	    		if (object.pType == "parcel" && object.id == parcel_name) {
+	  		        parcel = object;
+                }
+	    	});
+	    	if (sampling_type == 1) {
+		    	generate_random_plots(parcel.polyObj, plot_number);
+		    }
+            else if(sampling_type == 2) {
+                var nth_value = parseFloat($('#nth').val());
+                var column_count = parseFloat($('#column_number').val());
+                var row_count = parseFloat($('#row_number').val());
+                generate_systematic_plots(parcel, column_count, row_count, nth_value, plot_number);
+            }
+        }
+
+        function placeMarker(pType) {
+            toolbar.finishDrawing();
+            var colorOutline, colorFill, outline;
+            var marker;
+            switch(pType) {      
+                case "project":
+                    colorOutline = PROJECT_OUTLINE;
+                    colorFill = PROJECT_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishProject);
+                    marker = new esri.symbol.PictureMarkerSymbol('/static/assets/grnball.png', 13, 13);
+                    break;
+                case "parcel":
+                    colorOutline = PARCEL_OUTLINE;
+                    colorFill = PARCEL_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishParcel);
+                    marker = new esri.symbol.PictureMarkerSymbol('/static/assets/bluball.png', 13, 13);
+                    break;
+                case "plot":
+                    colorOutline = PLOT_OUTLINE;
+                    colorFill = PLOT_FILL;
+                    toolbarEvent = toolbar.on("draw-end", finishPlot);
+                    marker = new esri.symbol.PictureMarkerSymbol('/static/assets/redball.png', 13, 13);
+                    break;                
+            } 
+            toolbar.setMarkerSymbol(marker);
+            toolbar.activate(esri.toolbars.Draw.POINT);     
+        }
+
+        function selectPolygon(geometry) {
+            console.log("polygon selected");
+        }
+
+        function selectMarker(geometry) {
+            console.log(geometry);
+            if (geometry.type == "point") {
+                document.getElementById("x_coordinate").value = geometry.getLongitude().toFixed(2);
+                document.getElementById("y_coordinate").value = geometry.getLatitude().toFixed(2);
+                $('#plot_popup').modal('show');
+            }
+        }
+
+        function setView(pType) {
+            var polygons = $("#show_mapped_poly_" + pType).prop("checked");
+            var markers = $("#show_markers_" + pType).prop("checked");
+            var reported = $("#show_reported_poly_" + pType).prop("checked");
+            var labels = $("#show_labels_" + pType).prop("checked");
+
+            mapManager.SetView(pType, polygons, markers, reported, labels);
+        }
+
+        // Set modal pType attribute that will pass into enterCoordinates()
+        function modal_pType(pType) {
+            $('#coordinateElements').attr('pType', pType);
+        }
+
+        // Sets the checkboxes in the set-view modals 
+        function initializeViews() {
+            var all_pTypes = ['project', 'parcel', 'plot'];
+
+            for(var i=0; i < all_pTypes.length; i++) {
+                var pType = all_pTypes[i];
+                $("#show_mapped_poly_" + pType).prop("checked", mapManager.GetView(pType, 'mapped'));
+                $("#show_markers_" + pType).prop("checked", mapManager.GetView(pType, 'markers'));
+                $("#show_reported_poly_" + pType).prop("checked", mapManager.GetView(pType, 'reported'));
+                $("#show_labels_" + pType).prop("checked", mapManager.GetView(pType, 'labels'));                
+            }
+        }
+
+        initializeViews();
+
+        function clearMap() {
+            mapManager.Clear();
+        }
+
+        function showAll(pType) {
+            mapManager.ShowAll(pType);
+        }
+
+    </script>

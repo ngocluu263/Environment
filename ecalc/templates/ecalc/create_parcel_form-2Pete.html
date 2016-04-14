@@ -1,0 +1,129 @@
+{% extends "ecalc/_form.html" %}
+{% load core_tags %}
+
+{% block navtabs %}
+<li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li class="active"><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=project.id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li><a href="{% url "ecalc-step-1" request.session.project_id %}">Project Wizard</a></li>
+    <li class="active">Create Parcel</li>
+{% endblock breadcrumbs %}
+
+{% block page_content %}
+    {{ landuse_formset.non_form_errors }}
+    <form action="." method="post" class="form-horizontal">
+    	{% csrf_token %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Create Parcel
+                </h4>
+            </div>
+            {% if form.non_form_errors %}
+            <div class="panel-body">
+                {{ form.non_form_errors }}
+            </div>
+            {% endif %}
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-sm-2"><label for"id_name" class="control-label pull-right">Name:</label></td>
+                    <td class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.name|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                {% for error in form.name.errors %}
+                                <div class="row">
+                                    <span style="color:red"><em>{{ error }}</em></span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2"><label for"id_location" class="control-label pull-right">Location:</label></td>
+                    <td class="col-sm-10">
+
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.location|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                {% for error in form.location.errors %}
+                                <div class="row">
+                                    <span style="color:red"><em>{{ error }}</em></span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2"><label for"id_area" class="control-label pull-right">Area:</label></td>
+                    <td class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.area|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                {% for error in form.area.errors %}
+                                <div class="row">
+                                    <span style="color:red"><em>{{ error }}</em></span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2"><label for"id_initial_lc" class="control-label pull-right">Land Cover:</label></td>
+                    <td class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                {{ form.initial_lc|add_class:'form-control' }}
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="{% url "ecalc-landcover-new" ppk=project.id %}" data-target="#myModal" data-toggle="modal"><button class="btn btn-primary btn-sm">Add New</button></a>
+                            </div>
+                        </div>
+                        {% for error in form.initial_lc.errors %}
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <span style="color:red"><em>{{ error }}</em></span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-sm pull-right" />
+
+                    </td>
+            </table>
+        </div>
+    </form>
+{% endblock %}
+
+{% block page_bottomscripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#myModal').on('hidden.bs.modal',function(){
+                location.reload();
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}Emissions Calculator - Details{% endblock %}
+
+{% block navtabs %}
+	<li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li class="active" id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=request.session.project_id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li class="active">Project Details</li>
+{% endblock breadcrumbs %}
+
+{% block page_content %}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Information</h4>
+    </div>
+        <table class="table table-hover">
+            <tr><th>Project Name</th><td>{{ project.name }}</td></tr>
+            <tr><th>Continent</th><td>{{ project.continent }}</td></tr>
+            <tr><th>Climate</th><td>{{ project.climate_zone }}</td></tr>
+            <tr><th>Moisture</th><td>{{ project.moisture_zone }}</td></tr>
+            <tr><th>Soil Type</th><td>{{ project.soil_type }}</td></tr>
+            <tr><th>Duration</th><td>{{ project.duration }}</td></tr>
+            <tr><th>Carbon/DryMatter</th><td>{{ project.cdm }}</td></tr>
+        </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Project Scenarios</h4>
+    </div>
+    {% include "ecalc/projectscenarios.html" %}
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Reference Scenarios</h4>
+    </div>
+    {% include "ecalc/referencescenarios.html" %}
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Parcels</h4>
+    </div>
+    {% include "ecalc/parcels.html" %}
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Practices</h4>
+    </div>
+    {% include "ecalc/practices.html" %}
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Land Covers</h4>
+    </div>
+    {% include "ecalc/landcovers.html" %}
+</div>
+
+{% endblock %}
+
+{% block page_bottomscripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#myModal').on('hidden.bs.modal', function(){
+                location.reload();
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#ecalc-pill").addClass("active");
+        $("#ecalc-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#ecalc-projectdetails-tool-tab").addClass("active");
+        $("#ecalc-projectdetails-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

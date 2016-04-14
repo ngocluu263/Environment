@@ -1,0 +1,89 @@
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}Emissions Calculator{% endblock %}
+
+{% block page_scripts %}
+<style type="text/css">
+	dt.text-info {
+		width: 80px;
+	}
+	.dl-horizontal dd {
+		margin-left: 100px;
+	}
+</style>
+
+{% endblock page_scripts %}
+
+{% block page_content %}
+
+<!--<table>
+<tr>
+<th>Project</th>
+<th>Continent</th>
+<th>Climate</th>
+<th>Soil</th>
+<th>Parcels</th>
+<th>Scenarios</th>
+</tr>
+{% for project in project_list %}
+	<tr>
+	<td><a href="{% url "ecalc-project" project.id %}">{{ project.name }}</a></td>
+	<td>{{ project.continent }}</td>
+	<td>{{ project.Climate }}</td>
+	<td>{{ project.soil_type }}</td>
+	<td><a href="{% url "ecalc-parcels" ppk=project.id %}">{{ project.ecalc_parcel_set.count }}</a></td>
+	<td><a href="{% url "ecalc-projectscenarios" ppk=project.id %}">{{ project.scenario_set.count }}</a></td>		        
+	</tr>
+{% empty %}
+	</table>
+	<p>No projects are available.</p>
+{% endfor %}
+</table>
+<tr><td><a href="{% url "ecalc-project-new" %}">add new</a></td></tr>-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Guide</h4>
+    </div>
+	<table class="table">
+		<tr>
+			<td>
+				The Project Wizard guides the user through the process of using the Carbon Calculator.  Basic data must be entered to describe simple parameters for Project, Parcel, Land Cover, Reference Scenario, and Project Scenario.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<dl class="dl-horizontal">
+					<dt class="text-info">Step 1:</dt>
+						<dd>The user describes the Project by entering data for Name, Duration, Continent, Climate, Moisture, and Soil Type.<br />
+							<em>This step is completed when a project is created in the MRV.</em></dd>
+					</br>
+					<dt class="text-info">Step 2:</dt>
+						<dd>The user describes the Parcel by entering data for Name, Location, Area, and Land Cover.  The user has an option of adding a new Land Cover with national Tier 2 values or their own Tier 3 data from field measurements if the Tier 1 IPCC default values do not accurately describe the Parcel’s actual Land Cover.</dd>
+					</br>
+					<dt class="text-info">Step 3:</dt>
+						<dd>The user describes the Reference Scenario for the selected Parcel by entering data for the expected Land Cover, Degradation, Harvested Wood Products, Burning, and agricultural Practices.  Users may add multiple land cover changes or multiple practices within a single Reference Scenario by modifying the scenario through the Project page.</dd>
+					</br>
+					<dt class="text-info">Step 4:</dt>
+						<dd>The user describes the Project Scenario associated with the selected Reference Scenario.  The Project Scenario also includes the expected Land Cover, Degradation, Harvested Wood Products, Burning, and agricultural Practices.  Users may add multiple land cover changes or multiple practices within a single Project Scenario by modifying the scenario through the Project page.</dd>
+					</br>
+					<dt class="text-info">Step 5:</dt> 
+						<dd>The emissions calculations are reported on the Project page.  The user must click on the Reference Scenario or Project Scenario emissions value to open the Emissions Table which reports annual carbon stocks and GHG emissions.  The difference between the Reference Scenario and Project Scenario emissions values is also reported on the Project page.</dd>
+				</dl>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Experienced users may choose not to use the Project Wizard and enter new project data independently using the “Add New” button on Project Details page.
+			</td>
+		</tr>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#ecalc-instructions-tab").addClass("active");
+    </script>
+{% endblock selecttabjs %}

@@ -1,0 +1,16 @@
+{% extends "stage_project.html" %}
+
+{% block navtabs %} <!-- move to module template -->
+    <li id="sampling-design-tool-tab"><a href="{% url "sampling-design-tool" %}"><span class="glyphicon glyphicon-cog"></span> Sampling Design Tool</a>
+    <li id="plot-mapping-tool-tab"><a href="{% url "plot-mapping-tool" %}"><span class="glyphicon glyphicon-map-marker"></span> Plot Mapping Tool</a>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#sampling-design-pill").addClass("active");
+        $("#sampling-design-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}

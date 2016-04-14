@@ -1,0 +1,166 @@
+{% extends "ecalc/base.html" %}
+
+{% block page_title %}
+Emissions Calculator &mdash; Report Wizard &mdash; Results
+{% endblock %}
+
+{% block navtabs %}
+    <li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab" class="active"><a href="{% url "ecalc-report-wizard" pk=project.id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript" src="/static/js/flot/jquery.flot.min.js"></script> <!-- full source at /static/js/flot/jquery.flot.js -->
+    <script type="text/javascript" src="/static/js/flot/jquery.flot.stack.min.js"></script> <!-- full source at /static/js/flot/jquery.flot.stack.js -->
+    <script type="text/javascript">
+        // flot graph 1) emissions
+        $(function() {
+            var data_series = [];
+            {% for scenario in scenarios %}
+                var ary = [];
+                {% for year, emissions in scenario.CumulativeEmissionsDifferenceData %}
+                    ary.push([{{ year }}, {{ emissions }}]);
+                {% endfor %}
+                data_series.push({
+                    data: ary,
+                    label: '{{ scenario.name }}',
+                });
+            {% endfor %}
+
+            function accumulate_data(a, x, index, ary){
+                var ret = {
+                    data: [],
+                    label: 'Project Cumulative',
+                    color: 'green',
+                    lines: {
+                        fill: true,
+                    }
+                };
+                var year;
+                for (var i=0; i < a['data'].length; i++){
+                    year = a['data'][i][0]
+                    accum_value = a['data'][i][1];
+                    new_value = x['data'][i][1];
+                    ret['data'].push([year, accum_value + new_value]);
+                }
+                return ret;
+            }
+
+            if( data_series.length > 1 ){
+                var cumulative_series = data_series.reduce(accumulate_data);  // combine all scenarios into one cumulative series
+                data_series.push(cumulative_series);
+            }
+
+            function plotLines() {
+                $.plot(
+                    "#flot-emissions",
+                    data_series,
+                    {
+                        legend: {
+                            show: true,
+                            position: 'ne',
+                            backgroundColor: 'gray',
+                            backgroundOpacity: 0.5,
+                            noColumns: data_series.length,
+                            margin: 10,
+                        },
+                        xaxis: {
+                            show: true,
+                            tickSize: 1,
+                        }
+                    });
+            }
+
+            plotLines();
+
+
+        });
+
+        // jquery accordion
+        $(function() {
+            $("#accordion-report-wizard").accordion({
+                collapsible: true,
+                heightStyle: 'content',
+                active: 2,
+            });
+        });
+    </script>
+{% endblock page_scripts %}
+
+
+{% block breadcrumbs %}
+    <li><a href="{% url "ecalc-project" request.session.project_id %}">Emissions Calculator</a></li>
+    <li><a href="{% url "ecalc-report-wizard" request.session.project_id %}">Report Wizard</a></li>
+    <li class="active">Results</li>
+{% endblock breadcrumbs %}
+
+
+{% block sidebar %}
+    <ul>
+        <li><a href="{% url 'ecalc-project' request.session.project_id %}">{{ project.name }}</a></li>
+    </ul>
+{% endblock %}
+
+{% block page_content %}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Report: GEF CC Mitigation Tracking Tool</h4>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <p style="font-style: italic; font-size: small; padding-left: 10px;">
+                    Portfolio monitoring tools are intended to roll up indicators from the individual project level to the portfolio level and track overall portfolio performance in focal areas. Each focal area has developed its own tracking tool to meet its unique needs. Agencies are requested to fill out at CEO Endorsement (or CEO approval for MSPs) and submit these tools again for projects at mid-term and project completion. The overall approach for capturing data and reporting to the GEF Secretariat will be uniform across all focal areas, based on the GEF M&amp;E Policy.
+                    <br>
+                    <span style="float: right;">&mdash; <a href="http://www.thegef.org/gef/tracking_tools" target="_blank" style="color:#3E85C3">thegef.org</a>
+                    </span>
+                </p>
+            </td>
+            <td>
+                <a href="{% url "ecalc-report-wizard-gef-tt-ccm" project.id %}?delta_emissions={{ project_cumulative_emissions }}" class="btn btn-warning btn-sm">Download Report</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Report: GEF Sustainable Forest Management (SFM) / REDD+ Tracking Tool</h4>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <p style="font-style: italic; font-size: small; padding-left: 10px;">
+                    Portfolio monitoring tools are intended to roll up indicators from the individual project level to the portfolio level and track overall portfolio performance in focal areas. Each focal area has developed its own tracking tool to meet its unique needs. Agencies are requested to fill out at CEO Endorsement (or CEO approval for MSPs) and submit these tools again for projects at mid-term and project completion. The overall approach for capturing data and reporting to the GEF Secretariat will be uniform across all focal areas, based on the GEF M&amp;E Policy.
+                    <br>
+                    <span style="float: right;">&mdash; <a href="http://www.thegef.org/gef/tracking_tools" target="_blank" style="color:#3E85C3">thegef.org</a>
+                    </span>
+                </p>
+            </td>
+            <td>
+                <a href="{% url "ecalc-report-wizard-gef-tt-sfm" project.id %}?delta_emissions={{ project_cumulative_emissions }}" class="btn btn-warning btn-sm">Download Report</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Graph: Cumulative Project Change in Emissions</h4>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td align="center">
+                <div style="width: 88.4%; height: 400px;">
+                    <div id="flot-emissions" style="width: 90%; height: 85%; padding: 0px; margin: 5px;"></div>
+                    This graph presents the project scenarios' emissions minus the reference (baseline) emissions.
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

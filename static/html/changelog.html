@@ -1,0 +1,215 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Changelog</title> 
+
+	<!-- jquery mobile -->
+	<link rel="stylesheet" href="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<link rel="stylesheet" href="/static/html/jquery_mobile_css/guidebook_theme/guidebook.css">
+	<link rel="stylesheet" href="/static/html/custom.css">
+	<script src="//code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="//code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+	<!-- end jquery mobile -->
+
+</head> 
+<body> 
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Carbon2Markets MRV</h1>
+
+		<a href="javascript:parent.$.pageslide.close()" data-icon="arrow-r" data-theme="d" class="ui-btn-right">Hide</a>
+
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn-active ui-state-persist">Changelog</a></li>
+				<li><a href="license.html">License Information</a></li>
+			</ul>
+		</div><!-- /navbar -->
+
+	</div><!-- /header -->
+
+	<div data-role="content" data-content-theme="a" >
+		<div id="overview">
+			<p>
+				<b>Major digit</b>: New module(s)
+				<br>
+				<b>Minor digit</b>: New feature(s) and/or interface
+				<br>
+				<b>Revision digit</b>: Hotfixes
+			</p>
+		</div>
+		<div id="v2-0" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.7</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.7
+					<li>New layout based on Twitter Bootstrap</li>
+					<li><em>Edit/Review Project Information</em> pages, rewritten and optimized in django</li>
+					<li>Rearranged <em>Measuring/Inventory Data</em> page for better organization</li>
+
+				</ul>
+			</p>
+		</div>
+
+		<div id="v1-6" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.6</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.6
+					<br>
+					Project Design &amp; Evaluation Tools
+					<br>
+					July 2013
+					<li>Added <i>Plot Mapping Tool</i> for generation locations for sample plots</li>
+					<li>Migrated to PostGIS</li>
+					<li>Added <i>Project Emissions Tool</i> for calculating non-CO2 emissions resulting from forest fires</li>
+					<li>Added <i>Leakage Estimation Tool</i> for calculating leakage emissions</li>
+					<li>Added <i>Sampling Design Tool</i> for determining the number of sample plots required for a project</li>
+					<li>Added <i>Report Wizard</i> for reporting projects using the GEF Tracking Tools</li>
+					<li>Added GEF Guidebook with pageslide access for quick reference by users</li>
+					<li>Embedded Guidebook button links in various locations for quick reference</li>
+					<li>Added default Allometric Equations to script for pre-populating database</li>
+					<li>Added basic permissions/sanity checking for modifying allometric equations</li>
+					<li>Minor UI improvements</li>
+
+				</ul>
+			</p>
+		</div>
+
+
+
+		<div id="v1-5" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.5</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.5
+					<br>
+					Allometric Equation Editor
+					<br>
+					March 2013
+					<li>Added new feature for defining custom allometric equations</li>
+					<li>Added basic sanity-checking validators to ensure safe allometric equations</li>
+					<li>Created new <i>Workspace Utilities</i> section to contain AEQ editor, Add User form</li>
+					<li>Updated RESTful API back-end to always fetch 300 objects per page (from 20)</li>
+					<li>Fixed bug preventing deletion of practice/parcel/scenarios in e-calc</li>
+					<li>Slight tweaks of front-end Carbon Calculator decimal precision to improve readability</li>					
+				</ul>
+			</p>
+		</div>
+
+		<div id="v1-4" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.4</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.4
+					<br>
+					Shapefile Upload
+					<br>
+					February 2013
+					<li>Added Shapefile support for map ingestion of geographical data</li>
+					<li>Wrote bulk API operation methods for improved performance in certain use cases</li>
+					<li>Modified login page to refuse MSIE and other incompatible browsers</li>
+					<li>Added basic carbon stocks report</li>
+					<li>Improved carbon stocks calculator to automatically ignore parcels/plots for which the data field is null. (Previously, user had to manually tick-box the data types.)</li>
+				</ul>
+
+				<ul class='versionlist'>
+					Version 1.4.1
+					<br>
+					Hotfixes
+					<br>
+					March 2013
+					<li>Re-wrote portion of code dealing with RESTful API service to accommodate upstream breaking changes</li>
+					<li>Removed PDF Download link as it was not working well</li>
+					<li>Added Safari to list of supported browsers</li>
+			</p>
+		</div>
+
+		<div id="v1-3" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.3</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.3
+					<br>
+					Project Soil Data &amp; Nested sub-plots
+					<br>
+					December 2012
+					<li>Added Project Soil Data feature which pre-populates Excel workbook for download/ingest of soil data</li>
+					<li>Added nested sub-plots support to inventory spreadsheet</li>
+					<li>Re-wrote carbon stocks calculator from using manual SQL view for computing stocks to using <i>property</i> attributes on the back-end model</li>
+					<li>Added <i>Add User</i> form for staff users</li>
+					<li>Added <i>Clone User</i> form for staff users</li>
+				</ul>
+			</p>
+		</div>
+
+		<div id="v1-2" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.2</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.2
+					<br>
+					Back-end API &amp; database consolidation
+					<br>
+					October 2012
+					<li>Implemented RESTful API service</li>
+					<li>Hardened security against SQL injection attacks</li>
+					<li>Overhauled breadcrumb navigation</li>
+					<li>Resolved 80% of "Test Project" bug</li>
+					<li>Added capability to add geographical data for existing plots</li>
+					<li>Replaced <i>Delete</i> operation in mapping data with <i>Remove</i>; it will only delete geographical data and not the whole entity</li>
+					<li>Improved useability of inventory page and issues with "stale" selection menus</li>
+					<li>Added consistent navigation buttons to each page heading</li>
+					<li>Re-wrote code significantly to consolidate routine functions in single class headers to pay off/prevent (future) technical debt</li>
+					<li>Re-wrote code to allow cross-platform deployment</li>
+					
+				</ul>
+			</p>
+		</div>
+
+		<div id="v1-1" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.1</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.1
+					<br>
+					Security over-haul
+					<br>
+					October 2012
+					<li>Added <i>Single-sign-on</i> authentication</li>
+					<li>Secured various URL endpoints with auth checks</li>
+				</ul>
+			</p>
+		</div>
+
+		<div id="v1-0" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Version 1.0</h3>
+			<p>
+				<ul class='versionlist'>
+					Version 1.0
+					<br>
+					Bug fixes &amp; Useability improvements
+					<br>
+					August 2012
+					<li>Various UI/UX improvements</li>
+					<li>Resolved various inventory upload bugs</li>
+					<li>Added SOC/litter/deadwood pools</li>
+					<li>Added green help containers</li>
+					<li>Improved inventory spreadsheet with drop-down selections and validators</li>
+
+				</ul>
+			</p>
+		</div>
+
+		<div id="vPRE" data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-inset="false" data-mini="true">
+			<h3>Pre- Version 1.0</h3>
+		</div>
+
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

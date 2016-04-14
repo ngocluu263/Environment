@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+{% load static %}
+{% load core_tags %}
+    <title>{% block page_title %}Forest Carbon MRV System{% endblock page_title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/static/bootstrap/3.0.0/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/theme.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jquery UI -->
+    <link rel="stylesheet" href="/static/jquery/jquery-ui-1.10.3/themes/base/jquery-ui.css" />
+    <script src="/static/jquery/jquery-1.10.2.js"></script>
+    <script src="/static/jquery/jquery-ui-1.10.3/ui/jquery-ui.js"></script>
+    <!-- end jquery UI -->
+
+    <!-- pageslide css // javascript at bottom of <body> tag -->
+    <link rel="stylesheet" href="{% get_static_prefix %}pageslide-links.css" />  <!-- for my links that open pageslide frames -->
+    <link rel="stylesheet" type="text/css" href="/static/js/pageslide/jquery.pageslide.css" /> <!-- library code -->
+  
+    {% block page_scripts %}{% endblock page_scripts %}
+
+  </head>
+
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" style="background-color: transparent;">
+                <span class="glyphicon glyphicon-leaf"></span>
+                {% if not project %}
+                  <em>Project Menu</em>
+                {% else %}
+                  {{ project.name }}
+                {% endif %}
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                {% for p in request.user.projectpermissions_set.all %}
+                  <li><a href="{% url "switch-project" p.project.id %}"><i class="fa fa-leaf"></i> {{ p.project.name }}</a></li>
+                {% endfor %}
+
+                <li class="divider"></li>
+                <li><a href="{% url "create-project" %}" data-target="#myModal" data-toggle="modal" ><span class="glyphicon glyphicon-plus"></span> Create Project</a></li><!--data-target="#myModal" data-toggle="modal"-->
+              
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <p class="navbar-text" style="font-size:1.2em; color: white;">Forest Carbon MRV System</p>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Forest carbon</li>
+                <li><a href="{% url "group_aeq" %}"><span class="glyphicon glyphicon-tree-conifer"></span> Allometric Equations Editor</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Username: <em>{{ user.username }}</em></li>
+                <li><a href="{% url "account" %}"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                {% if user.is_staff %}
+                  <li><a href="{% url "add_user" %}"><span class="glyphicon glyphicon-user"></span> Add user</a></li>
+                {% endif %}
+                <li class="divider"></li>
+                {% if user.is_superuser %}
+                  <li><a href="/admin"><span class="glyphicon glyphicon-lock"></span> Admin</a>
+                {% endif %}
+                <li> <a href="{% url "cas_logout" %}"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+              </ul>
+            </li>
+
+            <!--
+            <li>
+              <a href="/static/html/guidebook.html" id="pageslide-handbook" style="padding: 10px 0px 0px 10px;">
+                <button type="button" class="btn btn-sm btn-primary">
+                  <span class="glyphicon glyphicon-book"></span> Handbook
+                </button>
+              </a>
+            </li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    {% block page_container %}
+        <div class="container">
+        {% if messages %}
+            {% for message in messages %}    
+              {% if message.tags == 'error' %}
+                <div class="alert alert-danger"><strong>{{ message.tags.upper }}</strong> {{ message }}</div>                
+              {% else %}
+                <div class="alert alert-{{ message.tags }}"><strong>{{ message.tags.upper }}</strong> {{ message }}</div>
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% block other_message %}
+        {% endblock %}     
+		
+        </div>
+
+    <div class="container" id='myContainer'>
+
+      {% block stage_content %}        
+      {% endblock stage_content %}
+
+    </div> <!-- /container -->
+
+    {% endblock %}
+
+
+    <br><br>
+
+    {% block footer %}
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <p class="navbar-text" style="text-align:center; color:white;">
+          <!-- Originally had  &mdash; between 'strong>' and '{% settings_value' on line below -->
+          <a href="/static/html/changelog.html" id="pageslide-changelog" style="font-size: 1em;color:white; text-decoration:none;">Forest Carbon MRV System</a>
+          <!-- {% settings_value 'COPYRIGHT_LABEL' %} -->
+        </p>
+        <div class="msulogo"><a href="http://msu.edu"><img src="/static/images/msu_wordmark.gif" alt="Michigan State University" /></a></div>
+      </div>
+    </div>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/holder/holder.js"></script>
+
+    <div id="create-project-modal" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title">Modal title</h4>
+
+              </div>
+              <div class="modal-body"><div class="te"></div></div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+          </div> <!-- /.modal-content -->
+      </div> <!-- /.modal-dialog -->
+    </div>
+
+    <!-- Event Modal -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Event</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Loading...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- Event modal -->
+
+  </body>
+
+  {% block page_bottomscripts %}{% endblock page_bottomscripts %}
+
+  {% block selectmodulejs %}{% endblock selectmodulejs %}
+
+  {% block selecttabjs %}{% endblock selecttabjs %}
+
+  {# pageslide must be scripted at bottom of page #}
+  <script src="/static/js/pageslide/jquery.pageslide.js"></script>
+  <script>
+      $("#pageslide-changelog").pageslide({ direction: "left", modal: false});
+      $(".pageslide-common").pageslide({ direction: "left", modal: true});
+      //$("#pageslide-handbook").pageslide({ direction: "left", modal: true});
+  </script>
+
+
+  <!-- google analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '{% settings_value 'GOOGLE_ANALYTICS_CODE' %}', '{% settings_value 'GOOGLE_ANALYTICS_DOMAIN' %}');
+    ga('send', 'pageview');
+  </script>
+
+
+
+</html>

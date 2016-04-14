@@ -1,0 +1,180 @@
+{% extends "module_sampling_design.html" %}
+{% load core_tags %}
+
+{% block pagetitle %}
+Sampling Design Tool &mdash; Results
+{% endblock %}
+
+{% block navtabs %} <!-- move to module template -->
+    <li id="sampling-design-tool-tab"><a href="{% url "sampling-design-tool" %}">Sampling Design Tool</a>
+    <li id="plot-mapping-tool-tab"><a href="{% url "plot-mapping-tool" %}">Plot Mapping Tool</a>
+{% endblock navtabs %}
+
+{% block page_scripts %}
+
+    <script type="text/javascript" src="{{ mathjax }}"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$'], ['\\(','\\)']]}});
+    </script>
+
+{% endblock page_scripts %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "sampling-design-tool" %}">Sampling Design Tool</a></li>
+    <li class="active">Results</li>
+{% endblock %}
+
+
+{% block page_content %}
+
+<div>
+    <ul id="ulnone">
+        {% for stratum in results.strata %}
+            <li><b>{{ stratum.name }} number of plots</b>: {{ stratum.n_plots }}</li>
+        {% endfor %}
+        <li><u><b>Total number of plots</b>: {{ results.total_n_plots }}</u></li>
+    </ul>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Form Inputs</h4>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td style="font-weight:bold">
+                Project area:</br>
+                Level of error:</br>
+                Confidence level:
+            </td>
+            <td colspan="4">
+                {{ meta_form.project_area_ha }} ha</br>
+                {{ meta_form.level_of_error }}%</br>
+                {{ meta_form.confidence_level }}
+            </td>
+        </tr>
+        <tr>
+            {% for stratum in strata_form %}
+                {% if forloop.first %}
+                            <th class="success">Stratum Name</th>
+                            <th>Area (ha)</th>
+                            <th class="success">Mean (tC/ha)</th>
+                            <th>Standard Deviation $\sigma$ (tC/ha)</th>
+                            <th class="success">Plot Size (ha)</th>
+                {% endif %}
+                </tr>
+                <tr>
+                    <td class="success">{{ stratum.name }}</td>
+                    <td>{{ stratum.area_reported }}</td>
+                    <td class="success">{{ stratum.mean_total_tc_ha }}</td>
+                    <td>{{ stratum.std_total_tc_ha }}</td>
+                    <td class="success">{{ stratum.plot_size_ha }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
+<div class ="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Intermediate Calculations</h4>
+    </div>
+    <table class="table table-hover">
+        {% for stratum in results.strata %}
+            {% if forloop.first %}
+                <tr>
+                    <th class="success">Stratum Name</th>
+                    <th>Variance $\sigma^2$</th>
+                    <th class="success">Variance Coefficient</th>
+                    <th>$N$</th>
+                    <th class="success">$N_s$</th>
+                    <th>$N_s^2$</th>
+                    <th class="success">Area Ratio*</th>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="success">{{ stratum.name }}</td>
+                <td>{{ stratum.variance }}</td>
+                <td class="success">{{ stratum.variance_coefficient }}</td>
+                <td>{{ stratum.N }}</td>
+                <td class="success">{{ stratum.Ns }}</td>
+                <td>{{ stratum.Ns2 }}</td>
+                <td class="success">{{ stratum.area_ratio }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2" style="font-weight:bold">
+                $\sum N$ =</br>
+                $\sum N_s$ =</br>
+                $\sum N_s^2$ =</br>
+                Weighted Mean (tC/ha) =</br>
+                Weighted Plot Size (ha) =</br>
+                Weighted Standard Deviation $\sigma$ (tC/ha) =</br>
+                Weighted Total Variance =
+            </td>
+            <td colspan="5">
+                {{ intermediate.sum_N }}</br>
+                {{ intermediate.sum_Ns }}</br>
+                {{ intermediate.sum_Ns2 }}</br>
+                {{ intermediate.weighted_mean_tc_ha }}</br>
+                {{ intermediate.weighted_plot_size_ha }}</br>
+                {{ intermediate.weighted_std_dev_tc_ha }}</br>
+                {{ intermediate.weighted_total_variance }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7" class="warning">
+                <span class="glyphicon glyphicon-asterisk"></span>
+                <i>The area ratio is used for calculating weighted figures.</i> $\left( \frac{area_{stratum}}{area_{project}} \right)$
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Formula &amp; References</h4>
+    </div>
+    <table class="table table-hover">
+        <tr>
+            <td colspan="5">
+            \[ n_h = n \cdot \frac{N_h \cdot s_h}{\sum N_h \cdot s_h} \]
+            \[ n = \frac{\left( \sum N_h \cdot s_h \right)^2}{\left( \left( \sum N_h \right) \cdot \frac{E}{t} \right)^2 + \left( \sum N_h \cdot s_h^2 \right)}  \]
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold; text-align:right">
+                $n$ =</br>
+                $n_h$ =</br>
+                $E$ =</br>
+                $t$ =</br>
+                $N_h$ =</br>
+                $s_h$ =
+            </td>
+            <td colspan="4">
+                number of sample plots in total project area</br>
+                number of sample plots in stratum $h$</br>
+                allowable error (level of error $\cdot$ weighted mean tC/ha)</br>
+                sample statistic from the t-distribution (90%, 95%, or 99% confidence level)</br>
+                number of sampling units in the population</br>
+                number of sampling units in stratum $h$
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="font-size:10px" class="warning">
+                Avery, T.E., and H.E. Burkhart (eds.). 1994. <i>Forest Masurements</i>, 4th edition. McGraw-Hill, New York.
+                <br>
+                Pearson, T. R. H., S. Brown, and N. H. Ravindranath. 2005. <i>Integrating Carbon Benefit Estimates into GEF Projects</i>. Winrock International/Global Environment Fund.
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+{% endblock page_content %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#sampling-design-tool-tab").addClass("active");
+    </script>
+{% endblock selecttabjs %}

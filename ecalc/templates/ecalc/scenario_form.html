@@ -1,0 +1,38 @@
+{% extends "ecalc/_form.html" %}
+
+{% block navtabs %}
+    <li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-align-center"></span> Instructions</a></li>
+    <li class="active"><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-align-center"></span> Project Wizard</a></li>
+    <li id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-align-center"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=project.id %}"><span class="glyphicon glyphicon-align-center"></span> Report</a></li>
+{% endblock %}
+
+{% block page_title %}Emissions Calculator - Create Project Scenario{% endblock %}
+
+{% block page_content %}
+    {% if form.errors or landuse_formset.non_form_errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+    {{ landuse_formset.non_form_errors }}
+    <form action="." method="post">
+    	{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        {{ landuse_formset.management_form }}
+        {% for form in landuse_formset %}
+        <table>
+        	<br />
+        	{{ form.as_table }}
+        </table>
+        {% endfor %}
+        <table>
+            <tr>
+            <th></th>
+            <td><input type="submit" value="Submit"></td>
+            </tr>
+       	</table>
+    </form>
+{% endblock %}

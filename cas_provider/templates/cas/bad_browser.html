@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block stage_content %}
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">{% block page_title %}Unable to Continue{% endblock page_title %}</h3>
+</div>
+<div class="panel-body">
+Please visit this page using <a href=http://www.getfirefox.com>Mozilla Firefox</a>, <a href=http://www.google.com/chrome>Google Chrome</a>, or <a href="http://www.getsafari.com">Apple Safari</a> in order to continue.
+<br>
+<br>
+ Other browsers may produce bad user experiences and have been prevented from accessing this site.
+</div>
+</div>
+{% endblock %}
+
+{% block page_bottomscripts %}
+<!--HIDE THE TOP NAVIGATION BAR-->
+ <script>
+$( ".nav" ).hide();
+</script>
+{% endblock page_bottomscripts %}

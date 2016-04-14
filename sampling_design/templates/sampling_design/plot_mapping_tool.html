@@ -1,0 +1,524 @@
+{% extends "module_sampling_design.html" %}
+
+{% block page_title %}
+Plot Mapping Tool
+{% endblock page_title %}
+
+{% block page_scripts %}
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+
+    <style type="text/css">
+        /* page leaflet css */
+        div #map {
+            height: 400px;
+            background-size: 50% 50%;
+        }
+
+        /* leaflet.zoomfs.js css */
+        .leaflet-control-fullscreen {
+          background-image: url(/static/geo/js/leaflet/images/fullscreen.png);
+          background-size: 80% 80%;
+        }
+    </script>
+
+
+    <style type="text/css">
+        /* headway.css hacks */
+        a.leaflet-bar-part {
+            /* NOT WORKING FIX ME */
+            color: #000000;
+        }
+
+        div.html div.entry-content ul.leaflet-draw-actions {
+            list-style: none;
+            display: none;
+            margin: 0;
+            padding: 0;
+            top: 0;
+        }
+        ul.leaflet-draw-actions a {
+            font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            cursor: auto;
+            list-style: none;
+            border-left: 1px solid #AAA;
+            background-color: #919187;
+            color: #FFF;
+            line-height: 28px;
+        }
+        ul.leaflet-draw-actions li {
+            color: transparent;
+        }
+    </style>
+
+{% endblock page_scripts %}
+
+{% block page_content %}
+    <script type="text/javascript">
+        $("ol#mrvcrumbs").append("<li><a href=\"#\">Sampling Design</a></li>");
+        $("ol#mrvcrumbs").append("<li class=\"active\">Plot Mapping Tool</li>");
+    </script>
+    <ol id="leaflet_instructions">
+        <li>Go to the Mapping Page and draw your mapped parcels.</li>
+        <li>Right Click on each parcel that's displayed, select your distribution type, then enter in the number of plots.</li>
+    </ol>
+
+    <div id="map" ></div>
+    <div id="overlay-container">
+        <div class="overlay-window"></div>
+    </div>
+
+    <!-- <br> <hr /> <h2>My World Borders (backbone.js call to API)</h2> -->
+    <div id="main">
+        <ul id="worldborders">
+            <!-- inserted here -->
+        </ul>
+
+    </div>
+
+
+{% endblock page_content %}
+
+{% block page_bottomscripts %}
+
+    <script src="/static/js/geo/js/leaflet/leaflet.js"></script>
+    <link rel="stylesheet" href="/static/js/geo/js/leaflet/leaflet.css" />
+    
+    <script src="/static/js/geo/js/leaflet/leaflet.draw.js"></script>
+    <link rel="stylesheet" href="/static/js/geo/js/leaflet/leaflet.draw.css" />
+
+    <script src="/static/js/geo/js/leaflet/leaflet.zoomfs.js"></script>
+
+    <script src="/static/js/geo/js/leaflet/leaflet.active-layers.js"></script>
+    <script src="/static/js/geo/js/leaflet/leaflet.select-layers.js"></script>
+
+    <script type="text/javascript" src="/static/js/geo/js/underscore.js"></script>
+    <script type="text/javascript" src="/static/js/geo/js/backbone.js"></script>
+    <!-- 
+    <script type="text/javascript" src="{{ STATIC_URL }}geo/js/backbone-tastypie.js.old"></script>
+    -->
+    <script type="text/javascript" src="/static/js/geo/js/backbone-tastypie.js"></script>
+    <script type="text/javascript">
+
+        // initialize map in the 'map' div with drawControl = true
+        // EDIT: i use drawControl false as i prefer to render control elsewhere
+        var map = L.map('map', {drawControl: false, zoomControl: false}).setView([0, 0], 1);
+
+        // add the OpenStreetMap tile layer
+        // var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        //     attribution: 'Street map data &copy; <a href="http://osm.org">OpenStreetMap</a> contributors',
+        //     maxZoom: 18
+        // });
+
+        // create the terrain layer
+        // var migurski_terrain = L.tileLayer('http://{s}.tile.stamen.com/terrain-background/{z}/{x}/{y}.jpg', {
+        //     attribution: 'US Terrain map data &copy; Michal Migurski',  // FIXME: Is this attribution correct?
+        //     maxZoom: 18
+        // });
+
+        // create the mapquest aerial layer
+        var mqa = L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+            attribution: 'Street map data &copy; <a href="http://osm.org">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+            subdomains: ['otile1', 'otile2', 'otile3', 'otile4']
+        }); 
+        mqa.addTo(map);
+
+
+        // create the Clouds overlay
+        // var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png', {
+        //     attribution: 'Clouds map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+        //     opacity: 0.5
+        // });
+
+        // create the Winds overlay
+        // var winds = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png', {
+        //     attribution: 'Wind map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+        //     opacity: 0.5
+        // });
+
+        // draw a circle!
+        var circle = L.circle([44.6604, -85.7571], 300, {
+            color: 'green',
+            fillColor: '#f03',
+            fillOpacity: 0.5
+        });//.addTo(map);        
+
+        // Initialize the FeatureGroup to store editable layers
+        var drawnItems = new L.FeatureGroup();
+        //map.addLayer(drawnItems);
+
+        // Initialize the FeatureGroup to store database layers
+        var parcelsLayer = new L.FeatureGroup();
+        map.addLayer(parcelsLayer);
+
+        // Initialize the FeatureGroup to store database layers
+        var plotsLayer = new L.FeatureGroup();
+        map.addLayer(plotsLayer);
+
+        // Initialize the draw control and pass it the FeatureGroup of editable layers
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: parcelsLayer
+            },
+            draw: {
+                position: 'topleft',
+                polygon: {
+                    showArea: true,
+                },
+                circle: false,
+                marker: false,
+                polyline: false,
+            }
+        });
+        //map.addControl(drawControl);
+
+        // Initialize the zoom control
+        var zoomControl = new L.Control.ZoomFS({
+            position: 'topright'
+        });
+        map.addControl(zoomControl);
+
+        // Initialize the select layers control
+        var selectLayersControl = new L.Control.SelectLayers(
+            {
+                //'OpenStreetMap': osm,
+                'MapQuest Open Aerial': mqa,
+                //'US Terrain': migurski_terrain
+            },
+            {
+                //'Clouds': clouds,
+                //'Winds': winds,
+                //'Drawn Items': drawnItems,
+                'Parcels': parcelsLayer,
+                'Plots': plotsLayer
+            }, 
+            {
+                position: 'bottomright'
+            }
+        );
+        map.addControl(selectLayersControl);
+
+        // event handling
+        map.on('draw:created', function (e) {
+            console.log("In here");
+            var type = e.layerType,
+                layer = e.layer;
+
+            if (type === 'marker') {
+                // Do marker specific actions
+            }
+
+            // Save to DB!
+            console.log(layer.toGeoJSON().coordinates.toString());
+            console.log(layer.toGeoJSON());
+            var parcel_instance = new Parcel();
+            var mpoly = layer.toGeoJSON();
+
+            mpoly.coordinates = new Array(mpoly.coordinates);
+            mpoly.type ="MultiPolygon";
+            console.log(mpoly);
+            parcel_instance.save({name: 'test', 'mpoly': mpoly,}, {success: function () {
+                console.log('Success');
+            }, error: function (){
+                console.warn('Error');
+            }});
+
+            // Do the stuff we do to every parcel!
+            // This binds events and adds it to map
+            onEachLayerParcel(parcel_instance, layer);
+        });
+
+
+        // FIXME - is currently duplicated on save() instead of updating object in back-end
+        // map.on('draw:edited', function (e) {
+        //     // Update db to save latest changes.
+        //     var layers = e.layers;
+        //     layers.eachLayer( function (layer) {
+        //         layer.fire('update_parcel');
+        //     });                 
+        // });
+
+        map.on('draw:deleted', function (e) {
+            // Update db to save latest changes.
+            var layers = e.layers;
+            layers.eachLayer( function (layer) {
+                layer.fire('remove_parcel');
+            });                                            
+
+            // Re-Draw plots! [DUPLICATED ELSEWHERE]
+            plotsLayer.clearLayers();
+            Plots = new PlotCollection();  // FIXME - why is it necessary to reinit?
+            // FIXME - if i dont reinit, it complains about the url attribute missing...
+            Plots.fetch({
+                success: fetchSuccessPlot,
+                error: function(model, response){
+                    console.warn("Error", response);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        // Currently we use cookie/session auth in lieu of ApiKey
+        // ApiKey
+        // Backbone.Tastypie.apiKey = {username: '', key: ''};
+
+        // csrfToken
+        // Backbone.Tastypie.csrfToken = $.cookie( 'csrftoken' );
+
+        // Model
+        var Parcel = Backbone.Model.extend({
+            urlRoot: '/api/v1/parcel-sampling/'
+            // access attributes by .attributes :)
+        });
+
+        var Plot = Backbone.Model.extend({
+            urlRoot: '/api/v1/plot-sampling/'
+            // access attributes by .attributes :)
+        });
+        // Collection
+        var ParcelCollection = Backbone.Collection.extend({
+            url: '/api/v1/parcel-sampling/?limit=5&project={{ request.session.project_id }}',
+            model: Parcel
+        });
+
+        var PlotCollection = Backbone.Collection.extend({
+            url: '/api/v1/plot-sampling/?limit=5&project={{ request.session.project_id }}',
+            model: Plot
+        });
+
+        // Repetitive functions
+        var onEachLayerParcel = function(parcel_instance, parcel_layer){
+            // 0) Add pointer to instance!
+            parcel_layer.instance = parcel_instance;
+
+            // 1) Style it
+            parcel_layer.setStyle({color: "#ff0000"});
+
+            // 2) Bind REMOVE event
+            parcel_layer.on("remove_parcel", function (e){
+                parcel_instance.destroy();
+            });
+
+            // 2) Bind UPDATE event
+            parcel_layer.on("update_parcel", function (e){
+                layer = e.target;
+                var mpoly = layer.toGeoJSON();
+                mpoly.coordinates = new Array(mpoly.coordinates);
+                mpoly.type ="Polygon";
+                parcel_instance.set({"poly_mapped": mpoly});
+                parcel_instance.save();
+            });
+
+            // 3) Bind popup
+            parcel_layer.on('contextmenu', function (e){
+                console.log('Plots count: '+ Plots.length)
+                var filtered = Plots.where({'parcel': e.target.instance.get('resource_uri')});
+                console.log('filtered: ' + filtered.toString());
+                var pg = '<hr /><h3>Number of Plots: ' + filtered.length + '</h3>'
+                //var form = '<hr>';
+                var form = '<h3>Generate Plots</h3>' + 
+                            '<input type="radio" name="disttype" value=0 checked /> Random <input type="radio" name="disttype" value=1 > Stratified Random<br /><br />' +
+                            '<span class="stratified" style="display: none;">Cols: <input type=text id="cols" /><br />' +
+                            'Rows: <input type="text" id="rows" /><br />' +
+                            'Every N: <input type="text" id="nth" /><br /></span>' +
+                            'Count: <input type=text id=sample_plots_text><input type=submit value=Generate id=sample_plots_button>';
+                form += pg;
+                var popup = L.popup();
+                popup.setLatLng(e.target.getBounds().getSouthWest()).setContent(form).openOn(map);
+                $('input[name=disttype]').on('change', function(event){
+                    if($(this).val() == "1")
+                        $(".stratified").show();
+                    else
+                        $(".stratified").hide();
+                });
+                // 3-B) Bind sample_plots_button to jquery click event
+                $("#sample_plots_button").click(function (e) {
+                    console.log(parcel_instance.get('id'));
+                    // Generate plots!
+                    $.ajax('/api/v1/geogen/', {
+                    data : JSON.stringify(
+                        {
+                            parcel: parcel_instance.get('id'),
+                            count: $('input[id=sample_plots_text]').val(),
+                            distType: Number($('input:radio[name=disttype]:checked').val()),
+                            rows: $('input[id=rows]').val(),
+                            cols: $('input[id=cols]').val(),
+                            nth: $('input[id=nth]').val()
+                        }),
+                    contentType : 'application/json',
+                    type : 'POST',
+                    success: function(json) {
+                            console.log('Result JSON: ' + json.toString());
+                            // Re-Draw plots!
+                            console.log('Redrawing plots... ');
+                            plotsLayer.clearLayers();
+                            Plots = new PlotCollection();
+                            Plots.fetch({
+                                success: fetchSuccessPlot,
+                                error: function(model, response){
+                                    console.warn("Error", response);
+                                }
+                            });
+                        }
+                    });
+                    map.closePopup();
+
+                    
+
+                });
+            });
+
+            // FINALLY) Add layer to map parcelsLayer
+            parcelsLayer.addLayer(parcel_layer);
+        };
+
+        // Instances
+        var Parcels = new ParcelCollection();
+        var Plots = new PlotCollection();
+
+        var fetchSuccessParcel = function(entries){
+
+            entries.each(function(parc){
+
+                geo = L.geoJson(
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'name': parc.get('name'),
+                            'popupContent': parc.get('name'),
+                            'instance': parc // FIXME - is this a deep copy or pointer? I want a pointer
+                        },
+                        'geometry': parc.get('poly_mapped')
+                    },
+                    {
+                        onEachFeature: function(feature, layer) {
+                            //if (feature.properties && feature.properties.popupContent) {
+                            //    layer.bindPopup(feature.properties.popupContent);
+                            //}
+                            if (feature.geometry.type =="MultiPolygon"){
+                                layer.eachLayer(function(child_layer){ onEachLayerParcel(parc, child_layer); });
+                            } else {
+                                onEachLayerParcel(parc, layer);
+                                //parcelsLayer.addLayer(layer);
+                            }
+                        }
+                     }
+                );   
+
+              var k =5;              
+            });
+
+            
+            try{ // meta.next is undefined if no more pages
+                Parcels.url = Parcels.meta.next;
+                Parcels.fetch({remove: false, success: fetchSuccessParcel});
+                //console.log(Parcels.meta.next);                 
+            } catch (err) {
+                // pass
+                console.log('Parcels [' + Parcels.length + '] : ' + Parcels.toString());
+            }         
+        }
+
+        var fetchSuccessPlot = function(entries){
+
+            entries.each(function(plot){
+
+                if ( plot.get('center_point') != null) {
+                    var point = plot.get('center_point')
+                    geo = L.geoJson(
+                        {
+                            'type': 'Feature',
+                            'properties': {
+                                'name': plot.get('name'),
+                                'popupContent': "<h3>" + plot.get('name') + "</h3><p>" + plot.get('center_point').toString() + "</p>",
+                                'instance': plot // FIXME - is this a deep copy or pointer? I want a pointer
+                            },
+                            'geometry': {
+                                "type": "Point",
+                                "coordinates": point.substring(point.indexOf('(')+1, point.indexOf(')')).split(" ")
+                            }
+                        },
+                        {
+                            onEachFeature: function(feature, layer) {
+                                if (feature.properties && feature.properties.popupContent) {
+                                   layer.bindPopup(feature.properties.popupContent);
+                                }
+
+                                plotsLayer.addLayer(layer);
+                            }
+                        }
+                    );
+                }
+            });
+
+            
+            try{ // meta.next is undefined if no more pages
+                Plots.url = Plots.meta.next;
+                Plots.fetch({remove: false, success: fetchSuccessPlot});
+                //console.log(Plots.meta.next);                 
+            } catch (err) {
+                // pass
+                console.log('Plots [' + Plots.length + '] : ' + Plots.toString());
+            }
+        }
+        // Main App View
+        var App = Backbone.View.extend({
+            // Base the view on an existing element
+            el: $('#worldborders'),
+
+            initialize: function(){
+                // Cache these selectors
+                // ...
+
+
+                // Fetch data from backend                
+                Parcels.fetch({
+                    success: fetchSuccessParcel,
+                    error: function(model, response){
+                        console.warn("Error", response);
+                    }
+                });
+                
+                Plots.fetch({
+                    success: fetchSuccessPlot,
+                    error: function(model, response){
+                        console.warn("Error", response);
+                    }
+                });
+
+
+                // Listen for the change event on the collection
+                // This is equivalent to listening to every one of
+                // the parcel objects separately (and more verbosely!)
+                this.listenTo(Parcels, 'change', this.render);
+                this.listenTo(Plots, 'change', this.render);
+
+                Parcels.on("reset", this.render, this);
+                Plots.on("reset", this.render, this);
+            },
+
+            render: function(){
+                // Nothing to do here
+
+                return this; // good practice for render() methods
+            }
+
+        });
+
+        new App();
+
+        $('.leaflet-draw-edit-edit').hide();
+    </script>
+
+{% endblock page_bottomscripts %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#plot-mapping-tool-tab").addClass("active");
+        $("#plot-mapping-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

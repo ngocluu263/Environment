@@ -1,0 +1,165 @@
+{% extends "module_sampling_design.html" %}
+{% load core_tags %}
+
+{% block page_title %}
+Plot Mapping Tool
+{% endblock page_title %}
+
+{% block page_scripts %}
+    <script type="text/javascript">
+            $('#reportedAreaDirections').hide();
+            $('#parcelInformation').hide();
+            $('#parcelreportedareawarning').hide();
+    </script>
+
+    <script src="http:////maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing" type="text/javascript"></script>
+    <!--<script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/16/7/%7Bmain,drawing%7D.js" type="text/javascript"></script>-->
+    
+    <!-- <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css"> -->
+{% endblock page_scripts %}
+
+{% block other_message %}
+    <div id="ajaxMessages"></div>
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#plot-mapping-tool-tab").addClass("active");
+        $("#plot-mapping-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}
+
+{% block page_content %}
+    <script type="text/javascript">
+        $("ol#mrvcrumbs").append("<li><a href=\"#\">Sampling Design</a></li>");
+        $("ol#mrvcrumbs").append("<li class=\"active\">Plot Mapping Tool</li>");
+    </script>
+
+    <div id="mapcanvas" style="height: 500px;"><img id='waiting_img' src='/static/ajax-loader.gif' alt='Please Wait'></div>
+    <div class="row">
+        <div class="panel-body col-md-2 col-md-offset-5">
+            <button type="button" class="btn btn-default btn-sm" onclick="setSampling()">Set Sampling</button>
+        </div>
+       <!--      Simple Random Sampling <input type="radio" name="sampling_type" onclick="simpleRandomSampling()">
+            Aligned Systematic Sampling <input type="radio" name="sampling_type" onclick="alignedSystematicSampling()"> -->
+    </div>
+
+    <div class="modal fade" id="plot_popup" tabindex="-1" role="dialog" aria-labelledby="Set View" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="setPlots">Plot</h3>
+            </div>
+            <div class="modal-body">
+                <div id="coordinates">
+                    <label for "coordinates">Coordinates: </label>
+                    <input id="x_coordinate"> 
+                    <input id="y_coordinate"> <br />
+                </div>
+<!--                 <label for "plot_shape">Plot Shape: </label>
+                    <select id="plot_shape"><option value="Rectangle">Rectangle</option>
+                                            <option value="Circle">Circle</option>
+                                            <option value="Polygon">Polygon</option>
+                                            <option value="Plot Marker">Plot Marker</option>
+                    </select> <br /> -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="setSampling" tabindex="-1" role="dialog" aria-labelledby="Set View" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="setPlots">Add Plots</h3>
+            </div>
+            <div class="modal-body">
+                <label for "selected_parcel">Parcel: </label>
+                    <select id="selected_parcel" class="form-control"></select> <br />
+
+                <label for "sampling_type">Sampling Type: </label>
+                    <select id="sampling_type" class="form-control"><option value=1>Simple Random Sampling</option>
+                                               <option value=2>Aligned Systematic Sampling</option>
+                    </select> <br />
+
+                <label for "plot_number">Number of Plots: </label>
+                    <input id="plot_number" type="text" value=""> <br />
+
+                <div id="new_variables">
+                </div>
+
+                <label for "plot_size">Plot Size: </label>
+                    <input id="plot_size" type="text" value=""> <br />
+
+                <label for "plot_shape">Plot Shape: </label>
+                    <select id="plot_shape" class="form-control"><option value="Rectangle">Rectangle</option>
+                                            <option value="Circle">Circle</option>
+                                            <option value="Polygon">Polygon</option>
+                                            <option value="Plot Marker">Plot Marker</option>
+                    </select> <br />
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" class="close" data-dismiss="modal" aria-hidden="true" onclick="sampling()">Done</button>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock page_content %}
+
+{% block page_bottomscripts %}
+    <!--<script src="http://js.arcgis.com/3.9/"></script>-->
+    <script src="/static/js/temporary_mapping/elabel3.js" type="text/javascript"></script>
+    <script src="/static/js/temporary_mapping/mapObjects.js" type="text/javascript"></script>
+    <script src="/static/js/temporary_mapping/mappolys.js" type="text/javascript"></script>
+    <script src="/static/js/temporary_mapping/map.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+    var project_id = '{{ request.session.project_id }}'
+    $(document).ready(function(){
+        setProjectId('{{ request.session.project_id }}');
+        initMap({
+            loadCookies: false
+        });
+        getPolygonsFromDatabase();
+    });
+
+    function setSampling() {
+        var parcels = new Array();
+        var selected_parcel = document.getElementById("selected_parcel");
+
+        // dojo.forEach(mapobjects, function(object){
+        //     if (object.pType == "parcel")
+        //         parcels.push(object);
+        // });
+
+        // if (parcels != selected_parcel.length) {
+        //     var len = selected_parcel.length;
+        //     for (i=0; i<len; i++) {
+        //         var a = document.createElement("option");
+        //         selected_parcel.remove(a);
+        //     }
+        //     var c = 0;
+        //     dojo.forEach(parcels, function(parcel){
+        //         var a = document.createElement("option");
+        //         a.text = parcel.pName;
+        //         a.value = c;
+        //         var contains_option = false;
+        //         selected_parcel.add(a);
+        //         c+=1;
+        //     });
+        // }
+        $("#setSampling").modal("show");
+    }
+
+    function getPolygonsFromDatabase() {
+        var calls = [];
+        calls.push(projectContainer.load());
+        calls.push(parcelContainer.load());
+        calls.push(plotContainer.load());
+        $.when.apply($, calls);
+    }
+
+    </script>
+{% endblock %}

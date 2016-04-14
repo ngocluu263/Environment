@@ -1,0 +1,111 @@
+{% extends "stage_project.html" %}
+{% load core_tags %}
+
+{% block selectmodulejs %}
+    <script type="text/javascript">
+        $("#measuring-pill").addClass("active");
+        $("#measuring-pill a").prop("href", "#");
+    </script>
+{% endblock selectmodulejs %}
+
+{% block navtabs %}
+    <li id="parcel-management-tab"><a href= "{% url 'parcel-management' request.session.project.id %}"><span class="glyphicon glyphicon-tree-deciduous"></span> 
+    	Parcel Management</a></li>
+    <li id="inventory-planning-tab"><a href="{% url 'inventory-planning' request.session.project.id %}"><span class="glyphicon glyphicon-th-list"></span> 
+    	Inventory Planning</a></li>
+    <li id="data-management-tab" class="active"><a href= "#"><span class="glyphicon glyphicon-folder-open"></span> 
+    	Data Management</a></li>
+    <li id="carbon-calculations-tab"><a href="{% url 'carbon-calculations' request.session.project.id %}"><span class="glyphicon glyphicon-globe"></span> 
+    	Carbon Calculations</a></li>
+{% endblock navtabs %}
+
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+
+{% block page_title %}{% endblock page_title %}
+
+{% block page_content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Plot Biomass &amp; Soil Data for Project: {{ project.name }}
+            </h4>
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <td class="col-lg-3" style="font-weight:bold">
+                    <asp:Label ID="labelReviewAllometricEquations" runat="server" 
+                    Text="Allometric Equations" 
+                    Style="margin-bottom: 0px;" />
+                    <label id="labelReviewAllometricEquations" style="margin-bottom: 0px;">Allometric Equations </label>
+                </td>
+                <td class="col-lg-9">
+                    <span style="float:right;"><a href="/core/utilities/aeq/"  target="_blank"><button type="button" class="btn btn-primary btn-sm">Open in New Window</button></a></span>
+                    <br />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                Tier 3
+            </h4>
+        </div>
+        <table class="table table-hover">
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                        <label id="labelUploadPlotBiomassData" style="margin-bottom: 0px;">Plot Biomass Data</label>
+                    </td>
+                    <td class="col-lg-9">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span style="float:right;">
+                                    <a href="data
+                                    _upload_form/Data_Upload_MRV.xls">
+                                        <a href="/static/downloads/Data_Upload_MRV.xls" class="btn btn-warning btn-sm">Download</a>
+                                    </a> 
+                                    <button id="biomassUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+                                </span>
+                            </div> 
+                        </div>    
+                        <div class="row">
+                            <div class="col-sm-12">
+                            <form id="." class="form-horiztonal" id="biomassUpload" method="POST" enctype="multipart/form-data">
+
+                            <div class="form-group">
+                                <div class="col-sm-3"><label class="control-label pull-right">Biomass Sheet: </label></div>
+                                <div class="col-sm-9"><input type="file" name="biomassXLS" id="biomassXLS" /></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-3"><label class="control-label pull-right">Review: </label></div>
+                                <div class="col-sm-9"><button type="button" class="btn btn-success btn-sm">Validate</button></div>
+                            </div>
+                            </form></div>
+                        </div>                   
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-lg-3" style="font-weight:bold">
+                            <label id="soilxls_upload_label" style="margin-bottom: 0px;">Project Soil Data</label>
+                    </td>
+                    <td class="col-lg-9">                  
+                        <span style="float:right;">
+                            <a id="soilxls_download_link" href="/mrvutils/soilxls/{{ request.session.project.id }}/download/">
+                                <button type="button" class="btn btn-warning btn-sm">Download</button>
+                            </a> 
+                            <a id="soilxls_upload_link" href="/mrvutils/soilxls/{{ request.session.project.id }}/upload/" data-target="#myModal" data-toggle="modal">
+                                <button type="button" class="btn btn-primary btn-sm">Upload</button>
+                            </a>
+                        </span>
+                        <br />
+                        <span id="step9instruction" runat="server" visible="true" style="font-style: italic; font-size: 11px;">
+                        This Excel workbook is pre-populated with data already entered into the MRV.</span>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+{% endblock page_content %}

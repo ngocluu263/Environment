@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    {% load static %}
+    {% load core_tags %}
+    <title>{% block page_title %}Forest-PLUS Program Data Management System{% endblock page_title %}</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- FontAwesome CSS -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/theme.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+      <![endif]-->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="/static/jquery/jquery-ui-1.10.3/ui/jquery-ui.js"></script>
+
+
+      <!-- end jquery UI -->
+
+      <!-- pageslide css // javascript at bottom of <body> tag -->
+      <link rel="stylesheet" href="{% get_static_prefix %}pageslide-links.css" />  <!-- for my links that open pageslide frames -->
+      <link rel="stylesheet" type="text/css" href="/static/js/pageslide/jquery.pageslide.css" /> <!-- library code -->
+      <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
+      <script src="http://js.arcgis.com/3.10/"></script>
+
+      <style>
+        html, body {
+            height: 100%;
+            min-height: 100%;
+        }
+        body {
+            background: #efefef;
+        }
+        #mapDiv {
+            padding: 0;
+            margin: 3px;
+            height: inherit;
+            width: inherit;
+            max-width: 100%;
+            border: solid 2px #000;
+        }
+
+        .map_content {
+            max-width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/dojo/dijit/themes/claro/claro.css" />
+    {% block page_scripts %}{% endblock page_scripts %}
+
+</head>
+
+
+<body class="claro">
+    <div class="container-fluid">
+        <div class="row">
+             <div class="col-sm-3 col-md-2 sidebar">
+                 <div class="row">
+                     <div class="col-sm-12 col-md-12 title">
+                         test
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-12 col-md-12 nav-sidebar-color">
+                        <ul class="nav nav-pills nav-stacked nav-sidebar">
+                            <li id="project-info-pill" class="active">
+                                <a href="#"><span class="glyphicon glyphicon-list-alt"></span> Project Information
+                            </li>
+                            <li id="project-info-pill">
+                                <a href="#"><span class="glyphicon glyphicon-list-alt"></span> Project Information
+                            </li>
+                            <li id="project-info-pill">
+                                <a href="#"><span class="glyphicon glyphicon-list-alt"></span> Project Information
+                            </li>
+                            <li id="project-info-pill">
+                                <a href="#"><span class="glyphicon glyphicon-list-alt"></span> Project Information
+                            </li>
+                        </ul>
+              
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
+                 test
+             </div>
+        </div>
+    </div>
+<!--     <div class="container-fluid"> -->
+  <!-- <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-pills nav-stacked nav-sidebar">
+              <li id="project-info-pill">
+                <a href="/core/review_project/{{ request.session.project_id }}">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    Project Information
+                </a>
+            </li>
+            <li id="project-social-benefits-pill" class="disabled">
+                <a href="#">
+                  <span class="glyphicon glyphicon-list-alt"></span>
+                  Social Benefits
+              </a>
+          </li>
+          <li id="project-docs-pill">
+            <a href="{% url "project-documents" request.session.project_id %}">
+              <span class="glyphicon glyphicon-folder-close"></span>
+              Project Documents
+          </a>
+      </li>
+      <li id="sampling-design-pill">
+        <a href="{% url "sampling-design-tool" %}">
+          <span class="glyphicon glyphicon-map-marker"></span>
+          Sampling Design
+      </a>
+  </li>
+  <li id="mapping-pill" class="active">
+    <a href="{% url "mapping-index" request.session.project_id %}">
+      <span class="glyphicon glyphicon-globe"></span>
+      Mapping
+  </a>
+</li>
+<li id="measuring-pill">
+    <a href="{% url "parcel-management" request.session.project_id %}">
+      <span class="glyphicon glyphicon-tree-conifer"></span>
+      Measuring
+  </a>
+</li>
+<li id ="ecalc-pill">
+    <a href="{% url "ecalc-projects" %}">
+      <span class="glyphicon glyphicon-cloud-download"></span>
+      Emissions Calculator
+  </a>
+</li>
+
+<li class="disabled"><a href="#"><span class="glyphicon glyphicon-certificate"></span> Social &amp; Environmental</a></li>
+<li id="project-reporting-pill">
+    <a href="{% url 'reporting' request.session.project_id %}">
+      <span class="glyphicon glyphicon-file"></span>
+      Reporting
+  </a>
+</li>
+
+<li id="project-settings-pill">
+    <a href="{% url "project-settings" request.session.project_id %}">
+      <span class="glyphicon glyphicon-cog"></span>
+      Project Settings
+  </a>
+</li>
+
+</ul>
+</div>
+<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main">
+  <div class="row content-background">
+      <div class="col-sm-12 col-md-12 ">
+          <ol id="mrvcrumbs" class="breadcrumb breadcrumb_arc">
+              <li><a href="{% settings_value 'ROOT_BREADCRUMB_URL' %}">Forest-PLUS Program DMS</a></li>
+              {% block allbreadcrumbs %}
+
+              {% block section_breadcrumb %}{% endblock section_breadcrumb %}
+              {% block breadcrumbs %}{% endblock breadcrumbs %}      
+              {% endblock allbreadcrumbs %}
+          </ol>
+      </div>
+  </div>
+  <div class="row content-background">
+      <div class="col-sm-12 col-md-12">
+          <ul class="nav nav-tabs">
+              <li class="active"><a href="#">Mapping</a></li>
+          </ul>
+          <div class="map_content">
+              <div id="mapDiv"></div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</div> -->
+    <!-- Fixed navbar -->
+   <!--  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" style="background-color: transparent;">
+                    <span class="glyphicon glyphicon-leaf"></span>
+                    {% if not project %}
+                    <em>Project Menu</em>
+                    {% else %}
+                    {{ project.name }}
+                    {% endif %}
+                    <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a href='#'> <span class="glyphicon glyphicon-user"></span> Owner</a></li>
+                    <ul style="list-style-type: none;">
+                        {% for p in request.user.project_set.all %}
+                        <li class=""><a href="{% url "switch-project" p.id %}"><span class="glyphicon glyphicon-leaf"></span> {{ p.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <li><a href='#'> <span class="glyphicon glyphicon-user"></span> Administrator</a></li>
+                    <li><a href='#'> <span class="glyphicon glyphicon-user"></span> User</a></li>
+
+                    <li class="divider"></li>
+                    <li><a href="{% url "create-project" %}" data-target="#myModal" data-toggle="modal" ><span class="glyphicon glyphicon-plus"></span> Create Project</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+<div class="navbar-collapse collapse">
+  <p class="navbar-text" style="font-size:1.2em; color: white;">Forest-PLUS Program DMS</p>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li class="dropdown-header">Forest carbon</li>
+        <li><a href="{% url "aeq_list" %}"><span class="glyphicon glyphicon-tree-conifer"></span> Allometric Equations Editor</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-header">Username: <em>{{ user.username }}</em></li>
+    <li><a href="{% url "account" %}"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+    {% if user.is_staff %}
+    <li><a href="{% url "add_user" %}"><span class="glyphicon glyphicon-user"></span> Add user</a></li>
+    {% endif %}
+    <li class="divider"></li>
+    {% if user.is_superuser %}
+    <li><a href="/admin"><span class="glyphicon glyphicon-lock"></span> Admin</a>
+        {% endif %}
+        <li> <a href="{% url "cas_logout" %}"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+    </ul>
+</li>
+
+
+      </ul>
+  </div>
+</div>
+</div> -->
+
+{% block page_container %}
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}    
+    {% if message.tags == 'error' %}
+    <div class="alert alert-danger"><strong>{{ message.tags.upper }}</strong> {{ message }}</div>                
+    {% else %}
+    <div class="alert alert-{{ message.tags }}"><strong>{{ message.tags.upper }}</strong> {{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% block other_message %}
+    {% endblock %}     
+
+</div>
+{% endblock page_container %}
+
+
+
+<br><br>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/holder/holder.js"></script>
+
+    <div id="create-project-modal" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Modal title</h4>
+
+              </div>
+              <div class="modal-body"><div class="te"></div></div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+          </div> <!-- /.modal-content -->
+      </div> <!-- /.modal-dialog -->
+  </div>
+
+  <!-- Event Modal -->
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Event</h4>
+            </div>
+            <div class="modal-body">
+                <p>Loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- Event modal -->
+
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var map;
+    require(["esri/map", "dojo/domReady!"], function(Map) {
+        map = new Map("mapDiv", {
+            center: [-56.049, 38.485],
+            zoom: 4,
+            basemap: "hybrid"
+        });
+    });
+</script>
+
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '{% settings_value 'GOOGLE_ANALYTICS_CODE' %}', '{% settings_value 'GOOGLE_ANALYTICS_DOMAIN' %}');
+    ga('send', 'pageview');
+</script>
+{% block page_bottomscripts %}{% endblock page_bottomscripts %}
+
+{% block selectmodulejs %}{% endblock selectmodulejs %}
+
+{% block selecttabjs %}{% endblock selecttabjs %}
+</body>
+
+
+
+
+
+
+</html>

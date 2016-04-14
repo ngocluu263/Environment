@@ -1,0 +1,37 @@
+{% extends "allometric/species_base.html" %}
+
+{% block page_title %}
+Species List
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+	<li class="active">Species</li>
+{% endblock %}
+
+{% block page_content %}
+
+	{% if object_list %}
+			{% for genusname in genus %}
+				<h4><a href="list?genus={{ genusname }}">{{ genusname }}</a></h4>
+
+					<ul style="line-height:200%;">
+					{% for specimen in species %}
+						{% if specimen.genus|cut:" "|capfirst == genusname|cut:" "|capfirst %}
+									<a href="list?species={{ specimen|slugify }}">{{ specimen }}</a><br>
+						{% endif %}
+					{% endfor %}
+					</ul>
+
+			{% endfor %}
+	{% endif %}
+{% endblock %}
+
+{% block page_bottomscripts %}
+{% endblock %}
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#species-list").addClass("active");
+        $("#species-list a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

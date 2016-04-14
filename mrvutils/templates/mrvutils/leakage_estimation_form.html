@@ -1,0 +1,66 @@
+{% extends "module_leakage_calculator.html" %}
+
+{% block page_title %}
+    Leakage Estimation Tool &mdash; Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock page_scripts %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url "leakage-estimation-tool" %}">Leakage Estimation Tool</a></li>
+    <li>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</li>
+{% endblock %}
+
+{% block page_content %}
+    <form id="wizard" action="" method="post">{% csrf_token %}
+        
+    <table id="sampling_design_table">
+    {{ wizard.management_form }}
+    {{ wizard.form.non_form_errors }} {# display any formset errors #}
+    {% if wizard.form.forms %} {# if... we have a FORMSET to style #}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+            {% if forloop.first %}
+                <thead><tr>
+                    <th>Stratum Name</th>
+                    <th>Stratum Area</th>
+                {% for field in form.visible_fields %}
+                    <th>{{ field.label|capfirst }}</th>
+                {% endfor %}
+              </tr></thead>
+            {% endif %}
+            <tr>
+                <td>{{ form.stratum_name }}</td>
+                <td>{{ form.stratum_area }}</td>
+            {% for field in form.visible_fields %}
+                <td>
+                {# Include the hidden fields in the form #}
+                {% if forloop.first %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                {% endif %}
+                {{ field.errors.as_ul }}
+                {{ field }}
+                </td>
+              {% endfor %}
+              <td></td>
+              </tr>
+        {% endfor %}
+    {% else %} {# else... we have a FORM to style #}
+        {{ wizard.form }}
+    {% endif %}
+    </table>
+
+    <input type="submit" value="Submit"/>
+    </form>
+{% endblock page_content %}
+
+
+{% block selecttabjs %}
+    <script type="text/javascript">
+        $("#leakage-estimation-tool-tab").addClass("active");
+        $("#leakage-estimation-tool-tab a").prop("href", "#");
+    </script>
+{% endblock selecttabjs %}

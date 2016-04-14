@@ -1,0 +1,110 @@
+{% extends "ecalc/_list.html" %}
+{% load humanize %}
+{% block page_title %}
+{{ carbonpools_list.0.scenario }}
+{% endblock %}
+
+{% block sidebaritems %}
+{#	<li><a href="{{ request.get_full_path }}graph/">Carbon Pools Graph</a></li> #}
+{% endblock sidebaritems %}
+
+{% block navtabs %}
+    <li id="ecalc-instructions-tab"><a href="{% url "ecalc-projects" %}"><span class="glyphicon glyphicon-list"></span> Instructions</a></li>
+    <li id="ecalc-project-wizard"><a href="{% url "ecalc-step-1" request.session.project_id %}"><span class="glyphicon glyphicon-flash"></span> Project Wizard</a></li>
+    <li class="active" id="ecalc-projectdetails-tool-tab"><a href="{% url "ecalc-project" request.session.project_id %}"><span class="glyphicon glyphicon-list-alt"></span> Project Details</a></li>
+    <li id="ecalc-report-tab"><a href="{% url "ecalc-report-wizard" pk=request.session.project_id %}"><span class="glyphicon glyphicon-file"></span> Report</a></li>
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li><a href="{% url "ecalc-projects" %}">Emissions Calculator</a></li>
+	<li><a href="{% url "ecalc-project" request.session.project_id %}">Project Details</a></li>
+	<li class="active">Annual Emissions</li>
+{% endblock %}
+
+{% block page_content %}
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Results</h4>
+		</div>
+		<div class="panel-body">
+			{% for cp in object_list %}
+				{% if forloop.first %}
+					<table class="table table-hover">
+					<tr class="success">
+						<th>Year</th>
+						<th>Biomass (tC)</th>
+						<th>Dead (tC)</th>
+						<th>Soil (tC)</th>
+						<th>HWP (tC)</th>
+						<th style="text-align:center;">Annual CO2 Emissions (tCO2)</th>
+						<th style="text-align:center;">Annual Non-CO2 Emissions (tCO2e)</th>
+						<th style="text-align:center;">Atmosphere (tCO2e)</th>
+					</tr>
+				{% endif %}
+				<tr>
+					<td class="active">{{ cp.year }}</td>
+					<td>{{ cp.GetBiomass | floatformat:0 | intcomma }}</td>
+					<td class="active">{{ cp.GetDeadCarbon | floatformat:0 | intcomma }}</td>
+					<td>{{ cp.GetSoil | floatformat:0 | intcomma }}</td>
+					<td class="active">{{ cp.GetHarvested | floatformat:0 | intcomma }}</td>
+					<td style="text-align:center;">{{ cp.annual_emissions | floatformat:0 | intcomma }}</td>
+					<td class="active" style="text-align:center;">{{ cp.annual_nonco2 | floatformat:0 | intcomma }}</td>
+					<td style="text-align:center;">{{ cp.GetAtm | floatformat:0 | intcomma }}</td>
+				</tr>
+			{% empty %}
+				</table>
+				<p>Results not available for this scenario.</p>
+			{% endfor %}
+			<tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h4 class="panel-title">Descriptions</h4>
+		</div>
+		<div class="panel-body">
+			<table class="table table-hover">
+				<tr><th colspan="2" class="success">Terrestrial Carbon Pools</th></tr>
+				<tr>
+					<th>Total Biomass:</th>
+					<td>The current year's stock in both above and below ground biomass</td>
+				</tr>
+				<tr>
+					<th>Dead:</th>
+					<td>The annual stock in both dead wood and litter</td>
+				</tr>
+				<tr>
+					<th>Soil:</th>
+					<td>Annual stock in soil organic carbon</td>
+				</tr>
+				<tr>
+					<th>HWP:</th>
+					<td>The cumulative stock in the harvested wood products in long term use</td>
+				</tr>
+				<tr><th colspan="2" class="success">GHG Fluxes</th></tr>
+				<tr>
+					<th>Annuel CO2 Emissions:</th>
+					<td>Annual flux between the terrestrial carbon pools and the atmosphere pool</td>
+				</tr>
+				<tr>
+					<th>Annual Non-CO2 Emissions:</th>
+					<td>Annual flux to the atmosphere from biomass burning or agricultural practices</td>
+				</tr>
+				<tr><th colspan="2" class="success">Atmospheric GHG Pool</th></tr>
+				<tr>
+					<th>Atmosphere:</th>
+					<td>The net GHG exchange between terrestrial and atmospheric pools</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<div class="col-sm-12">
+				<p>Note: Signs for terrestrial uptake are (-) and for emissions (+)</p>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

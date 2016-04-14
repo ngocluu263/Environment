@@ -1,0 +1,14 @@
+BEGIN PARCELS
+id, parcel name, area (m^2)
+
+END PARCELS
+
+BEGIN PLOTS
+id, plot_name, parcel_id, shape, dimensions, Region, Calculate by Species (True or False), root to shoot ratio 
+
+END PLOTS
+
+BEGIN TREES
+id, plot_id, genus, species, diameter
+
+END TREES
