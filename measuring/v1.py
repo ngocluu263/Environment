@@ -73,7 +73,11 @@ class PlotCarbonResource(ModelResource):
         bundle.data['root_shoot_ratio'] = bundle.obj.root_shoot_ratio
         if bundle.obj.aeq_id:        
         	equation = Equation.objects.get(id=bundle.obj.aeq_id)
-        	bundle.data['allometric_equation'] = equation.name       
+        	bundle.data['allometric_equation'] = equation.name
+        if bundle.obj.region_id:        
+        	region = EquationRegion.objects.get(id=bundle.obj.region_id)
+                country = EquationCountry.objects.get(id=region.country_id)
+        	bundle.data['allometric_equation'] = '<a href="/allometric/list/?country=' +  country.name.replace(" ", "-") +   '&amp;region=' + region.name.replace(" ", "-") + '">' +  region.name +   '</a>'       
         return bundle        
 
     class Meta:
