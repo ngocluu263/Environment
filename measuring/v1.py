@@ -71,13 +71,10 @@ class PlotCarbonResource(ModelResource):
         bundle.data['area'] = bundle.obj.area
         bundle.data['total_tc_ha'] = bundle.obj.total_tc_ha
         bundle.data['root_shoot_ratio'] = bundle.obj.root_shoot_ratio
-        equation = Equation.objects.get(id=bundle.obj.aeq_id)
-        bundle.data['allometric_equation'] = equation.name
-       #---------------------------------------------------------------------        
-        #plot_carbon_stocks2 = bundle.obj._get_plot_carbon_stocks()
-       # bundle.data['agb_tc_ha'] = plot_carbon_stocks2.agb_tc_ha
-       #--------------------------------------------------------------------
-        return bundle    
+        if bundle.obj.aeq_id:        
+        	equation = Equation.objects.get(id=bundle.obj.aeq_id)
+        	bundle.data['allometric_equation'] = equation.name       
+        return bundle        
 
     class Meta:
         queryset = Plot.objects.all().order_by('name')
