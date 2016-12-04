@@ -25,6 +25,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import djcelery
+from collections import OrderedDict
 djcelery.setup_loader()
 
 # Quick-start development settings - unsuitable for production
