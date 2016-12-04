@@ -85,12 +85,12 @@ AUTHENTICATION_BACKEND = (
 
 
 
-BROKER_URL = "amqp://gchange:cgv4tr9v4xl5@35.8.163.102:5672/nevis"
-CELERY_RESULT_BACKEND='amqp' #'djcelery.backends.database:DatabaseBackend'
-CELERY_ACCEPT_CONTENT = ['json','pickle','msgpack','yaml']
-CELERY_IGNORE_RESULT = False
-CELERY_ALWAYS_EAGER = True
-TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
+# BROKER_URL = "amqp://gchange:cgv4tr9v4xl5@35.8.163.102:5672/nevis"
+# CELERY_RESULT_BACKEND='amqp' #'djcelery.backends.database:DatabaseBackend'
+# #CELERY_ACCEPT_CONTENT = ['json','pickle','msgpack','yaml']
+# CELERY_IGNORE_RESULT = False
+# CELERY_ALWAYS_EAGER = True
+# TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
 # Application definition
 
 INSTALLED_APPS = (
