@@ -41,10 +41,10 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 #ROOT_BREADCRUMB_URL = 'http://35.8.163.102:8000'
-ROOT_BREADCRUMB_URL = 'http://localhost:8070'                    # to run the mrv on a machine this should point to the machine ip or the localhost of the machine
+ROOT_BREADCRUMB_URL = 'http://192.168.1.150:8000'                    # to run the mrv on a machine this should point to the machine ip or the localhost of the machine
 COPYRIGHT_LABEL = 'Copyright &copy; 2013 MSU'
 GOOGLE_ANALYTICS_CODE = 'UA-42541231-1'
-GOOGLE_ANALYTICS_DOMAIN = 'carbon2markets.org'
+GOOGLE_ANALYTICS_DOMAIN = 'test.org'
 DOCUMENTS_PATH = 'documents/'
 IMAGES_FOLDER_PATH = 'images/'
 
@@ -52,8 +52,8 @@ IMAGES_FOLDER_PATH = 'images/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'goesmrv@gmail.com'
-EMAIL_HOST_PASSWORD = 'GoesMrv1024@'
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'test'
 
 # External CDN
 # Anytime that the LaTaX on the application is not working check the 
@@ -170,9 +170,9 @@ DATABASES = {
     'default': {                                                      ## point the application to use the following information to connect to the database
         'ENGINE': 'django.contrib.gis.db.backends.postgis',           ## at the host IP addresss
         'NAME': 'gcf',
-        'USER': 'mrvadmin',
-        'PASSWORD': 'cgv4tr9v4xl5',
-        'HOST': '35.8.163.60',
+        'USER': 'posrgres',
+        'PASSWORD': 'posrgres',
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
